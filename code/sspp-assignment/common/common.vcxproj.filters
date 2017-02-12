@@ -13,18 +13,180 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\io">
+      <UniqueIdentifier>{f365588d-f83e-421f-ad15-b20c83e7bbe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io">
+      <UniqueIdentifier>{df7be7ab-cd4e-4a4f-8120-7bee0a00904a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools">
+      <UniqueIdentifier>{2f26d0cb-b7aa-43d1-9464-be352726e26e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools">
+      <UniqueIdentifier>{dc78ae72-8d3e-44b1-9da3-f931a7c59520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\measurements">
+      <UniqueIdentifier>{f18f179c-1af4-4ed8-b198-fdee2a0cbb3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\measurements">
+      <UniqueIdentifier>{8ea43dd6-f6c9-49a7-91ad-c8b663993597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\transformers">
+      <UniqueIdentifier>{19040d5d-32bb-4b43-87d0-19ef8f0307ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\transformers">
+      <UniqueIdentifier>{4ced8ce7-d10f-4bcd-8353-68f04fbccd54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\transformers\ellpack">
+      <UniqueIdentifier>{d962c6ba-3a5f-46a6-b5c6-6cd33a6bbb35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\transformers\ellpack">
+      <UniqueIdentifier>{7fa11eb4-fb30-46d0-abf5-c0acaf703391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\measurements\timers">
+      <UniqueIdentifier>{03cfcdfa-cb29-4931-94e8-9c819cae58ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\measurements\timers">
+      <UniqueIdentifier>{606c7190-2172-4a80-a246-9641822a00a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\measurements\calculators">
+      <UniqueIdentifier>{18552790-23f7-4d9e-8d3e-790b2d9fa65d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\measurements\calculators">
+      <UniqueIdentifier>{6b028c3c-777d-433d-8e06-16b61b856410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\representations">
+      <UniqueIdentifier>{82ca7211-52ff-4f12-8bdd-df670c588bd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\representations\ellpack">
+      <UniqueIdentifier>{48364337-852e-4aef-88b3-24d1904b8fcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\representations">
+      <UniqueIdentifier>{faaa59c2-960a-4dfc-b2a1-032bed6bdfa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\representations\ellpack">
+      <UniqueIdentifier>{4081a310-fe9b-467f-871e-66f59dbf9c65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\solvers">
+      <UniqueIdentifier>{d2039ad6-f8e6-4f8a-ac42-9f1df99bb900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\representations\csr">
+      <UniqueIdentifier>{6b30b031-0dad-46cd-80fa-5fcb1a080f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\transformers\csr">
+      <UniqueIdentifier>{8eca2b01-278a-4ec3-974f-8bc2b87687be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\representations\csr">
+      <UniqueIdentifier>{e2f139cb-5575-4412-b285-86d826ae2973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\transformers\csr">
+      <UniqueIdentifier>{7d41bbf0-07d9-459c-96ac-a3419ad7fd3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\solvers\csr">
+      <UniqueIdentifier>{b6a5beda-9b68-4a5d-8b01-bb43050aad78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\solvers\ellpack">
+      <UniqueIdentifier>{1ebe18f4-2001-4485-9d21-4a6bce7ad862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\solvers">
+      <UniqueIdentifier>{4e94caa8-bde8-496d-9b37-acdc39452b2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\solvers\csr">
+      <UniqueIdentifier>{cbc63140-6d9a-4bd4-a4b0-cb197fd87c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\solvers\ellpack">
+      <UniqueIdentifier>{cbdd2627-182a-47dd-8a76-69935fb11289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\representations\output">
+      <UniqueIdentifier>{d88897f3-25f6-4250-9ca5-6777e7c79e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\readers">
+      <UniqueIdentifier>{83391a47-a223-48bf-95c9-1374b8a71866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io\readers">
+      <UniqueIdentifier>{810f6ea3-32f5-43e3-a204-673845a1fddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\writers">
+      <UniqueIdentifier>{17a8141d-5d3b-44f9-9d79-30009b956ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io\writers">
+      <UniqueIdentifier>{b6ef4225-39af-4091-92bf-f09f3fed4aee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mmio.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarketReader.h">
+      <Filter>Header Files\io\readers</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputRepresentationWriter.h">
+      <Filter>Header Files\io\writers</Filter>
+    </ClInclude>
+    <ClInclude Include="CSR.h">
+      <Filter>Header Files\representations\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACK.h">
+      <Filter>Header Files\representations\ellpack</Filter>
+    </ClInclude>
+    <ClInclude Include="Output.h">
+      <Filter>Header Files\representations\output</Filter>
+    </ClInclude>
+    <ClInclude Include="FLOPSCalculator.h">
+      <Filter>Header Files\tools\measurements\calculators</Filter>
+    </ClInclude>
+    <ClInclude Include="ExecutionTimer.h">
+      <Filter>Header Files\tools\measurements\timers</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRSolver.h">
+      <Filter>Header Files\tools\solvers\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKSolver.h">
+      <Filter>Header Files\tools\solvers\ellpack</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRTransformer.h">
+      <Filter>Header Files\tools\transformers\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKTransformer.h">
+      <Filter>Header Files\tools\transformers\ellpack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mmio.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="CSRSolver.cpp">
+      <Filter>Source Files\tools\solvers\csr</Filter>
+    </ClCompile>
+    <ClCompile Include="CSR.cpp">
+      <Filter>Source Files\representations\csr</Filter>
+    </ClCompile>
+    <ClCompile Include="CSRTransformer.cpp">
+      <Filter>Source Files\tools\transformers\csr</Filter>
+    </ClCompile>
+    <ClCompile Include="ELLPACK.cpp">
+      <Filter>Source Files\representations\ellpack</Filter>
+    </ClCompile>
+    <ClCompile Include="ELLPACKSolver.cpp">
+      <Filter>Source Files\tools\solvers\ellpack</Filter>
+    </ClCompile>
+    <ClCompile Include="ELLPACKTransformer.cpp">
+      <Filter>Source Files\tools\transformers\ellpack</Filter>
+    </ClCompile>
+    <ClCompile Include="ExecutionTimer.cpp">
+      <Filter>Source Files\tools\measurements\timers</Filter>
+    </ClCompile>
+    <ClCompile Include="FLOPSCalculator.cpp">
+      <Filter>Source Files\tools\measurements\calculators</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixMarketReader.cpp">
+      <Filter>Source Files\io\readers</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputRepresentationWriter.cpp">
+      <Filter>Source Files\io\writers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

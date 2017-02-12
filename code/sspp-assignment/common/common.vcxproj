@@ -130,10 +130,31 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CSR.h" />
+    <ClInclude Include="CSRSolver.h" />
+    <ClInclude Include="CSRTransformer.h" />
+    <ClInclude Include="ELLPACK.h" />
+    <ClInclude Include="ELLPACKSolver.h" />
+    <ClInclude Include="ELLPACKTransformer.h" />
+    <ClInclude Include="ExecutionTimer.h" />
+    <ClInclude Include="FLOPSCalculator.h" />
+    <ClInclude Include="MatrixMarketReader.h" />
     <ClInclude Include="mmio.h" />
+    <ClInclude Include="Output.h" />
+    <ClInclude Include="OutputRepresentationWriter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CSR.cpp" />
+    <ClCompile Include="CSRSolver.cpp" />
+    <ClCompile Include="CSRTransformer.cpp" />
+    <ClCompile Include="ELLPACK.cpp" />
+    <ClCompile Include="ELLPACKSolver.cpp" />
+    <ClCompile Include="ELLPACKTransformer.cpp" />
+    <ClCompile Include="ExecutionTimer.cpp" />
+    <ClCompile Include="FLOPSCalculator.cpp" />
+    <ClCompile Include="MatrixMarketReader.cpp" />
     <ClCompile Include="mmio.c" />
+    <ClCompile Include="OutputRepresentationWriter.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
