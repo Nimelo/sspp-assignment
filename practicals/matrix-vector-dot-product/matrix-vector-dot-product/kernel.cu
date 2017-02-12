@@ -36,6 +36,24 @@ void CpuMatrixVector(int rows, int cols, const double* A, const double* x, doubl
 	}
 }
 
+__global__ void gpuSetPartialMultiplicationToMatrix(int rows, int cols, double * A, const double * x)
+{
+	int idx = threadIdx.x + threadIdx.y * blockDim.x + blockDim.x * blockDim.y * blockIdx.x;
+	for (int i = 0; i<cols; i++)
+	{
+		A[rows * idx + i] = A[rows * idx + i] * x[i];
+	}
+}
+
+__global__ void reduce(int rows, int cols, double * A)
+{
+	int row = blockIdx.x;
+	int col = blockIdx.y;
+	int offset = rows;
+
+	A[row + col * cols] += A[row + col * cols + offset];
+}
+
 // GPU implementation of matrix add using one CUDA thread per vector element.
 __global__ void gpuMatrixVector(int rows, int cols, const double* A, const double* x, double* y) {
 	// TODO Calculate indices of matrix elements added by this thread. 
@@ -138,7 +156,30 @@ int main(int argc, char** argv) {
 	}
 	std::cout << "Max diff = " << diff << std::endl;  // Should be (very close to) zero.
 
-													  // ------------------------------- Cleaning up ------------------------------ //
+	// ------------------------------- Cleaning up ------------------------------ //
+
+	timer->reset();
+	timer->start();
+	gpuMatrixVector << <GRID_DIM, BLOCK_DIM >> >(ROWS, COLS, d_A, d_x, d_y);
+
+	int something = COLS / 2;
+	while(something != 1)
+	{
+		dim3 dimension(something, ROWS);
+		dim3 dim2(1, 1);
+
+		reduce << <dimension, dim2>> >(something, COLS, d_A);
+		something /= 2;
+	}
+	timer->stop();
+	std::cout << "GPU time: " << timer->getTime() << " ms." << std::endl;
+	cudaMemcpy(h_A, d_A, ROWS*COLS * sizeof(double), cudaMemcpyDeviceToHost);
+
+
+	for (int row = 0; row < ROWS; ++row) {
+		diff = std::max(diff, std::abs(h_y[row] - h_A[row * COLS]));
+	}
+	std::cout << "Max diff = " << diff << std::endl;  // Should be (very close to) zero.
 
 	delete timer;
 
