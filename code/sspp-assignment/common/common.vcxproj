@@ -138,10 +138,12 @@
     <ClInclude Include="ELLPACKTransformer.h" />
     <ClInclude Include="ExecutionTimer.h" />
     <ClInclude Include="FLOPSCalculator.h" />
+    <ClInclude Include="IntermediarySparseMatrix.h" />
     <ClInclude Include="MatrixMarketReader.h" />
     <ClInclude Include="mmio.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="OutputRepresentationWriter.h" />
+    <ClInclude Include="ReadMatrixException.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSR.cpp" />
@@ -152,8 +154,10 @@
     <ClCompile Include="ELLPACKTransformer.cpp" />
     <ClCompile Include="ExecutionTimer.cpp" />
     <ClCompile Include="FLOPSCalculator.cpp" />
+    <ClCompile Include="IntermediarySparseMatrix.cpp" />
     <ClCompile Include="MatrixMarketReader.cpp" />
-    <ClCompile Include="mmio.c" />
+    <ClCompile Include="mmio.cpp" />
+    <ClCompile Include="Output.cpp" />
     <ClCompile Include="OutputRepresentationWriter.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

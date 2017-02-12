@@ -112,6 +112,18 @@
     <Filter Include="Source Files\io\writers">
       <UniqueIdentifier>{b6ef4225-39af-4091-92bf-f09f3fed4aee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\representations\intermediary">
+      <UniqueIdentifier>{7b7e7b7b-b7b2-4a3d-939a-fa0fd87553b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\representations\output">
+      <UniqueIdentifier>{08ebab5e-4077-4bff-a322-59dbb82a2fb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\representations\intermediary">
+      <UniqueIdentifier>{4c9c5e82-6aee-4b16-8fb1-a2bf3bc5f036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\exceptions">
+      <UniqueIdentifier>{87592ceb-e9e5-406c-8eef-c8b216fedbe7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -153,11 +165,14 @@
     <ClInclude Include="ELLPACKTransformer.h">
       <Filter>Header Files\tools\transformers\ellpack</Filter>
     </ClInclude>
+    <ClInclude Include="IntermediarySparseMatrix.h">
+      <Filter>Header Files\representations\intermediary</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadMatrixException.h">
+      <Filter>Header Files\io\exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mmio.c">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
     <ClCompile Include="CSRSolver.cpp">
       <Filter>Source Files\tools\solvers\csr</Filter>
     </ClCompile>
@@ -187,6 +202,15 @@
     </ClCompile>
     <ClCompile Include="OutputRepresentationWriter.cpp">
       <Filter>Source Files\io\writers</Filter>
+    </ClCompile>
+    <ClCompile Include="IntermediarySparseMatrix.cpp">
+      <Filter>Source Files\representations\intermediary</Filter>
+    </ClCompile>
+    <ClCompile Include="Output.cpp">
+      <Filter>Source Files\representations\output</Filter>
+    </ClCompile>
+    <ClCompile Include="mmio.cpp">
+      <Filter>Source Files\io</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
