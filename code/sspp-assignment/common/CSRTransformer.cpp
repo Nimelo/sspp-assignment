@@ -14,7 +14,7 @@ representations::csr::CSR tools::transformers::csr::CSRTransformer::transform(re
 	{
 		AS[i] = ism.getValues()[i];
 		JA[i] = ism.getJIndexes()[i];
-		if (JA[i - 1] != JA[i])
+		if (ism.getIIndexes()[i - 1] != ism.getIIndexes()[i])
 			IRP[++index] = i;
 	}
 
