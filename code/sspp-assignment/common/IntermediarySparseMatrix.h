@@ -1,6 +1,8 @@
 #ifndef __H_INETERMEDIARY_SPARSE_MATRIX
 #define __H_INETERMEDIARY_SPARSE_MATRIX
 
+#include "Definitions.h"
+
 namespace representations 
 {
 	namespace intermediary
@@ -13,9 +15,9 @@ namespace representations
 				int n;
 				int *i;
 				int *j;
-				double *values;
+				FLOATING_TYPE *values;
 			public:
-				IntermediarySparseMatrix(int m, int n, int nz, int *iIndexes, int *jIndexes, double *values);
+				IntermediarySparseMatrix(int m, int n, int nz, int *iIndexes, int *jIndexes, FLOATING_TYPE *values);
 				IntermediarySparseMatrix(const IntermediarySparseMatrix &other);
 				~IntermediarySparseMatrix();
 				int getNZ() const;
@@ -23,7 +25,7 @@ namespace representations
 				int getN() const;
 				int * getIIndexes() const;
 				int * getJIndexes() const;
-				double * getValues() const;
+				FLOATING_TYPE * getValues() const;
 		};
 	}
 }

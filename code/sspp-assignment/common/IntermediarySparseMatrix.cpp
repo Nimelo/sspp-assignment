@@ -1,6 +1,6 @@
 #include "IntermediarySparseMatrix.h"
 
-representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatrix(int m, int n, int nz, int * iIndexes, int * jIndexes, double * values)
+representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatrix(int m, int n, int nz, int * iIndexes, int * jIndexes, FLOATING_TYPE * values)
 	: m(m), n(n), nz(nz), i(iIndexes), j(jIndexes), values(values)
 {
 }
@@ -13,7 +13,7 @@ representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatri
 
 	this->i = new int[nz];
 	this->j = new int[nz];
-	this->values = new double[nz];
+	this->values = new FLOATING_TYPE[nz];
 
 	for (int it = 0; it < nz; it++)
 	{
@@ -55,7 +55,7 @@ int * representations::intermediary::IntermediarySparseMatrix::getJIndexes() con
 	return j;
 }
 
-double * representations::intermediary::IntermediarySparseMatrix::getValues() const
+FLOATING_TYPE * representations::intermediary::IntermediarySparseMatrix::getValues() const
 {
 	return values;
 }

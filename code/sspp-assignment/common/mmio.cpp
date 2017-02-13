@@ -15,13 +15,13 @@
 #include "mmio.h"
 
 int mm_read_unsymmetric_sparse(const char *fname, int *M_, int *N_, int *nz_,
-                double **val_, int **I_, int **J_)
+	FLOATING_TYPE **val_, int **I_, int **J_)
 {
     FILE *f;
     MM_typecode matcode;
     int M, N, nz;
     int i;
-    double *val;
+	FLOATING_TYPE *val;
     int *I, *J;
  
     if ((f = fopen(fname, "r")) == NULL)
@@ -62,7 +62,7 @@ int mm_read_unsymmetric_sparse(const char *fname, int *M_, int *N_, int *nz_,
  
     I = (int *) malloc(nz * sizeof(int));
     J = (int *) malloc(nz * sizeof(int));
-    val = (double *) malloc(nz * sizeof(double));
+    val = (FLOATING_TYPE *) malloc(nz * sizeof(FLOATING_TYPE));
  
     *val_ = val;
     *I_ = I;
@@ -263,7 +263,7 @@ int mm_write_mtx_array_size(FILE *f, int M, int N)
 /******************************************************************/
 
 int mm_read_mtx_crd_data(FILE *f, int M, int N, int nz, int I[], int J[],
-        double val[], MM_typecode matcode)
+	FLOATING_TYPE val[], MM_typecode matcode)
 {
     int i;
     if (mm_is_complex(matcode))
@@ -296,7 +296,7 @@ int mm_read_mtx_crd_data(FILE *f, int M, int N, int nz, int I[], int J[],
 }
 
 int mm_read_mtx_crd_entry(FILE *f, int *I, int *J,
-        double *real, double *imag, MM_typecode matcode)
+	FLOATING_TYPE *real, FLOATING_TYPE *imag, MM_typecode matcode)
 {
     if (mm_is_complex(matcode))
     {
@@ -331,7 +331,7 @@ int mm_read_mtx_crd_entry(FILE *f, int *I, int *J,
 ************************************************************************/
 
 int mm_read_mtx_crd(char *fname, int *M, int *N, int *nz, int **I, int **J, 
-        double **val, MM_typecode *matcode)
+	FLOATING_TYPE **val, MM_typecode *matcode)
 {
     int ret_code;
     FILE *f;
@@ -359,14 +359,14 @@ int mm_read_mtx_crd(char *fname, int *M, int *N, int *nz, int **I, int **J,
 
     if (mm_is_complex(*matcode))
     {
-        *val = (double *) malloc(*nz * 2 * sizeof(double));
+        *val = (FLOATING_TYPE *) malloc(*nz * 2 * sizeof(FLOATING_TYPE));
         ret_code = mm_read_mtx_crd_data(f, *M, *N, *nz, *I, *J, *val, 
                 *matcode);
         if (ret_code != 0) return ret_code;
     }
     else if (mm_is_real(*matcode))
     {
-        *val = (double *) malloc(*nz * sizeof(double));
+        *val = (FLOATING_TYPE *) malloc(*nz * sizeof(FLOATING_TYPE));
         ret_code = mm_read_mtx_crd_data(f, *M, *N, *nz, *I, *J, *val, 
                 *matcode);
         if (ret_code != 0) return ret_code;
@@ -397,7 +397,7 @@ int mm_write_banner(FILE *f, MM_typecode matcode)
 }
 
 int mm_write_mtx_crd(char fname[], int M, int N, int nz, int I[], int J[],
-        double val[], MM_typecode matcode)
+	FLOATING_TYPE val[], MM_typecode matcode)
 {
     FILE *f;
     int i;
