@@ -18,7 +18,7 @@ representations::csr::CSR tools::transformers::csr::CSRTransformer::transform(re
 			IRP[++index] = i;
 	}
 
-	IRP[++index] = ism.getNZ() + 1;
+	IRP[++index] = ism.getNZ();
 
 	return representations::csr::CSR(ism.getNZ(), ism.getM(), ism.getN(), IRP, JA, AS);
 }

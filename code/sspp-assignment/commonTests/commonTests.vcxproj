@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CSRSolverTests.cpp" />
     <ClCompile Include="CSRTransformerTests.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CSRSolverTest.h" />
     <ClInclude Include="CSRTransformerTest.h" />
     <ClInclude Include="ITest.h" />
   </ItemGroup>

@@ -31,12 +31,18 @@
     <Filter Include="Header Files\testing\tools\solvers\csr">
       <UniqueIdentifier>{2b645657-51a1-484d-8d5a-81ba0e1c8f65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\testing\tools\transformers\csr">
+      <UniqueIdentifier>{8f505de5-2a89-47c1-b571-a58b7adaec65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CSRTransformerTests.cpp">
+      <Filter>Header Files\testing\tools\transformers\csr</Filter>
+    </ClCompile>
+    <ClCompile Include="CSRSolverTests.cpp">
       <Filter>Header Files\testing\tools\solvers\csr</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,6 +51,9 @@
       <Filter>Header Files\testing-interfaces</Filter>
     </ClInclude>
     <ClInclude Include="CSRTransformerTest.h">
+      <Filter>Header Files\testing\tools\transformers\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRSolverTest.h">
       <Filter>Header Files\testing\tools\solvers\csr</Filter>
     </ClInclude>
   </ItemGroup>
