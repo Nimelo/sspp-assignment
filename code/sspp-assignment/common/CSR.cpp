@@ -5,6 +5,30 @@ representations::csr::CSR::CSR(int NZ, int M, int N, int * IRP, int * JA, FLOATI
 {
 }
 
+representations::csr::CSR::CSR(const CSR & other)
+{
+	this->NZ = other.getASSize();
+	this->M = other.getM();
+	this->N = other.getN();
+	this->IRP = new int[other.getIRPSize()];
+	for (int i = 0; i < other.getIRPSize(); i++)
+		this->IRP[i] = other.getIRP()[i];
+
+	this->JA = new int[other.getJASize()];
+	for (int i = 0; i < other.getJASize(); i++)
+		this->JA[i] = other.getJA()[i];
+
+	this->AS = new FLOATING_TYPE[other.getASSize()];
+	for (int i = 0; i < other.getASSize(); i++)
+		this->AS[i] = other.getAS()[i];
+}
+
+representations::csr::CSR & representations::csr::CSR::operator=(CSR rhs)
+{
+	// TODO: insert return statement here
+	return *this;
+}
+
 representations::csr::CSR::~CSR()
 {
 	delete[] IRP;

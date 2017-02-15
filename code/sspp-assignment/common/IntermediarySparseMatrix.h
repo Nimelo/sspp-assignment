@@ -17,8 +17,10 @@ namespace representations
 				int *j;
 				FLOATING_TYPE *values;
 			public:
+				IntermediarySparseMatrix();
 				IntermediarySparseMatrix(int m, int n, int nz, int *iIndexes, int *jIndexes, FLOATING_TYPE *values);
 				IntermediarySparseMatrix(const IntermediarySparseMatrix &other);
+				IntermediarySparseMatrix & operator=(IntermediarySparseMatrix rhs);
 				~IntermediarySparseMatrix();
 				int getNZ() const;
 				int getM() const;

@@ -7,10 +7,10 @@
 */
 
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
+#include <cctype>
 
 #include "mmio.h"
 
@@ -60,9 +60,9 @@ int mm_read_unsymmetric_sparse(const char *fname, int *M_, int *N_, int *nz_,
  
     /* reseve memory for matrices */
  
-    I = (int *) malloc(nz * sizeof(int));
-    J = (int *) malloc(nz * sizeof(int));
-    val = (FLOATING_TYPE *) malloc(nz * sizeof(FLOATING_TYPE));
+	I = new int[nz];//(int *) malloc(nz * sizeof(int));
+	J = new int[nz];//(int *) malloc(nz * sizeof(int));
+	val = new FLOATING_TYPE[nz];//(FLOATING_TYPE *)malloc(nz * sizeof(FLOATING_TYPE));
  
     *val_ = val;
     *I_ = I;
@@ -353,20 +353,20 @@ int mm_read_mtx_crd(char *fname, int *M, int *N, int *nz, int **I, int **J,
         return ret_code;
 
 
-    *I = (int *)  malloc(*nz * sizeof(int));
-    *J = (int *)  malloc(*nz * sizeof(int));
+	*I = new int[*nz];//(int *)  malloc(*nz * sizeof(int));
+	*J = new int[*nz];//(int *)  malloc(*nz * sizeof(int));
     *val = NULL;
 
     if (mm_is_complex(*matcode))
     {
-        *val = (FLOATING_TYPE *) malloc(*nz * 2 * sizeof(FLOATING_TYPE));
+		*val = new FLOATING_TYPE[*nz * 2];//(FLOATING_TYPE *) malloc(*nz * 2 * sizeof(FLOATING_TYPE));
         ret_code = mm_read_mtx_crd_data(f, *M, *N, *nz, *I, *J, *val, 
                 *matcode);
         if (ret_code != 0) return ret_code;
     }
     else if (mm_is_real(*matcode))
     {
-        *val = (FLOATING_TYPE *) malloc(*nz * sizeof(FLOATING_TYPE));
+        *val = new FLOATING_TYPE[*nz];//(FLOATING_TYPE *) malloc(*nz * sizeof(FLOATING_TYPE));
         ret_code = mm_read_mtx_crd_data(f, *M, *N, *nz, *I, *J, *val, 
                 *matcode);
         if (ret_code != 0) return ret_code;
@@ -389,7 +389,7 @@ int mm_write_banner(FILE *f, MM_typecode matcode)
     int ret_code;
 
     ret_code = fprintf(f, "%s %s\n", MatrixMarketBanner, str);
-    free(str);
+	delete str;//free(str);
     if (ret_code !=2 )
         return MM_COULD_NOT_WRITE_FILE;
     else
@@ -448,7 +448,7 @@ int mm_write_mtx_crd(char fname[], int M, int N, int nz, int I[], int J[],
 char *mm_strdup(const char *s)
 {
 	int len = strlen(s);
-	char *s2 = (char *) malloc((len+1)*sizeof(char));
+	char *s2 = new char[len + 1];//(char *) malloc((len+1)*sizeof(char));
 	return strcpy(s2, s);
 }
 

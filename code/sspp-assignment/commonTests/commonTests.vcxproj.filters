@@ -34,6 +34,9 @@
     <Filter Include="Header Files\testing\tools\transformers\csr">
       <UniqueIdentifier>{8f505de5-2a89-47c1-b571-a58b7adaec65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\testing\tools\sorters">
+      <UniqueIdentifier>{7cc20eb8-1d71-4968-959a-6c496a2cc369}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -45,6 +48,9 @@
     <ClCompile Include="CSRSolverTests.cpp">
       <Filter>Header Files\testing\tools\solvers\csr</Filter>
     </ClCompile>
+    <ClCompile Include="InPlaceSorterTests.cpp">
+      <Filter>Header Files\testing\tools\sorters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -55,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="CSRSolverTest.h">
       <Filter>Header Files\testing\tools\solvers\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="InPlaceSorterTest.h">
+      <Filter>Header Files\testing\tools\sorters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

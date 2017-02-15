@@ -3,26 +3,36 @@
 #include "../common/CSRTransformer.h"
 #include "../common/CSRSolver.h"
 #include "../common/Definitions.h"
+#include "../common/ExecutionTimer.h"
 #include <vld.h>
 #include <iostream>
 
 int main(int argc, char *argv[])
 {
-	io::readers::MatrixMarketReader matrixReader;
-	representations::intermediary::IntermediarySparseMatrix ism = matrixReader.fromFile(argv[1]);
+	{	
+		auto timer = tools::measurements::timers::ExecutionTimer();
 
-	/*for (size_t i = 0; i < ism.getNZ(); i++)
-	{
-		std::cout << ism.getIIndexes()[i] << " " << ism.getJIndexes()[i] << " " << ism.getValues()[i] << std::endl;
-	}*/
+		io::readers::MatrixMarketReader matrixReader;
+		representations::intermediary::IntermediarySparseMatrix ism;
 
-	tools::transformers::csr::CSRTransformer csrTransformer;
-	representations::csr::CSR csr(csrTransformer.transform(ism));
+		std::function<void()> function = [&ism, &matrixReader, argv]()
+		{
+			ism = matrixReader.fromFile(argv[1]);
+		};
 
-	tools::solvers::csr::CSRSolver csrSolver;
-	FLOATING_TYPE *x = new FLOATING_TYPE[ism.getN()];
+		auto executionTime = timer.measure(function);
 
-	representations::output::Output output(csrSolver.solve(csr, x));
+		tools::transformers::csr::CSRTransformer csrTransformer;
+		representations::csr::CSR csr = 
+		(csrTransformer.transform(ism));
+		
+		tools::solvers::csr::CSRSolver csrSolver;
+		FLOATING_TYPE *x = new FLOATING_TYPE[ism.getN()];
+		for (int i = 0; i < ism.getN(); i++)
+			x[i] = 1;
 
-	delete [] x;
+		representations::output::Output output(csrSolver.solve(csr, x));
+
+		delete[] x;
+	}
 }

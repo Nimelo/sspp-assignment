@@ -1,5 +1,9 @@
 #include "IntermediarySparseMatrix.h"
 
+representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatrix()
+{
+}
+
 representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatrix(int m, int n, int nz, int * iIndexes, int * jIndexes, FLOATING_TYPE * values)
 	: m(m), n(n), nz(nz), i(iIndexes), j(jIndexes), values(values)
 {
@@ -21,6 +25,26 @@ representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatri
 		j[it] = other.getJIndexes()[it];
 		values[it] = other.getValues()[it];
 	}
+}
+
+representations::intermediary::IntermediarySparseMatrix & representations::intermediary::IntermediarySparseMatrix::operator=(representations::intermediary::IntermediarySparseMatrix rhs)
+{
+	this->n = rhs.n;
+	this->m = rhs.m;
+	this->nz = rhs.nz;
+
+	this->i = new int[nz];
+	this->j = new int[nz];
+	this->values = new FLOATING_TYPE[nz];
+
+	for (int it = 0; it < nz; it++)
+	{
+		i[it] = rhs.getIIndexes()[it];
+		j[it] = rhs.getJIndexes()[it];
+		values[it] = rhs.getValues()[it];
+	}
+
+	return *this;
 }
 
 representations::intermediary::IntermediarySparseMatrix::~IntermediarySparseMatrix()

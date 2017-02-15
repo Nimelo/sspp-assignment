@@ -9,6 +9,9 @@ namespace tools
 		{
 			class FLOPSCalculator
 			{
+				public:
+					static double calculate(int nz, double miliseconds);
+					static double calculate(int nz, long miliseconds);
 			};
 		}
 	}

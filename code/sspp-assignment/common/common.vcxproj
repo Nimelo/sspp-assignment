@@ -140,6 +140,7 @@
     <ClInclude Include="ELLPACKTransformer.h" />
     <ClInclude Include="ExecutionTimer.h" />
     <ClInclude Include="FLOPSCalculator.h" />
+    <ClInclude Include="InPlaceSorter.h" />
     <ClInclude Include="IntermediarySparseMatrix.h" />
     <ClInclude Include="MatrixMarketReader.h" />
     <ClInclude Include="mmio.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="ELLPACKTransformer.cpp" />
     <ClCompile Include="ExecutionTimer.cpp" />
     <ClCompile Include="FLOPSCalculator.cpp" />
+    <ClCompile Include="InPlaceSorter.cpp" />
     <ClCompile Include="IntermediarySparseMatrix.cpp" />
     <ClCompile Include="MatrixMarketReader.cpp" />
     <ClCompile Include="mmio.cpp" />

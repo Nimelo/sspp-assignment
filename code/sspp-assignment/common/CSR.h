@@ -18,6 +18,8 @@ namespace representations
 				FLOATING_TYPE *AS;
 			public:
 				CSR(int NZ, int M, int N, int *IRP, int *JA, FLOATING_TYPE *AS);
+				CSR(const CSR &other);
+				CSR & operator=(CSR rhs);
 				~CSR();
 				int getM() const;
 				int getN() const;
