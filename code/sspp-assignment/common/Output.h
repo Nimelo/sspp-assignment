@@ -9,14 +9,12 @@ namespace representations
 	{
 		class Output
 		{
-			protected:
-				FLOATING_TYPE *values;
-				int size;
+			public:
+				FLOATING_TYPE *Values;
+				int N;
 			public:
 				Output(int size, FLOATING_TYPE *values);
 				~Output();
-				int getSize() const;
-				FLOATING_TYPE * getValues() const;
 		};
 	}
 }

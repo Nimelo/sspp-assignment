@@ -25,9 +25,9 @@ TEST_F(CSRSolverTest, shouldSolveCorrectly_Salvatore)
 
 	auto output = csrSolver->solve(csr, B);
 
-	ASSERT_EQ(M, output.getSize()) << "Size of output is incorrect";
+	ASSERT_EQ(M, output.N) << "Size of output is incorrect";
 
-	assertArrays(correctX, output.getValues(), M, "X -> Incorrect value at: ");
+	assertArrays(correctX, output.Values, M, "X -> Incorrect value at: ");
 	
 }
 
@@ -53,8 +53,8 @@ TEST_F(CSRSolverTest, shouldSolveCorrectly)
 
 	auto output = csrSolver->solve(csr, B);
 
-	ASSERT_EQ(M, output.getSize()) << "Size of output is incorrect";
+	ASSERT_EQ(M, output.N) << "Size of output is incorrect";
 
-	assertArrays(correctX, output.getValues(), M, "X -> Incorrect value at: ");
+	assertArrays(correctX, output.Values, M, "X -> Incorrect value at: ");
 
 }

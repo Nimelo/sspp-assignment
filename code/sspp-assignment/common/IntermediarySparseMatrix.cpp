@@ -5,43 +5,43 @@ representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatri
 }
 
 representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatrix(int m, int n, int nz, int * iIndexes, int * jIndexes, FLOATING_TYPE * values)
-	: m(m), n(n), nz(nz), i(iIndexes), j(jIndexes), values(values)
+	: M(m), N(n), NZ(nz), IIndexes(iIndexes), JIndexes(jIndexes), Values(values)
 {
 }
 
 representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatrix(const IntermediarySparseMatrix & other)
 {
-	this->n = other.n;
-	this->m = other.m;
-	this->nz = other.nz;
+	this->N = other.N;
+	this->M = other.M;
+	this->NZ = other.NZ;
 
-	this->i = new int[nz];
-	this->j = new int[nz];
-	this->values = new FLOATING_TYPE[nz];
+	this->IIndexes = new int[NZ];
+	this->JIndexes = new int[NZ];
+	this->Values = new FLOATING_TYPE[NZ];
 
-	for (int it = 0; it < nz; it++)
+	for (int it = 0; it < NZ; it++)
 	{
-		i[it] = other.getIIndexes()[it];
-		j[it] = other.getJIndexes()[it];
-		values[it] = other.getValues()[it];
+		IIndexes[it] = other.IIndexes[it];
+		JIndexes[it] = other.JIndexes[it];
+		Values[it] = other.Values[it];
 	}
 }
 
 representations::intermediary::IntermediarySparseMatrix & representations::intermediary::IntermediarySparseMatrix::operator=(representations::intermediary::IntermediarySparseMatrix rhs)
 {
-	this->n = rhs.n;
-	this->m = rhs.m;
-	this->nz = rhs.nz;
+	this->N = rhs.N;
+	this->M = rhs.M;
+	this->NZ = rhs.NZ;
 
-	this->i = new int[nz];
-	this->j = new int[nz];
-	this->values = new FLOATING_TYPE[nz];
+	this->IIndexes = new int[NZ];
+	this->JIndexes = new int[NZ];
+	this->Values = new FLOATING_TYPE[NZ];
 
-	for (int it = 0; it < nz; it++)
+	for (int it = 0; it < NZ; it++)
 	{
-		i[it] = rhs.getIIndexes()[it];
-		j[it] = rhs.getJIndexes()[it];
-		values[it] = rhs.getValues()[it];
+		IIndexes[it] = rhs.IIndexes[it];
+		JIndexes[it] = rhs.JIndexes[it];
+		Values[it] = rhs.Values[it];
 	}
 
 	return *this;
@@ -49,37 +49,7 @@ representations::intermediary::IntermediarySparseMatrix & representations::inter
 
 representations::intermediary::IntermediarySparseMatrix::~IntermediarySparseMatrix()
 {
-	delete[] i;
-	delete[] j;
-	delete[] values;
-}
-
-int representations::intermediary::IntermediarySparseMatrix::getNZ() const
-{
-	return nz;
-}
-
-int representations::intermediary::IntermediarySparseMatrix::getM() const
-{
-	return m;
-}
-
-int representations::intermediary::IntermediarySparseMatrix::getN() const
-{
-	return n;
-}
-
-int * representations::intermediary::IntermediarySparseMatrix::getIIndexes() const
-{
-	return i;
-}
-
-int * representations::intermediary::IntermediarySparseMatrix::getJIndexes() const
-{
-	return j;
-}
-
-FLOATING_TYPE * representations::intermediary::IntermediarySparseMatrix::getValues() const
-{
-	return values;
+	delete[] IIndexes;
+	delete[] JIndexes;
+	delete[] Values;
 }

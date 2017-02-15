@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
 		(csrTransformer.transform(ism));
 		
 		tools::solvers::csr::CSRSolver csrSolver;
-		FLOATING_TYPE *x = new FLOATING_TYPE[ism.getN()];
-		for (int i = 0; i < ism.getN(); i++)
+		FLOATING_TYPE *x = new FLOATING_TYPE[ism.N];
+		for (int i = 0; i < ism.N; i++)
 			x[i] = 1;
 
 		representations::output::Output output(csrSolver.solve(csr, x));
