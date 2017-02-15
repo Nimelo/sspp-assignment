@@ -9,7 +9,7 @@ namespace representations
 	{
 		class CSR
 		{
-			protected:
+			public:
 				int NZ;
 				int M;
 				int N;
@@ -21,11 +21,6 @@ namespace representations
 				CSR(const CSR &other);
 				CSR & operator=(CSR rhs);
 				~CSR();
-				int getM() const;
-				int getN() const;
-				int * getIRP() const;
-				int * getJA() const;
-				FLOATING_TYPE * getAS() const;
 				int getIRPSize() const;
 				int getJASize() const;
 				int getASSize() const;

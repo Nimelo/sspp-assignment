@@ -16,15 +16,15 @@ TEST_F(CSRTransformerTest, shouldTransformCorrectly_Salvatore)
 	representations::intermediary::IntermediarySparseMatrix ism(M, N, NZ, iIndexes, jIndexes, values);
 	auto csr = csrTransformer->transform(ism);
 
-	ASSERT_EQ(M, csr.getM()) << "M values is different.";
-	ASSERT_EQ(N, csr.getN()) << "N values is different.";
+	ASSERT_EQ(M, csr.M) << "M values is different.";
+	ASSERT_EQ(N, csr.N) << "N values is different.";
 	ASSERT_EQ(NZ, csr.getJASize()) << "JASize values is different.";
 	ASSERT_EQ(NZ, csr.getASSize()) << "ASSize values is different.";
 	ASSERT_EQ(M + 1, csr.getIRPSize()) << "IRPSize values is different.";
 
-	assertArrays(values, csr.getAS(), NZ, "AS -> Incorrect value at: ");
-	assertArrays(correctIRP, csr.getIRP(), 5, "IRP -> Incorrect value at: ");
-	assertArrays(correctJA, csr.getJA(), NZ, "JA -> Incorrect value at: ");
+	assertArrays(values, csr.AS, NZ, "AS -> Incorrect value at: ");
+	assertArrays(correctIRP, csr.IRP, 5, "IRP -> Incorrect value at: ");
+	assertArrays(correctJA, csr.JA, NZ, "JA -> Incorrect value at: ");
 }
 
 TEST_F(CSRTransformerTest, shouldTransformCorrectly)
@@ -41,13 +41,13 @@ TEST_F(CSRTransformerTest, shouldTransformCorrectly)
 	representations::intermediary::IntermediarySparseMatrix ism(M, N, NZ, iIndexes, jIndexes, values);
 	auto csr = csrTransformer->transform(ism);
 	
-	ASSERT_EQ(M, csr.getM()) << "M values is different.";
-	ASSERT_EQ(N, csr.getN()) << "N values is different.";
+	ASSERT_EQ(M, csr.M) << "M values is different.";
+	ASSERT_EQ(N, csr.N) << "N values is different.";
 	ASSERT_EQ(NZ, csr.getJASize()) << "JASize values is different.";
 	ASSERT_EQ(NZ, csr.getASSize()) << "ASSize values is different.";
 	ASSERT_EQ(M+1, csr.getIRPSize()) << "IRPSize values is different.";
 
-	assertArrays(values, csr.getAS(), NZ, "AS -> Incorrect value at: ");
-	assertArrays(correctIRP, csr.getIRP(), 4, "IRP -> Incorrect value at: ");
-	assertArrays(correctJA, csr.getJA(), NZ, "JA -> Incorrect value at: ");
+	assertArrays(values, csr.AS, NZ, "AS -> Incorrect value at: ");
+	assertArrays(correctIRP, csr.IRP, 4, "IRP -> Incorrect value at: ");
+	assertArrays(correctJA, csr.JA, NZ, "JA -> Incorrect value at: ");
 }

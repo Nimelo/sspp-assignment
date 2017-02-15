@@ -165,9 +165,6 @@
     <ClInclude Include="ELLPACKSolver.h">
       <Filter>Header Files\tools\solvers\ellpack</Filter>
     </ClInclude>
-    <ClInclude Include="CSRTransformer.h">
-      <Filter>Header Files\tools\transformers\csr</Filter>
-    </ClInclude>
     <ClInclude Include="ELLPACKTransformer.h">
       <Filter>Header Files\tools\transformers\ellpack</Filter>
     </ClInclude>
@@ -182,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="InPlaceSorter.h">
       <Filter>Header Files\tools\sorters</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRTransformer.h">
+      <Filter>Header Files\tools\transformers\csr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
