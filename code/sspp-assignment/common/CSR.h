@@ -16,6 +16,8 @@ namespace representations
 				int *IRP;
 				int *JA;
 				FLOATING_TYPE *AS;
+			protected:
+				void rewrite(CSR & lhs, const CSR & rhs);
 			public:
 				CSR(int NZ, int M, int N, int *IRP, int *JA, FLOATING_TYPE *AS);
 				CSR(const CSR &other);

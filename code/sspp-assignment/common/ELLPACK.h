@@ -16,6 +16,13 @@ namespace representations
 				int MAXNZ;
 				int **JA;
 				FLOATING_TYPE **AS;
+			protected:
+				static void rewrite(ELLPACK & lhs, const ELLPACK & rhs);
+			public:
+				ELLPACK(int M, int N, int NZ, int MAXNZ, int **JA, FLOATING_TYPE **AS);
+				ELLPACK(const ELLPACK & other);
+				ELLPACK & operator=(ELLPACK rhs);
+				~ELLPACK();
 		};
 	}
 }
