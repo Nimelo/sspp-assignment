@@ -5,7 +5,16 @@ representations::output::Output::Output(int size, FLOATING_TYPE * values)
 {
 }
 
+representations::output::Output::Output(const Output & other)
+{
+	N = other.N;
+	Values = new FLOATING_TYPE[N];
+	for (int i = 0; i < N; i++)
+		Values[i] = other.Values[i];
+}
+
 representations::output::Output::~Output()
 {
-	delete[] Values;
+	if(Values != 0)
+		delete[] Values;
 }

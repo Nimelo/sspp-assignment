@@ -36,15 +36,44 @@ void tools::sorters::InPlaceStableSorter::quicksort(int * I, int * J, FLOATING_T
 		quicksort(I, J, values, i, right);
 }
 
-void tools::sorters::InPlaceStableSorter::sort(int * I, int * J, FLOATING_TYPE * values, int N)
+void tools::sorters::InPlaceStableSorter::sort2(int * I, int * J, FLOATING_TYPE * values, int N)
 {
 	quicksort(I, J, values, 0, N - 1);
 	int beginIndex = 0;
 	for (int i = 1; i < N; i++)
 	{
-		if (I[i - 1] != J[i])
+		if (I[i - 1] != I[i])
 		{
 			quicksort(J, I, values, beginIndex, i - 1);
+			beginIndex = i;
+		}
+	}
+}
+
+void tools::sorters::InPlaceStableSorter::insertionSort(int * I, int * J, FLOATING_TYPE * values, int start, int end)
+{
+	for (size_t i = start; i < end; i++)
+	{
+		size_t k = i;
+		while (k > start && (I)[k] < (I)[k - 1])
+		{
+			swap((I)[k], (I)[k - 1]);
+			swap((J)[k], (J)[k - 1]);
+			swap((values)[k], (values)[k - 1]);
+			k--;
+		}
+	}
+}
+
+void tools::sorters::InPlaceStableSorter::sort(int * I, int * J, FLOATING_TYPE * values, int N)
+{
+	insertionSort(I, J, values, 0, N);
+	int beginIndex = 0;
+	for (int i = 1; i < N; i++)
+	{
+		if (I[i - 1] != I[i])
+		{
+			insertionSort(J, I, values, beginIndex, i);
 			beginIndex = i;
 		}
 	}

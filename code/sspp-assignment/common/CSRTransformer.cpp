@@ -2,8 +2,6 @@
 #include "Definitions.h"
 #include "InPlaceStableSorter.h"
 
-#include "DebugTools.h"
-
 representations::csr::CSR tools::transformers::csr::CSRTransformer::transform(representations::intermediary::IntermediarySparseMatrix & ism)
 {
 	tools::sorters::InPlaceStableSorter sorter;

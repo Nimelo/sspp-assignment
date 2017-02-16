@@ -2,20 +2,19 @@
 #include "InPlaceStableSorter.h"
 #include <algorithm>
 
-representations::ellpack::ELLPACK tools::transformers::ellpack::ELLPACKTransformer::transform(const representations::intermediary::IntermediarySparseMatrix & ism)
+void tools::transformers::ellpack::ELLPACKTransformer::preprocessISM(const representations::intermediary::IntermediarySparseMatrix & ism)
 {
 	tools::sorters::InPlaceStableSorter sorter;
 	sorter.sort(ism.IIndexes, ism.JIndexes, ism.Values, ism.NZ);
-	
-	int N = ism.N, M = ism.M, NZ = ism.NZ, MAXNZ;
-	int **JA;
-	FLOATING_TYPE **AS;
+}
 
-	int * auxArray = new int[M];
+int * tools::transformers::ellpack::ELLPACKTransformer::findAuxilliaryArray(const representations::intermediary::IntermediarySparseMatrix & ism)
+{
+	int * auxArray = new int[ism.M];
 
 	int tmp = 0;
 	int index = 0;
-	for (int i = 1; i < NZ; i++)
+	for (int i = 1; i < ism.NZ; i++)
 	{
 		if (ism.IIndexes[i - 1] == ism.IIndexes[i])
 		{
@@ -28,23 +27,24 @@ representations::ellpack::ELLPACK tools::transformers::ellpack::ELLPACKTransform
 		}
 	}
 
-	if (tmp != 0)
-		auxArray[index++] = ++tmp;
-	else
-		auxArray[index++] = 1;
+	auxArray[index++] = tmp != 0 ? ++tmp : 1;
+	return auxArray;
+}
 
-	MAXNZ = *std::max_element(auxArray, auxArray + NZ - 1);
-
-	JA = new int*[M];
+void tools::transformers::ellpack::ELLPACKTransformer::allocateArrays(int *** JA, FLOATING_TYPE *** AS, int M, int MAXNZ)
+{
+	*JA = new int*[M];
 	for (int i = 0; i < M; i++)
-		JA[i] = new int[MAXNZ];
+		(*JA)[i] = new int[MAXNZ];
 
-	AS = new FLOATING_TYPE*[M];
+	*AS = new FLOATING_TYPE*[M];
 	for (int i = 0; i < M; i++)
-		AS[i] = new FLOATING_TYPE[MAXNZ];
+		(*AS)[i] = new FLOATING_TYPE[MAXNZ];
+}
 
+representations::ellpack::ELLPACK tools::transformers::ellpack::ELLPACKTransformer::transformImpl(const representations::intermediary::IntermediarySparseMatrix & ism, int M, int MAXNZ, int ** JA, FLOATING_TYPE ** AS, int * auxArray)
+{
 	int nzIndex = 0;
-
 	for (int row = 0; row < M; row++)
 	{
 		for (int column = 0; column < auxArray[row]; column++)
@@ -53,7 +53,7 @@ representations::ellpack::ELLPACK tools::transformers::ellpack::ELLPACKTransform
 			JA[row][column] = ism.JIndexes[nzIndex];
 			++nzIndex;
 		}
-			
+
 		if (auxArray[row] < MAXNZ)
 		{
 			for (int i = auxArray[row]; i < MAXNZ; i++)
@@ -66,7 +66,21 @@ representations::ellpack::ELLPACK tools::transformers::ellpack::ELLPACKTransform
 			}
 		}
 	}
+	return representations::ellpack::ELLPACK(M, ism.N, ism.NZ, MAXNZ, JA, AS);
+}
 
-	delete[] auxArray;
-	return representations::ellpack::ELLPACK(M, N, NZ, MAXNZ, JA, AS);
+representations::ellpack::ELLPACK tools::transformers::ellpack::ELLPACKTransformer::transform(const representations::intermediary::IntermediarySparseMatrix & ism)
+{
+	preprocessISM(ism);
+	int *aux = findAuxilliaryArray(ism);
+	int MAXNZ = *std::max_element(aux, aux + ism.M - 1);
+
+	int **JA = NULL;
+	double **AS = NULL;
+	allocateArrays(&JA, &AS, ism.M, MAXNZ);
+	
+	auto ellpack = transformImpl(ism, ism.M, MAXNZ, JA, AS, aux);
+	delete[] aux;
+
+	return ellpack;
 }

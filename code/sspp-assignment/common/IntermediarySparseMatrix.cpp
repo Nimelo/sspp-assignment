@@ -49,7 +49,10 @@ representations::intermediary::IntermediarySparseMatrix & representations::inter
 
 representations::intermediary::IntermediarySparseMatrix::~IntermediarySparseMatrix()
 {
-	delete[] IIndexes;
-	delete[] JIndexes;
-	delete[] Values;
+	if(IIndexes != 0)
+		delete[] IIndexes;
+	if(JIndexes != 0)
+		delete[] JIndexes;
+	if(Values != 0)
+		delete[] Values;
 }

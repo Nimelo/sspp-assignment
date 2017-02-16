@@ -14,6 +14,7 @@ namespace representations
 				int N;
 			public:
 				Output(int size, FLOATING_TYPE *values);
+				Output(const Output & other);
 				~Output();
 		};
 	}

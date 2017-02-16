@@ -4,6 +4,7 @@
 #include "../common/CSRSolver.h"
 #include "../common/Definitions.h"
 #include "../common/ExecutionTimer.h"
+#include "../common/ELLPACKTransformer.h"
 #include <vld.h>
 #include <iostream>
 
@@ -23,8 +24,7 @@ int main(int argc, char *argv[])
 		auto executionTime = timer.measure(function);
 
 		tools::transformers::csr::CSRTransformer csrTransformer;
-		representations::csr::CSR csr = 
-		(csrTransformer.transform(ism));
+		representations::csr::CSR csr = (csrTransformer.transform(ism));
 		
 		tools::solvers::csr::CSRSolver csrSolver;
 		FLOATING_TYPE *x = new FLOATING_TYPE[ism.N];
@@ -32,6 +32,9 @@ int main(int argc, char *argv[])
 			x[i] = 1;
 
 		representations::output::Output output(csrSolver.solve(csr, x));
+
+		tools::transformers::ellpack::ELLPACKTransformer allpackTransformer;
+		auto ellpack = allpackTransformer.transform(ism);
 
 		delete[] x;
 	}
