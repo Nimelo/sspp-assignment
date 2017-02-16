@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <gtest/gtest.h>
 class ITest : public ::testing::Test
 {

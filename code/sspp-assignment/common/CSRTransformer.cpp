@@ -1,8 +1,14 @@
 #include "CSRTransformer.h"
 #include "Definitions.h"
+#include "InPlaceStableSorter.h"
+
+#include "DebugTools.h"
 
 representations::csr::CSR tools::transformers::csr::CSRTransformer::transform(representations::intermediary::IntermediarySparseMatrix & ism)
 {
+	tools::sorters::InPlaceStableSorter sorter;
+	sorter.sort(ism.IIndexes, ism.JIndexes, ism.Values, ism.NZ);
+
 	FLOATING_TYPE *AS = new FLOATING_TYPE[ism.NZ];
 	int index = 0, *IRP = new int[ism.M + 1], *JA = new int[ism.NZ];
 	

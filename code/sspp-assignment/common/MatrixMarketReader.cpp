@@ -1,5 +1,5 @@
 #include "MatrixMarketReader.h"
-#include "InPlaceSorter.h"
+#include "InPlaceStableSorter.h"
 #include "ReadMatrixException.h"
 #include "mmio.h"
 
@@ -58,9 +58,6 @@ representations::intermediary::IntermediarySparseMatrix io::readers::MatrixMarke
 	}
 
 	if (f != stdin) fclose(f);
-
-	tools::sorters::InPlaceSorter sorter;
-	sorter.sort(I, J, val, nz);
 
 	return representations::intermediary::IntermediarySparseMatrix(M, N, nz, I, J, val);
 }

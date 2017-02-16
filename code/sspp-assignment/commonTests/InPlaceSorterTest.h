@@ -1,13 +1,13 @@
 #pragma once
 #include "ITest.h"
-#include "InPlaceSorter.h"
+#include "InPlaceStableSorter.h"
 class InPlaceSorterTest : public ITest
 {
 	protected:
-		tools::sorters::InPlaceSorter *sorter;
+		tools::sorters::InPlaceStableSorter *sorter;
 		virtual void SetUp()
 		{
-			sorter = new tools::sorters::InPlaceSorter();
+			sorter = new tools::sorters::InPlaceStableSorter();
 		}
 
 		virtual void TearDown()

@@ -130,6 +130,9 @@
     <Filter Include="Source Files\tools\sorters">
       <UniqueIdentifier>{345945ed-cade-4e8b-8fe5-4355844db046}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\tools\debug">
+      <UniqueIdentifier>{50ebd9b9-1ef0-4540-9ebb-a4c3ddc9a47b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -177,11 +180,14 @@
     <ClInclude Include="Definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InPlaceSorter.h">
-      <Filter>Header Files\tools\sorters</Filter>
-    </ClInclude>
     <ClInclude Include="CSRTransformer.h">
       <Filter>Header Files\tools\transformers\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugTools.h">
+      <Filter>Header Files\tools\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="InPlaceStableSorter.h">
+      <Filter>Header Files\tools\sorters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -224,7 +230,7 @@
     <ClCompile Include="mmio.cpp">
       <Filter>Source Files\io</Filter>
     </ClCompile>
-    <ClCompile Include="InPlaceSorter.cpp">
+    <ClCompile Include="InPlaceStableSorter.cpp">
       <Filter>Source Files\tools\sorters</Filter>
     </ClCompile>
   </ItemGroup>

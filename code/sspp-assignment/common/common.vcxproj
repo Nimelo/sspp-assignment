@@ -134,13 +134,14 @@
     <ClInclude Include="CSR.h" />
     <ClInclude Include="CSRSolver.h" />
     <ClInclude Include="CSRTransformer.h" />
+    <ClInclude Include="DebugTools.h" />
     <ClInclude Include="Definitions.h" />
     <ClInclude Include="ELLPACK.h" />
     <ClInclude Include="ELLPACKSolver.h" />
     <ClInclude Include="ELLPACKTransformer.h" />
     <ClInclude Include="ExecutionTimer.h" />
     <ClInclude Include="FLOPSCalculator.h" />
-    <ClInclude Include="InPlaceSorter.h" />
+    <ClInclude Include="InPlaceStableSorter.h" />
     <ClInclude Include="IntermediarySparseMatrix.h" />
     <ClInclude Include="MatrixMarketReader.h" />
     <ClInclude Include="mmio.h" />
@@ -157,7 +158,7 @@
     <ClCompile Include="ELLPACKTransformer.cpp" />
     <ClCompile Include="ExecutionTimer.cpp" />
     <ClCompile Include="FLOPSCalculator.cpp" />
-    <ClCompile Include="InPlaceSorter.cpp" />
+    <ClCompile Include="InPlaceStableSorter.cpp" />
     <ClCompile Include="IntermediarySparseMatrix.cpp" />
     <ClCompile Include="MatrixMarketReader.cpp" />
     <ClCompile Include="mmio.cpp" />

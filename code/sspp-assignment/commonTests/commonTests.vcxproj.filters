@@ -37,6 +37,9 @@
     <Filter Include="Header Files\testing\tools\sorters">
       <UniqueIdentifier>{7cc20eb8-1d71-4968-959a-6c496a2cc369}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\testing\tools\transformers\ellpack">
+      <UniqueIdentifier>{c72a8e87-0219-4901-8879-8ea7aa16b519}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="InPlaceSorterTests.cpp">
       <Filter>Header Files\testing\tools\sorters</Filter>
     </ClCompile>
+    <ClCompile Include="ELLPACKTransformerTests.cpp">
+      <Filter>Header Files\testing\tools\transformers\ellpack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -64,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="InPlaceSorterTest.h">
       <Filter>Header Files\testing\tools\sorters</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKTransformerTest.h">
+      <Filter>Header Files\testing\tools\transformers\ellpack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

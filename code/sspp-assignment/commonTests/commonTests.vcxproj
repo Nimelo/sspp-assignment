@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="CSRSolverTests.cpp" />
     <ClCompile Include="CSRTransformerTests.cpp" />
+    <ClCompile Include="ELLPACKTransformerTests.cpp" />
     <ClCompile Include="InPlaceSorterTests.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="CSRSolverTest.h" />
     <ClInclude Include="CSRTransformerTest.h" />
+    <ClInclude Include="ELLPACKTransformerTest.h" />
     <ClInclude Include="InPlaceSorterTest.h" />
     <ClInclude Include="ITest.h" />
   </ItemGroup>
