@@ -52,9 +52,9 @@ void tools::sorters::InPlaceStableSorter::sort2(int * I, int * J, FLOATING_TYPE 
 
 void tools::sorters::InPlaceStableSorter::insertionSort(int * I, int * J, FLOATING_TYPE * values, int start, int end)
 {
-	for (size_t i = start; i < end; i++)
+	for (int i = start; i < end; i++)
 	{
-		size_t k = i;
+		int k = i;
 		while (k > start && (I)[k] < (I)[k - 1])
 		{
 			swap((I)[k], (I)[k - 1]);
