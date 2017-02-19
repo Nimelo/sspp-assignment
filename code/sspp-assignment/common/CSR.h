@@ -19,6 +19,7 @@ namespace representations
 			protected:
 				void rewrite(CSR & lhs, const CSR & rhs);
 			public:
+				CSR();
 				CSR(int NZ, int M, int N, int *IRP, int *JA, FLOATING_TYPE *AS);
 				CSR(const CSR &other);
 				CSR & operator=(CSR rhs);

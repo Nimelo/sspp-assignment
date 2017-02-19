@@ -18,6 +18,10 @@ void representations::csr::CSR::rewrite(CSR & lhs, const CSR & rhs)
 		lhs.AS[i] = rhs.AS[i];
 }
 
+representations::csr::CSR::CSR()
+{
+}
+
 representations::csr::CSR::CSR(int NZ, int M, int N, int * IRP, int * JA, FLOATING_TYPE * AS)
 	: NZ(NZ), M(M), N(N), IRP(IRP), JA(JA), AS(AS)
 {

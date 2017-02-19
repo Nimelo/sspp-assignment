@@ -24,6 +24,11 @@ void representations::ellpack::ELLPACK::rewrite(ELLPACK & lhs, const ELLPACK & r
 	}
 }
 
+representations::ellpack::ELLPACK::ELLPACK()
+{
+
+}
+
 representations::ellpack::ELLPACK::ELLPACK(int M, int N, int NZ, int MAXNZ, int ** JA, FLOATING_TYPE ** AS)
 	: M(M), N(N), NZ(NZ), MAXNZ(MAXNZ), JA(JA), AS(AS)
 {

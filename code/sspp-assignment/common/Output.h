@@ -14,8 +14,10 @@ namespace representations
 				FLOATING_TYPE *Values;
 				int N;
 			public:
+				Output();
 				Output(int size, FLOATING_TYPE *values);
 				Output(const Output & other);
+				Output & operator=(Output rhs);
 				~Output();
 
 				friend std::ostream& operator <<(std::ostream& os, const Output& o);

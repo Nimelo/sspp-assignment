@@ -1,5 +1,9 @@
 #include "Output.h"
 
+representations::output::Output::Output()
+{
+}
+
 representations::output::Output::Output(int size, FLOATING_TYPE * values)
 	: N(size), Values(values)
 {
@@ -11,6 +15,16 @@ representations::output::Output::Output(const Output & other)
 	Values = new FLOATING_TYPE[N];
 	for (int i = 0; i < N; i++)
 		Values[i] = other.Values[i];
+}
+
+representations::output::Output & representations::output::Output::operator=(representations::output::Output other)
+{
+	N = other.N;
+	Values = new FLOATING_TYPE[N];
+	for (int i = 0; i < N; i++)
+		Values[i] = other.Values[i];
+
+	return *this;
 }
 
 representations::output::Output::~Output()
