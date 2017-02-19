@@ -6,7 +6,9 @@
 #include "../common/ExecutionTimer.h"
 #include "../common/ELLPACKTransformer.h"
 #include "CSRParallelSolver.h"
-#include <vld.h>
+#ifdef WIN32
+	#include <vld.h>
+#endif
 #include <iostream>
 #include <omp.h>
 
@@ -70,6 +72,10 @@ int main(int argc, char *argv[])
 		auto solveCSRparallelRoutineTime = timer.measure(solveCSRparallelRoutine);
 		auto solveCSRRoutineTime = timer.measure(solveCSRRoutine);
 
+		std::function<int(int)> add1 = [](int x)
+		{
+			return x + 1;
+		};
 		delete[] x;
 	}
 
