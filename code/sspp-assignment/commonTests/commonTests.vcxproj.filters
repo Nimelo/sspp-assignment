@@ -40,6 +40,9 @@
     <Filter Include="Header Files\testing\tools\transformers\ellpack">
       <UniqueIdentifier>{c72a8e87-0219-4901-8879-8ea7aa16b519}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\testing\tools\solvers\ellpack">
+      <UniqueIdentifier>{ce05a1ba-2337-42d5-b4a9-3ae91b135185}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -57,6 +60,9 @@
     <ClCompile Include="ELLPACKTransformerTests.cpp">
       <Filter>Header Files\testing\tools\transformers\ellpack</Filter>
     </ClCompile>
+    <ClCompile Include="EllpackSolverTests.cpp">
+      <Filter>Header Files\testing\tools\solvers\ellpack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -73,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="ELLPACKTransformerTest.h">
       <Filter>Header Files\testing\tools\transformers\ellpack</Filter>
+    </ClInclude>
+    <ClInclude Include="EllpackSolverTest.h">
+      <Filter>Header Files\testing\tools\solvers\ellpack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

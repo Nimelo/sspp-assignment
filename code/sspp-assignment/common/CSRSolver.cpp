@@ -1,8 +1,8 @@
 #include "CSRSolver.h"
 
-representations::output::Output tools::solvers::csr::CSRSolver::solve(representations::csr::CSR &csr, FLOATING_TYPE * x)
+representations::output::Output tools::solvers::csr::CSRSolver::solve(representations::csr::CSR &csr, FLOATING_TYPE * b)
 {
-	FLOATING_TYPE *b = new FLOATING_TYPE[csr.M];
+	FLOATING_TYPE *x = new FLOATING_TYPE[csr.M];
 
 	for (int i = 0; i < csr.M; i++)
 	{
@@ -10,11 +10,11 @@ representations::output::Output tools::solvers::csr::CSRSolver::solve(representa
 
 		for (int j = csr.IRP[i]; j < csr.IRP[i+1]; j++)
 		{
-			tmp += csr.AS[j] * x[csr.JA[j]];
+			tmp += csr.AS[j] * b[csr.JA[j]];
 		}
 
-		b[i] = tmp;
+		x[i] = tmp;
 	}
 
-	return representations::output::Output(csr.M, b);
+	return representations::output::Output(csr.M, x);
 }

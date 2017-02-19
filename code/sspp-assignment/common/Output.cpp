@@ -18,3 +18,13 @@ representations::output::Output::~Output()
 	if(Values != 0)
 		delete[] Values;
 }
+
+std::ostream & representations::output::operator<<(std::ostream & os, const Output & o)
+{
+	for (int i = 0; i < o.N; i++)
+	{
+		os << o.Values[i] << std::endl;
+	}
+	
+	return os;
+}

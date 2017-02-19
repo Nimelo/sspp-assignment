@@ -2,7 +2,7 @@
 #include "Definitions.h"
 #include <gtest\gtest.h>
 
-TEST_F(ELLPACKTransformerTest, shouldTransformCorrectly_Salvatore)
+TEST_F(ELLPACKTransformerTest, shouldSolveCorrectly_Salvatore)
 {
 	const int M = 4, N = 4, NZ = 7, correctMAXNZ = 2;
 	int *iIndexes = new int[NZ], *jIndexes = new int[NZ];
@@ -34,7 +34,7 @@ TEST_F(ELLPACKTransformerTest, shouldTransformCorrectly_Salvatore)
 }
 
 
-TEST_F(ELLPACKTransformerTest, shouldTransformCorrectly)
+TEST_F(ELLPACKTransformerTest, shouldSolveCorrectly)
 {
 	const int M = 3, N = 4, NZ = 5, correctMAXNZ = 3;
 	int *iIndexes = new int[NZ], *jIndexes = new int[NZ];
