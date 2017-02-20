@@ -31,7 +31,7 @@ io::readers::input::commandline::parameters::Parameter io::readers::input::comma
 		}
 	}
 
-	//return (int)0;
+	throw io::exceptions::CommandLineException();
 }
 
 void io::readers::input::commandline::CommandLineParameterReader::load(const int argc, const char ** argv)
