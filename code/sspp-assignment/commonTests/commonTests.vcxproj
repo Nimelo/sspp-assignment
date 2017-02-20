@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommandLineTests.cpp" />
     <ClCompile Include="CSRSolverTests.cpp" />
     <ClCompile Include="CSRTransformerTests.cpp" />
     <ClCompile Include="ELLPACKTransformerTests.cpp" />
@@ -159,6 +160,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommandlineTest.h" />
     <ClInclude Include="CSRSolverTest.h" />
     <ClInclude Include="CSRTransformerTest.h" />
     <ClInclude Include="EllpackSolverTest.h" />

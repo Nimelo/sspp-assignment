@@ -131,6 +131,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Argument.h" />
+    <ClInclude Include="ArgumentType.h" />
+    <ClInclude Include="CommandLineException.h" />
+    <ClInclude Include="CommandLineParameterReader.h" />
     <ClInclude Include="CSR.h" />
     <ClInclude Include="CSRSolver.h" />
     <ClInclude Include="CSRTransformer.h" />
@@ -147,9 +151,11 @@
     <ClInclude Include="mmio.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="OutputRepresentationWriter.h" />
+    <ClInclude Include="Parameter.h" />
     <ClInclude Include="ReadMatrixException.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CommandLineParameterReader.cpp" />
     <ClCompile Include="CSR.cpp" />
     <ClCompile Include="CSRSolver.cpp" />
     <ClCompile Include="CSRTransformer.cpp" />

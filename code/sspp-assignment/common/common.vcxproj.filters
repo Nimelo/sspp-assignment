@@ -133,6 +133,24 @@
     <Filter Include="Header Files\tools\debug">
       <UniqueIdentifier>{50ebd9b9-1ef0-4540-9ebb-a4c3ddc9a47b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\io\readers\input">
+      <UniqueIdentifier>{653a3762-b1c4-4240-a93a-a8cc68dd4e8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\readers\input\commandline">
+      <UniqueIdentifier>{3d6ff18f-8667-4a9d-a55e-b4e8c2057e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\readers\input\commandline\arguments">
+      <UniqueIdentifier>{b1a91bc2-8f67-4853-9a70-d13857b0eae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\readers\input\commandline\parameters">
+      <UniqueIdentifier>{c6e7866f-7d21-4f40-ac60-da551827bd4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io\readers\input">
+      <UniqueIdentifier>{c44ea2f4-7076-429e-9c90-04432eb541d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io\readers\input\commandline">
+      <UniqueIdentifier>{6eda3942-66af-493c-ab12-2e05d62f8050}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -189,6 +207,21 @@
     <ClInclude Include="InPlaceStableSorter.h">
       <Filter>Header Files\tools\sorters</Filter>
     </ClInclude>
+    <ClInclude Include="Argument.h">
+      <Filter>Header Files\io\readers\input\commandline\arguments</Filter>
+    </ClInclude>
+    <ClInclude Include="ArgumentType.h">
+      <Filter>Header Files\io\readers\input\commandline\arguments</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Header Files\io\readers\input\commandline\parameters</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandLineParameterReader.h">
+      <Filter>Header Files\io\readers\input\commandline</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandLineException.h">
+      <Filter>Header Files\io\exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSRSolver.cpp">
@@ -232,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="InPlaceStableSorter.cpp">
       <Filter>Source Files\tools\sorters</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandLineParameterReader.cpp">
+      <Filter>Source Files\io\readers\input\commandline</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
