@@ -1,0 +1,106 @@
+\section{Simulation Feature} \label{s:system-features:simulation-feature}
+	\begin{comment}
+		$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+		words.$>$
+	\end{comment}
+
+\subsection*{Description and Priority}
+	\begin{comment}
+		$<$Provide a short description of the feature and indicate whether it is of 
+		High, Medium, or Low priority. You could also include specific priority 
+		component ratings, such as benefit, penalty, cost, and risk (each rated on a 
+		relative scale from a low of 1 to a high of 9).$>$
+	\end{comment}
+	
+	\textsc{Priority: } Very High
+	
+	Requirements described in this section relate to internal processing actions, that are made during the simulation. Each of the action either uses parameters from the configuration file or is specified within the requirement itself. Requirements for which no external parameters are used the priority is very high due to lack of opportunity to influence the change of behavior.
+\subsection*{Stimulus/Response Sequences}
+	\begin{comment}
+		$<$List the sequences of user actions and system responses that stimulate the 
+		behavior defined for this feature. These will correspond to the dialog elements 
+		associated with use cases.$>$
+	\end{comment}
+	
+	\stimresp
+	{User sets configuration for a simulation}
+	{Application await for a correct configuration file.}
+
+	\medskip
+	
+	\stimresp
+	{User starts simulation.}
+	{Application starts simulation and uses internal processes based on given parameters in configuration file.}
+\subsection*{Functional Requirements}
+	\begin{comment}
+		$<$Itemize the detailed functional requirements associated with this feature.  
+		These are the software capabilities that must be present in order for the user 
+		to carry out the services provided by the feature, or to execute the use case.  
+		Include how the product should respond to anticipated error conditions or 
+		invalid inputs. Requirements should be concise, complete, unambiguous, 
+		verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+		information is not yet available.$>$
+		
+		$<$Each requirement should be uniquely identified with a sequence number or a 
+		meaningful tag of some kind.$>$
+		
+		REQ-1:	REQ-2:
+	\end{comment}
+	
+	\begin{functional}{Job Matching}{Very High}{None}
+		\label{fn:simulation-feature:job-matcher}
+		\term{DESC}
+		{
+			Each job in a system should be matched to a different queue based on job's requested resources.
+		}
+		\term{RAT}{In order to match jobs to queues.}
+	\end{functional}
+
+	\begin{functional}{Job Parametrization}{Very High}{None}
+		\label{fn:simulation-feature:job-parametrization}
+		\term{DESC}
+		{
+			Job in a system should be parametrized by:
+			\begin{itemize}
+				\item list of required \gls{computing node} with specified amount of cores per node;
+				\item requested time (foreseen execution time, upper boundary).
+			\end{itemize}
+		}
+		\term{RAT}{In order to parametrize job.}
+	\end{functional}
+
+	\begin{functional}{Managing of \gls{cutoff}}{Very High}{None}
+		\label{fn:simulation-feature:cutoff}
+		\term{DESC}
+		{
+			In system exist \gls{cutoff}. Within that time for each queue no new jobs will start execution if their estimated completion time will exceed \gls{cutoff}.
+		}
+		\term{RAT}{In order to manage \gls{cutoff} of each queue.}
+	\end{functional}
+
+	\begin{functional}{Probability Distribution Model}{Very High}{None}
+		\label{fn:simulation-feature:distribution-of-jobs}
+		\term{DESC}
+		{
+			Distribution of any two successive jobs requests and the size of the request (within the user class) shall be modeled by an exponential probability distribution with parameters dependent on the class of user. The following Formula \eqref{eq:exponential-probability-distribution} represents mentioned before distribution:
+			\begin{equation} \label{eq:exponential-probability-distribution}
+				f(x) = \lambda e^{-\lambda x}
+			\end{equation}
+			where 
+			\begin{itemize}
+				\item $\lambda$ is a rate parameter,
+				\item $x$ is the time of simulation, $x > 0$
+				\item $e$ is the base of the natural logarithm
+			\end{itemize}
+		}
+		\term{RAT}{In order to model probability distribution in a system.}
+	\end{functional}
+
+	\begin{functional}{Scheduling Algorithm}{High}{None}
+		\label{fn:simulation-feature:scheduling-algorithm}
+		\term{DESC}
+		{
+			Queuing software should grant access under a \gls{FCFS} basis, up to available capacity of the machine.
+		}
+		\term{RAT}{In order to specify scheduling algorithm.}
+	\end{functional}

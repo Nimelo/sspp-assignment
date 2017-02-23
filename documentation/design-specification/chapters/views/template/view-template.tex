@@ -1,0 +1,130 @@
+\chapter{View Template} \label{chp:view-template}
+	\begin{comment}
+		An SDD shall be organized into one or more design views.
+		
+		Each design view in an SDD shall conform to its governing design viewpoint.
+		The purpose of a design view is to address design concerns pertaining to the design subject, to allow a
+		design stakeholder to focus on design details from a specific perspective and effectively address relevant
+		requirements.
+		
+		Each design view shall address the design concerns specified by its governing design viewpoint.
+		
+		An SDD is complete when each identified design concern is the topic of at least one design view; all design
+		attributes refined from each design concern by some viewpoint have been specified for all of the design
+		entities and relationships in its associated view; and all design constraints have been applied.
+		
+		An SDD is consistent if there are no known conflicts between the design elements of its design views.
+		
+		NOTE—Users of this standard may wish to state delivery requirements on an SDD in terms of the above notions of
+		completeness and consistency.
+	\end{comment}
+	
+	%TABLE WITH NAME OF VIEWPOINT, PURPOSE, REQUIREMENTS
+		
+	\section{Design elements} \label{s:view-template:design-elements}
+		\begin{comment}
+			A design element is any item occurring in a design view. A design element may be any of the following
+			subcases: design entity, design relationship, design attribute, or design constraint.
+			
+			Each design element in the SDD shall have a name (4.6.2.1), a type (4.6.2.2), and any contents.
+			
+			NOTE 1—This requirement is “inherited” by the four subcases: design entities, design relationships, design attributes,
+			and design constraints.
+			
+			The type of each design element shall be introduced within exactly one design viewpoint definition.
+			
+			A design element may be used in one or more design views.
+			
+			NOTE 2—A design element is introduced and “owned” by exactly one design view, in accordance with its type
+			definition within the associated viewpoint. It may be shared or referenced within other design views. Sharing of design
+			elements permits the expression of design aspects as in aspect-oriented design.
+		\end{comment}
+		
+		\begin{design-element}{Name}{Type}
+			content...
+		\end{design-element}
+	\section{Design entities} \label{s:view-template:design-entities}
+		\begin{comment}
+			Design entities capture key elements of a software design.
+			
+			Each design entity shall have a name (4.6.2.1), a type (4.6.2.2), and purpose (4.6.2.3).
+			
+			Examples of design entities include, but are not limited to, the following: systems, subsystems, libraries,
+			frameworks, abstract collaboration patterns, generic templates, components, classes, data stores, modules,
+			program units, programs, and processes.
+			
+			NOTE—The number and types of entities needed to express a design view are dependent on a number of factors, such
+			as the complexity of the system, the design technique used, and the tool support environment.
+		\end{comment}
+		
+		\begin{design-entity}{Name}{Type}{Purpose}
+			content...
+		\end{design-entity}
+		
+	\section{Design overlays} \label{s:view-template:design-overlays}
+		\begin{comment}
+			A design overlay is used for presenting additional information with respect to an already-defined design
+			view.
+			
+			Each design overlay shall be uniquely named and marked as an overlay.
+			
+			Each design overlay shall be clearly associated with a single viewpoint.
+			
+			NOTE—Reasons to utilize a design overlay as a part of an SDD include: to provide an extension mechanism for design
+			information to be presented conveniently on top of some view without a requirement for existing external
+			standardization of languages and notations for such representation; to extend expressive power of representation with
+			additional details while reusing information from existing views (i.e., without a need to define additional views or
+			persistently store derivable design information); and to relate design information with facts from the system
+			environment for the convenience of the designer (or other stakeholders).
+		\end{comment}	
+		
+	
+	\section{Design Rationale} \label{s:view-template-design-rationale}
+		\begin{comment}
+			Design rationale captures the reasoning of the designer that led to the system as designed and the
+			justifications of those decisions.
+		
+			Design rationale may take the form of commentary, made throughout the decision process and associated
+			with collections of design elements. Design rationale may include, but is not limited to: design issues raised
+			and addressed in response to design concerns; design options considered; trade-offs evaluated; decisions
+			made; criteria used to guide design decisions; and arguments and justifications made to reach decisions.
+		
+			NOTE—The only required design rationale is use of the purpose attribute (4.6.2.3).
+		\end{comment}
+		
+	\section{Design languages} \label{s:view-template:design-languages}
+		\begin{comment}
+			Design languages are selected as a part of design viewpoint specification (4.5).
+		
+			A design language may be selected for a design viewpoint only if it supports all design elements defined by
+			that viewpoint.
+		
+			Design languages shall be selected that have:
+			⎯ A well-defined syntax and semantics; and
+			⎯ The status of an available standard or equivalent defining document.
+			
+			Only standardized and well-established (i.e., previously defined and conveniently available) design
+			languages shall be used in an SDD. In the case of a newly invented design language, the language
+			definition must be provided as a part of the viewpoint declaration.
+		
+			NOTE 1—Standardized design languages that are in common use are preferable to established languages without a
+			formal definition. Examples of standardized languages include: IDEF0 (IEEE Std 1320.1™-1998 [B18]); IDEF1X
+			(IEEE Std 1320.2™-1998 [B19]); Unified Modeling Language (UML) (OMG [B28] and [B29]); Vienna Definition
+			Method (VDM) (ISO/IEC 13817-1:1996 [B24]); and Z (ISO/IEC 13568:2002 [B23]). Examples of established
+			languages include: state machines, automata, decision tables, Warnier diagrams, Jackson Structured Design (JSD),
+			program design languages (PDL), structure charts, Hierarchy plus Input-Process-Output (HIPO), reliability models, and
+			queuing models.
+		
+			NOTE 2—It is acceptable to use a design language in more than one view. It is also acceptable to use more than one
+			design language within any number of views when each design language to be used is declared by the viewpoint. This
+			is acceptable even for a portion of the design; for example, when used as a basis for interchange; due to organizational
+			considerations such as development by non-collocated team members; subcontracting of partial design responsibility;
+			or taking advantage of particular design tools or designer expertise.
+		
+			NOTE 3—Annex B establishes a uniform format for describing design languages to be used in SDDs.
+			
+			NOTE 4—In case that no adequate design language is readily available for a specified viewpoint, it is the designer’s
+			responsibility to provide an adaptation of an existing language or the definition of an appropriate new design language.
+			This design language definition would be provided by the designer to be included in the SDD in accordance with the
+			requirements for viewpoints in 4.5.
+		\end{comment}

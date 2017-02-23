@@ -1,0 +1,44 @@
+\chapter{Resources Viewpoint Template} \label{chp:resources-viewpoint-template}
+	\begin{comment}
+		The purpose of the Resource viewpoint is to model the characteristics and utilization of resources in a
+		design subject.
+	\end{comment}
+	
+	\section{Design concerns} \label{s:resources-viewpoint-template:design-concerns}
+		\begin{comment}
+			Key concerns include resource utilization, resource contention, availability, and performance.
+		\end{comment}
+	
+	\section{Design elements} \label{s:resources-viewpoint-template:design-elements}
+		\begin{comment}
+			Design entities: resources, usage policies.
+			
+			Design relationships: allocation and uses.
+			
+			Design attributes: identification (4.6.2.1), resource (5.13.2.1), performance measures (such as throughput,
+			rate of consumption).
+			
+			Design constraints: priorities, locks, resource constraints.
+		\end{comment}
+		
+		\subsection{Resource attribute} \label{s:resources-viewpoint-template:resource-attribute}
+			\begin{comment}
+				A description of the elements used by the entity that are external to the design. The resources attribute
+				identifies and describes all of the resources external to the design that are needed by this entity to perform
+				its function. The interaction rules and methods for using the resource are to be specified by this attribute.
+			
+				This attribute provides information about items such as physical devices (printers, disc-partitions, memory
+				banks), software services (math libraries, operating system services), and processing resources (CPU
+				cycles, memory allocation, buffers).
+				
+				The resources attribute should describe usage characteristics such as the processing time at which resources
+				are to be acquired and sizing to include quantity, and physical sizes of buffer usage. It should also include
+				the identification of potential race and deadlock conditions as well as resource management facilities.
+
+				NOTE—This design attribute is retained for compatibility with IEEE Std 1016-1998.
+			\end{comment}
+			
+	\section{Example languages} \label{s:resources-viewpoint-template:example-languages}
+		\begin{comment}
+			Woodside [B37], UML class diagram, UML Object Constraint Language (OMG [B28]).
+		\end{comment}

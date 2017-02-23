@@ -1,0 +1,164 @@
+\chapter{Template Design Viewpoint--View} \label{chp:template-vpv}
+	\section{Viewpoint} \label{s:template-vpv-viewpoint}		
+		\subsection{Context viewpoint} \label{s:template-vpv:context-viewpoint}
+			\begin{comment}
+				The Context viewpoint depicts services provided by a design subject with reference to an explicit context.
+				That context is defined by reference to actors that include users and other stakeholders, which interact with
+				the design subject in its environment. The Context viewpoint provides a “black box” perspective on the
+				design subject.
+				Services depict an inherently functional aspect or anticipated cases of use of the design subject (hence “use
+				cases” in UML). Stratification of services and their descriptions in the form of scenarios of actors’
+				interactions with the system provide a mechanism for adding detail. Services may also be associated with
+				actors through information flows. The content and manner of information exchange with the environment
+				implies additional design information and the need for additional viewpoints (see 5.10).
+				A Deployment overlay to a Context view can be transformed into a Deployment view whenever the
+				execution hardware platform is part of the design subject; for stand-alone software design, a Deployment
+				overlay maps software entities onto externally available entities not subject of the current design effort.
+				Similarly, work allocation to teams and other management perspectives are overlays in the design.
+			\end{comment}
+			
+			\subsubsection{Design concerns} \label{s:template-vpv:design-concerns}
+				\begin{comment}
+					The purpose of the Context viewpoint is to identify a design subject’s offered services, its actors (users and
+					other interacting stakeholders), to establish the system boundary and to effectively delineate the design
+					subject’s scope of use and operation.
+					Drawing a boundary separating a design subject from its environment, determining a set of services to be
+					provided, and the information flows between design subject and its environment, is typically a key design
+					decision. That makes this viewpoint applicable to most design efforts.
+					When the system is portrayed as a black box, with internal decisions hidden, the Context view is often a
+					starting point of design, showing what is to be designed functionally as the only available information
+					about the design subject: a name and an associated set of externally identifiable services. Requirements
+					analysis identifies these services with the specification of quality of service attributes, henceforth invoking
+					many non-functional requirements. Frequently incomplete, a Context view is begun in requirements
+					analysis. Work to complete this view continues during design.
+				\end{comment}
+				
+			\subsubsection{Design elements} \label{s:template-vpv:design-elements}
+				\begin{comment}
+					Design entities: actors—external active elements interacting with the design subject, including users, other
+					stakeholders and external systems, or other items; services—also called use cases; and directed information
+					flows between the design subject, treated as a black box, and its actors associating actors with services.
+					Flows capture the expected information content exchanged.
+					Design relationships: receive output and provide input (between actors and the design subject).
+					Design constraints: qualities of service; form and medium of interaction (provided to and received from)
+					with environment.
+				\end{comment}
+				
+			\subsubsection{Example languages} \label{s:template-vpv:example-languages}
+				\begin{comment}
+					Any black-box type diagrams can be used to realize the Context viewpoint. Appropriate languages include
+					Structured Analysis [e.g., IDEF0 (IEEE Std 1320.1-1998 [B18]), Structured Analysis and Design 
+					Technique (SADT) (Ross [B32]) or those of the DeMarco or Gane-Sarson variety], the Cleanroom’s black
+					box diagrams, and UML use cases (OMG [B28]).
+				\end{comment}
+			
+			
+	\section{Composition viewpoint} \label{s:tempalte-vpv:composition-viewpoint}
+		\begin{comment}
+			The Composition viewpoint describes the way the design subject is (recursively) structured into constituent
+			parts and establishes the roles of those parts.
+		\end{comment}
+		
+		\subsection{Design concerns} \label{s:tempalte-vpv:design-concerns}
+			\begin{comment}
+				Software developers and maintainers use this viewpoint to identify the major design constituents of the
+				design subject, to localize and allocate functionality, responsibilities, or other design roles to these
+				constituents. In maintenance, it can be used to conduct impact analysis and localize the efforts of making
+				changes. Reuse, on the level of existing subsystems and large-grained components, can be addressed as
+				well. The information in a Composition view can be used by acquisition management and in project
+				management for specification and assignment of work packages, and for planning, monitoring, and control
+				of a software project. This information, together with other project information, can be used in estimating
+				cost, staffing, and schedule for the development effort. Configuration management may use the information
+				to establish the organization, tracking, and change management of emerging work products (see
+				IEEE Std 12207-2008 [B21]).
+			\end{comment}
+			
+		\subsection{Design elements} \label{s:template-vpv:design-elements}
+			\begin{comment}
+				Design entities: types of constituents of a system: subsystems, components, modules; ports and (provided
+				and required) interfaces; also libraries, frameworks, software repositories, catalogs, and templates.
+				Design relationships: composition, use, and generalization. The Composition viewpoint supports the
+				recording of the part-whole relationships between design entities using realization, dependency,
+				aggregation, composition, and generalization relationships. Additional design relationships are required and
+				provided (interfaces), and the attachment of ports to components.
+				Design attributes: For each design entity, the viewpoint provides a reference to a detailed description via
+				the identification attribute. The attribute descriptions for identification, type, purpose, function, and
+				definition attribute should be utilized.
+			\end{comment}
+		
+			\subsubsection{Function attribute} \label{s:template-vpv:function-attribute}
+				\begin{comment}
+					A statement of what the entity does. The function attribute states the transformation applied by the entity to
+					its inputs to produce the output. In the case of a data entity, this attribute states the type of information
+					stored or transmitted by the entity.
+					NOTE—This design attribute is retained for compatibility with IEEE Std 1016-1998.
+				\end{comment}
+			
+			\subsubsection{Subordinates attribute} \label{s:template-vpv:subordinates-attribute}
+				\begin{comment}
+					The identification of all entities composing this entity. The subordinates attribute identifies the “composed
+					of” relationship for an entity. This information is used to trace requirements to design entities and to
+					identify parent/child structural relationships through a design subject.
+					NOTE—This design attribute is retained for compatibility with IEEE Std 1016-1998. An equivalent capability is
+					available through the composition relationship.
+				\end{comment}
+			
+		\subsection{Example languages} \label{s:template-vpv:example-languages}
+			\begin{comment}
+				UML component diagrams (see OMG [B28]) cover this viewpoint. The simplest graphical technique used
+				to describe functional system decomposition is a hierarchical decomposition diagram; such diagram can be
+				used together with natural language descriptions of purpose and function for each entity, such as is
+				provided by IDEF0 (IEEE Std 1320.1-1998 [B18]), the Structure Chart (Yourdon and Constantine [B38],
+				and the HIPO Diagram. Run-time composition can also use structured diagrams (Page-Jones [B29]).
+			\end{comment}
+		
+	\section{Logical viewpoint} \label{s:template-vpv:logiacl-viewpoint}
+		\begin{comment}
+			The purpose of the Logical viewpoint is to elaborate existing and designed types and their implementations
+			as classes and interfaces with their structural static relationships. This viewpoint also uses examples of
+			instances of types in outlining design ideas.
+		\end{comment}
+		
+		\subsection{Design concerns} \label{s:template-vpv:design-concerns}
+			\begin{comment}
+				The Logical viewpoint is used to address the development and reuse of adequate abstractions and their
+				implementations. For any implementation platform, a set of types is readily available for the domain
+				abstractions of interest in a design subject, and a number of new types is to be designed, some of which
+				may be considered for reuse. The main concern is the proper choice of abstractions and their expression in
+				terms of existing types (some of which may had been specific to the design subject).
+			\end{comment}
+			
+		\subsection{Design elements} \label{s:template-vpv:design-elements}
+			\begin{comment}
+				Design entities: class, interface, power type, data type, object, attribute, method, association class, template,
+				and namespace.
+				Design relationships: association, generalization, dependency, realization, implementation, instance of,
+				composition, and aggregation.
+				Design attributes: name, role name, visibility, cardinality, type, stereotype, redefinition, tagged value,
+				parameter, and navigation efficiency.
+				Design constraints: value constraints, relationships exclusivity constraints, navigability, generalization sets,
+				multiplicity, derivation, changeability, initial value, qualifier, ordering, static, pre-condition, post-condition,
+				and generalization set constraints.
+			\end{comment}
+		
+		\subsection{Example languages} \label{s:template-vpv:example-languages}
+			\begin{comment}
+				UML class diagrams and UML object diagrams (showing objects as instances of their respective classes)
+				(OMG [B28]). Lattices of types and references to implemented types are commonly used as supplementary
+				information.
+			\end{comment}
+			
+	\section{Dependency viewpoint} \label{s:template-vpv:dependency-viewpoint}
+		\begin{comment}
+			The Dependency viewpoint specifies the relationships of interconnection and access among entities. These
+			relationships include shared information, order of execution, or parameterization of interfaces.
+		\end{comment}
+		
+		\subsection{Design concerns} \label{s:template-vpv:design-concerns}
+			\begin{comment}
+				A Dependency view provides an overall picture of the design subject in order to assess the impact of
+				requirements or design changes. It can help maintainers to isolate entities causing system failures or
+				resource bottlenecks. It can aid in producing the system integration plan by identifying the entities that are
+				needed by other entities and that must be developed first. This description can also be used by integration
+				testing to aid in the production of integration test cases.
+			\end{comment}

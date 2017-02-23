@@ -1,0 +1,108 @@
+\section{Reporting Feature} \label{s:system-features:reporting-feature}
+	\begin{comment}
+		$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+		words.$>$
+	\end{comment}
+
+\subsection*{Description and Priority}
+	\begin{comment}
+		$<$Provide a short description of the feature and indicate whether it is of 
+		High, Medium, or Low priority. You could also include specific priority 
+		component ratings, such as benefit, penalty, cost, and risk (each rated on a 
+		relative scale from a low of 1 to a high of 9).$>$
+	\end{comment}
+	\textsc{Priority: } Very High \\
+	The output of the simulation is in form of report, which should contain all the necessary information for comparison of accounting practices.
+	
+\subsection*{Stimulus/Response Sequences}
+	\begin{comment}
+		$<$List the sequences of user actions and system responses that stimulate the 
+		behavior defined for this feature. These will correspond to the dialog elements 
+		associated with use cases.$>$
+	\end{comment}
+
+	\stimresp
+	{User requests for queue statistics, for example: \gls{throughput}, average waiting time or \gls{turnaroundRatio}.}
+	{Each of queues in the system tracks changes in waiting and executing areas.}
+	
+	\medskip
+	
+	\stimresp
+	{User requests for machine statistics, for example: working and idle time.}
+	{Simulation will track changes in time for each job. This data will be compared at the end of a simulation with a queue statistics.}
+	
+	\medskip
+	
+	\stimresp
+	{User requests for financial statistics, for example: resulting price paid by the users, operating costs or total income.}
+	{Accounting will be made for each user. Operating costs and total income will be calculated.}
+\subsection*{Functional Requirements}
+	\begin{comment}
+		$<$Itemize the detailed functional requirements associated with this feature.  
+		These are the software capabilities that must be present in order for the user 
+		to carry out the services provided by the feature, or to execute the use case.  
+		Include how the product should respond to anticipated error conditions or 
+		invalid inputs. Requirements should be concise, complete, unambiguous, 
+		verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+		information is not yet available.$>$
+		
+		$<$Each requirement should be uniquely identified with a sequence number or a 
+		meaningful tag of some kind.$>$
+		
+		REQ-1:	REQ-2:
+	\end{comment}
+
+	\begin{functional}{Queue Statistics}{Medium}{None}
+		\label{fn:reporting-feature:queue-statistics}
+		\term{DESC}
+		{
+			Simulation report should contain following queue statistics:
+			\begin{itemize}
+				\item \gls{throughput};
+				\item average waiting time;
+				\item \gls{turnaroundRatio}
+			\end{itemize}
+		}
+		\term{RAT}{In order to provide queue statistics.}
+	\end{functional}
+
+	\begin{functional}{Machine Statistics}{Medium}{None}
+		\label{fn:reporting-feature:machine-statistics}
+		\term{DESC}
+		{
+			Simulation report should contain following machine statistics:
+			\begin{itemize}
+				\item working time;
+				\item idle time.
+			\end{itemize}
+		}
+		\term{RAT}{In order to provide machine statistics.}
+	\end{functional}
+
+	\begin{functional}{Financial Statistics}{High}{None}
+		\label{fn:reporting-feature:financial-statistics}
+		\term{DESC}
+		{
+			Simulation report should contain following financial statistics:
+			\begin{itemize}
+				\item resulting price paid by the users;
+				\item operating costs;
+				\item \gls{economicBalance}.
+			\end{itemize}
+		}
+		\term{RAT}{In order to provide financial statistics.}
+	\end{functional}
+
+	\begin{functional}{Check Statistics}{Medium}
+		{
+			\ref{fn:reporting-feature:financial-statistics},
+			\ref{fn:reporting-feature:machine-statistics},
+			\ref{fn:reporting-feature:queue-statistics}
+		}
+		\label{fn:reporting-feature:check-statistics}
+		\term{DESC}
+		{
+			Report should contain all the fields described in depended requirements.
+		}
+		\term{RAT}{In order to provide full report.}
+	\end{functional}

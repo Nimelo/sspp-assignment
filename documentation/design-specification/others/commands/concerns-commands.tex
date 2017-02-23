@@ -1,0 +1,24 @@
+% Counter for concerns
+\newcounter{ConcernsCounter}[chapter]
+\renewcommand{\theConcernsCounter}{CN--\arabic{chapter}.\arabic{ConcernsCounter}\relax}
+
+% Formats concerns
+%
+% $param1 - title
+% $param2 - level
+\newenvironment{concerns}[2]
+{
+	\refstepcounter{ConcernsCounter}
+	\begin{center}
+		\begin{minipage}[t]{0.65\linewidth}
+			\flushleft 
+			\textbf{\theConcernsCounter:} #1
+		\end{minipage}
+		\begin{minipage}[t]{0.25\linewidth}
+			\flushright 
+			\textsc{Level:} #2
+		\end{minipage}\\[2pt]
+		\hrule
+	\end{center}
+}
+

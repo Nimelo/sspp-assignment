@@ -1,0 +1,80 @@
+\section{Communication Feature} \label{s:system-features:communication-feature}
+	\begin{comment}
+		$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+		words.$>$
+	\end{comment}
+\subsection*{Description and Priority}
+	\begin{comment}
+		$<$Provide a short description of the feature and indicate whether it is of 
+		High, Medium, or Low priority. You could also include specific priority 
+		component ratings, such as benefit, penalty, cost, and risk (each rated on a 
+		relative scale from a low of 1 to a high of 9).$>$
+	\end{comment}
+	\textsc{Priority:} High \\
+	Application communicates with the user by a command line or generated files. In terms of standardize the actions in a application following requirements have been extracted.
+\subsection*{Stimulus/Response Sequences}
+	\begin{comment}
+		$<$List the sequences of user actions and system responses that stimulate the 
+		behavior defined for this feature. These will correspond to the dialog elements 
+		associated with use cases.$>$
+	\end{comment}
+	\stimresp
+	{User passes a path to the configuration file.}
+	{Application allows user to pass a correct path for configuration file.}
+	
+	\medskip
+	
+	\stimresp
+	{User passes a path to generated report.}
+	{Application allows user to pass a correct path for generated report.}
+	
+	\medskip
+	
+	\stimresp
+	{User requests for a template of configuration file.}
+	{Application generates the template configuration file.}
+	
+	\medskip
+	
+	\stimresp
+	{User requests for a manual to the program and configuration.}
+	{Application prints the manual in current command line window.}
+\subsection*{Functional Requirements}
+	\begin{comment}
+		$<$Itemize the detailed functional requirements associated with this feature.  
+		These are the software capabilities that must be present in order for the user 
+		to carry out the services provided by the feature, or to execute the use case.  
+		Include how the product should respond to anticipated error conditions or 
+		invalid inputs. Requirements should be concise, complete, unambiguous, 
+		verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+		information is not yet available.$>$
+		
+		$<$Each requirement should be uniquely identified with a sequence number or a 
+		meaningful tag of some kind.$>$
+		
+		REQ-1:	REQ-2:
+	\end{comment}
+	
+	\begin{functional}{Passing Configuration Path}{Very High}{None}
+		\label{fn:communication-feature:passing-configuration-path}
+		\term{DESC}{User should be able to pass path to the configuration file with a \emph{--configuration} argument passed to a program.}
+		\term{RAT}{In order to pass path to configuration file.}
+	\end{functional}
+
+	\begin{functional}{Passing Report Path}{Medium}{None}
+		\label{fn:communication-feature:passing-report-path}
+		\term{DESC}{User should be able to pass path to the generated \gls{report} directory with a \emph{--report} argument passed to a program.}
+		\term{RAT}{In order to pass path to generated report directory.}
+	\end{functional} 
+	
+	\begin{functional}{Generating Template}{Low}{None}
+		\label{fn:communication-feature:generating-template}
+		\term{DESC}{User should be able to generated template of a configuration file with a \emph{--template} argument passed to a program. If the path after the argument is not specified file should be generated in a current execution directory.}
+		\term{RAT}{In order to generate template of configuration.}
+	\end{functional} 
+
+	\begin{functional}{Viewing Manual}{High}{None}
+		\label{fn:communication-feature:viewing-manual}
+		\term{DESC}{User should be able to see a manual of configuration and application with a \emph{--help} argument passed to a program.}
+		\term{RAT}{In order to view manual for the application and configuration file.}
+	\end{functional} 

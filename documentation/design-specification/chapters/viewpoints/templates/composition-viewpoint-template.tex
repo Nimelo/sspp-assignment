@@ -1,0 +1,62 @@
+\chapter{Composition Viewpoint Template} \label{chp:composition-viewpoint-template}
+	\begin{comment}
+		The Composition viewpoint describes the way the design subject is (recursively) structured into constituent
+		parts and establishes the roles of those parts.
+	\end{comment}
+	
+	\section{Design concerns} \label{s:composition-viewpoint-template:design-concerns}
+		\begin{comment}
+			Software developers and maintainers use this viewpoint to identify the major design constituents of the
+			design subject, to localize and allocate functionality, responsibilities, or other design roles to these
+			constituents. In maintenance, it can be used to conduct impact analysis and localize the efforts of making
+			changes. Reuse, on the level of existing subsystems and large-grained components, can be addressed as
+			well. The information in a Composition view can be used by acquisition management and in project
+			management for specification and assignment of work packages, and for planning, monitoring, and control
+			of a software project. This information, together with other project information, can be used in estimating
+			cost, staffing, and schedule for the development effort. Configuration management may use the information
+			to establish the organization, tracking, and change management of emerging work products (see
+			IEEE Std 12207-2008 [B21]).
+		\end{comment}
+		
+	\section{Design elements} \label{s:composition-viewpoint-template:design-elements}
+		\begin{comment}
+			Design entities: types of constituents of a system: subsystems, components, modules; ports and (provided
+			and required) interfaces; also libraries, frameworks, software repositories, catalogs, and templates.
+			
+			Design relationships: composition, use, and generalization. The Composition viewpoint supports the
+			recording of the part-whole relationships between design entities using realization, dependency,
+			aggregation, composition, and generalization relationships. Additional design relationships are required and
+			provided (interfaces), and the attachment of ports to components.
+			
+			Design attributes: For each design entity, the viewpoint provides a reference to a detailed description via
+			the identification attribute. The attribute descriptions for identification, type, purpose, function, and
+			definition attribute should be utilized.
+		\end{comment}	
+		
+		\subsection{Function attribute} \label{s:composition-viewpoint-template:function-attribute}
+			\begin{comment}
+				A statement of what the entity does. The function attribute states the transformation applied by the entity to
+				its inputs to produce the output. In the case of a data entity, this attribute states the type of information
+				stored or transmitted by the entity.
+				
+				NOTE—This design attribute is retained for compatibility with IEEE Std 1016-1998.
+			\end{comment}
+		
+		\subsection{Subordinates attribute} \label{s:subordinates-viewpoint-template:function-attribute}
+			\begin{comment}
+				The identification of all entities composing this entity. The subordinates attribute identifies the “composed
+				of” relationship for an entity. This information is used to trace requirements to design entities and to
+				identify parent/child structural relationships through a design subject.
+			
+				NOTE—This design attribute is retained for compatibility with IEEE Std 1016-1998. An equivalent capability is
+				available through the composition relationship.
+			\end{comment}
+			
+	\section{Example languages} \label{s:composition-viewpoint-template:example-languages}
+		\begin{comment}
+			UML component diagrams (see OMG [B28]) cover this viewpoint. The simplest graphical technique used
+			to describe functional system decomposition is a hierarchical decomposition diagram; such diagram can be
+			used together with natural language descriptions of purpose and function for each entity, such as is
+			provided by IDEF0 (IEEE Std 1320.1-1998 [B18]), the Structure Chart (Yourdon and Constantine [B38],
+			and the HIPO Diagram. Run-time composition can also use structured diagrams (Page-Jones [B29]).
+		\end{comment}

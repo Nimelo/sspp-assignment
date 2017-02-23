@@ -1,0 +1,55 @@
+\chapter{Interface Viewpoint Template} \label{chp:interface-viewpoint-template}
+	\begin{comment}
+		The Interface viewpoint provides information designers, programmers, and testers the means to know how
+		to correctly use the services provided by a design subject. This description includes the details of external
+		and internal interfaces not provided in the SRS. This viewpoint consists of a set of interface specifications
+		for each entity.
+		NOTE—User interfaces are addressed separately.
+	\end{comment}
+	
+	\section{Design concerns} \label{s:interface-viewpoint-template:design-concerns}
+		\begin{comment}
+			An Interface view description serves as a binding contract among designers, programmers, customers, and
+			testers. It provides them with an agreement needed before proceeding with the detailed design of entities.
+			The interface description is used by technical writers to produce customer documentation or may be used
+			directly by customers. In the latter case, the interface description could result in the production of a human
+			interface view.
+			
+			Designers, programmers, and testers often use design entities that they did not develop. These entities can
+			be reused from earlier projects, contracted from an external source, or produced by other developers. The
+			interface description establishes an agreement among designers, programmers, and testers about how
+			cooperating entities will interact. Each entity interface description should contain everything another
+			designer or programmer needs to know to develop software that interacts with that entity. A clear
+			description of entity interfaces is essential on a multi-person development for smooth integration and ease
+			of maintenance.
+		\end{comment}
+	
+	\section{Design elements} \label{s:interface-viewpoint-template:design-elements}
+		\begin{comment}
+			The attributes for identification (4.6.2.1), function (5.3.2.1), and interface (5.8.2.1) should be provided for
+			all design entities.
+		\end{comment}
+	
+		\subsection{Interface attribute} \label{s:interface-viewpoint-template:interface-attribute}
+			\begin{comment}
+				A description of how other entities interact with this entity. The interface attribute describes the methods of
+				interaction and the rules governing those interactions. Methods of interaction include the mechanisms for
+				invoking or interrupting the entity, for communicating through parameters, common data areas or
+				messages, and for direct access to internal data. The rules governing the interaction include the
+				communications protocol, data format, acceptable values, and the meaning of each value.
+				
+				This attribute provides a description of the input ranges, the meaning of inputs and outputs, the type and
+				format of each input or output, and output error codes. For information systems, it should include inputs,
+				screen formats, and a complete description of the interactive language.
+				
+				NOTE—This design attribute is retained for compatibility with IEEE Std 1016-1998
+			\end{comment}
+			
+	\section{Example languages} \label{s:interface-viewpoint-template:example-languages}
+		\begin{comment}
+			Interface definition languages (IDL), UML component diagram (OMG [B28]). In case of user interfaces
+			the Interface view should include screen formats, valid inputs, and resulting outputs. For data-driven
+			entities, a data dictionary should be used to describe the data characteristics. Those entities that are highly
+			visible to a user and involve the details of how the customer should perceive the system should include a
+			functional model, scenarios for use, detailed feature sets, and the interaction language.
+		\end{comment}

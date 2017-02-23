@@ -1,0 +1,124 @@
+\chapter{Introduction} \label{chp:introduction}
+
+\section{Document identifier} \label{s:introduction:document-identifier}
+	\begin{comment}
+		$<$Uniquely identify a version of the document by including information such as the date of issue, the issuing organization, the author(s), the approval signatures (possibly electronic), and the status/version (e.g., draft, reviewed, corrected, or final). Identifying information may also include the reviewers and pertinent managers. This information is commonly put on an early page in the document, such as the cover page or the pages immediately following it. Some organizations put this information at the end of the document. This information may also be kept in a place other than in the text of the document (e.g., in the configuration management system or in the header or footer of the document).$>$
+	\end{comment}
+	\textsc{Document version: } 1.0 \\
+	\textsc{Date of issue:} \today \\
+	\textsc{Issuing organization:} \textit{Company} \\
+	\textsc{Authors: } \textit{Name Surname} \\
+	\textsc{Status: } Final \\
+
+\section{Scope} \label{s:introduction:scope}
+	\begin{comment}
+		$<$Describe the purpose, goals, and scope of the system/software test effort. Include a description of any
+		tailoring of this standard that has been implemented. Identify the project(s) for which the Plan is being
+		written and the specific processes and products covered by the test effort. Describe the inclusions,
+		exclusions, and assumptions/limitations. It is important to define clearly the limits of the test effort for
+		any test plan. This is most clearly done by specifying what is being included (inclusions) and equally
+		important, what is being excluded (exclusions) from the test effort. For example, only the current new
+		version of a product might be included and prior versions might be excluded from a specific test effort.
+		In addition, there may be gray areas for the test effort (assumptions and/or limitations) where
+		management discretion or technical assumptions are being used to direct or influence the test effort.
+		For example, system subcomponents purchased from other suppliers might be assumed to have been
+		tested by their originators, and thus, their testing in this effort would be limited to only test the features
+		used as subcomponents in the new system.If the development is based on a “waterfall” methodology, then each level of the test will be executed
+		only one time. However, if the development is based on an iterative methodology, then there will be
+		multiple iterations of each level of test. For example, component testing may be taking place on the
+		most recent iteration at the same time that acceptance testing is taking place on products that were
+		developed during an earlier iteration.
+		The test approach identifies what will be tested and in what order for the entire gamut of testing levels
+		(component, component integration, system, and acceptance). The test approach identifies the rationale
+		for testing or not testing, and it identifies the rationale for the selected order of testing. The test
+		approach describes the relationship to the development methodology. The test approach may identify
+		the types of testing done at the different levels. For example, “thread testing” may be executed at a
+		system level, whereas “requirements testing” may take place at the component integration as well as at
+		a systems integration level.
+		The documentation (LTP, LTD, LTC, LTPr, LTR, and LITSR) required is dependent on the selection
+		of the test approach(es).$>$
+	\end{comment}
+
+\section{References} \label{s:introduction:references}
+	\begin{comment}
+		$<$List all of the applicable reference documents. The references are separated into “external” references
+		that are imposed external to the project and “internal” references that are imposed from within to the
+		project. This may also be at the end of the document.$>$
+	\end{comment}
+	
+\subsection*{External references} \label{s:introduction:external-references}
+	\begin{comment}
+		$<$List references to the relevant policies or laws that give rise to the need for this plan, e.g.		
+		\begin{enumerate}
+		\item Laws
+		\item Government regulations
+		\item Standards (e.g., governmental and/or consensus)
+		\item IEEE Std. 829-2008 - IEEE Standard for Software and System Test Documentation.
+		IEEE Computer Society, 2008.
+		\item Policies
+		\end{enumerate}
+		The reference to this standard includes how and if it has been tailored for this project, an overview of
+		the level(s) of documentation expected, and their contents (or a reference to an organizational standard
+		or document that delineates the expected test documentation details).$>$
+	\end{comment}
+
+
+\subsection*{Internal references} \label{s:introduction:internal-references}
+	\begin{comment}
+		$<$ List references to documents such as other plans or task descriptions that supplement this plan, e.g.:
+		\begin{enumerate}
+		\item Project authorization
+		\item Project plan (or project management plan)
+		\item Quality assurance plan
+		\item Configuration management plan
+		\end{enumerate}
+		$>$
+	\end{comment}
+
+	%\begin{enumerate}
+	%	\item \emph{Software Requirements Specification, Supercomputer Simulation Tool}. Cranfield University, 2016. 
+	%\end{enumerate}
+\section{System overview and key features} \label{s:introduction:system-overview-and-key-features}
+	\begin{comment}
+		$<$Describe the mission or business purpose of the system or software product under test (or reference where the information can be found, e.g., in a system definition document, such as a Concept of
+		Operations). Describe the key features of the system or software under test [or reference where the information can be found, e.g., in a requirements document or COTS documentation]. $>$
+	\end{comment}
+
+\section{Test overview} \label{s:introduction:test-overview}
+	\begin{comment}
+		$<$Describe the test organization, test schedule, integrity level scheme, test resources, responsibilities, tools, techniques, and methods necessary to perform the testing. $>$
+	\end{comment}
+
+\subsection{Organization} \label{s:introduction:organization}
+	\begin{comment}
+		$<$Describe the relationship of the test processes to other processes such as development, project
+		management, quality assurance, and configuration management. Include the lines of communication
+		within the testing organization(s), the authority for resolving issues raised by the testing tasks, and the authority for approving test products and processes. This may include (but should not be limited to) a visual representation, e.g., an organization chart. $>$
+	\end{comment}
+
+\subsection{Master test schedule} \label{s:introduction:master-test-schedule}
+	\begin{comment}
+		$<$Describe the test activities within the project life cycle and milestones. Summarize the overall schedule of the testing tasks, identifying where task results feed back to the development, organizational, and supporting processes (e.g., quality assurance and configuration management). Describe the task iteration policy for the re-execution of test tasks and any dependencies. $>$
+	\end{comment}
+
+\subsection{Integrity level scheme} \label{s:introduction:integrity-level-scheme}
+	\begin{comment}
+		$<$Describe the identified integrity level scheme for the software-based system or software product, and the mapping of the selected scheme to the integrity level scheme used in this standard. If the selected integrity level scheme is the example presented in this standard, it may be referenced and does not need to be repeated in the MTP. The MTP documents the assignment of integrity levels to individual components (e.g., requirements, functions, software modules, subsystems, non-functional characteristics, or other partitions), where there are differing integrity levels assigned within the system. At the beginning of each process, the assignment of integrity levels is reassessed with respect to changes that may need to be made in the integrity levels as a result of architecture selection, design choices, code construction, or other development activities. $>$
+	\end{comment}
+
+\subsection{Resources summary} \label{s:introduction:resources-summary}
+	\begin{comment}
+		$<$Summarize the test resources, including staffing, facilities, tools, and special procedural requirements (e.g., security, access rights, and documentation control). $>$
+	\end{comment}
+
+\subsection{Responsibilities} \label{s:introduction:resposibilities}
+	\begin{comment}
+		$<$Provide an overview of the organizational content topic(s) and responsibilities for testing tasks. Identify organizational components and their primary (they are the task leader) and secondary (they are not the leader, but providing support) test-related responsibilities. $>$
+	\end{comment}
+
+\subsection{Tools, techniques, methods, and metrics} \label{s:introduction:tools-techniques-methods-and-metrics}
+	\begin{comment}
+		$<$Describe documents, hardware and software, test tools, techniques, methods, and test environment to be used in the test process. Describe the techniques that will be used to identify and capture reusable testware. Include information regarding acquisition, training, support, and qualification for each tool, technology, and method.\\
+		Document the metrics to be used by the test effort, and describe how these metrics support the test objectives. Metrics appropriate to the Level Test Plans (e.g., component, component integration, system, and acceptance) may be included in those documents (see Annex E). $>$
+	\end{comment}
+	

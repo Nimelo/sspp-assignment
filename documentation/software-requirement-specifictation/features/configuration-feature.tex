@@ -1,0 +1,249 @@
+\section{Configuration Feature} \label{s:system-features:configuration-feature}
+	\begin{comment}
+		$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+		words.$>$
+	\end{comment}
+
+\subsection*{Description and Priority}
+	\begin{comment}
+		$<$Provide a short description of the feature and indicate whether it is of 
+		High, Medium, or Low priority. You could also include specific priority 
+		component ratings, such as benefit, penalty, cost, and risk (each rated on a 
+		relative scale from a low of 1 to a high of 9).$>$
+	\end{comment}
+	\textsc{Priority:}Very High \\
+	Requirements from this section relate to the configuration file used in simulation.
+\subsection*{Stimulus/Response Sequences}
+	\begin{comment}
+		$<$List the sequences of user actions and system responses that stimulate the 
+		behavior defined for this feature. These will correspond to the dialog elements 
+		associated with use cases.$>$
+	\end{comment}
+	
+	\stimresp
+	{User changes parameters/fields of configuration file.}
+	{System queries user for correct configuration file.}
+	
+\subsection*{Functional Requirements}
+	\begin{comment}
+		$<$Itemize the detailed functional requirements associated with this feature.  
+		These are the software capabilities that must be present in order for the user 
+		to carry out the services provided by the feature, or to execute the use case.  
+		Include how the product should respond to anticipated error conditions or 
+		invalid inputs. Requirements should be concise, complete, unambiguous, 
+		verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+		information is not yet available.$>$
+		
+		$<$Each requirement should be uniquely identified with a sequence number or a 
+		meaningful tag of some kind.$>$
+		
+		REQ-1:	REQ-2:
+	\end{comment}
+	
+	\begin{functional}{\gls{RNG} Seed}{Low}{None}
+		\label{fn:configuration-feature:rng-seed}
+		\term{DESC}
+		{
+			Application should provide functionality to specify the \gls{RNG} seed.
+		}
+		\term{RAT}{In order to allow repeat simulation.}
+	\end{functional}
+
+	\begin{functional}{Job Types}{Very High}{\ref{fn:configuration-feature:system-resources}}
+		\label{fn:configuration-feature:job-types}
+		\term{DESC}
+		{
+			User should be able to configure job types in a system, which are related to the resources. Single job entry should contains:
+			\begin{itemize}
+				\item name of job type;
+				\item min and max execution time (in seconds);
+				\item probability of a job type;
+				\item
+				{
+					list of tuples:
+					\begin{itemize}
+						\item type of node;
+						\item probability of occurrence;
+						\item maximum amount of cores.
+					\end{itemize}
+				}
+			\end{itemize}
+			Sum of all probabilities of job types should be equal to $1.0$;
+		}
+		\term{RAT}{In order to specify job types in simulation.}
+	\end{functional}
+
+	\begin{functional}{Simulation Time}{High}{None}
+		\label{fn:configuration-feature:simulation-time}
+		\term{DESC}
+		{
+			Application should provide functionality to specify the simulation time. Simulation time is a positive number representing weeks. 
+		}
+		\term{RAT}{In order to configure simulation time for simulation.}
+	\end{functional}
+
+	\begin{functional}{System Resources}{Very High}{None}
+		\label{fn:configuration-feature:system-resources}
+		\term{DESC}
+		{
+			User should be able to specify the amount of a particular \gls{computing node} in a system with following parameters:
+			\begin{itemize}
+				\item type of node;
+				\item amount of nodes;
+				\item amount of cores;
+				\item pricing for use of a single core through one second.
+			\end{itemize}
+		}
+		\term{RAT}{In order to configure nodes in a simulation.}
+	\end{functional}
+
+	\begin{functional}{Machine Operational Cost Per Unit Time}{High}{None}
+		\label{fn:configuration-feature:machine-opertional-cost-per-unit-time}
+		\term{DESC}
+		{
+			Application should provide functionality to specify the \gls{MOC}. This time is for an hour of simulation.
+		}
+		\term{RAT}{In order to configure \gls{MOC} for simulation.}
+	\end{functional}
+
+	\begin{functional}{Queues}{Very High}{\ref{fn:configuration-feature:system-resources}}
+		\label{fn:configuration-feature:queues}
+		\term{DESC}
+		{
+			Application should provide functionality to manage properties of a queue in a system:
+			\begin{itemize}
+				\item name;
+				\item maximum number of concurrent jobs per user;
+				\item maximum execution time;
+				\item price factor for queue;
+				\item
+				{
+					list of reserved resources:
+					\begin{itemize}
+						\item node type;
+						\item amount of nodes
+					\end{itemize}
+				}
+				\item
+				{
+					list of constraints:
+					\begin{itemize}
+						\item node type;
+						\item amount of cores
+					\end{itemize}
+				}
+				\item 
+				{
+					availability time of beginning and end:
+					\begin{itemize}
+						\item day of week;
+						\item hours;
+						\item minutes
+					\end{itemize}
+				}
+			\end{itemize} 
+		}
+		\term{RAT}{In order to configure queues for simulation.}
+	\end{functional}
+
+	\begin{functional}{User groups}{Very High}{None}
+		\label{fn:configuration-feature:user-groups}
+		\term{DESC}
+		{
+			User should be able to manage properties of a user groups in a system:
+			\begin{itemize}
+				\item amount of members;
+				\item budget;
+				\item lambda for job exponential probability distribution;
+				\item lambda for request size exponential probability distribution;
+				\item job distribution factor;
+				\item request size distribution factor
+			\end{itemize} 
+		}
+		\term{RAT}{In order to configure user groups for simulation.}
+	\end{functional}
+
+	% Validation
+		
+	\begin{functional}{Valid \gls{RNG} Seed}{Medium}{None}
+		\label{fn:configuration-feature:valid-rng-seed}
+		\term{DESC}
+		{
+			Configuration file should contain \gls{RNG} seed.
+		}
+		\term{RAT}{In order to valid \gls{RNG} seed.}
+	\end{functional}
+	
+	\begin{functional}{Valid Job Types}{Very High}{\ref{fn:configuration-feature:valid-nodes}}
+		\label{fn:configuration-feature:valid-job-types}
+		\term{DESC}
+		{
+			Sum of probability for job types should be equal to $1$. Type of \gls{computing node} should match existing types of nodes in a system. Probability of occurrence should be positive. Maximum amount of nodes of this type should be positive. At least one type of job should be specified in a system. Also range of the execution time should be indicated, by two positive values, where upper boundary is greater then lower one.
+		}
+		\term{RAT}{In order to allow repeat simulation.}
+	\end{functional}
+
+	\begin{functional}{Validate Simulation Time}{High}{None}
+		\label{fn:configuration-feature:validate-simulation-time}
+		\term{DESC}
+		{
+			The simulation time -- number of weeks should be a positive value.
+		}
+		\term{RAT}{In order to validate simulation time for simulation.}
+	\end{functional}
+
+	\begin{functional}{Validate Nodes}{Very High}{\ref{fn:configuration-feature:system-resources}}
+		\label{fn:configuration-feature:valid-nodes}
+		\term{DESC}
+		{
+			Configuration file should contain a valid resource configuration with distinguished \gls{computing node}s. At least once node should be provided. Type of node should be unique, amount of cores -- integer greater than zero and pricing ratio should greater than zero, amount of nodes also should be specified as positive integer.  
+		}
+		\term{RAT}{In order to valid system resources.}
+	\end{functional}
+
+	\begin{functional}{Validate \gls{MOC}}{Very High}{\ref{fn:configuration-feature:machine-opertional-cost-per-unit-time}}
+		\label{fn:configuration-feature:valid-moc}
+		\term{DESC}
+		{
+			Configuration file should contain a valid value of \gls{MOC} greater than $0$. This field is mandatory.
+		}
+		\term{RAT}{In order to valid \gls{MOC}.}
+	\end{functional}
+
+	\begin{functional}{Validate Queues}{Very High}{\ref{fn:configuration-feature:queues}}
+		\label{fn:configuration-feature:valid-queues}
+		\term{DESC}
+		{
+			Configuration file should contain a valid configuration of a queues. At least one queue should be configured.
+			Type of queue must be unique. Maximum job execution time and price factor should be positive, respectively as integer and double variable. All type of nodes should match existing nodes in a system. Amount of reserved nodes and amount of constrained cores should be positive integer values. Availability time should contain two fields begin and end, everyone of them should contain day of a week, which should be written as a string with capital letters. Hours should be specified as numbers from $0$ to $23$. Minutes similarly with $0$ and $59$.
+		}
+		\term{RAT}{In order to valid queues.}
+	\end{functional}
+
+	\begin{functional}{Validate User Groups}{Very High}{\ref{fn:configuration-feature:user-groups}}
+		\label{fn:configuration-feature:valid-user-groups}
+		\term{DESC}
+		{
+			Configuration file should contain a valid configuration of user groups. At least one user group should be configured. Amount of members, value of budget should be positive values. Lambda parameter for job distribution and request size distribution should exist as well as factors of job distribution and request size. 
+		}
+		\term{RAT}{In order to valid user groups.}
+	\end{functional}
+
+	\begin{functional}{Valid Configuration}{Very High}
+		{
+			\ref{fn:configuration-feature:valid-moc},
+			\ref{fn:configuration-feature:valid-nodes},
+			\ref{fn:configuration-feature:valid-queues},
+			\ref{fn:configuration-feature:valid-user-groups},
+			\ref{fn:configuration-feature:validate-simulation-time},
+			\ref{fn:configuration-feature:valid-job-types},
+			\ref{fn:configuration-feature:valid-rng-seed}
+		}
+		\label{fn:configuration-feature:valid-configuration}
+		\term{DESC}
+		{
+			Configuration file should contain correct values.
+		}
+		\term{RAT}{In order to configure job distribution.}
+	\end{functional}
+	

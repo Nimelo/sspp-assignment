@@ -1,0 +1,94 @@
+% Counter for design-element
+\newcounter{DesignElementCounter}[chapter]
+\renewcommand{\theDesignElementCounter}{Design Element \arabic{chapter}.\arabic{DesignElementCounter}\relax}
+
+% Formats design-element
+%
+% $param1 - name
+% $param2 - type
+\newenvironment{design-element}[2]
+{
+	\refstepcounter{DesignElementCounter}
+	\begin{center}
+		\begin{minipage}[t]{0.45\linewidth}
+			\flushleft 
+			\textbf{\theDesignElementCounter:} #1
+		\end{minipage}
+		\begin{minipage}[t]{0.45\linewidth}
+			\flushright 
+			\textsc{Type:} #2
+		\end{minipage}\\[2pt]
+		\hrule
+	\end{center}
+}
+
+
+% Counter for design-element
+\newcounter{DesignEntityCounter}[chapter]
+\renewcommand{\theDesignEntityCounter}{DE--\arabic{chapter}.\arabic{DesignEntityCounter}\relax}
+
+% Formats design-element
+%
+% $param1 - name
+% $param2 - type
+% $param3 - purpose
+\newenvironment{design-entity}[3]
+{
+	\refstepcounter{DesignEntityCounter}
+	\begin{center}
+		\begin{minipage}[t]{0.45\linewidth}
+			\flushleft 
+			\textbf{\theDesignEntityCounter:} #1
+		\end{minipage}
+		\begin{minipage}[t]{0.45\linewidth}
+			\flushright 
+			\textsc{Type:} #2
+		\end{minipage}\\[2pt]
+		\hrule
+	\end{center}
+	\term{Purpose}{Purpose}
+}
+
+% Formats design-attribute
+%
+% $param1 - name
+% $param2 - type
+% $param3 - purpose
+% $param4 - author
+\newenvironment{design-attribute}[4]
+{
+	\begin{center}
+		\begin{minipage}[t]{\linewidth}
+			\term{\textbf{Attribute}}{\textit{#1}}
+		\end{minipage}
+		\begin{minipage}[t]{0.05\linewidth}
+			\flushleft 
+		\end{minipage}
+		\begin{minipage}[t]{0.85\linewidth}
+			\flushright 
+			\term{Type}{#2}
+			\term{Purpose}{#3}
+			\term{Author}{#4}
+		\end{minipage}
+	\end{center}
+}
+
+% Formats design-relationship
+%
+% $param1 - from
+% $param2 - to
+\newenvironment{design-realtionship}[2]
+{
+	\begin{center}
+		\begin{minipage}[t]{0.25\linewidth}
+			\flushleft 
+			\textsc{Relationship:}
+		\end{minipage}
+		\begin{minipage}[t]{0.65\linewidth}
+			\flushright 
+			\textsc{#1 -- #2} 
+		\end{minipage}\\[2pt]
+		\hrule
+	\end{center}
+}
+

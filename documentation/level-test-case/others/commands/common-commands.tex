@@ -1,0 +1,39 @@
+\newenvironment{sminipage}[2][t]
+{
+	\minipage[t]{#2}\small
+}
+{
+	\endminipage
+}
+
+\newenvironment{eqmpage}
+{
+	\par\smallskip\nointerlineskip
+	\noindent\minipage[t]{\textwidth}
+}
+{
+	\par\xdef\tpd{\the\prevdepth}\endminipage\par\prevdepth\tpd
+}
+
+
+\newcommand{\term}[2]
+{
+	\begin{eqmpage}
+		\begin{sminipage}[t]{0.15\textwidth}
+			\textsc{#1:}
+		\end{sminipage}
+		\begin{sminipage}{0.85\textwidth}
+			#2
+		\end{sminipage}
+	\end{eqmpage}
+}
+
+% Formats stimulus-response sequence
+%
+% $param1 - Stimulus text
+% $param2 - Response text
+\newcommand{\stimresp}[2]
+{
+	\term{Stimulus}{#1}
+	\term{Response}{#2}
+}

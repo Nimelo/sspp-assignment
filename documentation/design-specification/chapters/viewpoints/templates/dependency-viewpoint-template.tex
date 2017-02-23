@@ -1,0 +1,40 @@
+\chapter{Dependency Viewpoint Template} \label{chp:dependency-viewpoint-template}
+	\begin{comment}
+		The Dependency viewpoint specifies the relationships of interconnection and access among entities. These
+		relationships include shared information, order of execution, or parameterization of interfaces.
+	\end{comment}
+	
+	\section{Design concerns} \label{s:dependency-viewpoint-template:design-concerns}
+		\begin{comment}
+			A Dependency view provides an overall picture of the design subject in order to assess the impact of
+			requirements or design changes. It can help maintainers to isolate entities causing system failures or
+			resource bottlenecks. It can aid in producing the system integration plan by identifying the entities that are
+			needed by other entities and that must be developed first. This description can also be used by integration
+			testing to aid in the production of integration test cases.
+		\end{comment}
+	
+	\section{Design elements} \label{s:dependency-viewpoint-template:design-elements}
+		\begin{comment}
+			Design entities: subsystem, component, and module.
+			
+			Design relationships: uses, provides, and requires.
+			
+			Design attribute: name (4.6.2.1), type (4.6.2.2), purpose (4.6.2.3), dependencies (5.5.2.1), and resources.
+			These attributes should be provided for all design entities.
+		\end{comment}
+	
+		\subsection{Dependencies attribute} \label{s:dependency-viewpoint-template:dependencies-attribute}
+			\begin{comment}
+				A description of the relationships of this entity with other entities. The dependencies attribute identifies the
+				uses or requires the presence of relationship for an entity. This attribute is used to describe the nature of
+				each interaction including such characteristics as timing and conditions for interaction. The interactions
+				involve the initiation, order of execution, data sharing, creation, duplicating, usage, storage, or destruction
+				of entities.
+				NOTE—This design entity attribute is retained for compatibility with IEEE Std 1016-1998.
+			\end{comment}
+			
+	\section{Example languages} \label{s:dependency-viewpoint-template:example-languages}
+		\begin{comment}
+			UML component diagrams and UML package diagrams showing dependencies among subsystems (OMG
+			[B28]).
+		\end{comment}

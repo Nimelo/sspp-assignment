@@ -1,0 +1,34 @@
+\newcounter{RequirementsCounter}[section]
+\renewcommand{\theRequirementsCounter}{\number\numexpr\value{RequirementsCounter}+1\relax}
+
+% Formats basic requirement id
+%
+% $param1 - identificator label
+\newcommand{\reqid}[1]
+{
+	\textbf{#1--\theRequirementsCounter:}
+	\stepcounter{RequirementsCounter}
+}
+
+% Formats basic requirement (no dependencies)
+%
+% $param1 - identificator label
+% $param2 - title
+% $param3 - priority
+% $param4 - description
+\newcommand{\basicreq}[4]
+{
+	\begin{center}
+		\begin{minipage}[t]{0.65\linewidth}
+			\flushleft 
+			\reqid{#1} #2
+		\end{minipage}
+		\begin{minipage}[t]{0.25\linewidth}
+			\flushright 
+			\textsc{Priority:} #3
+		\end{minipage}\\[2pt]
+		\hrule
+	\end{center}
+	
+	#4
+}
