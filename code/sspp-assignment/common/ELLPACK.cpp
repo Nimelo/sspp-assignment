@@ -55,3 +55,85 @@ representations::ellpack::ELLPACK::~ELLPACK()
 		delete[] AS[i];
 	delete[] AS;
 }
+
+std::ostream & representations::ellpack::operator<<(std::ostream & os, const ELLPACK & ellpack)
+{
+	os << ellpack.M << LINE_SEPARATOR;
+	os << ellpack.N << LINE_SEPARATOR;
+	os << ellpack.NZ << LINE_SEPARATOR;
+	os << ellpack.MAXNZ << LINE_SEPARATOR;
+
+	for (int i = 0; i < ellpack.M; i++)
+	{
+		for (int j = 0; j < ellpack.MAXNZ - 1; j++)
+		{
+			os << ellpack.JA[i][j] << SPACE;
+		}
+		os << ellpack.JA[i][ellpack.MAXNZ - 1] << LINE_SEPARATOR;
+	}
+	
+	for (int i = 0; i < ellpack.M; i++)
+	{
+		for (int j = 0; j < ellpack.MAXNZ - 1; j++)
+		{
+			os << ellpack.AS[i][j] << SPACE;
+		}
+		os << ellpack.AS[i][ellpack.MAXNZ - 1] << LINE_SEPARATOR;
+	}
+
+	return os;
+}
+
+std::istream & representations::ellpack::operator >> (std::istream & is, ELLPACK & ellpack)
+{
+	int **JA;
+	FLOATING_TYPE **AS;
+
+	is >> ellpack.M;
+	is >> ellpack.N;
+	is >> ellpack.NZ;
+	is >> ellpack.MAXNZ;
+
+	JA = new int*[ellpack.M];
+	for (int i = 0; i < ellpack.M; i++)
+		JA[i] = new int[ellpack.MAXNZ];
+
+	AS = new FLOATING_TYPE*[ellpack.M];
+	for (int i = 0; i < ellpack.M; i++)
+		AS[i] = new FLOATING_TYPE[ellpack.MAXNZ];
+
+	for (int i = 0; i < ellpack.M; i++)
+	{
+		for (int j = 0; j < ellpack.MAXNZ; j++)
+		{
+			is >> JA[i][j];
+		}
+	}
+
+	for (int i = 0; i < ellpack.M; i++)
+	{
+		for (int j = 0; j < ellpack.MAXNZ; j++)
+		{
+			is >> AS[i][j];
+		}
+	}
+
+	if (ellpack.JA != 0)
+	{
+		for (int i = 0; i < ellpack.M; i++)
+			delete[] ellpack.JA[i];
+		delete[] ellpack.JA;
+	}
+		
+	if (ellpack.AS != 0)
+	{
+		for (int i = 0; i < ellpack.M; i++)
+			delete[] ellpack.AS[i];
+		delete[] ellpack.AS;
+	}
+
+	ellpack.JA = JA;
+	ellpack.AS = AS;
+
+	return is;
+}

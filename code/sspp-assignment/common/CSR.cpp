@@ -59,3 +59,58 @@ int representations::csr::CSR::getASSize() const
 {
 	return NZ;
 }
+
+std::ostream & representations::csr::operator<<(std::ostream & os, const CSR & csr)
+{	
+	os << csr.M << LINE_SEPARATOR;
+	os << csr.N << LINE_SEPARATOR;
+	os << csr.NZ << LINE_SEPARATOR;
+
+	for (int i = 0; i < csr.M; i++)
+		os << csr.IRP[i] << SPACE;
+	os << csr.IRP[csr.M] << LINE_SEPARATOR;
+
+	for (int i = 0; i < csr.NZ - 1; i++)
+		os << csr.JA[i] << SPACE;
+	os << csr.JA[csr.NZ-1] << LINE_SEPARATOR;
+
+	for (int i = 0; i < csr.NZ - 1; i++)
+		os << csr.AS[i] << SPACE;
+	os << csr.AS[csr.NZ - 1] << LINE_SEPARATOR;
+
+	return os;
+}
+
+std::istream & representations::csr::operator >> (std::istream & is, CSR & csr)
+{
+	int *IRP, *JA;
+	FLOATING_TYPE *AS;
+
+	is >> csr.M;
+	is >> csr.N;
+	is >> csr.NZ;
+
+	IRP = new int[csr.M + 1];
+	JA = new int[csr.NZ];
+	AS = new FLOATING_TYPE[csr.NZ];
+
+	for (int i = 0; i < csr.M + 1; i++)
+		is >> IRP[i];
+	for (int i = 0; i < csr.NZ; i++)
+		is >> JA[i];
+	for (int i = 0; i < csr.NZ; i++)
+		is >> AS[i];
+
+	if (csr.AS != 0)
+		delete[] csr.AS;
+	if (csr.IRP != 0)
+		delete[] csr.IRP;
+	if (csr.JA != 0)
+		delete[] csr.JA;
+
+	csr.AS = AS;
+	csr.IRP = IRP;
+	csr.JA = JA;
+
+	return is;
+}

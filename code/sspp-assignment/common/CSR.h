@@ -2,6 +2,8 @@
 #define __H_CSR
 
 #include "Definitions.h"
+#include <istream>
+#include <ostream>
 
 namespace representations
 {
@@ -27,6 +29,8 @@ namespace representations
 				int getIRPSize() const;
 				int getJASize() const;
 				int getASSize() const;
+				friend std::ostream & operator<<(std::ostream & os, const CSR & csr);
+				friend std::istream & operator>>(std::istream & is, CSR & csr);
 		};
 	}
 }

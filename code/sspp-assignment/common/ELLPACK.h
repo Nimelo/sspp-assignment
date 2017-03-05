@@ -2,6 +2,8 @@
 #define __H_ELLPACK
 
 #include "Definitions.h"
+#include <istream>
+#include <ostream>
 
 namespace representations
 {
@@ -24,6 +26,8 @@ namespace representations
 				ELLPACK(const ELLPACK & other);
 				ELLPACK & operator=(ELLPACK rhs);
 				~ELLPACK();
+				friend std::ostream & operator<<(std::ostream & os, const ELLPACK & ellpack);
+				friend std::istream & operator>>(std::istream & is, ELLPACK & ellpack);
 		};
 	}
 }
