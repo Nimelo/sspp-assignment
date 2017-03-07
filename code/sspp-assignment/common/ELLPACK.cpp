@@ -8,18 +8,18 @@ void representations::ellpack::ELLPACK::rewrite(ELLPACK & lhs, const ELLPACK & r
 	lhs.MAXNZ = rhs.MAXNZ;
 
 	lhs.AS = new FLOATING_TYPE*[rhs.M];
-	for (int i = 0; i < rhs.M; i++)
+	for (auto i = 0; i < rhs.M; i++)
 	{
 		lhs.AS[i] = new FLOATING_TYPE[rhs.MAXNZ];
-		for (int j = 0; j < rhs.MAXNZ; j++)
+		for (auto j = 0; j < rhs.MAXNZ; j++)
 			lhs.AS[i][j] = rhs.AS[i][j];
 	}
 
 	lhs.JA = new int*[rhs.M];
-	for (int i = 0; i < rhs.M; i++)
+	for (auto i = 0; i < rhs.M; i++)
 	{
 		lhs.JA[i] = new int[rhs.MAXNZ];
-		for (int j = 0; j < rhs.MAXNZ; j++)
+		for (auto j = 0; j < rhs.MAXNZ; j++)
 			lhs.JA[i][j] = rhs.JA[i][j];
 	}
 }
@@ -48,11 +48,11 @@ representations::ellpack::ELLPACK & representations::ellpack::ELLPACK::operator=
 
 representations::ellpack::ELLPACK::~ELLPACK()
 {
-	for (int i = 0; i < M; i++)
+	for (auto i = 0; i < M; i++)
 		delete[] JA[i];
 	delete[] JA;
 
-	for (int i = 0; i < M; i++)
+	for (auto i = 0; i < M; i++)
 		delete[] AS[i];
 	delete[] AS;
 }
@@ -64,18 +64,18 @@ std::ostream & representations::ellpack::operator<<(std::ostream & os, const ELL
 	os << ellpack.NZ << LINE_SEPARATOR;
 	os << ellpack.MAXNZ << LINE_SEPARATOR;
 
-	for (int i = 0; i < ellpack.M; i++)
+	for (auto i = 0; i < ellpack.M; i++)
 	{
-		for (int j = 0; j < ellpack.MAXNZ - 1; j++)
+		for (auto j = 0; j < ellpack.MAXNZ - 1; j++)
 		{
 			os << ellpack.JA[i][j] << SPACE;
 		}
 		os << ellpack.JA[i][ellpack.MAXNZ - 1] << LINE_SEPARATOR;
 	}
 
-	for (int i = 0; i < ellpack.M; i++)
+	for (auto i = 0; i < ellpack.M; i++)
 	{
-		for (int j = 0; j < ellpack.MAXNZ - 1; j++)
+		for (auto j = 0; j < ellpack.MAXNZ - 1; j++)
 		{
 			os << ellpack.AS[i][j] << SPACE;
 		}
@@ -96,24 +96,24 @@ std::istream & representations::ellpack::operator >> (std::istream & is, ELLPACK
 	is >> ellpack.MAXNZ;
 
 	JA = new int*[ellpack.M];
-	for (int i = 0; i < ellpack.M; i++)
+	for (auto i = 0; i < ellpack.M; i++)
 		JA[i] = new int[ellpack.MAXNZ];
 
 	AS = new FLOATING_TYPE*[ellpack.M];
-	for (int i = 0; i < ellpack.M; i++)
+	for (auto i = 0; i < ellpack.M; i++)
 		AS[i] = new FLOATING_TYPE[ellpack.MAXNZ];
 
-	for (int i = 0; i < ellpack.M; i++)
+	for (auto i = 0; i < ellpack.M; i++)
 	{
-		for (int j = 0; j < ellpack.MAXNZ; j++)
+		for (auto j = 0; j < ellpack.MAXNZ; j++)
 		{
 			is >> JA[i][j];
 		}
 	}
 
-	for (int i = 0; i < ellpack.M; i++)
+	for (auto i = 0; i < ellpack.M; i++)
 	{
-		for (int j = 0; j < ellpack.MAXNZ; j++)
+		for (auto j = 0; j < ellpack.MAXNZ; j++)
 		{
 			is >> AS[i][j];
 		}
@@ -121,14 +121,14 @@ std::istream & representations::ellpack::operator >> (std::istream & is, ELLPACK
 
 	if (ellpack.JA != 0)
 	{
-		for (int i = 0; i < ellpack.M; i++)
+		for (auto i = 0; i < ellpack.M; i++)
 			delete[] ellpack.JA[i];
 		delete[] ellpack.JA;
 	}
 
 	if (ellpack.AS != 0)
 	{
-		for (int i = 0; i < ellpack.M; i++)
+		for (auto i = 0; i < ellpack.M; i++)
 			delete[] ellpack.AS[i];
 		delete[] ellpack.AS;
 	}

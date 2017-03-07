@@ -10,8 +10,8 @@ inline void tools::sorters::InPlaceStableSorter::swap(T & lhs, T & rhs)
 
 void tools::sorters::InPlaceStableSorter::quicksort(int * I, int * J, FLOATING_TYPE * values, const int left, const int right)
 {
-	int i = left, j = right;
-	int pivot = (I)[(left + right) / 2];
+	auto i = left, j = right;
+	auto pivot = (I)[(left + right) / 2];
 
 	while (i <= j) {
 		while (I[i] < pivot)
@@ -39,8 +39,8 @@ void tools::sorters::InPlaceStableSorter::quicksort(int * I, int * J, FLOATING_T
 void tools::sorters::InPlaceStableSorter::sort2(int * I, int * J, FLOATING_TYPE * values, int N)
 {
 	quicksort(I, J, values, 0, N - 1);
-	int beginIndex = 0;
-	for (int i = 1; i < N; i++)
+	auto beginIndex = 0;
+	for (auto i = 1; i < N; i++)
 	{
 		if (I[i - 1] != I[i])
 		{
@@ -52,9 +52,9 @@ void tools::sorters::InPlaceStableSorter::sort2(int * I, int * J, FLOATING_TYPE 
 
 void tools::sorters::InPlaceStableSorter::insertionSort(int * I, int * J, FLOATING_TYPE * values, int start, int end)
 {
-	for (int i = start; i < end; i++)
+	for (auto i = start; i < end; i++)
 	{
-		int k = i;
+		auto k = i;
 		while (k > start && (I)[k] < (I)[k - 1])
 		{
 			swap((I)[k], (I)[k - 1]);
@@ -68,8 +68,8 @@ void tools::sorters::InPlaceStableSorter::insertionSort(int * I, int * J, FLOATI
 void tools::sorters::InPlaceStableSorter::sort(int * I, int * J, FLOATING_TYPE * values, int N)
 {
 	insertionSort(I, J, values, 0, N);
-	int beginIndex = 0;
-	for (int i = 1; i < N; i++)
+	auto beginIndex = 0;
+	for (auto i = 1; i < N; i++)
 	{
 		if (I[i - 1] != I[i])
 		{

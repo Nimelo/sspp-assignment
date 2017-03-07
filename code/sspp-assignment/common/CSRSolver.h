@@ -13,8 +13,8 @@ namespace tools
 		{
 			class CSRSolver
 			{
-				public:
-					representations::output::Output solve(representations::csr::CSR &csr, FLOATING_TYPE *b);
+			public:
+				representations::output::Output solve(representations::csr::CSR &csr, FLOATING_TYPE *b);
 			};
 		}
 	}

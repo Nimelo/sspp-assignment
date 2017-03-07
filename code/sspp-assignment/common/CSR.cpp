@@ -6,15 +6,15 @@ void representations::csr::CSR::rewrite(CSR & lhs, const CSR & rhs)
 	lhs.M = rhs.M;
 	lhs.N = rhs.N;
 	lhs.IRP = new int[rhs.getIRPSize()];
-	for (int i = 0; i < rhs.getIRPSize(); i++)
+	for (auto i = 0; i < rhs.getIRPSize(); i++)
 		lhs.IRP[i] = rhs.IRP[i];
 
 	lhs.JA = new int[rhs.getJASize()];
-	for (int i = 0; i < rhs.getJASize(); i++)
+	for (auto i = 0; i < rhs.getJASize(); i++)
 		lhs.JA[i] = rhs.JA[i];
 
 	lhs.AS = new FLOATING_TYPE[rhs.getASSize()];
-	for (int i = 0; i < rhs.getASSize(); i++)
+	for (auto i = 0; i < rhs.getASSize(); i++)
 		lhs.AS[i] = rhs.AS[i];
 }
 
@@ -67,15 +67,15 @@ std::ostream & representations::csr::operator<<(std::ostream & os, const CSR & c
 	os << csr.N << LINE_SEPARATOR;
 	os << csr.NZ << LINE_SEPARATOR;
 
-	for (int i = 0; i < csr.M; i++)
+	for (auto i = 0; i < csr.M; i++)
 		os << csr.IRP[i] << SPACE;
 	os << csr.IRP[csr.M] << LINE_SEPARATOR;
 
-	for (int i = 0; i < csr.NZ - 1; i++)
+	for (auto i = 0; i < csr.NZ - 1; i++)
 		os << csr.JA[i] << SPACE;
 	os << csr.JA[csr.NZ - 1] << LINE_SEPARATOR;
 
-	for (int i = 0; i < csr.NZ - 1; i++)
+	for (auto i = 0; i < csr.NZ - 1; i++)
 		os << csr.AS[i] << SPACE;
 	os << csr.AS[csr.NZ - 1] << LINE_SEPARATOR;
 
@@ -95,11 +95,11 @@ std::istream & representations::csr::operator >> (std::istream & is, CSR & csr)
 	JA = new int[csr.NZ];
 	AS = new FLOATING_TYPE[csr.NZ];
 
-	for (int i = 0; i < csr.M + 1; i++)
+	for (auto i = 0; i < csr.M + 1; i++)
 		is >> IRP[i];
-	for (int i = 0; i < csr.NZ; i++)
+	for (auto i = 0; i < csr.NZ; i++)
 		is >> JA[i];
-	for (int i = 0; i < csr.NZ; i++)
+	for (auto i = 0; i < csr.NZ; i++)
 		is >> AS[i];
 
 	if (csr.AS != 0)

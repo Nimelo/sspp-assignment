@@ -9,8 +9,8 @@ namespace io
 	{
 		class MatrixMarketReader
 		{
-			public:
-				representations::intermediary::IntermediarySparseMatrix fromFile(const char * fileName);
+		public:
+			representations::intermediary::IntermediarySparseMatrix fromFile(const char * fileName);
 		};
 	}
 }

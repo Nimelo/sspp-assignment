@@ -13,8 +13,8 @@ namespace tools
 		{
 			class ELLPACKSolver
 			{
-				public:
-					representations::output::Output solve(representations::ellpack::ELLPACK & ellpack, FLOATING_TYPE *b);
+			public:
+				representations::output::Output solve(representations::ellpack::ELLPACK & ellpack, FLOATING_TYPE *b);
 			};
 		}
 	}

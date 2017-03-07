@@ -7,5 +7,5 @@ double tools::measurements::calculators::FLOPSCalculator::calculate(int nz, doub
 
 double tools::measurements::calculators::FLOPSCalculator::calculate(int nz, long miliseconds)
 {
-	return 2 * nz / ((double)miliseconds / 1000);
+	return 2 * nz / (static_cast<double>(miliseconds) / 1000);
 }

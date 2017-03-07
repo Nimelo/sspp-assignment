@@ -9,17 +9,17 @@ namespace tools
 	{
 		class DebugTools
 		{
-			public:
-				template<typename T>
-				void printArray(T original, int n, const char * str)
+		public:
+			template<typename T>
+			void printArray(T original, int n, const char * str)
+			{
+				std::cout << str << ": [";
+				for (int i = 0; i < n; i++)
 				{
-					std::cout << str << ": [";
-					for (int i = 0; i < n; i++)
-					{
-						std::cout << original[i] << ", ";
-					}
-					std::cout << "]\n";
+					std::cout << original[i] << ", ";
 				}
+				std::cout << "]\n";
+			}
 		};
 	}
 }

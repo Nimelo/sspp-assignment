@@ -4,10 +4,10 @@ representations::output::Output tools::solvers::ellpack::ELLPACKSolver::solve(re
 {
 	FLOATING_TYPE *x = new FLOATING_TYPE[ellpack.M];
 
-	for (int i = 0; i < ellpack.M; i++)
+	for (auto i = 0; i < ellpack.M; i++)
 	{
 		FLOATING_TYPE tmp = 0;
-		for (int j = 0; j < ellpack.MAXNZ; j++)
+		for (auto j = 0; j < ellpack.MAXNZ; j++)
 		{
 			tmp += ellpack.AS[i][j] * b[ellpack.JA[i][j]];
 		}

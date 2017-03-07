@@ -10,7 +10,7 @@ io::readers::input::commandline::CommandLineParameterReader::CommandLineParamete
 
 bool io::readers::input::commandline::CommandLineParameterReader::hasArgument(std::string key) const
 {
-	for (int i = 0; i < parameters.size(); i++)
+	for (auto i = 0; i < parameters.size(); i++)
 	{
 		if (parameters.at(i).key == key)
 		{
@@ -23,7 +23,7 @@ bool io::readers::input::commandline::CommandLineParameterReader::hasArgument(st
 
 io::readers::input::commandline::parameters::Parameter io::readers::input::commandline::CommandLineParameterReader::get(std::string key)
 {
-	for (int i = 0; i < parameters.size(); i++)
+	for (auto i = 0; i < parameters.size(); i++)
 	{
 		if (parameters.at(i).key == key)
 		{
@@ -39,7 +39,7 @@ void io::readers::input::commandline::CommandLineParameterReader::load(const int
 	std::vector<int> usedIndexes;
 	for (auto argument : arguments)
 	{
-		for (int i = 0; i < argc; i++)
+		for (auto i = 0; i < argc; i++)
 		{
 			std::string current(argv[i]);
 
@@ -88,7 +88,7 @@ void io::readers::input::commandline::CommandLineParameterReader::extractMultipl
 		if (!hasValue(index + 1, usedIndexes))
 		{
 			std::vector<std::string> values;
-			for (int i = index + 1; i < argc; i++)
+			for (auto i = index + 1; i < argc; i++)
 			{
 				if (!hasValue(i, usedIndexes))
 				{
@@ -111,7 +111,7 @@ void io::readers::input::commandline::CommandLineParameterReader::extractMultipl
 
 bool io::readers::input::commandline::CommandLineParameterReader::hasValue(int index, std::vector<int>& values)
 {
-	for (int v : values)
+	for (auto v : values)
 	{
 		if (v == index)
 			return true;

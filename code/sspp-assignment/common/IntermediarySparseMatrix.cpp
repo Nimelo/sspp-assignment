@@ -5,7 +5,7 @@ representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatri
 }
 
 representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatrix(int m, int n, int nz, int * iIndexes, int * jIndexes, FLOATING_TYPE * values)
-	: M(m), N(n), NZ(nz), IIndexes(iIndexes), JIndexes(jIndexes), Values(values)
+	: NZ(nz), M(m), N(n), IIndexes(iIndexes), JIndexes(jIndexes), Values(values)
 {
 }
 
@@ -19,7 +19,7 @@ representations::intermediary::IntermediarySparseMatrix::IntermediarySparseMatri
 	this->JIndexes = new int[NZ];
 	this->Values = new FLOATING_TYPE[NZ];
 
-	for (int it = 0; it < NZ; it++)
+	for (auto it = 0; it < NZ; it++)
 	{
 		IIndexes[it] = other.IIndexes[it];
 		JIndexes[it] = other.JIndexes[it];
@@ -37,7 +37,7 @@ representations::intermediary::IntermediarySparseMatrix & representations::inter
 	this->JIndexes = new int[NZ];
 	this->Values = new FLOATING_TYPE[NZ];
 
-	for (int it = 0; it < NZ; it++)
+	for (auto it = 0; it < NZ; it++)
 	{
 		IIndexes[it] = rhs.IIndexes[it];
 		JIndexes[it] = rhs.JIndexes[it];

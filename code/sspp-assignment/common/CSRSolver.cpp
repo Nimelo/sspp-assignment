@@ -4,11 +4,11 @@ representations::output::Output tools::solvers::csr::CSRSolver::solve(representa
 {
 	FLOATING_TYPE *x = new FLOATING_TYPE[csr.M];
 
-	for (int i = 0; i < csr.M; i++)
+	for (auto i = 0; i < csr.M; i++)
 	{
 		FLOATING_TYPE tmp = 0;
 
-		for (int j = csr.IRP[i]; j < csr.IRP[i + 1]; j++)
+		for (auto j = csr.IRP[i]; j < csr.IRP[i + 1]; j++)
 		{
 			tmp += csr.AS[j] * b[csr.JA[j]];
 		}

@@ -14,7 +14,7 @@ representations::csr::CSR tools::transformers::csr::CSRTransformer::transform(re
 	JA[0] = ism.JIndexes[0];
 	IRP[0] = 0;
 
-	for (int i = 1; i < ism.NZ; i++)
+	for (auto i = 1; i < ism.NZ; i++)
 	{
 		AS[i] = ism.Values[i];
 		JA[i] = ism.JIndexes[i];

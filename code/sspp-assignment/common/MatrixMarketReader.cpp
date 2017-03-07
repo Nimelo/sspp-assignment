@@ -14,7 +14,7 @@ representations::intermediary::IntermediarySparseMatrix io::readers::MatrixMarke
 
 	if ((f = fopen(fileName, "r")) == NULL)
 		throw io::exceptions::ReadMatrixException();
-	
+
 	if (mm_read_banner(f, &matcode) != 0)
 	{
 		printf("Could not process Matrix Market banner.\n");
@@ -50,7 +50,7 @@ representations::intermediary::IntermediarySparseMatrix io::readers::MatrixMarke
 	/*   specifier as in "%lg", "%lf", "%le", otherwise errors will occur */
 	/*  (ANSI C X3.159-1989, Sec. 4.9.6.2, p. 136 lines 13-15)            */
 
-	for (i = 0; i<nz; i++)
+	for (i = 0; i < nz; i++)
 	{
 		fscanf(f, "%d %d %lg\n", &I[i], &J[i], &val[i]);
 		I[i]--;  /* adjust from 1-based to 0-based */

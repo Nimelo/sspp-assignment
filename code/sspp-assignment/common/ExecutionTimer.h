@@ -12,8 +12,8 @@ namespace tools
 		{
 			class ExecutionTimer
 			{
-				public:
-					std::chrono::milliseconds measure(std::function<void(void)> function);
+			public:
+				std::chrono::milliseconds measure(std::function<void(void)> function);
 			};
 		}
 	}

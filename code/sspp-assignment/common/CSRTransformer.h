@@ -12,8 +12,8 @@ namespace tools
 		{
 			class CSRTransformer
 			{
-				public:
-					representations::csr::CSR transform(representations::intermediary::IntermediarySparseMatrix & ism);
+			public:
+				representations::csr::CSR transform(representations::intermediary::IntermediarySparseMatrix & ism);
 			};
 		}
 	}
