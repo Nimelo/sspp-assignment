@@ -12,9 +12,21 @@
 #include <iostream>
 #include <omp.h>
 
+#define OUTPUT_DIR_TAG "-o"
+#define INPUT_DIR_TAG "-i"
+#define FILES_TAG "-fs"
+#define ITERATIONS_TAG "-iter"
+#define M_TAG "-m"
+#define N_TAG "-n"
+#define TRANSFORM_TAG "-t"
+
+#define TRANSFORM_ACTION "exe -transform -i "
 int main(int argc, char *argv[])
 {
 	{	
+
+
+		/**/
 		auto timer = tools::measurements::timers::ExecutionTimer();
 
 		// 1. Read MatrixMarketFromTheFile
