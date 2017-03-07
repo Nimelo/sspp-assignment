@@ -1,6 +1,7 @@
 #include "ELLPACKTransformerTest.h"
 #include "Definitions.h"
 #include <gtest\gtest.h>
+#include <sstream>
 
 TEST_F(ELLPACKTransformerTest, shouldSolveCorrectly_Salvatore)
 {
@@ -13,7 +14,7 @@ TEST_F(ELLPACKTransformerTest, shouldSolveCorrectly_Salvatore)
 
 	FLOATING_TYPE correctAS[M][correctMAXNZ] = { { 11, 12 },{ 22, 23 },{ 33, 0 },{ 43, 44 } };
 	int correctJA[M][correctMAXNZ] = { { 0, 1 },{ 1, 2 },{ 2, 2 },{ 2, 3 } };
-	
+
 	representations::intermediary::IntermediarySparseMatrix ism(M, N, NZ, iIndexes, jIndexes, values);
 	auto ellpack = ellpackTransformer->transform(ism);
 
@@ -61,6 +62,52 @@ TEST_F(ELLPACKTransformerTest, shouldSolveCorrectly)
 		{
 			ASSERT_EQ(correctJA[i][j], ellpack.JA[i][j]) << "JA values is different.";
 			ASSERT_EQ(correctAS[i][j], ellpack.AS[i][j]) << "AS values is different.";
+		}
+	}
+}
+
+TEST_F(ELLPACKTransformerTest, iostreamTest)
+{
+	const int M = 4, N = 4, NZ = 7, MAXNZ = 2;
+	int **JA = new int*[M];
+	FLOATING_TYPE **AS = new FLOATING_TYPE*[M];
+
+	FLOATING_TYPE correctAS[M][MAXNZ] = { { 11, 12 },{ 22, 23 },{ 33, 0 },{ 43, 44 } };
+	int correctJA[M][MAXNZ] = { { 0, 1 },{ 1, 2 },{ 2, 2 },{ 2, 3 } };
+
+	for (int i = 0; i < M; i++)
+	{
+		JA[i] = new int[MAXNZ];
+		AS[i] = new FLOATING_TYPE[MAXNZ];
+		for (int j = 0; j < MAXNZ; j++)
+		{
+			JA[i][j] = correctJA[i][j];
+			AS[i][j] = correctAS[i][j];
+		}
+	}
+
+	representations::ellpack::ELLPACK ellpack(M, N, NZ, MAXNZ, JA, AS);
+
+	std::stringstream stringStream;
+
+	stringStream << ellpack;
+
+	representations::ellpack::ELLPACK actualEllpack;
+
+	stringStream >> actualEllpack;
+
+	ASSERT_EQ(M, ellpack.M) << "M values is different.";
+	ASSERT_EQ(N, ellpack.N) << "N values is different.";
+	ASSERT_EQ(NZ, ellpack.NZ) << "NZ values is different.";
+	ASSERT_EQ(MAXNZ, ellpack.MAXNZ) << "MAXNZ values is different.";
+
+
+	for (int i = 0; i < M; i++)
+	{
+		for (int j = 0; j < MAXNZ; j++)
+		{
+			ASSERT_EQ(ellpack.JA[i][j], actualEllpack.JA[i][j]) << "JA values is different.";
+			ASSERT_EQ(ellpack.AS[i][j], actualEllpack.AS[i][j]) << "AS values is different.";
 		}
 	}
 }

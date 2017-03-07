@@ -25,6 +25,7 @@ void representations::ellpack::ELLPACK::rewrite(ELLPACK & lhs, const ELLPACK & r
 }
 
 representations::ellpack::ELLPACK::ELLPACK()
+	: M(0), N(0), NZ(0), MAXNZ(0), JA(0), AS(0)
 {
 
 }
@@ -71,7 +72,7 @@ std::ostream & representations::ellpack::operator<<(std::ostream & os, const ELL
 		}
 		os << ellpack.JA[i][ellpack.MAXNZ - 1] << LINE_SEPARATOR;
 	}
-	
+
 	for (int i = 0; i < ellpack.M; i++)
 	{
 		for (int j = 0; j < ellpack.MAXNZ - 1; j++)
@@ -124,7 +125,7 @@ std::istream & representations::ellpack::operator >> (std::istream & is, ELLPACK
 			delete[] ellpack.JA[i];
 		delete[] ellpack.JA;
 	}
-		
+
 	if (ellpack.AS != 0)
 	{
 		for (int i = 0; i < ellpack.M; i++)

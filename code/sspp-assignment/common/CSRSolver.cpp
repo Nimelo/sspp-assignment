@@ -8,7 +8,7 @@ representations::output::Output tools::solvers::csr::CSRSolver::solve(representa
 	{
 		FLOATING_TYPE tmp = 0;
 
-		for (int j = csr.IRP[i]; j < csr.IRP[i+1]; j++)
+		for (int j = csr.IRP[i]; j < csr.IRP[i + 1]; j++)
 		{
 			tmp += csr.AS[j] * b[csr.JA[j]];
 		}

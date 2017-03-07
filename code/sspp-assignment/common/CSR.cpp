@@ -19,6 +19,7 @@ void representations::csr::CSR::rewrite(CSR & lhs, const CSR & rhs)
 }
 
 representations::csr::CSR::CSR()
+	: NZ(0), M(0), N(0), IRP(0), JA(0), AS(0)
 {
 }
 
@@ -61,7 +62,7 @@ int representations::csr::CSR::getASSize() const
 }
 
 std::ostream & representations::csr::operator<<(std::ostream & os, const CSR & csr)
-{	
+{
 	os << csr.M << LINE_SEPARATOR;
 	os << csr.N << LINE_SEPARATOR;
 	os << csr.NZ << LINE_SEPARATOR;
@@ -72,7 +73,7 @@ std::ostream & representations::csr::operator<<(std::ostream & os, const CSR & c
 
 	for (int i = 0; i < csr.NZ - 1; i++)
 		os << csr.JA[i] << SPACE;
-	os << csr.JA[csr.NZ-1] << LINE_SEPARATOR;
+	os << csr.JA[csr.NZ - 1] << LINE_SEPARATOR;
 
 	for (int i = 0; i < csr.NZ - 1; i++)
 		os << csr.AS[i] << SPACE;

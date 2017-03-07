@@ -1,6 +1,8 @@
 #include "CSRTransformerTest.h"
 #include "Definitions.h"
 #include <gtest\gtest.h>
+#include <sstream>
+#include <string>
 
 TEST_F(CSRTransformerTest, shouldTransformCorrectly_Salvatore)
 {
@@ -50,4 +52,37 @@ TEST_F(CSRTransformerTest, shouldTransformCorrectly)
 	assertArrays(values, csr.AS, NZ, "AS -> Incorrect value at: ");
 	assertArrays(correctIRP, csr.IRP, 4, "IRP -> Incorrect value at: ");
 	assertArrays(correctJA, csr.JA, NZ, "JA -> Incorrect value at: ");
+}
+
+TEST_F(CSRTransformerTest, iostreamTest)
+{
+	const int M = 4, N = 4, NZ = 7;
+	int *IRP = new int[NZ], *JA = new int[NZ];
+	FLOATING_TYPE *AS = new FLOATING_TYPE[NZ];
+
+	int correctIRP[5] = { 0, 2, 4, 5, 7 };
+	for (int i = 0; i < 5; i++)
+		IRP[i] = correctIRP[i];
+	int correctJA[NZ] = { 0, 1, 1, 2, 2, 2, 3 };
+	for (int i = 0; i < NZ; i++)
+		JA[i] = correctJA[i];
+	FLOATING_TYPE correctAS[NZ] = { 11, 12, 22, 23, 33, 43, 44 };
+	for (int i = 0; i < NZ; i++)
+		AS[i] = correctAS[i];
+	representations::csr::CSR expectedCSR(NZ, M, N, IRP, JA, AS);
+
+	std::stringstream stringStream;
+	stringStream << expectedCSR;
+	
+	representations::csr::CSR actualCSR;
+
+	stringStream >> actualCSR;
+
+	ASSERT_EQ(expectedCSR.M, actualCSR.M);
+	ASSERT_EQ(expectedCSR.N, actualCSR.N);
+	ASSERT_EQ(expectedCSR.NZ, actualCSR.NZ);
+
+	assertArrays(expectedCSR.IRP, actualCSR.IRP, expectedCSR.getIRPSize(), "Incorrect IRP at: ");
+	assertArrays(expectedCSR.JA, actualCSR.JA, expectedCSR.getIRPSize(), "Incorrect JA at: ");
+	assertArrays(expectedCSR.AS, actualCSR.AS, expectedCSR.getIRPSize(), "Incorrect AS at: ");
 }
