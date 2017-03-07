@@ -43,7 +43,7 @@ namespace io
 						}
 
 						template<typename T>
-						explicit operator std::vector<T>() const
+						operator std::vector<T>() const
 						{
 							std::vector<T> returnList;
 
