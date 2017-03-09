@@ -70,9 +70,9 @@ TEST_F(CommandLineParameterReaderTest, shouldParseStandardInput2)
 	arguments.push_back(arguments::Argument(IN_DIR_TAG, arguments::ArgumentType::Single));
 	arguments.push_back(arguments::Argument(M_TAG, arguments::ArgumentType::Single));
 	arguments.push_back(arguments::Argument(N_TAG, arguments::ArgumentType::Single));
-	arguments.push_back(arguments::Argument(ITERATIONS_TAG, arguments::ArgumentType::Single));
 	arguments.push_back(arguments::Argument(FILES_TAG, arguments::ArgumentType::Multiple));
-
+	arguments.push_back(arguments::Argument(ITERATIONS_TAG, arguments::ArgumentType::Single));
+	
 	CommandLineParameterReader reader(arguments);
 
 	const int argc = 14;
