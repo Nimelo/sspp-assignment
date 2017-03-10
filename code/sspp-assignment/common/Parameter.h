@@ -21,6 +21,12 @@ namespace io
 						std::vector<std::string> list;
 					public:
 						std::string key;
+						Parameter(std::string key)
+							: key(key)
+						{
+
+						}
+
 						Parameter(std::string key, std::string value)
 							: value(value), key(key)
 						{

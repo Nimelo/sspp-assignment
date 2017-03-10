@@ -21,7 +21,7 @@
 #define TRANSFORM_TAG "-t"
 
 #define TRANSFORM_ACTION "exe -transform -i "
-int main(int argc, char *argv[])
+int main(int argc, const char** argv)
 {
 	{	
 

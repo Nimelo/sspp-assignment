@@ -13,6 +13,7 @@ namespace io
 				{
 					enum ArgumentType
 					{
+						Flag,
 						Single,
 						Multiple
 					};

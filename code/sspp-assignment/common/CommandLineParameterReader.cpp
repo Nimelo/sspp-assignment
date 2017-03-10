@@ -48,7 +48,11 @@ void io::readers::input::commandline::CommandLineParameterReader::load(const int
 				if (!hasValue(i, usedIndexes))
 				{
 					usedIndexes.push_back(i);
-					if (argument.Type == arguments::ArgumentType::Single)
+					if(argument.Type == arguments::ArgumentType::Flag)
+					{
+						this->parameters.push_back(parameters::Parameter(argument.Name));
+					}
+					else if (argument.Type == arguments::ArgumentType::Single)
 					{
 						extractSingle(argc, argv, i, usedIndexes, argument.Name);
 					}
