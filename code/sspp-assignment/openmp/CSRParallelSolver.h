@@ -14,7 +14,7 @@ namespace solvers
 			class CSRParallelSolver
 			{
 				public:
-					representations::output::Output solve(const representations::csr::CSR & csr, FLOATING_TYPE* b);
+					representations::output::Output solve(const representations::csr::CSR & csr, FLOATING_TYPE* b, int threads);
 			};
 		}
 	}

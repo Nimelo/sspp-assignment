@@ -7,5 +7,7 @@ typedef double FLOATING_TYPE;
 #define SPACE ' '
 #define CSR_EXTENSION ".csr"
 #define ELLPACK_EXTENSION ".ellpack"
+#define META_EXTENSION ".meta"
+#define OUTPUT_EXTENSION ".output"
 
 #endif

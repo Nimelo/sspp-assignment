@@ -4,7 +4,7 @@
 
 TEST_F(CSRParallelSolverTest, test)
 {
-	const int M = 4, N = 4, NZ = 7;
+	const int M = 4, N = 4, NZ = 7, THREADS = 2;
 	int *IRP = new int[NZ], *JA = new int[NZ];
 	FLOATING_TYPE *AS = new FLOATING_TYPE[NZ];
 
@@ -22,7 +22,7 @@ TEST_F(CSRParallelSolverTest, test)
 	FLOATING_TYPE B[N] = { 1, 1, 1, 1 };
 	FLOATING_TYPE correctX[M] = { 23, 45, 33, 87 };
 
-	auto output = csrParallelSolver->solve(csr, B);
+	auto output = csrParallelSolver->solve(csr, B, THREADS);
 
 	ASSERT_EQ(M, output.N) << "Size of output is incorrect";
 

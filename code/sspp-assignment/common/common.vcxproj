@@ -154,6 +154,7 @@
     <ClInclude Include="OutputRepresentationWriter.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="ReadMatrixException.h" />
+    <ClInclude Include="Result.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLineParameterReader.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="mmio.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="OutputRepresentationWriter.cpp" />
+    <ClCompile Include="Result.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

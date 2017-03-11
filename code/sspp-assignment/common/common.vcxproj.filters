@@ -151,6 +151,12 @@
     <Filter Include="Source Files\io\readers\input\commandline">
       <UniqueIdentifier>{6eda3942-66af-493c-ab12-2e05d62f8050}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\representations\result">
+      <UniqueIdentifier>{f4d3e89a-a386-4422-88e1-4cad7f58ce84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\representations\result">
+      <UniqueIdentifier>{29b72ea2-71e3-4e78-8242-221e64df4012}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -225,6 +231,9 @@
     <ClInclude Include="ConversionFailedException.h">
       <Filter>Header Files\io\exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>Header Files\representations\result</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSRSolver.cpp">
@@ -271,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="CommandLineParameterReader.cpp">
       <Filter>Source Files\io\readers\input\commandline</Filter>
+    </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>Source Files\representations\result</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

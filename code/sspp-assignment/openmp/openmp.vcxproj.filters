@@ -39,9 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="example_read.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CSRParallelSolver.cpp">
       <Filter>Source Files\solvers\parallel\csr</Filter>
     </ClCompile>

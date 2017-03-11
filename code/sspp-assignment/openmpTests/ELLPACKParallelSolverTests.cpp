@@ -4,7 +4,7 @@
 
 TEST_F(ELLPACKParallelSolverTest, test)
 {
-	const int M = 4, N = 4, NZ = 7, MAXNZ = 2;
+	const int M = 4, N = 4, NZ = 7, MAXNZ = 2, THREADS = 2;
 	int **JA = new int*[M];
 	FLOATING_TYPE **AS = new FLOATING_TYPE*[M];
 
@@ -27,7 +27,7 @@ TEST_F(ELLPACKParallelSolverTest, test)
 	FLOATING_TYPE B[N] = { 1, 1, 1, 1 };
 	FLOATING_TYPE correctX[M] = { 23, 45, 33, 87 };
 
-	auto output = ellpackParallelSolver->solve(ellpack, B);
+	auto output = ellpackParallelSolver->solve(ellpack, B, THREADS);
 
 	ASSERT_EQ(M, output.N) << "Size of output is incorrect";
 
