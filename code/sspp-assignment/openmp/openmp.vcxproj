@@ -153,9 +153,11 @@
   <ItemGroup>
     <ClCompile Include="CSRParallelSolver.cpp" />
     <ClCompile Include="example_read.cpp" />
+    <ClCompile Include="EllpackParallelSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSRParallelSolver.h" />
+    <ClInclude Include="ELLPACKParallelSolver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

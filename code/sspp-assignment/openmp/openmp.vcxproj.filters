@@ -45,10 +45,16 @@
     <ClCompile Include="CSRParallelSolver.cpp">
       <Filter>Source Files\solvers\parallel\csr</Filter>
     </ClCompile>
+    <ClCompile Include="EllpackParallelSolver.cpp">
+      <Filter>Source Files\solvers\parallel\ellpack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSRParallelSolver.h">
       <Filter>Header Files\solvers\parallel\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKParallelSolver.h">
+      <Filter>Header Files\solvers\parallel\ellpack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
