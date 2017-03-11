@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common", "common\common.vcxproj", "{5CB5D1B8-F6F8-49F1-AFC4-63CAE2D0C137}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "commonTests", "commonTests\commonTests.vcxproj", "{9271FB24-1959-4AF6-9BA1-3FAC8D69BEDD}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "transformer", "transformer\transformer.vcxproj", "{923F8AD3-8629-483D-B950-B7C1A409F804}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openmpTests", "openmpTests\openmpTests.vcxproj", "{3C72E17B-E043-439A-A200-5A044FDE96EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,14 @@ Global
 		{923F8AD3-8629-483D-B950-B7C1A409F804}.Release|x64.Build.0 = Release|x64
 		{923F8AD3-8629-483D-B950-B7C1A409F804}.Release|x86.ActiveCfg = Release|Win32
 		{923F8AD3-8629-483D-B950-B7C1A409F804}.Release|x86.Build.0 = Release|Win32
+		{3C72E17B-E043-439A-A200-5A044FDE96EE}.Debug|x64.ActiveCfg = Debug|x64
+		{3C72E17B-E043-439A-A200-5A044FDE96EE}.Debug|x64.Build.0 = Debug|x64
+		{3C72E17B-E043-439A-A200-5A044FDE96EE}.Debug|x86.ActiveCfg = Debug|Win32
+		{3C72E17B-E043-439A-A200-5A044FDE96EE}.Debug|x86.Build.0 = Debug|Win32
+		{3C72E17B-E043-439A-A200-5A044FDE96EE}.Release|x64.ActiveCfg = Release|x64
+		{3C72E17B-E043-439A-A200-5A044FDE96EE}.Release|x64.Build.0 = Release|x64
+		{3C72E17B-E043-439A-A200-5A044FDE96EE}.Release|x86.ActiveCfg = Release|Win32
+		{3C72E17B-E043-439A-A200-5A044FDE96EE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
