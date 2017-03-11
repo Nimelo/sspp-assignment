@@ -15,6 +15,7 @@
 
 int main(int argc, const char** argv)
 {
+	//TODO: Add handling unexpected error.
 	using namespace io::readers::input::commandline;
 	std::vector<arguments::Argument> arguments = 
 	{ 
