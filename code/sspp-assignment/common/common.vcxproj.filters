@@ -157,6 +157,12 @@
     <Filter Include="Source Files\representations\result">
       <UniqueIdentifier>{29b72ea2-71e3-4e78-8242-221e64df4012}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\representations\result\single">
+      <UniqueIdentifier>{8cbd2225-d873-4823-a5b7-cc73454789f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\representations\result\single">
+      <UniqueIdentifier>{18a7e017-9220-4114-bb90-e55ba78b8150}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -234,6 +240,9 @@
     <ClInclude Include="Result.h">
       <Filter>Header Files\representations\result</Filter>
     </ClInclude>
+    <ClInclude Include="SingleHeader.h">
+      <Filter>Header Files\representations\result\single</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSRSolver.cpp">
@@ -283,6 +292,9 @@
     </ClCompile>
     <ClCompile Include="Result.cpp">
       <Filter>Source Files\representations\result</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleHeader.cpp">
+      <Filter>Source Files\representations\result\single</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

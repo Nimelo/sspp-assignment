@@ -5,19 +5,21 @@
 #include "../common/Definitions.h"
 #include "../common/Output.h"
 
-namespace solvers
+namespace tools
 {
-	namespace parallel
+	namespace solvers
 	{
-		namespace csr
+		namespace parallel
 		{
-			class CSRParallelSolver
+			namespace csr
 			{
+				class CSRParallelSolver
+				{
 				public:
 					representations::output::Output solve(const representations::csr::CSR & csr, FLOATING_TYPE* b, int threads);
-			};
+				};
+			}
 		}
 	}
 }
-
 #endif

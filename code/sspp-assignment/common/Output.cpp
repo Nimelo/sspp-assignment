@@ -36,7 +36,7 @@ representations::output::Output::~Output()
 std::ostream & representations::output::operator<<(std::ostream & os, const Output & o)
 {
 	for (auto i = 0; i < o.N; i++)
-		os << o.Values[i] << std::endl;
+		os << o.Values[i] << SPACE;
 
 	return os;
 }

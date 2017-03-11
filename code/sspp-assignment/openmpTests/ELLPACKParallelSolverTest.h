@@ -6,10 +6,10 @@
 class ELLPACKParallelSolverTest : public ITest
 {
 protected:
-	solvers::parallel::ellpack::ELLPACKParallelSolver *ellpackParallelSolver;
+	tools::solvers::parallel::ellpack::ELLPACKParallelSolver *ellpackParallelSolver;
 	virtual void SetUp()
 	{
-		ellpackParallelSolver = new solvers::parallel::ellpack::ELLPACKParallelSolver();
+		ellpackParallelSolver = new tools::solvers::parallel::ellpack::ELLPACKParallelSolver();
 	}
 
 	virtual void TearDown()

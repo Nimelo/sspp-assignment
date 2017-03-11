@@ -31,12 +31,6 @@
     <Filter Include="Source Files\tools\invokers\csr">
       <UniqueIdentifier>{4257f0ad-35fc-4286-aef8-4532e0e0e504}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\output">
-      <UniqueIdentifier>{133a1181-66ec-43a5-aa7e-1fcd25ac1ca7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\output\metadata">
-      <UniqueIdentifier>{5c1d6e87-f174-47fb-ae8f-d7d5634be225}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\tools\invokers\ellpack">
       <UniqueIdentifier>{2cc0ddba-42a8-4391-a1ed-b688ca85bc8b}</UniqueIdentifier>
     </Filter>

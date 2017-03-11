@@ -2,7 +2,9 @@
 #include "../common/ExecutionTimer.h"
 #include "../openmp/ELLPACKParallelSolver.h"
 #include "../common/Result.h"
+#include "../common/SingleHeader.h"
 #include "../common/Definitions.h"
+#include "../common/ELLPACKSolver.h"
 
 #include <fstream>
 
@@ -28,13 +30,15 @@ FLOATING_TYPE * tools::invokers::ellpack::ELLPACKInvoker::createVectorB(int n)
 
 void tools::invokers::ellpack::ELLPACKInvoker::saveResult(representations::result::Result & result)
 {
-	std::string metadataFile = this->outputFile + META_EXTENSION;
-	std::string outputFile = this->outputFile + OUTPUT_EXTENSION;
-	result.save(metadataFile, outputFile);
+	std::string outputFile = this->outputFile + DASH_ELLPACK + OUTPUT_EXTENSION;
+	std::fstream fs;
+	fs.open(outputFile, std::fstream::out | std::fstream::trunc);
+	fs << result;
+	fs.close();
 }
 
-tools::invokers::ellpack::ELLPACKInvoker::ELLPACKInvoker(std::string inputFile, std::string outputFile, int threads, int iterations)
-	: inputFile(inputFile), outputFile(outputFile), threads(threads), iterations(iterations)
+tools::invokers::ellpack::ELLPACKInvoker::ELLPACKInvoker(std::string inputFile, std::string outputFile, int threads, int iterationsParallel, int iterationsSerial)
+	: inputFile(inputFile), outputFile(outputFile), threads(threads), iterationsParallel(iterationsParallel), iterationsSerial(iterationsSerial)
 {
 }
 
@@ -44,23 +48,36 @@ void tools::invokers::ellpack::ELLPACKInvoker::invoke()
 	FLOATING_TYPE *b = createVectorB(ellpack.N);
 
 	representations::result::Result result;
-	solvers::parallel::ellpack::ELLPACKParallelSolver solver;
+	tools::solvers::parallel::ellpack::ELLPACKParallelSolver parallelsSolver;
+	tools::solvers::ellpack::ELLPACKSolver solver;
+
 	representations::output::Output output;
 	auto timer = tools::measurements::timers::ExecutionTimer();
 	int numberOfThreads = threads;
 
-	std::function<void()> solveCSRparallelRoutine = [&output, &solver, &ellpack, &b, &numberOfThreads]()
+	std::function<void()> solveCSRSerialRoutine = [&output, &solver, &ellpack, &b]()
 	{
-		output = solver.solve(ellpack, b, numberOfThreads);
+		output = solver.solve(ellpack, b);
 	};
 
-	for (int i = 0; i < iterations; i++)
+	std::function<void()> solveCSRparallelRoutine = [&output, &parallelsSolver, &ellpack, &b, &numberOfThreads]()
 	{
-		auto executionTime = timer.measure(solveCSRparallelRoutine);
-		result.executionTimes.push_back(executionTime.count());
+		output = parallelsSolver.solve(ellpack, b, numberOfThreads);
+	};
+
+	for (int i = 0; i < iterationsSerial; i++)
+	{
+		auto executionTime = timer.measure(solveCSRSerialRoutine);
+		result.serialResult.executionTimes.push_back(executionTime.count());
 	}
 
-	result.output = output;
+	for (int i = 0; i < iterationsParallel; i++)
+	{
+		auto executionTime = timer.measure(solveCSRparallelRoutine);
+		result.parallelResult.executionTimes.push_back(executionTime.count());
+	}
+
+	result.parallelResult.output = output;
 
 	saveResult(result);
 

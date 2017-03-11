@@ -1,25 +1,19 @@
 #include "Result.h"
+#include "Definitions.h"
 
 #include <fstream>
 #include <numeric>
+#include <cmath>
 
-std::ostream & representations::result::operator<<(std::ostream & os, const Result & o)
+std::ostream & representations::result::operator<<(std::ostream & os, const Result & result)
 {
-	os << o.output;
+	os << result.serialResult << LINE_SEPARATOR;
+	os << result.parallelResult << LINE_SEPARATOR;
+	double diff = 0.0;
+	for (int i = 0; i < result.serialResult.output.N; i++)
+		diff += fabs(result.parallelResult.output.Values[i] - result.serialResult.output.Values[i]);
+	
+	os << diff << LINE_SEPARATOR;
+
 	return os;
-}
-
-void representations::result::Result::save(std::string metadata, std::string output)
-{
-	std::fstream stream;
-
-	stream.open(metadata, std::fstream::out | std::fstream::trunc);
-	stream << (double)std::accumulate(this->executionTimes.begin(), this->executionTimes.end(), 0) / this->executionTimes.size() << std::endl;
-	for (int i = 0; i < this->executionTimes.size(); i++)
-		stream << this->executionTimes[i] << " ";
-	stream.close();
-
-	stream.open(output, std::fstream::out | std::fstream::trunc);
-	stream << this->output;
-	stream.close();
 }

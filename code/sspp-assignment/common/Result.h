@@ -3,6 +3,7 @@
 
 #include "Definitions.h"
 #include "Output.h"
+#include "SingleHeader.h"
 
 #include <ostream>
 #include <string>
@@ -15,11 +16,9 @@ namespace representations
 		class Result
 		{
 		public:
-			representations::output::Output output;
-			std::vector<double> executionTimes;
-			void save(std::string metadata, std::string output);
-
-			friend std::ostream& operator <<(std::ostream& os, const Result& o);
+			representations::result::single::SingleResult serialResult;
+			representations::result::single::SingleResult parallelResult;
+			friend std::ostream& operator <<(std::ostream& os, const Result & result);
 		};
 	}
 }

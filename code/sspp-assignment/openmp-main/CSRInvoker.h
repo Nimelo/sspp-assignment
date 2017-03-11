@@ -18,13 +18,14 @@ namespace tools
 				std::string inputFile;
 				std::string outputFile;
 				int threads;
-				int iterations;
+				int iterationsParallel;
+				int iterationsSerial;
 
 				representations::csr::CSR loadCSR();
 				FLOATING_TYPE *createVectorB(int n);
 				void saveResult(representations::result::Result & result);
 			public:
-				CSRInvoker(std::string inputFile, std::string outputFile, int threads, int iterations);
+				CSRInvoker(std::string inputFile, std::string outputFile, int threads, int iterationsParallel, int iterationsSerial);
 				void invoke();
 			};
 		}

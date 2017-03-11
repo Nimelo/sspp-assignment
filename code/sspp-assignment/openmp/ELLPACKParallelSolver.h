@@ -4,20 +4,21 @@
 #include "../common/ELLPACK.h"
 #include "../common/Definitions.h"
 #include "../common/Output.h"
-
-namespace solvers
+namespace tools
 {
-	namespace parallel
+	namespace solvers
 	{
-		namespace ellpack
+		namespace parallel
 		{
-			class ELLPACKParallelSolver
+			namespace ellpack
 			{
-			public:
-				representations::output::Output solve(const representations::ellpack::ELLPACK & ellpack, FLOATING_TYPE* b, int threads);
-			};
+				class ELLPACKParallelSolver
+				{
+				public:
+					representations::output::Output solve(const representations::ellpack::ELLPACK & ellpack, FLOATING_TYPE* b, int threads);
+				};
+			}
 		}
 	}
 }
-
 #endif

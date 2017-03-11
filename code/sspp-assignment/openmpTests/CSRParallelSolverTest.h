@@ -6,10 +6,10 @@
 class CSRParallelSolverTest : public ITest
 {
 protected:
-	solvers::parallel::csr::CSRParallelSolver *csrParallelSolver;
+	tools::solvers::parallel::csr::CSRParallelSolver *csrParallelSolver;
 	virtual void SetUp()
 	{
-		csrParallelSolver = new solvers::parallel::csr::CSRParallelSolver();
+		csrParallelSolver = new tools::solvers::parallel::csr::CSRParallelSolver();
 	}
 
 	virtual void TearDown()

@@ -10,7 +10,8 @@
 #define TAG_IN_FILE "-i"
 #define TAG_OUT_FILE "-o"
 #define TAG_THREADS "-threads"
-#define TAG_ITERATIONS "-iterations"
+#define TAG_ITERATIONS_PARALLEL "-ip"
+#define TAG_ITERATIONS_SERIAL "-is"
 #define ARGUMENT_CSR "-csr"
 #define ARGUMENT_ELLPACK "-ellpack"
 
@@ -23,7 +24,8 @@ int main(int argc, const char** argv)
 		arguments::Argument(TAG_IN_FILE, arguments::ArgumentType::Single),
 		arguments::Argument(TAG_OUT_FILE, arguments::ArgumentType::Single),
 		arguments::Argument(TAG_THREADS, arguments::ArgumentType::Single),
-		arguments::Argument(TAG_ITERATIONS, arguments::ArgumentType::Single),
+		arguments::Argument(TAG_ITERATIONS_PARALLEL, arguments::ArgumentType::Single),
+		arguments::Argument(TAG_ITERATIONS_SERIAL, arguments::ArgumentType::Single),
 		arguments::Argument(ARGUMENT_CSR, arguments::ArgumentType::Flag),
 		arguments::Argument(ARGUMENT_ELLPACK, arguments::ArgumentType::Flag)
 	};
@@ -34,23 +36,25 @@ int main(int argc, const char** argv)
 	if (reader.hasArgument(TAG_IN_FILE)
 		&& reader.hasArgument(TAG_OUT_FILE)
 		&& reader.hasArgument(TAG_THREADS)
-		&& reader.hasArgument(TAG_ITERATIONS)
+		&& reader.hasArgument(TAG_ITERATIONS_PARALLEL)
+		&& reader.hasArgument(TAG_ITERATIONS_SERIAL)
 		&& ((reader.hasArgument(ARGUMENT_CSR) && !reader.hasArgument(ARGUMENT_ELLPACK))
 			|| !reader.hasArgument(ARGUMENT_CSR) && reader.hasArgument(ARGUMENT_ELLPACK)))
 	{
 		std::string inputFile = reader.get(TAG_IN_FILE);
 		std::string outputFile = reader.get(TAG_OUT_FILE);
 		int threads = reader.get(TAG_THREADS);
-		int iterations = reader.get(TAG_ITERATIONS);
+		int iterationsParallel = reader.get(TAG_ITERATIONS_PARALLEL);
+		int iterationsSerial = reader.get(TAG_ITERATIONS_SERIAL);
 
 		if (reader.hasArgument(ARGUMENT_CSR))
 		{
-			tools::invokers::csr::CSRInvoker csrInvoker(inputFile, outputFile, threads, iterations);
+			tools::invokers::csr::CSRInvoker csrInvoker(inputFile, outputFile, threads, iterationsParallel, iterationsSerial);
 			csrInvoker.invoke();
 		}
 		else
 		{
-			tools::invokers::ellpack::ELLPACKInvoker ellpackInvoker(inputFile, outputFile, threads, iterations);
+			tools::invokers::ellpack::ELLPACKInvoker ellpackInvoker(inputFile, outputFile, threads, iterationsParallel, iterationsSerial);
 			ellpackInvoker.invoke();
 		}
 	}

@@ -1,6 +1,7 @@
 #include "CSRInvoker.h"
 #include "../common/ExecutionTimer.h"
 #include "../openmp/CSRParallelSolver.h"
+#include "../common/CSRSolver.h"
 #include "../common/Result.h"
 #include "../common/Definitions.h"
 
@@ -28,13 +29,15 @@ FLOATING_TYPE * tools::invokers::csr::CSRInvoker::createVectorB(int n)
 
 void tools::invokers::csr::CSRInvoker::saveResult(representations::result::Result & result)
 {
-	std::string metadataFile = this->outputFile + META_EXTENSION;
-	std::string outputFile = this->outputFile + OUTPUT_EXTENSION;
-	result.save(metadataFile, outputFile);
+	std::string outputFile = this->outputFile + DASH_CSR + OUTPUT_EXTENSION;
+	std::fstream fs;
+	fs.open(outputFile, std::fstream::out | std::fstream::trunc);
+	fs << result;
+	fs.close();
 }
 
-tools::invokers::csr::CSRInvoker::CSRInvoker(std::string inputFile, std::string outputFile, int threads, int iterations)
-	: inputFile(inputFile), outputFile(outputFile), threads(threads), iterations(iterations)
+tools::invokers::csr::CSRInvoker::CSRInvoker(std::string inputFile, std::string outputFile, int threads, int iterationsParallel, int iterationsSerial)
+	: inputFile(inputFile), outputFile(outputFile), threads(threads), iterationsParallel(iterationsParallel), iterationsSerial(iterationsSerial)
 {
 }
 
@@ -44,23 +47,36 @@ void tools::invokers::csr::CSRInvoker::invoke()
 	FLOATING_TYPE *b = createVectorB(csr.N);
 	
 	representations::result::Result result;
-	solvers::parallel::csr::CSRParallelSolver solver;
+	tools::solvers::parallel::csr::CSRParallelSolver parallelSolver;
+	tools::solvers::csr::CSRSolver serialSolver;
+
 	representations::output::Output output;
 	auto timer = tools::measurements::timers::ExecutionTimer();
 	int numberOfThreads = threads;
 
-	std::function<void()> solveCSRparallelRoutine = [&output, &solver, &csr, &b, &numberOfThreads]()
+	std::function<void()> solveCSRSerialRoutine = [&output, &serialSolver, &csr, &b]()
 	{
-		output = solver.solve(csr, b, numberOfThreads);
+		output = serialSolver.solve(csr, b);
 	};
 
-	for (int i = 0; i < iterations; i++)
+	std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &csr, &b, &numberOfThreads]()
+	{
+		output = parallelSolver.solve(csr, b, numberOfThreads);
+	};
+
+	for (int i = 0; i < iterationsSerial; i++)
+	{
+		auto executionTime = timer.measure(solveCSRSerialRoutine);
+		result.serialResult.executionTimes.push_back(executionTime.count());
+	}
+	result.serialResult.output = output;
+
+	for (int i = 0; i < iterationsParallel; i++)
 	{
 		auto executionTime = timer.measure(solveCSRparallelRoutine);
-		result.executionTimes.push_back(executionTime.count());
+		result.parallelResult.executionTimes.push_back(executionTime.count());
 	}
-	
-	result.output = output;
+	result.parallelResult.output = output;
 	
 	saveResult(result);
 
