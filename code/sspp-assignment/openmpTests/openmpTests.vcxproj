@@ -143,9 +143,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CSRParallelSolverTests.cpp" />
+    <ClCompile Include="ELLPACKParallelSolverTests.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ELLPACKParallelSolverTest.h" />
     <ClInclude Include="ITest.h" />
     <ClInclude Include="CSRParallelSolverTest.h" />
   </ItemGroup>

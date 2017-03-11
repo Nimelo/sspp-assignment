@@ -33,6 +33,9 @@
     <ClCompile Include="CSRParallelSolverTests.cpp">
       <Filter>Header Files\testing\csr</Filter>
     </ClCompile>
+    <ClCompile Include="ELLPACKParallelSolverTests.cpp">
+      <Filter>Header Files\testing\ellpack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -40,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="CSRParallelSolverTest.h">
       <Filter>Header Files\testing\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKParallelSolverTest.h">
+      <Filter>Header Files\testing\ellpack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

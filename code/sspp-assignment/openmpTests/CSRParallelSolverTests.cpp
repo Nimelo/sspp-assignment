@@ -22,7 +22,7 @@ TEST_F(CSRParallelSolverTest, test)
 	FLOATING_TYPE B[N] = { 1, 1, 1, 1 };
 	FLOATING_TYPE correctX[M] = { 23, 45, 33, 87 };
 
-	auto output = csrParallerlSolver->solve(csr, B);
+	auto output = csrParallelSolver->solve(csr, B);
 
 	ASSERT_EQ(M, output.N) << "Size of output is incorrect";
 
