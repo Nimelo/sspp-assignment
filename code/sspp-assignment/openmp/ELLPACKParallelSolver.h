@@ -11,7 +11,7 @@ namespace solvers
 	{
 		namespace ellpack
 		{
-			class EllpackParallelSolver
+			class ELLPACKParallelSolver
 			{
 			public:
 				representations::output::Output solve(const representations::ellpack::ELLPACK & ellpack, FLOATING_TYPE* b);

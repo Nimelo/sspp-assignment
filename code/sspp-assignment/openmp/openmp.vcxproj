@@ -152,8 +152,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSRParallelSolver.cpp" />
+    <ClCompile Include="ELLPACKParallelSolver.cpp" />
     <ClCompile Include="example_read.cpp" />
-    <ClCompile Include="EllpackParallelSolver.cpp" />
+    <ClCompile Include="ELLPACKParallelSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSRParallelSolver.h" />
