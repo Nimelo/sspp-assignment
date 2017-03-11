@@ -135,6 +135,7 @@
     <ClInclude Include="ArgumentType.h" />
     <ClInclude Include="CommandLineException.h" />
     <ClInclude Include="CommandLineParameterReader.h" />
+    <ClInclude Include="ConversionFailedException.h" />
     <ClInclude Include="CSR.h" />
     <ClInclude Include="CSRSolver.h" />
     <ClInclude Include="CSRTransformer.h" />

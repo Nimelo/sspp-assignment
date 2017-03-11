@@ -1,6 +1,9 @@
 #ifndef __H_PARAMETER
 #define __H_PARAMETER
 
+#include "ConversionFailedException.h"
+
+#include <vector>
 #include <string>
 #include <sstream>
 
@@ -18,7 +21,7 @@ namespace io
 					{
 					protected:
 						std::string value;
-						std::vector<std::string> list;
+						std::vector<std::string> valuesList;
 					public:
 						std::string key;
 						Parameter(std::string key)
@@ -30,11 +33,11 @@ namespace io
 						Parameter(std::string key, std::string value)
 							: value(value), key(key)
 						{
-							list.push_back(value);
+							valuesList.push_back(value);
 						}
 
 						Parameter(std::string key, std::vector<std::string> list)
-							: list(list), key(key)
+							: valuesList(list), key(key)
 						{
 							if (!list.empty())
 								value = list.at(0);
@@ -45,7 +48,7 @@ namespace io
 							std::stringstream ss(value);
 							T convertedValue;
 							if (ss >> convertedValue) return convertedValue;
-							else throw std::runtime_error("Conversion failed");
+							else throw io::exceptions::ConversionFailedException();
 						}
 
 						template<typename T>
@@ -53,14 +56,13 @@ namespace io
 						{
 							std::vector<T> returnList;
 
-							for (auto str : list)
+							for (auto str : valuesList)
 							{
 								std::stringstream ss(str);
 								T convertedValue;
 								if (ss >> convertedValue)
 									returnList.push_back(convertedValue);
-								else
-									throw std::runtime_error("Conversion failed");
+								else throw io::exceptions::ConversionFailedException();
 							}
 
 							return returnList;

@@ -222,6 +222,9 @@
     <ClInclude Include="CommandLineException.h">
       <Filter>Header Files\io\exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="ConversionFailedException.h">
+      <Filter>Header Files\io\exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSRSolver.cpp">
