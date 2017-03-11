@@ -13,5 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\testing">
+      <UniqueIdentifier>{d3d1b3a6-3d40-4f30-b03f-b6cb93f9f2eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\testing-interfaces">
+      <UniqueIdentifier>{2e8d057d-0d7b-4022-a193-a88339c21dc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\testing\csr">
+      <UniqueIdentifier>{131aa366-566c-4c56-9f19-c18f878322f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\testing\ellpack">
+      <UniqueIdentifier>{d102970a-9cb0-489a-b04b-4602d54b9e42}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CSRParallelSolverTests.cpp">
+      <Filter>Header Files\testing\csr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ITest.h">
+      <Filter>Header Files\testing-interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRParallelSolverTest.h">
+      <Filter>Header Files\testing\csr</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
