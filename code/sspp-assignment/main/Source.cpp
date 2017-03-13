@@ -14,6 +14,8 @@
 #define TAG_ITERATIONS_SERIAL "-is"
 #define ARGUMENT_CSR "-csr"
 #define ARGUMENT_ELLPACK "-ellpack"
+#define ARGUMENT_CUDA "-cuda"
+#define ARGUMENT_OPENMP "-openmp"
 
 int main(int argc, const char** argv)
 {
@@ -39,14 +41,17 @@ int main(int argc, const char** argv)
 		&& reader.hasArgument(TAG_ITERATIONS_PARALLEL)
 		&& reader.hasArgument(TAG_ITERATIONS_SERIAL)
 		&& ((reader.hasArgument(ARGUMENT_CSR) && !reader.hasArgument(ARGUMENT_ELLPACK))
-			|| !reader.hasArgument(ARGUMENT_CSR) && reader.hasArgument(ARGUMENT_ELLPACK)))
+			|| !reader.hasArgument(ARGUMENT_CSR) && reader.hasArgument(ARGUMENT_ELLPACK))
+		&& ((reader.hasArgument(ARGUMENT_CUDA) && !reader.hasArgument(ARGUMENT_OPENMP))
+			|| !reader.hasArgument(ARGUMENT_CUDA) && reader.hasArgument(ARGUMENT_OPENMP)))
 	{
 		std::string inputFile = reader.get(TAG_IN_FILE);
 		std::string outputFile = reader.get(TAG_OUT_FILE);
 		int threads = reader.get(TAG_THREADS);
 		int iterationsParallel = reader.get(TAG_ITERATIONS_PARALLEL);
 		int iterationsSerial = reader.get(TAG_ITERATIONS_SERIAL);
-
+		
+		//TODO: Add support for cuda code.
 		if (reader.hasArgument(ARGUMENT_CSR))
 		{
 			tools::invokers::csr::CSRInvoker csrInvoker(inputFile, outputFile, threads, iterationsParallel, iterationsSerial);

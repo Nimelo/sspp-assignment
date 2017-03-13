@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{03e40d1e-2b79-4264-8f96-a43ca5d41273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ddb27abb-be7f-40ab-9f04-610a8fd89fb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools">
+      <UniqueIdentifier>{e0aaaac4-fb51-4658-9421-3522471c5064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\solvers">
+      <UniqueIdentifier>{e1aad73f-3fd3-4c25-87cc-a876258a2e9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\solvers\cuda">
+      <UniqueIdentifier>{98d1d2de-a86c-4897-ad65-637e680a95f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\solvers\cuda\csr">
+      <UniqueIdentifier>{ade5254e-bfc4-4740-a4e8-c53b1a93e947}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\solvers\cuda\ellpack">
+      <UniqueIdentifier>{1b0fc5a8-6203-4c78-b43c-ff31f95475c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools">
+      <UniqueIdentifier>{cd052b4b-64e5-43ac-9833-0184092ab3d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\solvers">
+      <UniqueIdentifier>{144d3635-c886-46f3-9c5d-99f4f338fe6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\solvers\cuda">
+      <UniqueIdentifier>{2b4f0c8b-6ad6-43e8-ae35-512d264551ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\solvers\cuda\csr">
+      <UniqueIdentifier>{94849927-92d7-460c-851d-3134fd5871f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\solvers\cuda\ellpack">
+      <UniqueIdentifier>{0977c616-b168-4dbf-8736-b6f583fba681}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="kernel.cu">
+      <Filter>Source Files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="ELLPACKCudaSolver.cu">
+      <Filter>Source Files\tools\solvers\cuda\ellpack</Filter>
+    </CudaCompile>
+    <CudaCompile Include="CSRCudaSolver.cu">
+      <Filter>Source Files\tools\solvers\cuda\csr</Filter>
+    </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CSRCudaSolver.h">
+      <Filter>Header Files\tools\solvers\cuda\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKCudaSolver.h">
+      <Filter>Header Files\tools\solvers\cuda\ellpack</Filter>
+    </ClInclude>
+    <ClInclude Include="kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

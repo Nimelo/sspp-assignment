@@ -13,34 +13,40 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\solvers">
+    <Filter Include="Header Files\tools">
+      <UniqueIdentifier>{78490662-f2ea-435e-bdd1-e0c9ceddf61f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\solvers">
       <UniqueIdentifier>{cce4c736-8fef-4955-b892-9a4caf8ee4ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\solvers\parallel">
+    <Filter Include="Header Files\tools\solvers\parallel">
       <UniqueIdentifier>{ffb2b4dd-7884-4f1a-83b3-5361c9eead94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\solvers\parallel\csr">
+    <Filter Include="Header Files\tools\solvers\parallel\csr">
       <UniqueIdentifier>{364fd131-d2d1-4355-b564-bfd8ff90c9d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\solvers\parallel\ellpack">
+    <Filter Include="Header Files\tools\solvers\parallel\ellpack">
       <UniqueIdentifier>{687024fe-e601-4053-96f3-6a2404095ac0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\solvers">
+    <Filter Include="Source Files\tools">
+      <UniqueIdentifier>{2e6848ee-8693-4115-8d14-871434b4a657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\solvers">
       <UniqueIdentifier>{ab33431f-f71b-4160-bc84-1f8159428619}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\solvers\parallel">
+    <Filter Include="Source Files\tools\solvers\parallel">
       <UniqueIdentifier>{672fe25a-d1c8-4af3-b62b-c328a61f10ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\solvers\parallel\csr">
+    <Filter Include="Source Files\tools\solvers\parallel\csr">
       <UniqueIdentifier>{15ca0385-66ec-4a8c-91c8-63175f41b2ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\solvers\parallel\ellpack">
+    <Filter Include="Source Files\tools\solvers\parallel\ellpack">
       <UniqueIdentifier>{7ed88a25-d7c5-4c7e-8b2c-2e46bc2e46c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSRParallelSolver.cpp">
-      <Filter>Source Files\solvers\parallel\csr</Filter>
+      <Filter>Source Files\tools\solvers\parallel\csr</Filter>
     </ClCompile>
     <ClCompile Include="ELLPACKParallelSolver.cpp">
       <Filter>Source Files</Filter>
@@ -51,10 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSRParallelSolver.h">
-      <Filter>Header Files\solvers\parallel\csr</Filter>
+      <Filter>Header Files\tools\solvers\parallel\csr</Filter>
     </ClInclude>
     <ClInclude Include="ELLPACKParallelSolver.h">
-      <Filter>Header Files\solvers\parallel\ellpack</Filter>
+      <Filter>Header Files\tools\solvers\parallel\ellpack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

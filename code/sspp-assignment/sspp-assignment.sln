@@ -15,7 +15,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "transformer", "transformer\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openmpTests", "openmpTests\openmpTests.vcxproj", "{3C72E17B-E043-439A-A200-5A044FDE96EE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openmp-main", "openmp-main\openmp-main.vcxproj", "{CD184078-79D5-4B70-98D3-6402A90D7158}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "main", "main\main.vcxproj", "{CD184078-79D5-4B70-98D3-6402A90D7158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
