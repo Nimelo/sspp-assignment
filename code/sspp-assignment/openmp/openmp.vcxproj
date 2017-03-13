@@ -151,12 +151,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CSRParallelSolver.cpp" />
-    <ClCompile Include="ELLPACKParallelSolver.cpp" />
+    <ClCompile Include="CSROpenMPSolver.cpp" />
+    <ClCompile Include="ELLPACKOpenMPSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CSRParallelSolver.h" />
-    <ClInclude Include="ELLPACKParallelSolver.h" />
+    <ClInclude Include="CSROpenMPSolver.h" />
+    <ClInclude Include="ELLPACKOpenMPSolver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

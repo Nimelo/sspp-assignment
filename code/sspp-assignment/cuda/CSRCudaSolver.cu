@@ -7,7 +7,7 @@ __global__ void csrKernel(representations::ellpack::ELLPACK & ellpack, FLOATING_
 	//TODO: Add csrKernel	
 }
 
-representations::output::Output tools::solvers::cuda::csr::CSRCudaSolver::solve(representations::csr::CSR & csr, FLOATING_TYPE * b)
+representations::output::Output tools::solvers::csr::CSRCudaSolver::solve(representations::csr::CSR & csr, FLOATING_TYPE * b)
 {
 	FLOATING_TYPE *x = new FLOATING_TYPE[csr.M];
 

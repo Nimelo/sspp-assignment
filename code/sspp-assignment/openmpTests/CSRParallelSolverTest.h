@@ -1,15 +1,15 @@
 #pragma once
 
 #include "ITest.h"
-#include "../openmp/CSRParallelSolver.h"
+#include "../openmp/CSROpenMPSolver.h"
 
 class CSRParallelSolverTest : public ITest
 {
 protected:
-	tools::solvers::parallel::csr::CSRParallelSolver *csrParallelSolver;
+	tools::solvers::csr::CSROpenMPSolver *csrParallelSolver;
 	virtual void SetUp()
 	{
-		csrParallelSolver = new tools::solvers::parallel::csr::CSRParallelSolver();
+		csrParallelSolver = new tools::solvers::csr::CSROpenMPSolver();
 	}
 
 	virtual void TearDown()

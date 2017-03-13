@@ -1,6 +1,6 @@
 #include "ELLPACKInvoker.h"
 #include "../common/ExecutionTimer.h"
-#include "../openmp/ELLPACKParallelSolver.h"
+#include "../openmp/ELLPACKOpenMPSolver.h"
 #include "../common/Result.h"
 #include "../common/SingleHeader.h"
 #include "../common/Definitions.h"
@@ -48,7 +48,7 @@ void tools::invokers::ellpack::ELLPACKInvoker::invoke()
 	FLOATING_TYPE *b = createVectorB(ellpack.N);
 
 	representations::result::Result result;
-	tools::solvers::parallel::ellpack::ELLPACKParallelSolver parallelsSolver;
+	tools::solvers::ellpack::ELLPACKOpenMPSolver parallelsSolver;
 	tools::solvers::ellpack::ELLPACKSolver solver;
 
 	representations::output::Output output;
@@ -62,7 +62,8 @@ void tools::invokers::ellpack::ELLPACKInvoker::invoke()
 
 	std::function<void()> solveCSRparallelRoutine = [&output, &parallelsSolver, &ellpack, &b, &numberOfThreads]()
 	{
-		output = parallelsSolver.solve(ellpack, b, numberOfThreads);
+		parallelsSolver.setThreads(numberOfThreads);
+		output = parallelsSolver.solve(ellpack, b);
 	};
 
 	for (int i = 0; i < iterationsSerial; i++)

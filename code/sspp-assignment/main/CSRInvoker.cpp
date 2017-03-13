@@ -1,6 +1,6 @@
 #include "CSRInvoker.h"
 #include "../common/ExecutionTimer.h"
-#include "../openmp/CSRParallelSolver.h"
+#include "../openmp/CSROpenMPSolver.h"
 #include "../common/CSRSolver.h"
 #include "../common/Result.h"
 #include "../common/Definitions.h"
@@ -47,7 +47,7 @@ void tools::invokers::csr::CSRInvoker::invoke()
 	FLOATING_TYPE *b = createVectorB(csr.N);
 	
 	representations::result::Result result;
-	tools::solvers::parallel::csr::CSRParallelSolver parallelSolver;
+	tools::solvers::csr::CSROpenMPSolver parallelSolver;
 	tools::solvers::csr::CSRSolver serialSolver;
 
 	representations::output::Output output;
@@ -61,7 +61,8 @@ void tools::invokers::csr::CSRInvoker::invoke()
 
 	std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &csr, &b, &numberOfThreads]()
 	{
-		output = parallelSolver.solve(csr, b, numberOfThreads);
+		parallelSolver.setThreads(numberOfThreads);
+		output = parallelSolver.solve(csr, b);
 	};
 
 	for (int i = 0; i < iterationsSerial; i++)

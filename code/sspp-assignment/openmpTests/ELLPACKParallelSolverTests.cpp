@@ -1,6 +1,6 @@
 #include "ELLPACKParallelSolverTest.h"
 #include <gtest\gtest.h>
-#include "../openmp/ELLPACKParallelSolver.h"
+#include "../openmp/ELLPACKOpenMPSolver.h"
 
 TEST_F(ELLPACKParallelSolverTest, test)
 {
@@ -27,7 +27,8 @@ TEST_F(ELLPACKParallelSolverTest, test)
 	FLOATING_TYPE B[N] = { 1, 1, 1, 1 };
 	FLOATING_TYPE correctX[M] = { 23, 45, 33, 87 };
 
-	auto output = ellpackParallelSolver->solve(ellpack, B, THREADS);
+	ellpackParallelSolver->setThreads(THREADS);
+	auto output = ellpackParallelSolver->solve(ellpack, B);
 
 	ASSERT_EQ(M, output.N) << "Size of output is incorrect";
 

@@ -1,6 +1,6 @@
 #include "CSRParallelSolverTest.h"
 #include <gtest\gtest.h>
-#include "../openmp/CSRParallelSolver.h"
+#include "../openmp/CSROpenMPSolver.h"
 
 TEST_F(CSRParallelSolverTest, test)
 {
@@ -22,7 +22,8 @@ TEST_F(CSRParallelSolverTest, test)
 	FLOATING_TYPE B[N] = { 1, 1, 1, 1 };
 	FLOATING_TYPE correctX[M] = { 23, 45, 33, 87 };
 
-	auto output = csrParallelSolver->solve(csr, B, THREADS);
+	csrParallelSolver->setThreads(THREADS);
+	auto output = csrParallelSolver->solve(csr, B);
 
 	ASSERT_EQ(M, output.N) << "Size of output is incorrect";
 

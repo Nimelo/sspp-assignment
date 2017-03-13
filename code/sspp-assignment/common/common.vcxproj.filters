@@ -243,6 +243,12 @@
     <ClInclude Include="SingleHeader.h">
       <Filter>Header Files\representations\result\single</Filter>
     </ClInclude>
+    <ClInclude Include="AbstractCSRSolver.h">
+      <Filter>Header Files\tools\solvers\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractELLPACKSolver.h">
+      <Filter>Header Files\tools\solvers\ellpack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSRSolver.cpp">

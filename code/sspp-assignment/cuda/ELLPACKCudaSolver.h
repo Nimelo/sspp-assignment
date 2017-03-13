@@ -4,21 +4,19 @@
 #include "../common/ELLPACK.h"
 #include "../common/Output.h"
 #include "../common/Definitions.h"
+#include "../common/AbstractELLPACKSolver.h"
 
 namespace tools
 {
 	namespace solvers
 	{
-		namespace cuda
+		namespace ellpack
 		{
-			namespace csr
+			class ELLPACKCudaSolver :public AbstractELLPACKSolver
 			{
-				class ELLPACKCudaSolver
-				{
-				public:
-					representations::output::Output solve(representations::ellpack::ELLPACK &ellpack, FLOATING_TYPE *b);
-				};
-			}
+			public:
+				representations::output::Output solve(representations::ellpack::ELLPACK &ellpack, FLOATING_TYPE *b) override;
+			};
 		}
 	}
 }

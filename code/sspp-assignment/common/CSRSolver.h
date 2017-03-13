@@ -4,6 +4,7 @@
 #include "CSR.h"
 #include "Output.h"
 #include "Definitions.h"
+#include "AbstractCSRSolver.h"
 
 namespace tools
 {
@@ -11,10 +12,10 @@ namespace tools
 	{
 		namespace csr
 		{
-			class CSRSolver
+			class CSRSolver: public AbstractCSRSolver
 			{
 			public:
-				representations::output::Output solve(representations::csr::CSR &csr, FLOATING_TYPE *b);
+				representations::output::Output solve(representations::csr::CSR &csr, FLOATING_TYPE *b) override;
 			};
 		}
 	}
