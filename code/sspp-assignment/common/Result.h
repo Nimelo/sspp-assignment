@@ -23,4 +23,4 @@ namespace representations
 	}
 }
 
-#endif#pragma once
+#endif
