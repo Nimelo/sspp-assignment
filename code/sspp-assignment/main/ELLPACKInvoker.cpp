@@ -37,33 +37,30 @@ void tools::invokers::ellpack::ELLPACKInvoker::saveResult(representations::resul
 	fs.close();
 }
 
-tools::invokers::ellpack::ELLPACKInvoker::ELLPACKInvoker(std::string inputFile, std::string outputFile, int threads, int iterationsParallel, int iterationsSerial)
-	: inputFile(inputFile), outputFile(outputFile), threads(threads), iterationsParallel(iterationsParallel), iterationsSerial(iterationsSerial)
+tools::invokers::ellpack::ELLPACKInvoker::ELLPACKInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial)
+	: inputFile(inputFile), outputFile(outputFile), iterationsParallel(iterationsParallel), iterationsSerial(iterationsSerial)
 {
 }
 
-void tools::invokers::ellpack::ELLPACKInvoker::invoke()
+void tools::invokers::ellpack::ELLPACKInvoker::invoke(solvers::ellpack::AbstractELLPACKSolver & parallelSolver)
 {
 	representations::ellpack::ELLPACK ellpack = loadELLPACK();
 	FLOATING_TYPE *b = createVectorB(ellpack.N);
 
 	representations::result::Result result;
-	tools::solvers::ellpack::ELLPACKOpenMPSolver parallelsSolver;
 	tools::solvers::ellpack::ELLPACKSolver solver;
 
 	representations::output::Output output;
 	auto timer = tools::measurements::timers::ExecutionTimer();
-	int numberOfThreads = threads;
 
 	std::function<void()> solveCSRSerialRoutine = [&output, &solver, &ellpack, &b]()
 	{
 		output = solver.solve(ellpack, b);
 	};
 
-	std::function<void()> solveCSRparallelRoutine = [&output, &parallelsSolver, &ellpack, &b, &numberOfThreads]()
+	std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &ellpack, &b]()
 	{
-		parallelsSolver.setThreads(numberOfThreads);
-		output = parallelsSolver.solve(ellpack, b);
+		output = parallelSolver.solve(ellpack, b);
 	};
 
 	for (int i = 0; i < iterationsSerial; i++)

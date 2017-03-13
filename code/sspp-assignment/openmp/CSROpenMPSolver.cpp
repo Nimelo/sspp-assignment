@@ -7,6 +7,11 @@ representations::output::Output tools::solvers::csr::CSROpenMPSolver::solve(repr
 	return representations::output::Output(csr.N, x);
 }
 
+tools::solvers::csr::CSROpenMPSolver::CSROpenMPSolver(int threads)
+	:threads(threads)
+{
+}
+
 void tools::solvers::csr::CSROpenMPSolver::setThreads(int threads)
 {
 	this->threads = threads;

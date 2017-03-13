@@ -1,5 +1,5 @@
-#ifndef __H_CSR_PARALLEL_SOLVER
-#define __H_CSR_PARALLEL_SOLVER
+#ifndef __H_ELLPACK_PARALLEL_SOLVER
+#define __H_ELLPACK_PARALLEL_SOLVER
 
 #include "../common/ELLPACK.h"
 #include "../common/Definitions.h"
@@ -17,6 +17,8 @@ namespace tools
 			protected:
 				int threads = 1;
 			public:
+				ELLPACKOpenMPSolver(int threads);
+				ELLPACKOpenMPSolver() = default;
 				void setThreads(int threads);
 				representations::output::Output solve(representations::ellpack::ELLPACK & ellpack, FLOATING_TYPE* b) override;
 			};

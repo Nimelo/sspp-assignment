@@ -5,6 +5,7 @@
 #include "..\common\CSR.h"
 #include "..\common\Definitions.h"
 #include "..\common\Result.h"
+#include "..\common/AbstractCSRSolver.h"
 
 namespace tools
 {
@@ -17,7 +18,6 @@ namespace tools
 			protected:
 				std::string inputFile;
 				std::string outputFile;
-				int threads;
 				int iterationsParallel;
 				int iterationsSerial;
 
@@ -25,8 +25,8 @@ namespace tools
 				FLOATING_TYPE *createVectorB(int n);
 				void saveResult(representations::result::Result & result);
 			public:
-				CSRInvoker(std::string inputFile, std::string outputFile, int threads, int iterationsParallel, int iterationsSerial);
-				void invoke();
+				CSRInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial);
+				void invoke(solvers::csr::AbstractCSRSolver & solver);
 			};
 		}
 	}

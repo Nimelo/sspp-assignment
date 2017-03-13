@@ -36,32 +36,29 @@ void tools::invokers::csr::CSRInvoker::saveResult(representations::result::Resul
 	fs.close();
 }
 
-tools::invokers::csr::CSRInvoker::CSRInvoker(std::string inputFile, std::string outputFile, int threads, int iterationsParallel, int iterationsSerial)
-	: inputFile(inputFile), outputFile(outputFile), threads(threads), iterationsParallel(iterationsParallel), iterationsSerial(iterationsSerial)
+tools::invokers::csr::CSRInvoker::CSRInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial)
+	: inputFile(inputFile), outputFile(outputFile), iterationsParallel(iterationsParallel), iterationsSerial(iterationsSerial)
 {
 }
 
-void tools::invokers::csr::CSRInvoker::invoke()
+void tools::invokers::csr::CSRInvoker::invoke(solvers::csr::AbstractCSRSolver & parallelSolver)
 {
 	representations::csr::CSR csr = loadCSR();
 	FLOATING_TYPE *b = createVectorB(csr.N);
 	
 	representations::result::Result result;
-	tools::solvers::csr::CSROpenMPSolver parallelSolver;
 	tools::solvers::csr::CSRSolver serialSolver;
 
 	representations::output::Output output;
 	auto timer = tools::measurements::timers::ExecutionTimer();
-	int numberOfThreads = threads;
 
 	std::function<void()> solveCSRSerialRoutine = [&output, &serialSolver, &csr, &b]()
 	{
 		output = serialSolver.solve(csr, b);
 	};
 
-	std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &csr, &b, &numberOfThreads]()
+	std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &csr, &b]()
 	{
-		parallelSolver.setThreads(numberOfThreads);
 		output = parallelSolver.solve(csr, b);
 	};
 

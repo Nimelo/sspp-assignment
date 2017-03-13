@@ -7,6 +7,11 @@ representations::output::Output tools::solvers::ellpack::ELLPACKOpenMPSolver::so
 	return representations::output::Output(ellpack.N, x);
 }
 
+tools::solvers::ellpack::ELLPACKOpenMPSolver::ELLPACKOpenMPSolver(int threads)
+	:threads(threads)
+{
+}
+
 void tools::solvers::ellpack::ELLPACKOpenMPSolver::setThreads(int threads)
 {
 	this->threads = threads;

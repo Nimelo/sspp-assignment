@@ -5,6 +5,7 @@
 #include "..\common\ELLPACK.h"
 #include "..\common\Definitions.h"
 #include "..\common\Result.h"
+#include "../common/AbstractELLPACKSolver.h"
 
 namespace tools
 {
@@ -17,7 +18,6 @@ namespace tools
 			protected:
 				std::string inputFile;
 				std::string outputFile;
-				int threads;
 				int iterationsParallel;
 				int iterationsSerial;
 
@@ -25,8 +25,8 @@ namespace tools
 				FLOATING_TYPE *createVectorB(int n);
 				void saveResult(representations::result::Result & result);
 			public:
-				ELLPACKInvoker(std::string inputFile, std::string outputFile, int threads, int iterationsParallel, int iterationsSerial);
-				void invoke();
+				ELLPACKInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial);
+				void invoke(solvers::ellpack::AbstractELLPACKSolver & parallelSolver);
 			};
 		}
 	}

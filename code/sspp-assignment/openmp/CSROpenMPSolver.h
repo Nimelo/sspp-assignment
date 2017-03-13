@@ -17,6 +17,8 @@ namespace tools
 			protected:
 				int threads = 1;
 			public:
+				CSROpenMPSolver(int threads);
+				CSROpenMPSolver() = default;
 				void setThreads(int threads);
 				representations::output::Output solve(representations::csr::CSR & csr, FLOATING_TYPE* b) override;
 			};

@@ -8,10 +8,10 @@
 #include <fstream>
 #include <string>
 
-#define TAG_IN_FILE "-i"
-#define TAG_OUT_FILE "-o"
-#define ARGUMENT_CSR "-csr"
-#define ARGUMENT_ELLPACK "-ellpack"
+#define ARG_IN_FILE "-i"
+#define ARG_OUT_FILE "-o"
+#define FLAG_CSR "-csr"
+#define FLAG_ELLPACK "-ellpack"
 
 int main(int argc, const char** argv)
 {
@@ -19,26 +19,26 @@ int main(int argc, const char** argv)
 	using namespace io::readers::input::commandline;
 	std::vector<arguments::Argument> arguments = 
 	{ 
-		arguments::Argument(TAG_IN_FILE, arguments::ArgumentType::Single),
-		arguments::Argument(TAG_OUT_FILE, arguments::ArgumentType::Single),
-		arguments::Argument(ARGUMENT_CSR, arguments::ArgumentType::Flag),
-		arguments::Argument(ARGUMENT_ELLPACK, arguments::ArgumentType::Flag)
+		arguments::Argument(ARG_IN_FILE, arguments::ArgumentType::Single),
+		arguments::Argument(ARG_OUT_FILE, arguments::ArgumentType::Single),
+		arguments::Argument(FLAG_CSR, arguments::ArgumentType::Flag),
+		arguments::Argument(FLAG_ELLPACK, arguments::ArgumentType::Flag)
 	};
 
 	CommandLineParameterReader reader(arguments);
 	reader.load(argc, argv);
 
-	if (reader.hasArgument(TAG_IN_FILE) && reader.hasArgument(TAG_OUT_FILE)
-		&& (reader.hasArgument(ARGUMENT_CSR) || reader.hasArgument(ARGUMENT_ELLPACK)))
+	if (reader.hasArgument(ARG_IN_FILE) && reader.hasArgument(ARG_OUT_FILE)
+		&& (reader.hasArgument(FLAG_CSR) || reader.hasArgument(FLAG_ELLPACK)))
 	{
 
 		io::readers::MatrixMarketReader mmr;
-		std::string inputFile = reader.get(TAG_IN_FILE);
+		std::string inputFile = reader.get(ARG_IN_FILE);
 		auto ism = mmr.fromFile(inputFile.c_str());
 		std::fstream fs;
-		std::string outputFile = reader.get(TAG_OUT_FILE);
+		std::string outputFile = reader.get(ARG_OUT_FILE);
 
-		if (reader.hasArgument(ARGUMENT_CSR))
+		if (reader.hasArgument(FLAG_CSR))
 		{
 			tools::transformers::csr::CSRTransformer csrTransformer;
 			auto csr = csrTransformer.transform(ism);
@@ -47,7 +47,7 @@ int main(int argc, const char** argv)
 			fs.close();
 		}
 
-		if (reader.hasArgument(ARGUMENT_ELLPACK))
+		if (reader.hasArgument(FLAG_ELLPACK))
 		{
 			tools::transformers::ellpack::ELLPACKTransformer ellpackTransformer;
 			auto ellpack = ellpackTransformer.transform(ism);
