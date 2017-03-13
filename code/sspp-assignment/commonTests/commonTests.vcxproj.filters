@@ -72,6 +72,9 @@
     <ClCompile Include="CommandLineTests.cpp">
       <Filter>Header Files\testing\io\commandline</Filter>
     </ClCompile>
+    <ClCompile Include="MatrixMarketReaderTests.cpp">
+      <Filter>Header Files\testing\io</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="CommandlineTest.h">
       <Filter>Header Files\testing\io\commandline</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarketReaderTest.h">
+      <Filter>Header Files\testing\io</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

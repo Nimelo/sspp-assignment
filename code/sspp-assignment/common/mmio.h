@@ -132,6 +132,7 @@ int mm_read_mtx_crd_entry(FILE *f, int *I, int *J, FLOATING_TYPE *real, FLOATING
 int mm_read_unsymmetric_sparse(const char *fname, int *M_, int *N_, int *nz_,
 	FLOATING_TYPE **val_, int **I_, int **J_);
 
-
+int mm_read_sparse(const char *fname, int *M_, int *N_, int *nz_,
+	FLOATING_TYPE **val_, int **I_, int **J_);
 
 #endif

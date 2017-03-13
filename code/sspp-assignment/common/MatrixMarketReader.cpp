@@ -8,7 +8,7 @@ representations::intermediary::IntermediarySparseMatrix io::readers::MatrixMarke
 	int M, N, nz, *I, *J;
 	FLOATING_TYPE *val;
 
-	int result = mm_read_unsymmetric_sparse(fileName, &M, &N, &nz, &val, &I, &J);
+	int result = mm_read_sparse(fileName, &M, &N, &nz, &val, &I, &J);
 
 	return representations::intermediary::IntermediarySparseMatrix(M, N, nz, I, J, val);
 }

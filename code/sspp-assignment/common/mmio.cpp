@@ -11,6 +11,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cctype>
+#include <ctime>
 
 #include "mmio.h"
 
@@ -42,7 +43,7 @@ int mm_read_unsymmetric_sparse(const char *fname, int *M_, int *N_, int *nz_,
 			mm_typecode_to_str(matcode));
 		return -1;
 	}
-	
+
 	/* find out size of sparse matrix: M, N, nz .... */
 
 	if (mm_read_mtx_crd_size(f, &M, &N, &nz) != 0)
@@ -77,6 +78,88 @@ int mm_read_unsymmetric_sparse(const char *fname, int *M_, int *N_, int *nz_,
 	}
 	fclose(f);
 
+	return 0;
+}
+
+int mm_read_sparse(const char * fname, int * M_, int * N_, int * nz_, FLOATING_TYPE ** val_, int ** I_, int ** J_)
+{
+	FILE *f;
+	MM_typecode matcode;
+	int M, N, nz;
+	int i;
+	FLOATING_TYPE *val;
+	int *I, *J;
+
+	if ((f = fopen(fname, "r")) == NULL)
+		return -1;
+
+	if (mm_read_banner(f, &matcode) != 0)
+	{
+		printf("mm_read_unsymetric: Could not process Matrix Market banner ");
+		printf(" in file [%s]\n", fname);
+		return -1;
+	}
+
+	if (!((mm_is_real(matcode) || mm_is_pattern(matcode))
+		&& mm_is_matrix(matcode) && mm_is_sparse(matcode)))
+	{
+		fprintf(stderr, "Sorry, this application does not support ");
+		fprintf(stderr, "Market Market type: [%s]\n",
+			mm_typecode_to_str(matcode));
+		return -1;
+	}
+
+	/* find out size of sparse matrix: M, N, nz .... */
+
+	if (mm_read_mtx_crd_size(f, &M, &N, &nz) != 0)
+	{
+		fprintf(stderr, "read_unsymmetric_sparse(): could not parse matrix size.\n");
+		return -1;
+	}
+
+	*M_ = M;
+	*N_ = N;
+	*nz_ = nz;
+
+	if (mm_is_symmetric(matcode))
+	{
+		*nz_ *= 2;
+	}
+
+	I = new int[*nz_];
+	J = new int[*nz_];
+	val = new FLOATING_TYPE[*nz_];
+
+	if (mm_read_mtx_crd_data(f, M, N, nz, I, J, val, matcode) == MM_UNSUPPORTED_TYPE)
+	{
+		fprintf(stderr, "Error MM_UNSUPPORTED_TYPE!");
+		return -1;
+	}
+
+	srand(time(0));
+	
+	if (mm_is_pattern(matcode))
+	{
+		for (int i = 0; i < nz; i++)
+			val[i] = rand() % 100;
+	}
+
+	if (mm_is_symmetric(matcode))
+	{
+		for (int i = 0; i < nz; i++)
+		{
+			int index = (i + nz);
+			I[index] = J[i];
+			J[index] = I[i];
+			val[index] = val[i];
+		}
+	}
+	
+	*val_ = val;
+	*I_ = I;
+	*J_ = J;
+
+	fclose(f);
 	return 0;
 }
 
