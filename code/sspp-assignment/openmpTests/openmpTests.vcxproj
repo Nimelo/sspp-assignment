@@ -95,6 +95,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\msvc\gtest\Debug\gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

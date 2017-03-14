@@ -16,6 +16,7 @@ representations::output::Output tools::solvers::csr::CSROpenMPSolver::solve(repr
 		int lowerBoundary = csr.M * threadId / threads,
 			upperBoundary = csr.M *(threadId + 1) / threads;
 
+		//#pragma ivdep
 		for (auto i = lowerBoundary; i < upperBoundary; i++)
 		{
 			for (auto j = csr.IRP[i]; j < csr.IRP[i + 1]; j++)

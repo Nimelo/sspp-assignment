@@ -95,6 +95,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
