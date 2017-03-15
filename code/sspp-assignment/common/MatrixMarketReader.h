@@ -1,18 +1,18 @@
-#ifndef __H_MATRIX_MARKET_READER
-#define __H_MATRIX_MARKET_READER
+#ifndef SSPP_COMMON_MATRIXMARKETREADER_H_
+#define SSPP_COMMON_MATRIXMARKETREADER_H_
 
 #include "IntermediarySparseMatrix.h"
+#include <string>
 
-namespace io
-{
-	namespace readers
-	{
-		class MatrixMarketReader
-		{
-		public:
-			representations::intermediary::IntermediarySparseMatrix fromFile(const char * fileName);
-		};
-	}
+namespace sspp {
+  namespace io {
+    namespace readers {
+      class MatrixMarketReader {
+      public:
+        representations::IntermediarySparseMatrix fromFile(std::string file_name);
+      };
+    }
+  }
 }
 
 #endif

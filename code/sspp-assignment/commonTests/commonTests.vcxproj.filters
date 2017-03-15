@@ -28,20 +28,8 @@
     <Filter Include="Header Files\testing\tools\solvers">
       <UniqueIdentifier>{7c544814-6664-44ad-9a92-34eb11465d02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\testing\tools\solvers\csr">
-      <UniqueIdentifier>{2b645657-51a1-484d-8d5a-81ba0e1c8f65}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\testing\tools\transformers\csr">
-      <UniqueIdentifier>{8f505de5-2a89-47c1-b571-a58b7adaec65}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\testing\tools\sorters">
       <UniqueIdentifier>{7cc20eb8-1d71-4968-959a-6c496a2cc369}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\testing\tools\transformers\ellpack">
-      <UniqueIdentifier>{c72a8e87-0219-4901-8879-8ea7aa16b519}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\testing\tools\solvers\ellpack">
-      <UniqueIdentifier>{ce05a1ba-2337-42d5-b4a9-3ae91b135185}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\testing\io">
       <UniqueIdentifier>{62bbc99d-c14b-432a-aa60-2010c4b3446c}</UniqueIdentifier>
@@ -54,20 +42,8 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CSRTransformerTests.cpp">
-      <Filter>Header Files\testing\tools\transformers\csr</Filter>
-    </ClCompile>
-    <ClCompile Include="CSRSolverTests.cpp">
-      <Filter>Header Files\testing\tools\solvers\csr</Filter>
-    </ClCompile>
     <ClCompile Include="InPlaceSorterTests.cpp">
       <Filter>Header Files\testing\tools\sorters</Filter>
-    </ClCompile>
-    <ClCompile Include="ELLPACKTransformerTests.cpp">
-      <Filter>Header Files\testing\tools\transformers\ellpack</Filter>
-    </ClCompile>
-    <ClCompile Include="EllpackSolverTests.cpp">
-      <Filter>Header Files\testing\tools\solvers\ellpack</Filter>
     </ClCompile>
     <ClCompile Include="CommandLineTests.cpp">
       <Filter>Header Files\testing\io\commandline</Filter>
@@ -75,31 +51,43 @@
     <ClCompile Include="MatrixMarketReaderTests.cpp">
       <Filter>Header Files\testing\io</Filter>
     </ClCompile>
+    <ClCompile Include="CSRSolverTests.cpp">
+      <Filter>Header Files\testing\tools\solvers</Filter>
+    </ClCompile>
+    <ClCompile Include="EllpackSolverTests.cpp">
+      <Filter>Header Files\testing\tools\solvers</Filter>
+    </ClCompile>
+    <ClCompile Include="CSRTransformerTests.cpp">
+      <Filter>Header Files\testing\tools\transformers</Filter>
+    </ClCompile>
+    <ClCompile Include="ELLPACKTransformerTests.cpp">
+      <Filter>Header Files\testing\tools\transformers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
       <Filter>Header Files\testing-interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="CSRTransformerTest.h">
-      <Filter>Header Files\testing\tools\transformers\csr</Filter>
-    </ClInclude>
-    <ClInclude Include="CSRSolverTest.h">
-      <Filter>Header Files\testing\tools\solvers\csr</Filter>
-    </ClInclude>
     <ClInclude Include="InPlaceSorterTest.h">
       <Filter>Header Files\testing\tools\sorters</Filter>
-    </ClInclude>
-    <ClInclude Include="ELLPACKTransformerTest.h">
-      <Filter>Header Files\testing\tools\transformers\ellpack</Filter>
-    </ClInclude>
-    <ClInclude Include="EllpackSolverTest.h">
-      <Filter>Header Files\testing\tools\solvers\ellpack</Filter>
     </ClInclude>
     <ClInclude Include="CommandlineTest.h">
       <Filter>Header Files\testing\io\commandline</Filter>
     </ClInclude>
     <ClInclude Include="MatrixMarketReaderTest.h">
       <Filter>Header Files\testing\io</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRSolverTest.h">
+      <Filter>Header Files\testing\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="EllpackSolverTest.h">
+      <Filter>Header Files\testing\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRTransformerTest.h">
+      <Filter>Header Files\testing\tools\transformers</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKTransformerTest.h">
+      <Filter>Header Files\testing\tools\transformers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

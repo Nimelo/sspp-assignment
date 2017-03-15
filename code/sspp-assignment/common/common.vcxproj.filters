@@ -37,89 +37,23 @@
     <Filter Include="Source Files\tools\transformers">
       <UniqueIdentifier>{4ced8ce7-d10f-4bcd-8353-68f04fbccd54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\tools\transformers\ellpack">
-      <UniqueIdentifier>{d962c6ba-3a5f-46a6-b5c6-6cd33a6bbb35}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\transformers\ellpack">
-      <UniqueIdentifier>{7fa11eb4-fb30-46d0-abf5-c0acaf703391}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tools\measurements\timers">
-      <UniqueIdentifier>{03cfcdfa-cb29-4931-94e8-9c819cae58ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\measurements\timers">
-      <UniqueIdentifier>{606c7190-2172-4a80-a246-9641822a00a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tools\measurements\calculators">
-      <UniqueIdentifier>{18552790-23f7-4d9e-8d3e-790b2d9fa65d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\measurements\calculators">
-      <UniqueIdentifier>{6b028c3c-777d-433d-8e06-16b61b856410}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\representations">
       <UniqueIdentifier>{82ca7211-52ff-4f12-8bdd-df670c588bd6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\representations\ellpack">
-      <UniqueIdentifier>{48364337-852e-4aef-88b3-24d1904b8fcf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\representations">
       <UniqueIdentifier>{faaa59c2-960a-4dfc-b2a1-032bed6bdfa3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\representations\ellpack">
-      <UniqueIdentifier>{4081a310-fe9b-467f-871e-66f59dbf9c65}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\tools\solvers">
       <UniqueIdentifier>{d2039ad6-f8e6-4f8a-ac42-9f1df99bb900}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\representations\csr">
-      <UniqueIdentifier>{6b30b031-0dad-46cd-80fa-5fcb1a080f90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tools\transformers\csr">
-      <UniqueIdentifier>{8eca2b01-278a-4ec3-974f-8bc2b87687be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\representations\csr">
-      <UniqueIdentifier>{e2f139cb-5575-4412-b285-86d826ae2973}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\transformers\csr">
-      <UniqueIdentifier>{7d41bbf0-07d9-459c-96ac-a3419ad7fd3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tools\solvers\csr">
-      <UniqueIdentifier>{b6a5beda-9b68-4a5d-8b01-bb43050aad78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tools\solvers\ellpack">
-      <UniqueIdentifier>{1ebe18f4-2001-4485-9d21-4a6bce7ad862}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\tools\solvers">
       <UniqueIdentifier>{4e94caa8-bde8-496d-9b37-acdc39452b2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\solvers\csr">
-      <UniqueIdentifier>{cbc63140-6d9a-4bd4-a4b0-cb197fd87c10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\solvers\ellpack">
-      <UniqueIdentifier>{cbdd2627-182a-47dd-8a76-69935fb11289}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\representations\output">
-      <UniqueIdentifier>{d88897f3-25f6-4250-9ca5-6777e7c79e91}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\io\readers">
       <UniqueIdentifier>{83391a47-a223-48bf-95c9-1374b8a71866}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\io\readers">
       <UniqueIdentifier>{810f6ea3-32f5-43e3-a204-673845a1fddc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io\writers">
-      <UniqueIdentifier>{17a8141d-5d3b-44f9-9d79-30009b956ddc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\io\writers">
-      <UniqueIdentifier>{b6ef4225-39af-4091-92bf-f09f3fed4aee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\representations\intermediary">
-      <UniqueIdentifier>{7b7e7b7b-b7b2-4a3d-939a-fa0fd87553b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\representations\output">
-      <UniqueIdentifier>{08ebab5e-4077-4bff-a322-59dbb82a2fb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\representations\intermediary">
-      <UniqueIdentifier>{4c9c5e82-6aee-4b16-8fb1-a2bf3bc5f036}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\io\exceptions">
       <UniqueIdentifier>{87592ceb-e9e5-406c-8eef-c8b216fedbe7}</UniqueIdentifier>
@@ -130,38 +64,17 @@
     <Filter Include="Source Files\tools\sorters">
       <UniqueIdentifier>{345945ed-cade-4e8b-8fe5-4355844db046}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\tools\debug">
-      <UniqueIdentifier>{50ebd9b9-1ef0-4540-9ebb-a4c3ddc9a47b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io\readers\input">
-      <UniqueIdentifier>{653a3762-b1c4-4240-a93a-a8cc68dd4e8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io\readers\input\commandline">
-      <UniqueIdentifier>{3d6ff18f-8667-4a9d-a55e-b4e8c2057e02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io\readers\input\commandline\arguments">
-      <UniqueIdentifier>{b1a91bc2-8f67-4853-9a70-d13857b0eae2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io\readers\input\commandline\parameters">
-      <UniqueIdentifier>{c6e7866f-7d21-4f40-ac60-da551827bd4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\io\readers\input">
-      <UniqueIdentifier>{c44ea2f4-7076-429e-9c90-04432eb541d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\io\readers\input\commandline">
-      <UniqueIdentifier>{6eda3942-66af-493c-ab12-2e05d62f8050}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\representations\result">
-      <UniqueIdentifier>{f4d3e89a-a386-4422-88e1-4cad7f58ce84}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\representations\result">
       <UniqueIdentifier>{29b72ea2-71e3-4e78-8242-221e64df4012}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\representations\result\single">
-      <UniqueIdentifier>{8cbd2225-d873-4823-a5b7-cc73454789f4}</UniqueIdentifier>
+    <Filter Include="Header Files\io\readers\commandline">
+      <UniqueIdentifier>{3d6ff18f-8667-4a9d-a55e-b4e8c2057e02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\representations\result\single">
-      <UniqueIdentifier>{18a7e017-9220-4114-bb90-e55ba78b8150}</UniqueIdentifier>
+    <Filter Include="Header Files\representations\results">
+      <UniqueIdentifier>{f4d3e89a-a386-4422-88e1-4cad7f58ce84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io\readers\commandline">
+      <UniqueIdentifier>{6eda3942-66af-493c-ab12-2e05d62f8050}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -174,62 +87,17 @@
     <ClInclude Include="MatrixMarketReader.h">
       <Filter>Header Files\io\readers</Filter>
     </ClInclude>
-    <ClInclude Include="OutputRepresentationWriter.h">
-      <Filter>Header Files\io\writers</Filter>
-    </ClInclude>
-    <ClInclude Include="CSR.h">
-      <Filter>Header Files\representations\csr</Filter>
-    </ClInclude>
-    <ClInclude Include="ELLPACK.h">
-      <Filter>Header Files\representations\ellpack</Filter>
-    </ClInclude>
-    <ClInclude Include="Output.h">
-      <Filter>Header Files\representations\output</Filter>
-    </ClInclude>
-    <ClInclude Include="FLOPSCalculator.h">
-      <Filter>Header Files\tools\measurements\calculators</Filter>
-    </ClInclude>
-    <ClInclude Include="ExecutionTimer.h">
-      <Filter>Header Files\tools\measurements\timers</Filter>
-    </ClInclude>
-    <ClInclude Include="CSRSolver.h">
-      <Filter>Header Files\tools\solvers\csr</Filter>
-    </ClInclude>
-    <ClInclude Include="ELLPACKSolver.h">
-      <Filter>Header Files\tools\solvers\ellpack</Filter>
-    </ClInclude>
-    <ClInclude Include="ELLPACKTransformer.h">
-      <Filter>Header Files\tools\transformers\ellpack</Filter>
-    </ClInclude>
-    <ClInclude Include="IntermediarySparseMatrix.h">
-      <Filter>Header Files\representations\intermediary</Filter>
-    </ClInclude>
     <ClInclude Include="ReadMatrixException.h">
       <Filter>Header Files\io\exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CSRTransformer.h">
-      <Filter>Header Files\tools\transformers\csr</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugTools.h">
-      <Filter>Header Files\tools\debug</Filter>
-    </ClInclude>
     <ClInclude Include="InPlaceStableSorter.h">
       <Filter>Header Files\tools\sorters</Filter>
     </ClInclude>
-    <ClInclude Include="Argument.h">
-      <Filter>Header Files\io\readers\input\commandline\arguments</Filter>
-    </ClInclude>
-    <ClInclude Include="ArgumentType.h">
-      <Filter>Header Files\io\readers\input\commandline\arguments</Filter>
-    </ClInclude>
-    <ClInclude Include="Parameter.h">
-      <Filter>Header Files\io\readers\input\commandline\parameters</Filter>
-    </ClInclude>
     <ClInclude Include="CommandLineParameterReader.h">
-      <Filter>Header Files\io\readers\input\commandline</Filter>
+      <Filter>Header Files\io\readers\commandline</Filter>
     </ClInclude>
     <ClInclude Include="CommandLineException.h">
       <Filter>Header Files\io\exceptions</Filter>
@@ -238,54 +106,60 @@
       <Filter>Header Files\io\exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Result.h">
-      <Filter>Header Files\representations\result</Filter>
+      <Filter>Header Files\representations\results</Filter>
+    </ClInclude>
+    <ClInclude Include="Argument.h">
+      <Filter>Header Files\io\readers\commandline</Filter>
+    </ClInclude>
+    <ClInclude Include="ArgumentType.h">
+      <Filter>Header Files\io\readers\commandline</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Header Files\io\readers\commandline</Filter>
+    </ClInclude>
+    <ClInclude Include="CSR.h">
+      <Filter>Header Files\representations</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACK.h">
+      <Filter>Header Files\representations</Filter>
+    </ClInclude>
+    <ClInclude Include="IntermediarySparseMatrix.h">
+      <Filter>Header Files\representations</Filter>
+    </ClInclude>
+    <ClInclude Include="Output.h">
+      <Filter>Header Files\representations</Filter>
     </ClInclude>
     <ClInclude Include="SingleHeader.h">
-      <Filter>Header Files\representations\result\single</Filter>
+      <Filter>Header Files\representations\results</Filter>
+    </ClInclude>
+    <ClInclude Include="FLOPSCalculator.h">
+      <Filter>Header Files\tools\measurements</Filter>
+    </ClInclude>
+    <ClInclude Include="ExecutionTimer.h">
+      <Filter>Header Files\tools\measurements</Filter>
     </ClInclude>
     <ClInclude Include="AbstractCSRSolver.h">
-      <Filter>Header Files\tools\solvers\csr</Filter>
+      <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRSolver.h">
+      <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKSolver.h">
+      <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
     <ClInclude Include="AbstractELLPACKSolver.h">
-      <Filter>Header Files\tools\solvers\ellpack</Filter>
+      <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRTransformer.h">
+      <Filter>Header Files\tools\transformers</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKTransformer.h">
+      <Filter>Header Files\tools\transformers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CSRSolver.cpp">
-      <Filter>Source Files\tools\solvers\csr</Filter>
-    </ClCompile>
-    <ClCompile Include="CSR.cpp">
-      <Filter>Source Files\representations\csr</Filter>
-    </ClCompile>
-    <ClCompile Include="CSRTransformer.cpp">
-      <Filter>Source Files\tools\transformers\csr</Filter>
-    </ClCompile>
-    <ClCompile Include="ELLPACK.cpp">
-      <Filter>Source Files\representations\ellpack</Filter>
-    </ClCompile>
-    <ClCompile Include="ELLPACKSolver.cpp">
-      <Filter>Source Files\tools\solvers\ellpack</Filter>
-    </ClCompile>
-    <ClCompile Include="ELLPACKTransformer.cpp">
-      <Filter>Source Files\tools\transformers\ellpack</Filter>
-    </ClCompile>
-    <ClCompile Include="ExecutionTimer.cpp">
-      <Filter>Source Files\tools\measurements\timers</Filter>
-    </ClCompile>
-    <ClCompile Include="FLOPSCalculator.cpp">
-      <Filter>Source Files\tools\measurements\calculators</Filter>
-    </ClCompile>
     <ClCompile Include="MatrixMarketReader.cpp">
       <Filter>Source Files\io\readers</Filter>
-    </ClCompile>
-    <ClCompile Include="OutputRepresentationWriter.cpp">
-      <Filter>Source Files\io\writers</Filter>
-    </ClCompile>
-    <ClCompile Include="IntermediarySparseMatrix.cpp">
-      <Filter>Source Files\representations\intermediary</Filter>
-    </ClCompile>
-    <ClCompile Include="Output.cpp">
-      <Filter>Source Files\representations\output</Filter>
     </ClCompile>
     <ClCompile Include="mmio.cpp">
       <Filter>Source Files\io</Filter>
@@ -294,13 +168,43 @@
       <Filter>Source Files\tools\sorters</Filter>
     </ClCompile>
     <ClCompile Include="CommandLineParameterReader.cpp">
-      <Filter>Source Files\io\readers\input\commandline</Filter>
+      <Filter>Source Files\io\readers\commandline</Filter>
     </ClCompile>
     <ClCompile Include="Result.cpp">
       <Filter>Source Files\representations\result</Filter>
     </ClCompile>
+    <ClCompile Include="CSR.cpp">
+      <Filter>Source Files\representations</Filter>
+    </ClCompile>
+    <ClCompile Include="ELLPACK.cpp">
+      <Filter>Source Files\representations</Filter>
+    </ClCompile>
+    <ClCompile Include="IntermediarySparseMatrix.cpp">
+      <Filter>Source Files\representations</Filter>
+    </ClCompile>
+    <ClCompile Include="Output.cpp">
+      <Filter>Source Files\representations</Filter>
+    </ClCompile>
     <ClCompile Include="SingleHeader.cpp">
-      <Filter>Source Files\representations\result\single</Filter>
+      <Filter>Source Files\representations\result</Filter>
+    </ClCompile>
+    <ClCompile Include="FLOPSCalculator.cpp">
+      <Filter>Source Files\tools\measurements</Filter>
+    </ClCompile>
+    <ClCompile Include="ExecutionTimer.cpp">
+      <Filter>Source Files\tools\measurements</Filter>
+    </ClCompile>
+    <ClCompile Include="CSRSolver.cpp">
+      <Filter>Source Files\tools\solvers</Filter>
+    </ClCompile>
+    <ClCompile Include="ELLPACKSolver.cpp">
+      <Filter>Source Files\tools\solvers</Filter>
+    </ClCompile>
+    <ClCompile Include="CSRTransformer.cpp">
+      <Filter>Source Files\tools\transformers</Filter>
+    </ClCompile>
+    <ClCompile Include="ELLPACKTransformer.cpp">
+      <Filter>Source Files\tools\transformers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,27 +2,25 @@
 #include "Definitions.h"
 #include "InPlaceStableSorter.h"
 
-representations::csr::CSR tools::transformers::csr::CSRTransformer::transform(representations::intermediary::IntermediarySparseMatrix & ism)
-{
-	tools::sorters::InPlaceStableSorter sorter;
-	sorter.sort(ism.IIndexes, ism.JIndexes, ism.Values, ism.NZ);
+sspp::representations::CSR sspp::tools::transformers::CSRTransformer::transform(representations::IntermediarySparseMatrix & ism) {
+  tools::sorters::InPlaceStableSorter sorter;
+  sorter.sort(ism.IIndexes, ism.JIndexes, ism.Values, ism.NZ);
 
-	FLOATING_TYPE *AS = new FLOATING_TYPE[ism.NZ];
-	int index = 0, *IRP = new int[ism.M + 1], *JA = new int[ism.NZ];
-	
-	AS[0] = ism.Values[0];
-	JA[0] = ism.JIndexes[0];
-	IRP[0] = 0;
+  FLOATING_TYPE *AS = new FLOATING_TYPE[ism.NZ];
+  int index = 0, *IRP = new int[ism.M + 1], *JA = new int[ism.NZ];
 
-	for (auto i = 1; i < ism.NZ; i++)
-	{
-		AS[i] = ism.Values[i];
-		JA[i] = ism.JIndexes[i];
-		if (ism.IIndexes[i - 1] != ism.IIndexes[i])
-			IRP[++index] = i;
-	}
+  AS[0] = ism.Values[0];
+  JA[0] = ism.JIndexes[0];
+  IRP[0] = 0;
 
-	IRP[++index] = ism.NZ;
+  for(auto i = 1; i < ism.NZ; i++) {
+    AS[i] = ism.Values[i];
+    JA[i] = ism.JIndexes[i];
+    if(ism.IIndexes[i - 1] != ism.IIndexes[i])
+      IRP[++index] = i;
+  }
 
-	return representations::csr::CSR(ism.NZ, ism.M, ism.N, IRP, JA, AS);
+  IRP[++index] = ism.NZ;
+
+  return representations::CSR(ism.NZ, ism.M, ism.N, IRP, JA, AS);
 }

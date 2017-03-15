@@ -1,14 +1,13 @@
-#ifndef __H_CONVERSION_FAILED_EXCEPTION
-#define __H_CONVERSION_FAILED_EXCEPTION
+#ifndef SSPP_COMMON_CONVERSIONFAILEDEXCEPTION_H_
+#define SSPP_COMMON_CONVERSIONFAILEDEXCEPTION_H_
 
-namespace io
-{
-	namespace exceptions
-	{
-		class ConversionFailedException
-		{
-		};
-	}
+namespace sspp {
+  namespace io {
+    namespace exceptions {
+      class ConversionFailedException {
+      };
+    }
+  }
 }
 
 #endif

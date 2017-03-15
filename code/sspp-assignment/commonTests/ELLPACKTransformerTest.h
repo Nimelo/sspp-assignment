@@ -3,17 +3,14 @@
 #include "ITest.h"
 #include "ELLPACKTransformer.h"
 
-class ELLPACKTransformerTest : public ITest
-{
+class ELLPACKTransformerTest : public ITest {
 protected:
-	tools::transformers::ellpack::ELLPACKTransformer *ellpackTransformer;
-	virtual void SetUp()
-	{
-		ellpackTransformer = new tools::transformers::ellpack::ELLPACKTransformer();
-	}
+  sspp::tools::transformers::ELLPACKTransformer *ellpackTransformer;
+  virtual void SetUp() {
+    ellpackTransformer = new sspp::tools::transformers::ELLPACKTransformer();
+  }
 
-	virtual void TearDown()
-	{
-		delete ellpackTransformer;
-	}
+  virtual void TearDown() {
+    delete ellpackTransformer;
+  }
 };

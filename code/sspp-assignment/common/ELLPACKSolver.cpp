@@ -1,6 +1,6 @@
 #include "ELLPACKSolver.h"
 
-representations::output::Output tools::solvers::ellpack::ELLPACKSolver::solve(representations::ellpack::ELLPACK & ellpack, FLOATING_TYPE * b)
+sspp::representations::Output sspp::tools::solvers::ELLPACKSolver::solve(sspp::representations::ELLPACK & ellpack, FLOATING_TYPE * b)
 {
 	FLOATING_TYPE *x = new FLOATING_TYPE[ellpack.M];
 
@@ -15,5 +15,5 @@ representations::output::Output tools::solvers::ellpack::ELLPACKSolver::solve(re
 		x[i] = tmp;
 	}
 
-	return representations::output::Output(ellpack.M, x);
+	return sspp::representations::Output(ellpack.M, x);
 }

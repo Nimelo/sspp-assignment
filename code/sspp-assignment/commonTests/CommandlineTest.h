@@ -3,14 +3,11 @@
 #include "ITest.h"
 #include "CommandLineParameterReader.h"
 
-class CommandLineParameterReaderTest : public ITest
-{
+class CommandLineParameterReaderTest : public ITest {
 protected:
-	virtual void SetUp()
-	{
-	}
+  virtual void SetUp() {
+  }
 
-	virtual void TearDown()
-	{
-	}
+  virtual void TearDown() {
+  }
 };

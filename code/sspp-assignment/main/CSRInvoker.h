@@ -7,29 +7,24 @@
 #include "..\common\Result.h"
 #include "..\common/AbstractCSRSolver.h"
 
-namespace tools
-{
-	namespace invokers
-	{
-		namespace csr
-		{
-			class CSRInvoker
-			{
-			protected:
-				std::string inputFile;
-				std::string outputFile;
-				int iterationsParallel;
-				int iterationsSerial;
+namespace sspp {
+  namespace tools {
+    namespace invokers {
+      class CSRInvoker {
+      protected:
+        std::string inputFile;
+        std::string outputFile;
+        int iterationsParallel;
+        int iterationsSerial;
 
-				representations::csr::CSR loadCSR();
-				FLOATING_TYPE *createVectorB(int n);
-				void saveResult(representations::result::Result & result);
-			public:
-				CSRInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial);
-				void invoke(solvers::csr::AbstractCSRSolver & solver);
-			};
-		}
-	}
+        representations::CSR loadCSR();
+        FLOATING_TYPE *createVectorB(int n);
+        void saveResult(representations::result::Result & result);
+      public:
+        CSRInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial);
+        void invoke(solvers::AbstractCSRSolver & solver);
+      };
+    }
+  }
 }
-
 #endif

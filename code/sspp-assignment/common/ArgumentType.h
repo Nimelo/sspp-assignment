@@ -1,27 +1,18 @@
-#ifndef __H_ARGUMENT_TYPE
-#define __H_ARGUMENT_TYPE
+#ifndef SSPP_COMMON_ARGUMENTTYPE_H_
+#define SSPP_COMMON_ARGUMENTTYPE_H_
 
-namespace io
-{
-	namespace readers
-	{
-		namespace input
-		{
-			namespace commandline
-			{
-				namespace arguments
-				{
-					enum ArgumentType
-					{
-						Flag,
-						Single,
-						Multiple
-					};
-				}
-			}
-		}
-	}
+namespace sspp {
+  namespace io {
+    namespace readers {
+      namespace commandline {
+        enum ArgumentType {
+          Flag,
+          Single,
+          Multiple
+        };
+      }
+    }
+  }
 }
-
 
 #endif

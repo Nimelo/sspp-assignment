@@ -1,17 +1,14 @@
 #pragma once
 #include "ITest.h"
 #include "EllpackSolver.h"
-class ELLPACKSolverTest : public ITest
-{
+class ELLPACKSolverTest : public ITest {
 protected:
-	tools::solvers::ellpack::ELLPACKSolver *ellpackSolver;
-	virtual void SetUp()
-	{
-		ellpackSolver = new tools::solvers::ellpack::ELLPACKSolver();
-	}
+  sspp::tools::solvers::ELLPACKSolver *ellpackSolver;
+  virtual void SetUp() {
+    ellpackSolver = new sspp::tools::solvers::ELLPACKSolver();
+  }
 
-	virtual void TearDown()
-	{
-		delete ellpackSolver;
-	}
+  virtual void TearDown() {
+    delete ellpackSolver;
+  }
 };

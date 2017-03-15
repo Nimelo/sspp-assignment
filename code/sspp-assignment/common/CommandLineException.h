@@ -1,14 +1,13 @@
-#ifndef __H_COMMAND_LINE_EXCEPTION
-#define __H_COMMAND_LINE_EXCEPTION
+#ifndef SSPP_COMMON_COMMANDLINEEXECEPTION_H_
+#define SSPP_COMMON_COMMANDLINEEXECEPTION_H_
 
-namespace io
-{
-	namespace exceptions
-	{
-		class CommandLineException
-		{
-		};
-	}
+namespace sspp {
+  namespace io {
+    namespace exceptions {
+      class CommandLineException {
+      };
+    }
+  }
 }
 
 #endif

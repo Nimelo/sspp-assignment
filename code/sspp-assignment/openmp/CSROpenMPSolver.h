@@ -6,23 +6,19 @@
 #include "../common/Output.h"
 #include "../common/AbstractCSRSolver.h"
 
-namespace tools
-{
-	namespace solvers
-	{
-		namespace csr
-		{
-			class CSROpenMPSolver : public AbstractCSRSolver
-			{
-			protected:
-				int threads = 1;
-			public:
-				CSROpenMPSolver(int threads);
-				CSROpenMPSolver() = default;
-				void setThreads(int threads);
-				representations::output::Output solve(representations::csr::CSR & csr, FLOATING_TYPE* b) override;
-			};
-		}
-	}
+namespace sspp {
+  namespace tools {
+    namespace solvers {
+      class CSROpenMPSolver : public sspp::tools::solvers::AbstractCSRSolver {
+      protected:
+        int threads = 1;
+      public:
+        CSROpenMPSolver(int threads);
+        CSROpenMPSolver() = default;
+        void setThreads(int threads);
+        sspp::representations::Output solve(sspp::representations::CSR & csr, FLOATING_TYPE* b) override;
+      };
+    }
+  }
 }
 #endif

@@ -3,17 +3,14 @@
 #include "ITest.h"
 #include "../openmp/ELLPACKOpenMPSolver.h"
 
-class ELLPACKParallelSolverTest : public ITest
-{
+class ELLPACKParallelSolverTest : public ITest {
 protected:
-	tools::solvers::ellpack::ELLPACKOpenMPSolver *ellpackParallelSolver;
-	virtual void SetUp()
-	{
-		ellpackParallelSolver = new tools::solvers::ellpack::ELLPACKOpenMPSolver();
-	}
+  sspp::tools::solvers::ELLPACKOpenMPSolver *ellpackParallelSolver;
+  virtual void SetUp() {
+    ellpackParallelSolver = new sspp::tools::solvers::ELLPACKOpenMPSolver();
+  }
 
-	virtual void TearDown()
-	{
-		delete ellpackParallelSolver;
-	}
+  virtual void TearDown() {
+    delete ellpackParallelSolver;
+  }
 };

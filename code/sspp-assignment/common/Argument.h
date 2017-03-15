@@ -1,33 +1,23 @@
-#ifndef __H_ARGUMENT
-#define __H_ARGUMENT
+#ifndef SSPP_COMMON_ARGUMENT_H_
+#define SSPP_COMMON_ARGUMENT_H_
 
 #include "ArgumentType.h"
 #include <string>
 
-namespace io
-{
-	namespace readers
-	{
-		namespace input
-		{
-			namespace commandline
-			{
-				namespace arguments
-				{
-					struct Argument
-					{
-						std::string Name;
-						ArgumentType Type;
-						Argument(std::string Name, ArgumentType Type)
-							: Name(Name), Type(Type)
-						{
-
-						}
-					};
-				}
-			}
-		}
-	}
+namespace sspp {
+  namespace io {
+    namespace readers {
+      namespace commandline {
+        struct Argument {
+          std::string Name;
+          ArgumentType Type;
+          Argument(std::string name, ArgumentType type)
+            : Name(name), Type(type) {
+          }
+        };
+      }
+    }
+  }
 }
 
 #endif

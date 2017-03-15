@@ -1,14 +1,14 @@
 #include "InPlaceStableSorter.h"
 
 template<typename T>
-inline void tools::sorters::InPlaceStableSorter::swap(T & lhs, T & rhs)
+inline void sspp::tools::sorters::InPlaceStableSorter::swap(T & lhs, T & rhs)
 {
 	T tmp = lhs;
 	lhs = rhs;
 	rhs = tmp;
 }
 
-void tools::sorters::InPlaceStableSorter::quicksort(int * I, int * J, FLOATING_TYPE * values, const int left, const int right)
+void sspp::tools::sorters::InPlaceStableSorter::quicksort(int * I, int * J, FLOATING_TYPE * values, const int left, const int right)
 {
 	auto i = left, j = right;
 	auto pivot = (I)[(left + right) / 2];
@@ -36,7 +36,7 @@ void tools::sorters::InPlaceStableSorter::quicksort(int * I, int * J, FLOATING_T
 		quicksort(I, J, values, i, right);
 }
 
-void tools::sorters::InPlaceStableSorter::sort2(int * I, int * J, FLOATING_TYPE * values, int N)
+void sspp::tools::sorters::InPlaceStableSorter::sort2(int * I, int * J, FLOATING_TYPE * values, int N)
 {
 	quicksort(I, J, values, 0, N - 1);
 	auto beginIndex = 0;
@@ -50,7 +50,7 @@ void tools::sorters::InPlaceStableSorter::sort2(int * I, int * J, FLOATING_TYPE 
 	}
 }
 
-void tools::sorters::InPlaceStableSorter::insertionSort(int * I, int * J, FLOATING_TYPE * values, int start, int end)
+void sspp::tools::sorters::InPlaceStableSorter::insertionSort(int * I, int * J, FLOATING_TYPE * values, int start, int end)
 {
 	for (auto i = start; i < end; i++)
 	{
@@ -65,7 +65,7 @@ void tools::sorters::InPlaceStableSorter::insertionSort(int * I, int * J, FLOATI
 	}
 }
 
-void tools::sorters::InPlaceStableSorter::sort(int * I, int * J, FLOATING_TYPE * values, int N)
+void sspp::tools::sorters::InPlaceStableSorter::sort(int * I, int * J, FLOATING_TYPE * values, int N)
 {
 	insertionSort(I, J, values, 0, N);
 	auto beginIndex = 0;

@@ -1,22 +1,18 @@
-#ifndef __H_CSR_TRANSFORMER
-#define __H_CSR_TRANSFORMER
+#ifndef SSPP_COMMON_CSRTRANSFORMER_H_
+#define SSPP_COMMON_CSRTRANSFORMER_H_
 
 #include "CSR.h"
 #include "IntermediarySparseMatrix.h"
 
-namespace tools
-{
-	namespace transformers
-	{
-		namespace csr
-		{
-			class CSRTransformer
-			{
-			public:
-				representations::csr::CSR transform(representations::intermediary::IntermediarySparseMatrix & ism);
-			};
-		}
-	}
+namespace sspp {
+  namespace tools {
+    namespace transformers {
+      class CSRTransformer {
+      public:
+        representations::CSR transform(representations::IntermediarySparseMatrix & ism);
+      };
+    }
+  }
 }
 
 #endif

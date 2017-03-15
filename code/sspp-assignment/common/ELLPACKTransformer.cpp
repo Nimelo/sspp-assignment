@@ -2,13 +2,13 @@
 #include "InPlaceStableSorter.h"
 #include <algorithm>
 
-void tools::transformers::ellpack::ELLPACKTransformer::preprocessISM(const representations::intermediary::IntermediarySparseMatrix & ism)
+void sspp::tools::transformers::ELLPACKTransformer::preprocessISM(const representations::IntermediarySparseMatrix & ism)
 {
 	tools::sorters::InPlaceStableSorter sorter;
 	sorter.sort(ism.IIndexes, ism.JIndexes, ism.Values, ism.NZ);
 }
 
-int * tools::transformers::ellpack::ELLPACKTransformer::findAuxilliaryArray(const representations::intermediary::IntermediarySparseMatrix & ism)
+int * sspp::tools::transformers::ELLPACKTransformer::findAuxilliaryArray(const representations::IntermediarySparseMatrix & ism)
 {
 	int * auxArray = new int[ism.M];
 
@@ -31,7 +31,7 @@ int * tools::transformers::ellpack::ELLPACKTransformer::findAuxilliaryArray(cons
 	return auxArray;
 }
 
-void tools::transformers::ellpack::ELLPACKTransformer::allocateArrays(int *** JA, FLOATING_TYPE *** AS, int M, int MAXNZ)
+void sspp::tools::transformers::ELLPACKTransformer::allocateArrays(int *** JA, FLOATING_TYPE *** AS, int M, int MAXNZ)
 {
 	*JA = new int*[M];
 	for (auto i = 0; i < M; i++)
@@ -42,7 +42,7 @@ void tools::transformers::ellpack::ELLPACKTransformer::allocateArrays(int *** JA
 		(*AS)[i] = new FLOATING_TYPE[MAXNZ];
 }
 
-representations::ellpack::ELLPACK tools::transformers::ellpack::ELLPACKTransformer::transformImpl(const representations::intermediary::IntermediarySparseMatrix & ism, int M, int MAXNZ, int ** JA, FLOATING_TYPE ** AS, int * auxArray)
+sspp::representations::ELLPACK sspp::tools::transformers::ELLPACKTransformer::transformImpl(const representations::IntermediarySparseMatrix & ism, int M, int MAXNZ, int ** JA, FLOATING_TYPE ** AS, int * auxArray)
 {
 	auto nzIndex = 0;
 	for (auto row = 0; row < M; row++)
@@ -66,10 +66,10 @@ representations::ellpack::ELLPACK tools::transformers::ellpack::ELLPACKTransform
 			}
 		}
 	}
-	return representations::ellpack::ELLPACK(M, ism.N, ism.NZ, MAXNZ, JA, AS);
+	return representations::ELLPACK(M, ism.N, ism.NZ, MAXNZ, JA, AS);
 }
 
-representations::ellpack::ELLPACK tools::transformers::ellpack::ELLPACKTransformer::transform(const representations::intermediary::IntermediarySparseMatrix & ism)
+sspp::representations::ELLPACK sspp::tools::transformers::ELLPACKTransformer::transform(const representations::IntermediarySparseMatrix & ism)
 {
 	preprocessISM(ism);
 	int *aux = findAuxilliaryArray(ism);

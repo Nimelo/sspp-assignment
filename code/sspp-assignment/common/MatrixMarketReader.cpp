@@ -3,12 +3,12 @@
 #include "ReadMatrixException.h"
 #include "mmio.h"
 
-representations::intermediary::IntermediarySparseMatrix io::readers::MatrixMarketReader::fromFile(const char * fileName)
+sspp::representations::IntermediarySparseMatrix sspp::io::readers::MatrixMarketReader::fromFile(std::string file_name)
 {
 	int M, N, nz, *I, *J;
 	FLOATING_TYPE *val;
 
-	int result = mm_read_sparse(fileName, &M, &N, &nz, &val, &I, &J);
+	int result = mm_read_sparse(file_name.c_str(), &M, &N, &nz, &val, &I, &J);
 
-	return representations::intermediary::IntermediarySparseMatrix(M, N, nz, I, J, val);
+	return sspp::representations::IntermediarySparseMatrix(M, N, nz, I, J, val);
 }

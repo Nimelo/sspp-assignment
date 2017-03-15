@@ -1,24 +1,20 @@
-#ifndef __H_ELLPACK_SOLVER
-#define __H_ELLPACK_SOLVER
+#ifndef SSPP_COMMON_ELLPACKSOLVER_H_
+#define SSPP_COMMON_ELLPACKSOLVER_H_
 
 #include "Definitions.h"
 #include "ELLPACK.h"
 #include "Output.h"
 #include "AbstractELLPACKSolver.h"
 
-namespace tools
-{
-	namespace solvers
-	{
-		namespace ellpack
-		{
-			class ELLPACKSolver : public AbstractELLPACKSolver
-			{
-			public:
-				representations::output::Output solve(representations::ellpack::ELLPACK & ellpack, FLOATING_TYPE *b) override;
-			};
-		}
-	}
+namespace sspp {
+  namespace tools {
+    namespace solvers {
+      class ELLPACKSolver : public AbstractELLPACKSolver {
+      public:
+        representations::Output solve(representations::ELLPACK & ellpack, FLOATING_TYPE *b) override;
+      };
+    }
+  }
 }
 
 #endif

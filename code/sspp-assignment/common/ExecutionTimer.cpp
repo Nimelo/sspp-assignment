@@ -1,6 +1,6 @@
 #include "ExecutionTimer.h"
 
-std::chrono::milliseconds tools::measurements::timers::ExecutionTimer::measure(std::function<void(void)> function)
+std::chrono::milliseconds sspp::tools::measurements::ExecutionTimer::measure(std::function<void(void)> function)
 {
 	auto t1 = std::chrono::high_resolution_clock::now();
 	function();

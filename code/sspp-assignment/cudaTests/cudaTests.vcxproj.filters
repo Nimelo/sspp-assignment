@@ -16,33 +16,27 @@
     <Filter Include="Header Files\testing">
       <UniqueIdentifier>{04841003-cae3-4f24-9772-752e75847e0d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\testing\csr">
-      <UniqueIdentifier>{3cea180a-9dbf-426b-a8b9-cbaeec9fbe4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\testing\ellpack">
-      <UniqueIdentifier>{aa4c55eb-0fe3-4289-b328-5968832f73e5}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CudaCSRSolverTests.cpp">
-      <Filter>Header Files\testing\csr</Filter>
+      <Filter>Header Files\testing</Filter>
     </ClCompile>
     <ClCompile Include="CudaELLPACKSolverTests.cpp">
-      <Filter>Header Files\testing\ellpack</Filter>
+      <Filter>Header Files\testing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CudaCSRSolverTest.h">
-      <Filter>Header Files\testing\csr</Filter>
-    </ClInclude>
     <ClInclude Include="ITest.h">
       <Filter>Header Files\testing</Filter>
     </ClInclude>
+    <ClInclude Include="CudaCSRSolverTest.h">
+      <Filter>Header Files\testing</Filter>
+    </ClInclude>
     <ClInclude Include="CudaELLPACKSolverTest.h">
-      <Filter>Header Files\testing\ellpack</Filter>
+      <Filter>Header Files\testing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,29 +7,25 @@
 #include "..\common\Result.h"
 #include "../common/AbstractELLPACKSolver.h"
 
-namespace tools
-{
-	namespace invokers
-	{
-		namespace ellpack
-		{
-			class ELLPACKInvoker
-			{
-			protected:
-				std::string inputFile;
-				std::string outputFile;
-				int iterationsParallel;
-				int iterationsSerial;
+namespace sspp {
+  namespace tools {
+    namespace invokers {
+      class ELLPACKInvoker {
+      protected:
+        std::string inputFile;
+        std::string outputFile;
+        int iterationsParallel;
+        int iterationsSerial;
 
-				representations::ellpack::ELLPACK loadELLPACK();
-				FLOATING_TYPE *createVectorB(int n);
-				void saveResult(representations::result::Result & result);
-			public:
-				ELLPACKInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial);
-				void invoke(solvers::ellpack::AbstractELLPACKSolver & parallelSolver);
-			};
-		}
-	}
+        representations::ELLPACK loadELLPACK();
+        FLOATING_TYPE *createVectorB(int n);
+        void saveResult(representations::result::Result & result);
+      public:
+        ELLPACKInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial);
+        void invoke(solvers::AbstractELLPACKSolver & parallelSolver);
+      };
+    }
+  }
 }
 
 #endif

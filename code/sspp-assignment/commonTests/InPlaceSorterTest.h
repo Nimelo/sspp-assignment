@@ -4,10 +4,10 @@
 class InPlaceSorterTest : public ITest
 {
 	protected:
-		tools::sorters::InPlaceStableSorter *sorter;
+		sspp::tools::sorters::InPlaceStableSorter *sorter;
 		virtual void SetUp()
 		{
-			sorter = new tools::sorters::InPlaceStableSorter();
+			sorter = new sspp::tools::sorters::InPlaceStableSorter();
 		}
 
 		virtual void TearDown()

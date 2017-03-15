@@ -19,23 +19,11 @@
     <Filter Include="Header Files\tools\invokers">
       <UniqueIdentifier>{e6c76afc-9cb8-46b3-b638-2688f656bb63}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\tools\invokers\csr">
-      <UniqueIdentifier>{9e796989-1a72-4174-b387-16e597d71b33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\tools">
       <UniqueIdentifier>{bee44127-3839-414d-96ae-e1be253e3f09}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\tools\invokers">
       <UniqueIdentifier>{b42eb6ff-3009-4c2f-a461-5c88811b095c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\invokers\csr">
-      <UniqueIdentifier>{4257f0ad-35fc-4286-aef8-4532e0e0e504}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tools\invokers\ellpack">
-      <UniqueIdentifier>{2cc0ddba-42a8-4391-a1ed-b688ca85bc8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\invokers\ellpack">
-      <UniqueIdentifier>{ef81f3ca-e656-493f-9cc5-5c6bdf145b33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,18 +31,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CSRInvoker.cpp">
-      <Filter>Source Files\tools\invokers\csr</Filter>
+      <Filter>Source Files\tools\invokers</Filter>
     </ClCompile>
     <ClCompile Include="ELLPACKInvoker.cpp">
-      <Filter>Source Files\tools\invokers\ellpack</Filter>
+      <Filter>Source Files\tools\invokers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSRInvoker.h">
-      <Filter>Header Files\tools\invokers\csr</Filter>
+      <Filter>Header Files\tools\invokers</Filter>
     </ClInclude>
     <ClInclude Include="ELLPACKInvoker.h">
-      <Filter>Header Files\tools\invokers\ellpack</Filter>
+      <Filter>Header Files\tools\invokers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

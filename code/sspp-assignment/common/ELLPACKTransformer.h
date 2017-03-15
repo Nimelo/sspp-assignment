@@ -1,28 +1,24 @@
-#ifndef __H_ELLPACK_TRANSFORMER
-#define __H_ELLPACK_TRANSFORMER
+#ifndef SSPP_COMMON_ELLPACKTRANSFORER_H_
+#define SSPP_COMMON_ELLPACKTRANSFORER_H_
 
 #include "IntermediarySparseMatrix.h"
 #include "ELLPACK.h"
 #include "Definitions.h"
 
-namespace tools
-{
-	namespace transformers
-	{
-		namespace ellpack
-		{
-			class ELLPACKTransformer
-			{
-			protected:
-				void preprocessISM(const representations::intermediary::IntermediarySparseMatrix & ism);
-				int * findAuxilliaryArray(const representations::intermediary::IntermediarySparseMatrix & ism);
-				void allocateArrays(int ***JA, FLOATING_TYPE ***AS, int M, int MAXNZ);
-				representations::ellpack::ELLPACK transformImpl(const representations::intermediary::IntermediarySparseMatrix & ism, int M, int MAXNZ, int **JA, FLOATING_TYPE **AS, int *auxArray);
-			public:
-				representations::ellpack::ELLPACK transform(const representations::intermediary::IntermediarySparseMatrix & ism);
-			};
-		}
-	}
+namespace sspp {
+  namespace tools {
+    namespace transformers {
+      class ELLPACKTransformer {
+      public:
+        representations::ELLPACK transform(const representations::IntermediarySparseMatrix & ism);
+      protected:
+        void preprocessISM(const representations::IntermediarySparseMatrix & ism);
+        int * findAuxilliaryArray(const representations::IntermediarySparseMatrix & ism);
+        void allocateArrays(int ***JA, FLOATING_TYPE ***AS, int M, int MAXNZ);
+        representations::ELLPACK transformImpl(const representations::IntermediarySparseMatrix & ism, int M, int MAXNZ, int **JA, FLOATING_TYPE **AS, int *auxArray);
+      };
+    }
+  }
 }
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef __H_DEFINITIONS
-#define __H_DEFINITIONS
+#ifndef SSPP_COMMON_DEFINITIONS_H_
+#define SSPP_COMMON_DEFINITIONS_H_
 
 typedef double FLOATING_TYPE;
 

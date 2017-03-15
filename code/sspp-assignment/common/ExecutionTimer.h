@@ -1,22 +1,18 @@
-#ifndef __H_EXECUTION_TIMER
-#define __H_EXECUTION_TIMER
+#ifndef SSPP_COMMON_EXECUTIONTIMER_H_
+#define SSPP_COMMON_EXECUTIONTIMER_H_
 
 #include <chrono>
 #include <functional>
 
-namespace tools
-{
-	namespace measurements
-	{
-		namespace timers
-		{
-			class ExecutionTimer
-			{
-			public:
-				std::chrono::milliseconds measure(std::function<void(void)> function);
-			};
-		}
-	}
+namespace sspp {
+  namespace tools {
+    namespace measurements {
+      class ExecutionTimer {
+      public:
+        std::chrono::milliseconds measure(std::function<void(void)> function);
+      };
+    }
+  }
 }
 
 #endif

@@ -25,36 +25,21 @@
     <Filter Include="Source Files\tools\solvers">
       <UniqueIdentifier>{ab33431f-f71b-4160-bc84-1f8159428619}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\tools\solvers\csr">
-      <UniqueIdentifier>{364fd131-d2d1-4355-b564-bfd8ff90c9d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\solvers\csr">
-      <UniqueIdentifier>{15ca0385-66ec-4a8c-91c8-63175f41b2ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tools\solvers\ellpack">
-      <UniqueIdentifier>{687024fe-e601-4053-96f3-6a2404095ac0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\solvers\ellpack">
-      <UniqueIdentifier>{7ed88a25-d7c5-4c7e-8b2c-2e46bc2e46c2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ELLPACKParallelSolver.cpp">
-      <Filter>Source Files\solvers\parallel\ellpack</Filter>
-    </ClCompile>
     <ClCompile Include="CSROpenMPSolver.cpp">
-      <Filter>Source Files\tools\solvers\csr</Filter>
+      <Filter>Source Files\tools\solvers</Filter>
     </ClCompile>
     <ClCompile Include="ELLPACKOpenMPSolver.cpp">
-      <Filter>Source Files\tools\solvers\ellpack</Filter>
+      <Filter>Source Files\tools\solvers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CSROpenMPSolver.h">
-      <Filter>Header Files\tools\solvers\csr</Filter>
-    </ClInclude>
     <ClInclude Include="ELLPACKOpenMPSolver.h">
-      <Filter>Header Files\tools\solvers\ellpack</Filter>
+      <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="CSROpenMPSolver.h">
+      <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

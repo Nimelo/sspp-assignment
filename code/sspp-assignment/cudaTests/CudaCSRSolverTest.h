@@ -3,17 +3,14 @@
 #include "ITest.h"
 #include "../cuda/CSRCudaSolver.h"
 
-class CudaCSRSolverTest : public ITest
-{
+class CudaCSRSolverTest : public ITest {
 protected:
-	tools::solvers::csr::CSRCudaSolver *csrParallelSolver;
-	virtual void SetUp()
-	{
-		csrParallelSolver = new tools::solvers::csr::CSRCudaSolver();
-	}
+  sspp::tools::solvers::CSRCudaSolver *csrParallelSolver;
+  virtual void SetUp() {
+    csrParallelSolver = new sspp::tools::solvers::CSRCudaSolver();
+  }
 
-	virtual void TearDown()
-	{
-		delete csrParallelSolver;
-	}
+  virtual void TearDown() {
+    delete csrParallelSolver;
+  }
 };

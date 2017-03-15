@@ -141,7 +141,6 @@
     <ClInclude Include="CSR.h" />
     <ClInclude Include="CSRSolver.h" />
     <ClInclude Include="CSRTransformer.h" />
-    <ClInclude Include="DebugTools.h" />
     <ClInclude Include="Definitions.h" />
     <ClInclude Include="ELLPACK.h" />
     <ClInclude Include="ELLPACKSolver.h" />
@@ -153,7 +152,6 @@
     <ClInclude Include="MatrixMarketReader.h" />
     <ClInclude Include="mmio.h" />
     <ClInclude Include="Output.h" />
-    <ClInclude Include="OutputRepresentationWriter.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="ReadMatrixException.h" />
     <ClInclude Include="Result.h" />
@@ -174,7 +172,6 @@
     <ClCompile Include="MatrixMarketReader.cpp" />
     <ClCompile Include="mmio.cpp" />
     <ClCompile Include="Output.cpp" />
-    <ClCompile Include="OutputRepresentationWriter.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SingleHeader.cpp" />
   </ItemGroup>

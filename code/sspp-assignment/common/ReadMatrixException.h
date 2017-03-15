@@ -1,14 +1,12 @@
-#ifndef __H_READ_MATRIX_EXCEPTION
-#define __H_READ_MATRIX_EXCEPTION
+#ifndef SSPP_COMMON_READMATRIXECEPTION_H_
+#define SSPP_COMMON_READMATRIXECEPTION_H_
 
-namespace io
-{
-	namespace exceptions
-	{
-		class ReadMatrixException
-		{
-		};
-	}
+namespace sspp {
+  namespace io {
+    namespace exceptions {
+      class ReadMatrixException {
+      };
+    }
+  }
 }
-
 #endif

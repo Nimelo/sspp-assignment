@@ -17,7 +17,7 @@ TEST_F(CSRParallelSolverTest, test)
 	FLOATING_TYPE correctAS[NZ] = { 11, 12, 22, 23, 33, 43, 44 };
 	for (int i = 0; i < NZ; i++)
 		AS[i] = correctAS[i];
-	representations::csr::CSR csr(NZ, M, N, IRP, JA, AS);
+  sspp::representations::CSR csr(NZ, M, N, IRP, JA, AS);
 
 	FLOATING_TYPE B[N] = { 1, 1, 1, 1 };
 	FLOATING_TYPE correctX[M] = { 23, 45, 33, 87 };

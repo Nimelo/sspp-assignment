@@ -1,28 +1,25 @@
-#ifndef __H_OUTPUT
-#define __H_OUTPUT
+#ifndef SSPP_COMMON_OUTPUT_H_
+#define SSPP_COMMON_OUTPUT_H_
 
 #include "Definitions.h"
 #include <ostream>
 
-namespace representations
-{
-	namespace output
-	{
-		class Output
-		{
-		public:
-			FLOATING_TYPE *Values;
-			int N;
-		public:
-			Output();
-			Output(int size, FLOATING_TYPE *values);
-			Output(const Output & other);
-			Output & operator=(Output rhs);
-			~Output();
+namespace sspp {
+  namespace representations {
+    class Output {
+    public:
+      FLOATING_TYPE *Values;
+      int N;
+    public:
+      Output();
+      Output(int size, FLOATING_TYPE *values);
+      Output(const Output & other);
+      Output & operator=(Output rhs);
+      ~Output();
 
-			friend std::ostream& operator <<(std::ostream& os, const Output& o);
-		};
-	}
+      friend std::ostream& operator <<(std::ostream& os, const Output& o);
+    };
+  }
 }
 
 #endif

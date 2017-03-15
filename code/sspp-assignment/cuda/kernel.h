@@ -2,6 +2,6 @@
 #define __H_KERNEL__1
 #include "../common/CSR.h"
 
-int wrapperForCUDACODE(representations::csr::CSR something);
+int wrapperForCUDACODE(sspp::representations::CSR something);
 
 #endif

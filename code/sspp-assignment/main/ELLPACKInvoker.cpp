@@ -8,76 +8,67 @@
 
 #include <fstream>
 
-representations::ellpack::ELLPACK tools::invokers::ellpack::ELLPACKInvoker::loadELLPACK()
-{
-	std::fstream is;
-	is.open(inputFile, std::fstream::in);
-	representations::ellpack::ELLPACK ellpack;
-	is >> ellpack;
-	is.close();
+sspp::representations::ELLPACK sspp::tools::invokers::ELLPACKInvoker::loadELLPACK() {
+  std::fstream is;
+  is.open(inputFile, std::fstream::in);
+  representations::ELLPACK ellpack;
+  is >> ellpack;
+  is.close();
 
-	return ellpack;
+  return ellpack;
 }
 
-FLOATING_TYPE * tools::invokers::ellpack::ELLPACKInvoker::createVectorB(int n)
-{
-	FLOATING_TYPE *b = new FLOATING_TYPE[n];
-	for (int i = 0; i < n; i++)
-		b[i] = 1;
+FLOATING_TYPE * sspp::tools::invokers::ELLPACKInvoker::createVectorB(int n) {
+  FLOATING_TYPE *b = new FLOATING_TYPE[n];
+  for(int i = 0; i < n; i++)
+    b[i] = 1;
 
-	return b;
+  return b;
 }
 
-void tools::invokers::ellpack::ELLPACKInvoker::saveResult(representations::result::Result & result)
-{
-	std::string outputFile = this->outputFile + DASH_ELLPACK + OUTPUT_EXTENSION;
-	std::fstream fs;
-	fs.open(outputFile, std::fstream::out | std::fstream::trunc);
-	fs << result;
-	fs.close();
+void sspp::tools::invokers::ELLPACKInvoker::saveResult(representations::result::Result & result) {
+  std::string outputFile = this->outputFile + DASH_ELLPACK + OUTPUT_EXTENSION;
+  std::fstream fs;
+  fs.open(outputFile, std::fstream::out | std::fstream::trunc);
+  fs << result;
+  fs.close();
 }
 
-tools::invokers::ellpack::ELLPACKInvoker::ELLPACKInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial)
-	: inputFile(inputFile), outputFile(outputFile), iterationsParallel(iterationsParallel), iterationsSerial(iterationsSerial)
-{
+sspp::tools::invokers::ELLPACKInvoker::ELLPACKInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial)
+  : inputFile(inputFile), outputFile(outputFile), iterationsParallel(iterationsParallel), iterationsSerial(iterationsSerial) {
 }
 
-void tools::invokers::ellpack::ELLPACKInvoker::invoke(solvers::ellpack::AbstractELLPACKSolver & parallelSolver)
-{
-	representations::ellpack::ELLPACK ellpack = loadELLPACK();
-	FLOATING_TYPE *b = createVectorB(ellpack.N);
+void sspp::tools::invokers::ELLPACKInvoker::invoke(solvers::AbstractELLPACKSolver & parallelSolver) {
+  representations::ELLPACK ellpack = loadELLPACK();
+  FLOATING_TYPE *b = createVectorB(ellpack.N);
 
-	representations::result::Result result;
-	tools::solvers::ellpack::ELLPACKSolver solver;
+  representations::result::Result result;
+  tools::solvers::ELLPACKSolver solver;
 
-	representations::output::Output output;
-	auto timer = tools::measurements::timers::ExecutionTimer();
+  representations::Output output;
+  auto timer = tools::measurements::ExecutionTimer();
 
-	std::function<void()> solveCSRSerialRoutine = [&output, &solver, &ellpack, &b]()
-	{
-		output = solver.solve(ellpack, b);
-	};
+  std::function<void()> solveCSRSerialRoutine = [&output, &solver, &ellpack, &b]() {
+    output = solver.solve(ellpack, b);
+  };
 
-	std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &ellpack, &b]()
-	{
-		output = parallelSolver.solve(ellpack, b);
-	};
+  std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &ellpack, &b]() {
+    output = parallelSolver.solve(ellpack, b);
+  };
 
-	for (int i = 0; i < iterationsSerial; i++)
-	{
-		auto executionTime = timer.measure(solveCSRSerialRoutine);
-		result.serialResult.executionTimes.push_back(executionTime.count());
-	}
+  for(int i = 0; i < iterationsSerial; i++) {
+    auto executionTime = timer.measure(solveCSRSerialRoutine);
+    result.serialResult.executionTimes.push_back(executionTime.count());
+  }
 
-	for (int i = 0; i < iterationsParallel; i++)
-	{
-		auto executionTime = timer.measure(solveCSRparallelRoutine);
-		result.parallelResult.executionTimes.push_back(executionTime.count());
-	}
+  for(int i = 0; i < iterationsParallel; i++) {
+    auto executionTime = timer.measure(solveCSRparallelRoutine);
+    result.parallelResult.executionTimes.push_back(executionTime.count());
+  }
 
-	result.parallelResult.output = output;
+  result.parallelResult.output = output;
 
-	saveResult(result);
+  saveResult(result);
 
-	delete[] b;
+  delete[] b;
 }

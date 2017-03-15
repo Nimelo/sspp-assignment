@@ -19,39 +19,27 @@
     <Filter Include="Source Files\tools\solvers">
       <UniqueIdentifier>{144d3635-c886-46f3-9c5d-99f4f338fe6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\tools\solvers\csr">
-      <UniqueIdentifier>{ade5254e-bfc4-4740-a4e8-c53b1a93e947}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tools\solvers\ellpack">
-      <UniqueIdentifier>{1b0fc5a8-6203-4c78-b43c-ff31f95475c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\solvers\csr">
-      <UniqueIdentifier>{94849927-92d7-460c-851d-3134fd5871f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\solvers\ellpack">
-      <UniqueIdentifier>{0977c616-b168-4dbf-8736-b6f583fba681}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="kernel.cu">
       <Filter>Source Files</Filter>
     </CudaCompile>
-    <CudaCompile Include="ELLPACKCudaSolver.cu">
-      <Filter>Source Files\tools\solvers\ellpack</Filter>
-    </CudaCompile>
     <CudaCompile Include="CSRCudaSolver.cu">
-      <Filter>Source Files\tools\solvers\csr</Filter>
+      <Filter>Source Files\tools\solvers</Filter>
+    </CudaCompile>
+    <CudaCompile Include="ELLPACKCudaSolver.cu">
+      <Filter>Source Files\tools\solvers</Filter>
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CSRCudaSolver.h">
-      <Filter>Header Files\tools\solvers\csr</Filter>
-    </ClInclude>
-    <ClInclude Include="ELLPACKCudaSolver.h">
-      <Filter>Header Files\tools\solvers\ellpack</Filter>
-    </ClInclude>
     <ClInclude Include="kernel.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRCudaSolver.h">
+      <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKCudaSolver.h">
+      <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
