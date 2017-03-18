@@ -3,6 +3,7 @@
 
 #include "IntermediarySparseMatrix.h"
 #include <string>
+#include <istream>
 
 namespace sspp {
   namespace io {
@@ -10,6 +11,7 @@ namespace sspp {
       class MatrixMarketReader {
       public:
         representations::IntermediarySparseMatrix FromFile(std::string file_name);
+        representations::IntermediarySparseMatrix FromStream(std::istream & is);
       };
     }
   }

@@ -149,8 +149,10 @@
     <ClInclude Include="FLOPSCalculator.h" />
     <ClInclude Include="InPlaceStableSorter.h" />
     <ClInclude Include="IntermediarySparseMatrix.h" />
+    <ClInclude Include="MatrixMarket.h" />
+    <ClInclude Include="MatrixMarketEnums.h" />
     <ClInclude Include="MatrixMarketReader.h" />
-    <ClInclude Include="mmio.h" />
+    <ClInclude Include="MatrixMarketHeader.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="ReadMatrixException.h" />
@@ -169,8 +171,9 @@
     <ClCompile Include="FLOPSCalculator.cpp" />
     <ClCompile Include="InPlaceStableSorter.cpp" />
     <ClCompile Include="IntermediarySparseMatrix.cpp" />
+    <ClCompile Include="MatrixMarket.cpp" />
+    <ClCompile Include="MatrixMarketHeader.cpp" />
     <ClCompile Include="MatrixMarketReader.cpp" />
-    <ClCompile Include="mmio.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SingleHeader.cpp" />

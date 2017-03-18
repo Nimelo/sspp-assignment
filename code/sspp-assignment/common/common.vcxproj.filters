@@ -49,9 +49,6 @@
     <Filter Include="Source Files\tools\solvers">
       <UniqueIdentifier>{4e94caa8-bde8-496d-9b37-acdc39452b2c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\io\readers">
-      <UniqueIdentifier>{83391a47-a223-48bf-95c9-1374b8a71866}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\io\readers">
       <UniqueIdentifier>{810f6ea3-32f5-43e3-a204-673845a1fddc}</UniqueIdentifier>
     </Filter>
@@ -67,23 +64,29 @@
     <Filter Include="Source Files\representations\result">
       <UniqueIdentifier>{29b72ea2-71e3-4e78-8242-221e64df4012}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\io\readers\commandline">
-      <UniqueIdentifier>{3d6ff18f-8667-4a9d-a55e-b4e8c2057e02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\representations\results">
       <UniqueIdentifier>{f4d3e89a-a386-4422-88e1-4cad7f58ce84}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\io\readers\commandline">
       <UniqueIdentifier>{6eda3942-66af-493c-ab12-2e05d62f8050}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\io\readers">
+      <UniqueIdentifier>{83391a47-a223-48bf-95c9-1374b8a71866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\readers\commandline">
+      <UniqueIdentifier>{3d6ff18f-8667-4a9d-a55e-b4e8c2057e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\mmio">
+      <UniqueIdentifier>{075a2adf-4805-49f6-b51a-e09687576e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io\mmio">
+      <UniqueIdentifier>{93b488c3-8b69-4ed1-b018-5ec2260eaa5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mmio.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
     <ClInclude Include="MatrixMarketReader.h">
       <Filter>Header Files\io\readers</Filter>
     </ClInclude>
@@ -156,13 +159,19 @@
     <ClInclude Include="ELLPACKTransformer.h">
       <Filter>Header Files\tools\transformers</Filter>
     </ClInclude>
+    <ClInclude Include="MatrixMarketHeader.h">
+      <Filter>Header Files\io\mmio</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarketEnums.h">
+      <Filter>Header Files\io\mmio</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarket.h">
+      <Filter>Header Files\io\mmio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MatrixMarketReader.cpp">
       <Filter>Source Files\io\readers</Filter>
-    </ClCompile>
-    <ClCompile Include="mmio.cpp">
-      <Filter>Source Files\io</Filter>
     </ClCompile>
     <ClCompile Include="InPlaceStableSorter.cpp">
       <Filter>Source Files\tools\sorters</Filter>
@@ -205,6 +214,12 @@
     </ClCompile>
     <ClCompile Include="ELLPACKTransformer.cpp">
       <Filter>Source Files\tools\transformers</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixMarketHeader.cpp">
+      <Filter>Source Files\io\mmio</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixMarket.cpp">
+      <Filter>Source Files\io\mmio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

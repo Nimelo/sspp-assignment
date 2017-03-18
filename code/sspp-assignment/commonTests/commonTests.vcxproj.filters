@@ -37,6 +37,9 @@
     <Filter Include="Header Files\testing\io\commandline">
       <UniqueIdentifier>{874f89a7-f081-46f5-a596-99ebb158427d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\testing\io\mm">
+      <UniqueIdentifier>{973faeb8-9827-4e86-96e4-50a87a80cfe6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -47,9 +50,6 @@
     </ClCompile>
     <ClCompile Include="CommandLineTests.cpp">
       <Filter>Header Files\testing\io\commandline</Filter>
-    </ClCompile>
-    <ClCompile Include="MatrixMarketReaderTests.cpp">
-      <Filter>Header Files\testing\io</Filter>
     </ClCompile>
     <ClCompile Include="CSRSolverTests.cpp">
       <Filter>Header Files\testing\tools\solvers</Filter>
@@ -63,6 +63,12 @@
     <ClCompile Include="ELLPACKTransformerTests.cpp">
       <Filter>Header Files\testing\tools\transformers</Filter>
     </ClCompile>
+    <ClCompile Include="MatrixMarketHeaderTests.cpp">
+      <Filter>Header Files\testing\io\mm</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixMarketTests.cpp">
+      <Filter>Header Files\testing\io\mm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -73,9 +79,6 @@
     </ClInclude>
     <ClInclude Include="CommandlineTest.h">
       <Filter>Header Files\testing\io\commandline</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixMarketReaderTest.h">
-      <Filter>Header Files\testing\io</Filter>
     </ClInclude>
     <ClInclude Include="CSRSolverTest.h">
       <Filter>Header Files\testing\tools\solvers</Filter>
@@ -88,6 +91,12 @@
     </ClInclude>
     <ClInclude Include="ELLPACKTransformerTest.h">
       <Filter>Header Files\testing\tools\transformers</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarketHeaderTest.h">
+      <Filter>Header Files\testing\io\mm</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarketTest.h">
+      <Filter>Header Files\testing\io\mm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
