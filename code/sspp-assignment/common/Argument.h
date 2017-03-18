@@ -9,10 +9,10 @@ namespace sspp {
     namespace readers {
       namespace commandline {
         struct Argument {
-          std::string Name;
-          ArgumentType Type;
+          std::string name;
+          ArgumentType type;
           Argument(std::string name, ArgumentType type)
-            : Name(name), Type(type) {
+            : name(name), type(type) {
           }
         };
       }

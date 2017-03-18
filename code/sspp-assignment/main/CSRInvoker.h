@@ -18,7 +18,7 @@ namespace sspp {
         int iterationsSerial;
 
         representations::CSR loadCSR();
-        FLOATING_TYPE *createVectorB(int n);
+        std::vector<FLOATING_TYPE> createVectorB(int n);
         void saveResult(representations::result::Result & result);
       public:
         CSRInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial);

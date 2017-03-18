@@ -16,7 +16,7 @@ namespace sspp {
         CSROpenMPSolver(int threads);
         CSROpenMPSolver() = default;
         void setThreads(int threads);
-        sspp::representations::Output solve(sspp::representations::CSR & csr, FLOATING_TYPE* b) override;
+        sspp::representations::Output Solve(sspp::representations::CSR & csr, std::vector<FLOATING_TYPE> & b) override;
       };
     }
   }

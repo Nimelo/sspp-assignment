@@ -2,6 +2,7 @@
 #define SSPP_COMMON_DEFINITIONS_H_
 
 typedef double FLOATING_TYPE;
+typedef long INDEXING_TYPE;
 
 #define LINE_SEPARATOR '\n'
 #define SPACE ' '

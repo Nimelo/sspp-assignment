@@ -18,8 +18,8 @@ sspp::representations::ELLPACK sspp::tools::invokers::ELLPACKInvoker::loadELLPAC
   return ellpack;
 }
 
-FLOATING_TYPE * sspp::tools::invokers::ELLPACKInvoker::createVectorB(int n) {
-  FLOATING_TYPE *b = new FLOATING_TYPE[n];
+std::vector<FLOATING_TYPE> sspp::tools::invokers::ELLPACKInvoker::createVectorB(int n) {
+  std::vector<FLOATING_TYPE> b(n);
   for(int i = 0; i < n; i++)
     b[i] = 1;
 
@@ -40,7 +40,7 @@ sspp::tools::invokers::ELLPACKInvoker::ELLPACKInvoker(std::string inputFile, std
 
 void sspp::tools::invokers::ELLPACKInvoker::invoke(solvers::AbstractELLPACKSolver & parallelSolver) {
   representations::ELLPACK ellpack = loadELLPACK();
-  FLOATING_TYPE *b = createVectorB(ellpack.N);
+  std::vector<FLOATING_TYPE> b = createVectorB(ellpack.GetColumns());
 
   representations::result::Result result;
   tools::solvers::ELLPACKSolver solver;
@@ -49,26 +49,24 @@ void sspp::tools::invokers::ELLPACKInvoker::invoke(solvers::AbstractELLPACKSolve
   auto timer = tools::measurements::ExecutionTimer();
 
   std::function<void()> solveCSRSerialRoutine = [&output, &solver, &ellpack, &b]() {
-    output = solver.solve(ellpack, b);
+    output = solver.Solve(ellpack, b);
   };
 
   std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &ellpack, &b]() {
-    output = parallelSolver.solve(ellpack, b);
+    output = parallelSolver.Solve(ellpack, b);
   };
 
   for(int i = 0; i < iterationsSerial; i++) {
     auto executionTime = timer.measure(solveCSRSerialRoutine);
-    result.serialResult.executionTimes.push_back(executionTime.count());
+    result.GetSerial().GetExecutionTimes().push_back(executionTime.count());
   }
 
   for(int i = 0; i < iterationsParallel; i++) {
     auto executionTime = timer.measure(solveCSRparallelRoutine);
-    result.parallelResult.executionTimes.push_back(executionTime.count());
+    result.GetParallel().GetExecutionTimes().push_back(executionTime.count());
   }
 
-  result.parallelResult.output = output;
+  result.GetParallel().GetOutput() = output;
 
   saveResult(result);
-
-  delete[] b;
 }

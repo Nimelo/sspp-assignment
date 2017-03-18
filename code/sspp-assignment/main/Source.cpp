@@ -38,35 +38,35 @@ int main(int argc, const char** argv) {
   };
 
   CommandLineParameterReader reader(arguments);
-  reader.load(argc, argv);
+  reader.Load(argc, argv);
 
-  if(reader.hasArgument(ARG_IN_FILE)
-     && reader.hasArgument(ARG_OUT_FILE)
-     && reader.hasArgument(ARG_THREADS)
-     && reader.hasArgument(ARG_ITERATIONS_PARALLEL)
-     && reader.hasArgument(ARG_ITERATIONS_SERIAL)
-     && ((reader.hasArgument(FLAG_CSR) && !reader.hasArgument(FLAG_ELLPACK))
-         || !reader.hasArgument(FLAG_CSR) && reader.hasArgument(FLAG_ELLPACK))
-     && ((reader.hasArgument(FLAG_OPENMP) && !reader.hasArgument(FLAG_CUDA))
-         || !reader.hasArgument(FLAG_OPENMP) && reader.hasArgument(FLAG_CUDA))) {
-    std::string inputFile = reader.get(ARG_IN_FILE);
-    std::string outputFile = reader.get(ARG_OUT_FILE);
-    int threads = reader.get(ARG_THREADS);
-    int iterationsParallel = reader.get(ARG_ITERATIONS_PARALLEL);
-    int iterationsSerial = reader.get(ARG_ITERATIONS_SERIAL);
+  if(reader.HasArgument(ARG_IN_FILE)
+     && reader.HasArgument(ARG_OUT_FILE)
+     && reader.HasArgument(ARG_THREADS)
+     && reader.HasArgument(ARG_ITERATIONS_PARALLEL)
+     && reader.HasArgument(ARG_ITERATIONS_SERIAL)
+     && ((reader.HasArgument(FLAG_CSR) && !reader.HasArgument(FLAG_ELLPACK))
+         || !reader.HasArgument(FLAG_CSR) && reader.HasArgument(FLAG_ELLPACK))
+     && ((reader.HasArgument(FLAG_OPENMP) && !reader.HasArgument(FLAG_CUDA))
+         || !reader.HasArgument(FLAG_OPENMP) && reader.HasArgument(FLAG_CUDA))) {
+    std::string inputFile = reader.GetParameter(ARG_IN_FILE);
+    std::string outputFile = reader.GetParameter(ARG_OUT_FILE);
+    int threads = reader.GetParameter(ARG_THREADS);
+    int iterationsParallel = reader.GetParameter(ARG_ITERATIONS_PARALLEL);
+    int iterationsSerial = reader.GetParameter(ARG_ITERATIONS_SERIAL);
 
     using namespace sspp::tools::solvers;
     //TODO: Add support for cuda code.
-    if(reader.hasArgument(FLAG_CSR)) {
+    if(reader.HasArgument(FLAG_CSR)) {
       sspp::tools::invokers::CSRInvoker csrInvoker(inputFile, outputFile, iterationsParallel, iterationsSerial);
-      if(reader.hasArgument(FLAG_CUDA)) {
+      if(reader.HasArgument(FLAG_CUDA)) {
         csrInvoker.invoke(CSRCudaSolver());
       } else {
         csrInvoker.invoke(CSROpenMPSolver(threads));
       }
     } else {
       sspp::tools::invokers::ELLPACKInvoker ellpackInvoker(inputFile, outputFile, iterationsParallel, iterationsSerial);
-      if(reader.hasArgument(FLAG_CUDA)) {
+      if(reader.HasArgument(FLAG_CUDA)) {
         ellpackInvoker.invoke(ELLPACKCudaSolver());
       } else {
         ellpackInvoker.invoke(ELLPACKOpenMPSolver(threads));

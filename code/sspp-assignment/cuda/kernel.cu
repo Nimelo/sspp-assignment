@@ -61,7 +61,7 @@ cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size) {
     goto Error;
   }
 
-  // Allocate GPU buffers for three vectors (two input, one output)    .
+  // Allocate GPU buffers for three vectors (two input, one output_)    .
   cudaStatus = cudaMalloc((void**)&dev_c, size * sizeof(int));
   if(cudaStatus != cudaSuccess) {
     fprintf(stderr, "cudaMalloc failed!");
@@ -111,7 +111,7 @@ cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size) {
     goto Error;
   }
 
-  // Copy output vector from GPU buffer to host memory.
+  // Copy output_ vector from GPU buffer to host memory.
   cudaStatus = cudaMemcpy(c, dev_c, size * sizeof(int), cudaMemcpyDeviceToHost);
   if(cudaStatus != cudaSuccess) {
     fprintf(stderr, "cudaMemcpy failed!");

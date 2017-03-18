@@ -2,25 +2,27 @@
 #include "Definitions.h"
 #include "InPlaceStableSorter.h"
 
-sspp::representations::CSR sspp::tools::transformers::CSRTransformer::transform(representations::IntermediarySparseMatrix & ism) {
+sspp::representations::CSR sspp::tools::transformers::CSRTransformer::Transform(representations::IntermediarySparseMatrix & ism) {
   tools::sorters::InPlaceStableSorter sorter;
-  sorter.sort(ism.IIndexes, ism.JIndexes, ism.Values, ism.NZ);
+  sorter.Sort(&ism.GetRowIndexes()[0], &ism.GetColumnIndexes()[0], &ism.GetValues()[0], ism.GetNonZeros());
 
-  FLOATING_TYPE *AS = new FLOATING_TYPE[ism.NZ];
-  int index = 0, *IRP = new int[ism.M + 1], *JA = new int[ism.NZ];
+  std::vector<FLOATING_TYPE> as(ism.GetNonZeros());
+  INDEXING_TYPE index = 0;
+  std::vector<INDEXING_TYPE> irp(ism.GetRows() + 1),
+    ja(ism.GetNonZeros());
 
-  AS[0] = ism.Values[0];
-  JA[0] = ism.JIndexes[0];
-  IRP[0] = 0;
+  as[0] = ism.GetValues()[0];
+  ja[0] = ism.GetColumnIndexes()[0];
+  irp[0] = 0;
 
-  for(auto i = 1; i < ism.NZ; i++) {
-    AS[i] = ism.Values[i];
-    JA[i] = ism.JIndexes[i];
-    if(ism.IIndexes[i - 1] != ism.IIndexes[i])
-      IRP[++index] = i;
+  for(auto i = 1; i < ism.GetNonZeros(); i++) {
+    as[i] = ism.GetValues()[i];
+    ja[i] = ism.GetColumnIndexes()[i];
+    if(ism.GetRowIndexes()[i - 1] != ism.GetRowIndexes()[i])
+      irp[++index] = i;
   }
 
-  IRP[++index] = ism.NZ;
+  irp[++index] = ism.GetNonZeros();
 
-  return representations::CSR(ism.NZ, ism.M, ism.N, IRP, JA, AS);
+  return representations::CSR(ism.GetNonZeros(), ism.GetRows(), ism.GetColumns(), irp, ja, as);
 }

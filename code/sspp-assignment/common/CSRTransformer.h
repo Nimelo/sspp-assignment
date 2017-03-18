@@ -9,7 +9,7 @@ namespace sspp {
     namespace transformers {
       class CSRTransformer {
       public:
-        representations::CSR transform(representations::IntermediarySparseMatrix & ism);
+        representations::CSR Transform(representations::IntermediarySparseMatrix & ism);
       };
     }
   }

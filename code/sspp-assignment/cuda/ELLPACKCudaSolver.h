@@ -11,7 +11,7 @@ namespace sspp {
     namespace solvers {
       class ELLPACKCudaSolver :public sspp::tools::solvers::AbstractELLPACKSolver {
       public:
-        sspp::representations::Output solve(sspp::representations::ELLPACK &ellpack, FLOATING_TYPE *b) override;
+        sspp::representations::Output Solve(sspp::representations::ELLPACK &ellpack, std::vector<FLOATING_TYPE> & b) override;
       };
     }
   }

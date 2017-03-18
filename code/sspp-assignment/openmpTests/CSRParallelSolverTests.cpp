@@ -2,30 +2,18 @@
 #include <gtest\gtest.h>
 #include "../openmp/CSROpenMPSolver.h"
 
-TEST_F(CSRParallelSolverTest, test)
-{
-	const int M = 4, N = 4, NZ = 7, THREADS = 2;
-	int *IRP = new int[NZ], *JA = new int[NZ];
-	FLOATING_TYPE *AS = new FLOATING_TYPE[NZ];
-
-	int correctIRP[5] = { 0, 2, 4, 5, 7 };
-	for (int i = 0; i < 5; i++)
-		IRP[i] = correctIRP[i];
-	int correctJA[NZ] = { 0, 1, 1, 2, 2, 2, 3 };
-	for (int i = 0; i < NZ; i++)
-		JA[i] = correctJA[i];
-	FLOATING_TYPE correctAS[NZ] = { 11, 12, 22, 23, 33, 43, 44 };
-	for (int i = 0; i < NZ; i++)
-		AS[i] = correctAS[i];
+TEST_F(CSRParallelSolverTest, test) {
+  const INDEXING_TYPE M = 4, N = 4, NZ = 7, THREADS = 2;
+  std::vector<INDEXING_TYPE> IRP = { 0, 2, 4, 5, 7 },
+    JA = { 0, 1, 1, 2, 2, 2, 3 };
+  std::vector<FLOATING_TYPE> AS = { 11, 12, 22, 23, 33, 43, 44 };
   sspp::representations::CSR csr(NZ, M, N, IRP, JA, AS);
+  std::vector<FLOATING_TYPE> B = { 1, 1, 1, 1 };
+  std::vector<FLOATING_TYPE> correctX = { 23, 45, 33, 87 };
 
-	FLOATING_TYPE B[N] = { 1, 1, 1, 1 };
-	FLOATING_TYPE correctX[M] = { 23, 45, 33, 87 };
+  csrParallelSolver->setThreads(THREADS);
+  auto output = csrParallelSolver->Solve(csr, B);
 
-	csrParallelSolver->setThreads(THREADS);
-	auto output = csrParallelSolver->solve(csr, B);
-
-	ASSERT_EQ(M, output.N) << "Size of output is incorrect";
-
-	assertArrays(correctX, output.Values, M, "X -> Incorrect value at: ");
+  ASSERT_EQ(M, output.GetValues().size()) << "Size of output_ is incorrect";
+  assertArrays(&correctX[0], &output.GetValues()[0], M, "X -> Incorrect value at: ");
 }

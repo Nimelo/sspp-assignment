@@ -12,15 +12,16 @@ namespace sspp {
         class CommandLineParameterReader {
         public:
           CommandLineParameterReader(std::vector<Argument> arguments);
-          bool hasArgument(std::string key) const;
-          Parameter get(std::string key);
-          void load(const int argc, const char ** argv);
+          bool HasArgument(std::string key) const;
+          Parameter GetParameter(std::string key) const;
+          void Load(const int argc, const char ** argv);
         protected:
-          std::vector<Argument> arguments;
-          std::vector<Parameter> parameters;
-          void extractSingle(int argc, const char **argv, int index, std::vector<int> & used_indexes, std::string key);
-          void extractMultiple(int argc, const char **argv, int index, std::vector<int> & used_indexes, std::string key);
-          bool hasValue(int index, std::vector<int> & values);
+          void ExtractSingle(int argc, const char **argv, int index, std::vector<int> & used_indexes, std::string key);
+          void ExtractMultiple(int argc, const char **argv, int index, std::vector<int> & used_indexes, std::string key);
+          bool HasValue(int index, std::vector<int> & values);
+
+          std::vector<Argument> arguments_;
+          std::vector<Parameter> parameters_;
         };
       }
     }

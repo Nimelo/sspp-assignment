@@ -4,14 +4,16 @@
 #include "CSR.h"
 #include "Output.h"
 #include "Definitions.h"
+#include <vector>
 
 namespace sspp {
   namespace tools {
     namespace solvers {
       class AbstractCSRSolver {
       public:
+        AbstractCSRSolver() = default;
         virtual ~AbstractCSRSolver() = default;
-        virtual representations::Output solve(representations::CSR &csr, FLOATING_TYPE *b) = 0;
+        virtual representations::Output Solve(representations::CSR &csr, std::vector<FLOATING_TYPE> &b) = 0;
       };
 
     }

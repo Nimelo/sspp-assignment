@@ -1,120 +1,92 @@
 #include "ELLPACK.h"
 
-void sspp::representations::ELLPACK::rewrite(ELLPACK & lhs, const ELLPACK & rhs) {
-  lhs.M = rhs.M;
-  lhs.N = rhs.N;
-  lhs.NZ = rhs.NZ;
-  lhs.MAXNZ = rhs.MAXNZ;
-
-  lhs.AS = new FLOATING_TYPE*[rhs.M];
-  for(auto i = 0; i < rhs.M; i++) {
-    lhs.AS[i] = new FLOATING_TYPE[rhs.MAXNZ];
-    for(auto j = 0; j < rhs.MAXNZ; j++)
-      lhs.AS[i][j] = rhs.AS[i][j];
-  }
-
-  lhs.JA = new int*[rhs.M];
-  for(auto i = 0; i < rhs.M; i++) {
-    lhs.JA[i] = new int[rhs.MAXNZ];
-    for(auto j = 0; j < rhs.MAXNZ; j++)
-      lhs.JA[i][j] = rhs.JA[i][j];
-  }
+void sspp::representations::ELLPACK::Rewrite(ELLPACK & lhs, const ELLPACK & rhs) {
+  lhs.rows_ = rhs.rows_;
+  lhs.columns_ = rhs.columns_;
+  lhs.non_zeros_ = rhs.non_zeros_;
+  lhs.max_row_non_zeros_ = rhs.max_row_non_zeros_;
+  lhs.as_ = std::vector<FLOATING_TYPE>(rhs.as_);
+  lhs.ja_ = std::vector<INDEXING_TYPE>(rhs.ja_);
 }
 
-sspp::representations::ELLPACK::ELLPACK()
-  : M(0), N(0), NZ(0), MAXNZ(0), JA(0), AS(0) {
-
-}
-
-sspp::representations::ELLPACK::ELLPACK(int M, int N, int NZ, int MAXNZ, int ** JA, FLOATING_TYPE ** AS)
-  : M(M), N(N), NZ(NZ), MAXNZ(MAXNZ), JA(JA), AS(AS) {
+sspp::representations::ELLPACK::ELLPACK(const INDEXING_TYPE rows, const INDEXING_TYPE columns, const INDEXING_TYPE non_zeros,
+                                        const INDEXING_TYPE max_row_non_zeros, const std::vector<INDEXING_TYPE>& ja,
+                                        const std::vector<FLOATING_TYPE>& as)
+  :rows_{ rows }, columns_{ columns }, non_zeros_{ non_zeros }, max_row_non_zeros_{ max_row_non_zeros }, ja_{ ja }, as_{ as } {
 }
 
 sspp::representations::ELLPACK::ELLPACK(const ELLPACK & other) {
-  rewrite(*this, other);
+  Rewrite(*this, other);
 }
 
-sspp::representations::ELLPACK & sspp::representations::ELLPACK::operator=(representations::ELLPACK rhs) {
-  rewrite(*this, rhs);
+sspp::representations::ELLPACK& sspp::representations::ELLPACK::operator=(const ELLPACK& rhs) {
+  Rewrite(*this, rhs);
   return *this;
 }
 
-sspp::representations::ELLPACK::~ELLPACK() {
-  for(auto i = 0; i < M; i++)
-    delete[] JA[i];
-  delete[] JA;
+INDEXING_TYPE sspp::representations::ELLPACK::CalculateIndex(INDEXING_TYPE row, INDEXING_TYPE column) const {
+  return row * max_row_non_zeros_ + column;
+}
 
-  for(auto i = 0; i < M; i++)
-    delete[] AS[i];
-  delete[] AS;
+INDEXING_TYPE sspp::representations::ELLPACK::GetRows() const {
+  return rows_;
+}
+
+INDEXING_TYPE sspp::representations::ELLPACK::GetColumns() const {
+  return columns_;
+}
+
+INDEXING_TYPE sspp::representations::ELLPACK::GetNonZeros() const {
+  return non_zeros_;
+}
+
+INDEXING_TYPE sspp::representations::ELLPACK::GetMaxRowNonZeros() const {
+  return max_row_non_zeros_;
+}
+
+std::vector<INDEXING_TYPE> sspp::representations::ELLPACK::GetJA() const {
+  return ja_;
+}
+
+std::vector<FLOATING_TYPE> sspp::representations::ELLPACK::GetAS() const {
+  return as_;
 }
 
 std::ostream & sspp::representations::operator<<(std::ostream & os, const ELLPACK & ellpack) {
-  os << ellpack.M << LINE_SEPARATOR;
-  os << ellpack.N << LINE_SEPARATOR;
-  os << ellpack.NZ << LINE_SEPARATOR;
-  os << ellpack.MAXNZ << LINE_SEPARATOR;
+  os << ellpack.rows_ << LINE_SEPARATOR;
+  os << ellpack.columns_ << LINE_SEPARATOR;
+  os << ellpack.non_zeros_ << LINE_SEPARATOR;
+  os << ellpack.max_row_non_zeros_ << LINE_SEPARATOR;
 
-  for(auto i = 0; i < ellpack.M; i++) {
-    for(auto j = 0; j < ellpack.MAXNZ - 1; j++) {
-      os << ellpack.JA[i][j] << SPACE;
-    }
-    os << ellpack.JA[i][ellpack.MAXNZ - 1] << LINE_SEPARATOR;
+  for(auto i = 0; i < ellpack.ja_.size() - 1; i++) {
+    os << ellpack.ja_[i] << SPACE;
   }
+  os << ellpack.ja_[ellpack.ja_.size() - 1] << LINE_SEPARATOR;
 
-  for(auto i = 0; i < ellpack.M; i++) {
-    for(auto j = 0; j < ellpack.MAXNZ - 1; j++) {
-      os << ellpack.AS[i][j] << SPACE;
-    }
-    os << ellpack.AS[i][ellpack.MAXNZ - 1] << LINE_SEPARATOR;
+  for(auto i = 0; i < ellpack.as_.size() - 1; i++) {
+    os << ellpack.as_[i] << SPACE;
   }
+  os << ellpack.as_[ellpack.as_.size() - 1] << LINE_SEPARATOR;
 
   return os;
 }
 
 std::istream & sspp::representations::operator >> (std::istream & is, ELLPACK & ellpack) {
-  int **JA;
-  FLOATING_TYPE **AS;
+  is >> ellpack.rows_;
+  is >> ellpack.columns_;
+  is >> ellpack.non_zeros_;
+  is >> ellpack.max_row_non_zeros_;
 
-  is >> ellpack.M;
-  is >> ellpack.N;
-  is >> ellpack.NZ;
-  is >> ellpack.MAXNZ;
+  ellpack.ja_.resize(ellpack.rows_ * ellpack.max_row_non_zeros_);
+  ellpack.as_.resize(ellpack.rows_ * ellpack.max_row_non_zeros_);
 
-  JA = new int*[ellpack.M];
-  for(auto i = 0; i < ellpack.M; i++)
-    JA[i] = new int[ellpack.MAXNZ];
-
-  AS = new FLOATING_TYPE*[ellpack.M];
-  for(auto i = 0; i < ellpack.M; i++)
-    AS[i] = new FLOATING_TYPE[ellpack.MAXNZ];
-
-  for(auto i = 0; i < ellpack.M; i++) {
-    for(auto j = 0; j < ellpack.MAXNZ; j++) {
-      is >> JA[i][j];
-    }
+  for(auto &value : ellpack.ja_) {
+    is >> value;
   }
 
-  for(auto i = 0; i < ellpack.M; i++) {
-    for(auto j = 0; j < ellpack.MAXNZ; j++) {
-      is >> AS[i][j];
-    }
+  for(auto &value : ellpack.as_) {
+    is >> value;
   }
-
-  if(ellpack.JA != 0) {
-    for(auto i = 0; i < ellpack.M; i++)
-      delete[] ellpack.JA[i];
-    delete[] ellpack.JA;
-  }
-
-  if(ellpack.AS != 0) {
-    for(auto i = 0; i < ellpack.M; i++)
-      delete[] ellpack.AS[i];
-    delete[] ellpack.AS;
-  }
-
-  ellpack.JA = JA;
-  ellpack.AS = AS;
 
   return is;
 }

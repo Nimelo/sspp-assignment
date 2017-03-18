@@ -25,27 +25,27 @@ int main(int argc, const char** argv) {
   };
 
   sspp::io::readers::commandline::CommandLineParameterReader reader(arguments);
-  reader.load(argc, argv);
+  reader.Load(argc, argv);
 
-  if(reader.hasArgument(ARG_IN_FILE) && reader.hasArgument(ARG_OUT_FILE)
-     && (reader.hasArgument(FLAG_CSR) || reader.hasArgument(FLAG_ELLPACK))) {
+  if(reader.HasArgument(ARG_IN_FILE) && reader.HasArgument(ARG_OUT_FILE)
+     && (reader.HasArgument(FLAG_CSR) || reader.HasArgument(FLAG_ELLPACK))) {
     sspp::io::readers::MatrixMarketReader mmr;
-    std::string inputFile = reader.get(ARG_IN_FILE);
-    auto ism = mmr.fromFile(inputFile.c_str());
+    std::string inputFile = reader.GetParameter(ARG_IN_FILE);
+    auto ism = mmr.FromFile(inputFile.c_str());
     std::fstream fs;
-    std::string outputFile = reader.get(ARG_OUT_FILE);
+    std::string outputFile = reader.GetParameter(ARG_OUT_FILE);
 
-    if(reader.hasArgument(FLAG_CSR)) {
+    if(reader.HasArgument(FLAG_CSR)) {
       sspp::tools::transformers::CSRTransformer csrTransformer;
-      auto csr = csrTransformer.transform(ism);
+      auto csr = csrTransformer.Transform(ism);
       fs.open(outputFile + CSR_EXTENSION, std::fstream::out | std::fstream::trunc);
       fs << csr;
       fs.close();
     }
 
-    if(reader.hasArgument(FLAG_ELLPACK)) {
+    if(reader.HasArgument(FLAG_ELLPACK)) {
       sspp::tools::transformers::ELLPACKTransformer ellpackTransformer;
-      auto ellpack = ellpackTransformer.transform(ism);
+      auto ellpack = ellpackTransformer.Transform(ism);
       fs.open(outputFile + ELLPACK_EXTENSION, std::fstream::out | std::fstream::trunc);
       fs << ellpack;
       fs.close();

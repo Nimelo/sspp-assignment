@@ -1,17 +1,18 @@
 #include "ELLPACKOpenMPSolver.h"
 #include <omp.h>
 
-sspp::representations::Output sspp::tools::solvers::ELLPACKOpenMPSolver::solve(representations::ELLPACK & ellpack, FLOATING_TYPE * b) {
-  FLOATING_TYPE *x = new FLOATING_TYPE[ellpack.M];
+sspp::representations::Output sspp::tools::solvers::ELLPACKOpenMPSolver::Solve(representations::ELLPACK & ellpack, std::vector<FLOATING_TYPE> & b) {
+  std::vector<FLOATING_TYPE> x(ellpack.GetRows());
 #pragma omp for
-  for(auto i = 0; i < ellpack.M; i++)
+  for(auto i = 0; i < ellpack.GetRows(); i++)
     x[i] = 0.0;
 
 #pragma omp parallel shared(ellpack, b, x)
-  for(auto i = 0; i < ellpack.M; i++) {
+  for(auto i = 0; i < ellpack.GetRows(); i++) {
     FLOATING_TYPE tmp = 0;
-    for(auto j = 0; j < ellpack.MAXNZ; j++) {
-      tmp += ellpack.AS[i][j] * b[ellpack.JA[i][j]];
+    for(auto j = 0; j < ellpack.GetMaxRowNonZeros(); j++) {
+      auto index = ellpack.CalculateIndex(i, j);
+      tmp += ellpack.GetAS()[index] * b[ellpack.GetJA()[index]];
     }
 
     x[i] = tmp;
@@ -19,7 +20,7 @@ sspp::representations::Output sspp::tools::solvers::ELLPACKOpenMPSolver::solve(r
 
   //TODO: examine omp barriers
 #pragma omp barrier
-  return representations::Output(ellpack.M, x);
+  return representations::Output(x);
 }
 
 sspp::tools::solvers::ELLPACKOpenMPSolver::ELLPACKOpenMPSolver(int threads)

@@ -9,8 +9,9 @@ namespace sspp {
     namespace solvers {
       class AbstractELLPACKSolver {
       public:
+        AbstractELLPACKSolver() = default;
         virtual ~AbstractELLPACKSolver() = default;
-        virtual representations::Output solve(representations::ELLPACK &ellpack, FLOATING_TYPE *b) = 0;
+        virtual representations::Output Solve(representations::ELLPACK &ellpack, std::vector<FLOATING_TYPE> &b) = 0;
       };
     }
   }

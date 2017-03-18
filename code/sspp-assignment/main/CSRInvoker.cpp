@@ -17,8 +17,8 @@ sspp::representations::CSR sspp::tools::invokers::CSRInvoker::loadCSR() {
   return csr;
 }
 
-FLOATING_TYPE * sspp::tools::invokers::CSRInvoker::createVectorB(int n) {
-  FLOATING_TYPE *b = new FLOATING_TYPE[n];
+std::vector<FLOATING_TYPE> sspp::tools::invokers::CSRInvoker::createVectorB(int n) {
+  std::vector<FLOATING_TYPE> b(n);
   for(int i = 0; i < n; i++)
     b[i] = 1;
 
@@ -39,7 +39,7 @@ sspp::tools::invokers::CSRInvoker::CSRInvoker(std::string inputFile, std::string
 
 void sspp::tools::invokers::CSRInvoker::invoke(sspp::tools::solvers::AbstractCSRSolver & parallelSolver) {
   representations::CSR csr = loadCSR();
-  FLOATING_TYPE *b = createVectorB(csr.N);
+  std::vector<FLOATING_TYPE> b = createVectorB(csr.GetColumns());
 
   representations::result::Result result;
   tools::solvers::CSRSolver serialSolver;
@@ -48,26 +48,24 @@ void sspp::tools::invokers::CSRInvoker::invoke(sspp::tools::solvers::AbstractCSR
   auto timer = tools::measurements::ExecutionTimer();
 
   std::function<void()> solveCSRSerialRoutine = [&output, &serialSolver, &csr, &b]() {
-    output = serialSolver.solve(csr, b);
+    output = serialSolver.Solve(csr, b);
   };
 
   std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &csr, &b]() {
-    output = parallelSolver.solve(csr, b);
+    output = parallelSolver.Solve(csr, b);
   };
 
   for(int i = 0; i < iterationsSerial; i++) {
     auto executionTime = timer.measure(solveCSRSerialRoutine);
-    result.serialResult.executionTimes.push_back(executionTime.count());
+    result.GetSerial().GetExecutionTimes().push_back(executionTime.count());
   }
-  result.serialResult.output = output;
+  result.GetSerial().GetOutput() = output;
 
   for(int i = 0; i < iterationsParallel; i++) {
     auto executionTime = timer.measure(solveCSRparallelRoutine);
-    result.parallelResult.executionTimes.push_back(executionTime.count());
+    result.GetParallel().GetExecutionTimes().push_back(executionTime.count());
   }
-  result.parallelResult.output = output;
+  result.GetParallel().GetOutput() = output;
 
   saveResult(result);
-
-  delete[] b;
 }

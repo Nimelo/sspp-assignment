@@ -5,10 +5,9 @@
 
 TEST_F(MatrixMarketReaderTest, CRG) {
   const char * fileName = "matrixMarketTestCRG";
-  const int M = 5, N = 5, NZ = 2;
+  const INDEXING_TYPE M = 5, N = 5, NZ = 2;
   FLOATING_TYPE VAL[] = { 0, 1 };
-  int I[] = { 5, 4 };
-  int J[] = { 3, 2 };
+  INDEXING_TYPE I[] = { 5, 4 }, J[] = { 3, 2 };
 
   std::fstream fs;
   fs.open(fileName, std::fstream::out | std::fstream::trunc);
@@ -24,14 +23,14 @@ TEST_F(MatrixMarketReaderTest, CRG) {
   fs.close();
 
   try {
-    auto ism = this->matrixMarketReader->fromFile(fileName);
+    auto ism = this->matrixMarketReader->FromFile(fileName);
 
-    ASSERT_EQ(M, ism.M);
-    ASSERT_EQ(N, ism.N);
-    ASSERT_EQ(NZ, ism.NZ);
-    assertArrays(I, ism.IIndexes, NZ, "");
-    assertArrays(J, ism.JIndexes, NZ, "");
-    assertArrays(VAL, ism.Values, NZ, "");
+    ASSERT_EQ(M, ism.GetRows());
+    ASSERT_EQ(N, ism.GetColumns());
+    ASSERT_EQ(NZ, ism.GetNonZeros());
+    assertArrays(I, &ism.GetRowIndexes()[0], NZ, "");
+    assertArrays(J, &ism.GetColumnIndexes()[0], NZ, "");
+    assertArrays(VAL, &ism.GetValues()[0], NZ, "");
   } catch(...) {
     std::remove(fileName);
     FAIL();
@@ -41,10 +40,10 @@ TEST_F(MatrixMarketReaderTest, CRG) {
 
 TEST_F(MatrixMarketReaderTest, CRS) {
   const char * fileName = "matrixMarketTestCRS";
-  const int M = 5, N = 5, NZ = 2;
+  const INDEXING_TYPE M = 5, N = 5, NZ = 2;
   FLOATING_TYPE VAL[] = { 0, 1 };
-  int I[] = { 5, 4 };
-  int J[] = { 3, 2 };
+  INDEXING_TYPE I[] = { 5, 4 };
+  INDEXING_TYPE J[] = { 3, 2 };
 
   std::fstream fs;
   fs.open(fileName, std::fstream::out | std::fstream::trunc);
@@ -60,18 +59,18 @@ TEST_F(MatrixMarketReaderTest, CRS) {
   fs.close();
 
   try {
-    auto ism = this->matrixMarketReader->fromFile(fileName);
+    auto ism = this->matrixMarketReader->FromFile(fileName);
 
-    ASSERT_EQ(M, ism.M);
-    ASSERT_EQ(N, ism.N);
-    ASSERT_EQ(NZ << 1, ism.NZ);
-    assertArrays(I, ism.IIndexes, NZ, "");
-    assertArrays(J, ism.JIndexes, NZ, "");
-    assertArrays(VAL, ism.Values, NZ, "");
+    ASSERT_EQ(M, ism.GetRows());
+    ASSERT_EQ(N, ism.GetColumns());
+    ASSERT_EQ(2*NZ, ism.GetNonZeros());
+    assertArrays(I, &ism.GetRowIndexes()[0], NZ, "");
+    assertArrays(J, &ism.GetColumnIndexes()[0], NZ, "");
+    assertArrays(VAL, &ism.GetValues()[0], NZ, "");
 
-    assertArrays(I, ism.JIndexes + NZ, NZ, "");
-    assertArrays(J, ism.IIndexes + NZ, NZ, "");
-    assertArrays(VAL, ism.Values + NZ, NZ, "");
+    assertArrays(I, &ism.GetColumnIndexes()[0] + NZ, NZ, "");
+    assertArrays(J, &ism.GetRowIndexes()[0] + NZ, NZ, "");
+    assertArrays(VAL, &ism.GetValues()[0] + NZ, NZ, "");
   } catch(...) {
     std::remove(fileName);
     FAIL();
@@ -82,10 +81,8 @@ TEST_F(MatrixMarketReaderTest, CRS) {
 
 TEST_F(MatrixMarketReaderTest, CPS) {
   const char * fileName = "matrixMarketTestCPS";
-  const int M = 5, N = 5, NZ = 2;
-  FLOATING_TYPE VAL[] = { 0, 1 };
-  int I[] = { 5, 4 };
-  int J[] = { 3, 2 };
+  const INDEXING_TYPE M = 5, N = 5, NZ = 2;
+  INDEXING_TYPE I[] = { 5, 4 }, J[] = { 3, 2 };
 
   std::fstream fs;
   fs.open(fileName, std::fstream::out | std::fstream::trunc);
@@ -96,22 +93,22 @@ TEST_F(MatrixMarketReaderTest, CPS) {
     << MM_SYMM_STR << std::endl;
   fs << M << SPACE << N << SPACE << NZ << std::endl;
   for(int i = 0; i < NZ; i++) {
-    fs << I[i] << SPACE << J[i] << SPACE /*<< VAL[i]*/ << std::endl;
+    fs << I[i] << SPACE << J[i] << SPACE << std::endl;
   }
   fs.close();
 
   try {
-    auto ism = this->matrixMarketReader->fromFile(fileName);
+    auto ism = this->matrixMarketReader->FromFile(fileName);
 
-    ASSERT_EQ(M, ism.M);
-    ASSERT_EQ(N, ism.N);
-    ASSERT_EQ(NZ << 1, ism.NZ);
-    assertArrays(I, ism.IIndexes, NZ, "");
-    assertArrays(J, ism.JIndexes, NZ, "");
+    ASSERT_EQ(M, ism.GetRows());
+    ASSERT_EQ(N, ism.GetColumns());
+    ASSERT_EQ(2*NZ, ism.GetNonZeros());
+    assertArrays(I, &ism.GetRowIndexes()[0], NZ, "");
+    assertArrays(J, &ism.GetColumnIndexes()[0], NZ, "");
 
-    assertArrays(I, ism.JIndexes + NZ, NZ, "");
-    assertArrays(J, ism.IIndexes + NZ, NZ, "");
-    assertArrays(ism.Values, ism.Values + NZ, NZ, "");
+    assertArrays(I, &ism.GetColumnIndexes()[0] + NZ, NZ, "");
+    assertArrays(J, &ism.GetRowIndexes()[0] + NZ, NZ, "");
+    assertArrays(&ism.GetValues()[0], &ism.GetValues()[0] + NZ, NZ, "");
   } catch(...) {
     std::remove(fileName);
     FAIL();
@@ -121,10 +118,8 @@ TEST_F(MatrixMarketReaderTest, CPS) {
 
 TEST_F(MatrixMarketReaderTest, CPG) {
   const char * fileName = "matrixMarketTestCPG";
-  const int M = 5, N = 5, NZ = 2;
-  FLOATING_TYPE VAL[] = { 0, 1 };
-  int I[] = { 5, 4 };
-  int J[] = { 3, 2 };
+  const INDEXING_TYPE M = 5, N = 5, NZ = 2;
+  INDEXING_TYPE I[] = { 5, 4 }, J[] = { 3, 2 };
 
   std::fstream fs;
   fs.open(fileName, std::fstream::out | std::fstream::trunc);
@@ -135,18 +130,18 @@ TEST_F(MatrixMarketReaderTest, CPG) {
     << MM_GENERAL_STR << std::endl;
   fs << M << SPACE << N << SPACE << NZ << std::endl;
   for(int i = 0; i < NZ; i++) {
-    fs << I[i] << SPACE << J[i] << SPACE /*<< VAL[i]*/ << std::endl;
+    fs << I[i] << SPACE << J[i] << SPACE << std::endl;
   }
   fs.close();
 
   try {
-    auto ism = this->matrixMarketReader->fromFile(fileName);
+    auto ism = this->matrixMarketReader->FromFile(fileName);
 
-    ASSERT_EQ(M, ism.M);
-    ASSERT_EQ(N, ism.N);
-    ASSERT_EQ(NZ, ism.NZ);
-    assertArrays(I, ism.IIndexes, NZ, "");
-    assertArrays(J, ism.JIndexes, NZ, "");
+    ASSERT_EQ(M, ism.GetRows());
+    ASSERT_EQ(N, ism.GetColumns());
+    ASSERT_EQ(NZ, ism.GetNonZeros());
+    assertArrays(I, &ism.GetRowIndexes()[0], NZ, "");
+    assertArrays(J, &ism.GetColumnIndexes()[0], NZ, "");
   } catch(...) {
     std::remove(fileName);
     FAIL();

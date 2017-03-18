@@ -16,7 +16,7 @@ namespace sspp {
         ELLPACKOpenMPSolver(int threads);
         ELLPACKOpenMPSolver() = default;
         void setThreads(int threads);
-        representations::Output solve(representations::ELLPACK & ellpack, FLOATING_TYPE* b) override;
+        representations::Output Solve(representations::ELLPACK & ellpack, std::vector<FLOATING_TYPE> & b) override;
       };
     }
   }

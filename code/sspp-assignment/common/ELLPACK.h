@@ -4,27 +4,39 @@
 #include "Definitions.h"
 #include <istream>
 #include <ostream>
+#include <vector>
 
 namespace sspp {
   namespace representations {
     class ELLPACK {
     public:
-      int M;
-      int N;
-      int NZ;
-      int MAXNZ;
-      int **JA;
-      FLOATING_TYPE **AS;
-    protected:
-      static void rewrite(ELLPACK & lhs, const ELLPACK & rhs);
-    public:
-      ELLPACK();
-      ELLPACK(int M, int N, int NZ, int MAXNZ, int **JA, FLOATING_TYPE **AS);
+      ELLPACK() = default;
+      ~ELLPACK() = default;
+
+      ELLPACK(const INDEXING_TYPE rows, const INDEXING_TYPE columns, const INDEXING_TYPE non_zeros, const INDEXING_TYPE max_row_non_zeros,
+              const std::vector<INDEXING_TYPE> & ja, const std::vector<FLOATING_TYPE> & as);
       ELLPACK(const ELLPACK & other);
-      ELLPACK & operator=(ELLPACK rhs);
-      ~ELLPACK();
+      ELLPACK & operator=(const ELLPACK & rhs);
+
+      INDEXING_TYPE CalculateIndex(INDEXING_TYPE row, INDEXING_TYPE column) const;
+      INDEXING_TYPE GetRows() const;
+      INDEXING_TYPE GetColumns() const;
+      INDEXING_TYPE GetNonZeros() const;
+      INDEXING_TYPE GetMaxRowNonZeros() const;
+      std::vector<INDEXING_TYPE> GetJA() const;
+      std::vector<FLOATING_TYPE> GetAS() const;
+
       friend std::ostream & operator<<(std::ostream & os, const ELLPACK & ellpack);
       friend std::istream & operator >> (std::istream & is, ELLPACK & ellpack);
+    protected:
+      static void Rewrite(ELLPACK & lhs, const ELLPACK & rhs);
+
+      INDEXING_TYPE rows_;
+      INDEXING_TYPE columns_;
+      INDEXING_TYPE non_zeros_;
+      INDEXING_TYPE max_row_non_zeros_;
+      std::vector<INDEXING_TYPE> ja_;
+      std::vector<FLOATING_TYPE> as_;
     };
   }
 }

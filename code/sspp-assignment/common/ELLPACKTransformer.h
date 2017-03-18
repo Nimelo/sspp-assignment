@@ -4,18 +4,20 @@
 #include "IntermediarySparseMatrix.h"
 #include "ELLPACK.h"
 #include "Definitions.h"
+#include <vector>
 
 namespace sspp {
   namespace tools {
     namespace transformers {
       class ELLPACKTransformer {
       public:
-        representations::ELLPACK transform(const representations::IntermediarySparseMatrix & ism);
+        representations::ELLPACK Transform(const representations::IntermediarySparseMatrix & ism);
       protected:
-        void preprocessISM(const representations::IntermediarySparseMatrix & ism);
-        int * findAuxilliaryArray(const representations::IntermediarySparseMatrix & ism);
-        void allocateArrays(int ***JA, FLOATING_TYPE ***AS, int M, int MAXNZ);
-        representations::ELLPACK transformImpl(const representations::IntermediarySparseMatrix & ism, int M, int MAXNZ, int **JA, FLOATING_TYPE **AS, int *auxArray);
+        void PreprocessISM(const representations::IntermediarySparseMatrix & ism);
+        std::vector<INDEXING_TYPE> FindAuxilliaryArray(const representations::IntermediarySparseMatrix & ism);
+        representations::ELLPACK TransformInternal(const representations::IntermediarySparseMatrix & ism, INDEXING_TYPE rows,
+                                                   INDEXING_TYPE max_row_non_zeros, std::vector<INDEXING_TYPE> & ja,
+                                                   std::vector<FLOATING_TYPE> & as, std::vector<INDEXING_TYPE> & auxilliary_array);
       };
     }
   }

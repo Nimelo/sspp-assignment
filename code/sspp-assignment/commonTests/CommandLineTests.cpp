@@ -33,18 +33,18 @@ TEST_F(CommandLineParameterReaderTest, shouldParseStandardInput) {
     FILES_TAG, "file1", "file2", "file3"
   };
 
-  reader.load(argc, argv);
+  reader.Load(argc, argv);
 
   for(int i = 0; i < arguments.size(); i++) {
-    ASSERT_EQ(true, reader.hasArgument(arguments[i].Name));
+    ASSERT_EQ(true, reader.HasArgument(arguments[i].name));
   }
 
-  std::string outDirTag = reader.get(std::string(OUT_DIR_TAG));
-  std::string inDirTag = reader.get(std::string(IN_DIR_TAG));
-  int mTag = reader.get(std::string(M_TAG));
-  int nTag = reader.get(std::string(N_TAG));
-  int iTag = reader.get(std::string(ITERATIONS_TAG));
-  std::vector<std::string> files = reader.get(std::string(FILES_TAG));
+  std::string outDirTag = reader.GetParameter(std::string(OUT_DIR_TAG));
+  std::string inDirTag = reader.GetParameter(std::string(IN_DIR_TAG));
+  int mTag = reader.GetParameter(std::string(M_TAG));
+  int nTag = reader.GetParameter(std::string(N_TAG));
+  int iTag = reader.GetParameter(std::string(ITERATIONS_TAG));
+  std::vector<std::string> files = reader.GetParameter(std::string(FILES_TAG));
 
   ASSERT_EQ("Path", outDirTag);
   ASSERT_EQ("Path", inDirTag);
@@ -82,18 +82,18 @@ TEST_F(CommandLineParameterReaderTest, shouldParseStandardInput2) {
     ITERATIONS_TAG, "15"
   };
 
-  reader.load(argc, argv);
+  reader.Load(argc, argv);
 
   for(int i = 0; i < arguments.size(); i++) {
-    ASSERT_EQ(true, reader.hasArgument(arguments[i].Name));
+    ASSERT_EQ(true, reader.HasArgument(arguments[i].name));
   }
 
-  std::string outDirTag = reader.get(std::string(OUT_DIR_TAG));
-  std::string inDirTag = reader.get(std::string(IN_DIR_TAG));
-  int mTag = reader.get(std::string(M_TAG));
-  int nTag = reader.get(std::string(N_TAG));
-  int iTag = reader.get(std::string(ITERATIONS_TAG));
-  std::vector<std::string> files = reader.get(std::string(FILES_TAG));
+  std::string outDirTag = reader.GetParameter(std::string(OUT_DIR_TAG));
+  std::string inDirTag = reader.GetParameter(std::string(IN_DIR_TAG));
+  int mTag = reader.GetParameter(std::string(M_TAG));
+  int nTag = reader.GetParameter(std::string(N_TAG));
+  int iTag = reader.GetParameter(std::string(ITERATIONS_TAG));
+  std::vector<std::string> files = reader.GetParameter(std::string(FILES_TAG));
 
   ASSERT_EQ("Path", outDirTag);
   ASSERT_EQ("Path", inDirTag);

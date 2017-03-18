@@ -44,7 +44,7 @@ int mm_read_unsymmetric_sparse(const char *fname, int *M_, int *N_, int *nz_,
 		return -1;
 	}
 
-	/* find out size of sparse matrix: M, N, nz .... */
+	/* find out size of sparse matrix: rows_, columns_, nz .... */
 
 	if (mm_read_mtx_crd_size(f, &M, &N, &nz) != 0)
 	{
@@ -109,7 +109,7 @@ int mm_read_sparse(const char * fname, int * M_, int * N_, int * nz_, FLOATING_T
 		return -1;
 	}
 
-	/* find out size of sparse matrix: M, N, nz .... */
+	/* find out size of sparse matrix: rows_, columns_, nz .... */
 
 	if (mm_read_mtx_crd_size(f, &M, &N, &nz) != 0)
 	{
@@ -277,7 +277,7 @@ int mm_read_mtx_crd_size(FILE *f, int *M, int *N, int *nz)
 			return MM_PREMATURE_EOF;
 	} while (line[0] == '%');
 
-	/* line[] is either blank or has M,N, nz */
+	/* line[] is either blank or has rows_,columns_, nz */
 	if (sscanf(line, "%d %d %d", M, N, nz) == 3)
 		return 0;
 	else
@@ -305,7 +305,7 @@ int mm_read_mtx_array_size(FILE *f, int *M, int *N)
 			return MM_PREMATURE_EOF;
 	} while (line[0] == '%');
 
-	/* line[] is either blank or has M,N, nz */
+	/* line[] is either blank or has rows_,columns_, nz */
 	if (sscanf(line, "%d %d", M, N) == 2)
 		return 0;
 
@@ -395,7 +395,7 @@ int mm_read_mtx_crd_entry(FILE *f, int *I, int *J,
 
 
 /************************************************************************
-	mm_read_mtx_crd()  fills M, N, nz, array of values, and return
+	mm_read_mtx_crd()  fills rows_, columns_, nz, array of values, and return
 						type code, e.g. 'MCRS'
 
 						if matrix is complex, values[] is of size 2*nz,

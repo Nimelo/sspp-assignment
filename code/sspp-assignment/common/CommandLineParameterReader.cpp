@@ -1,15 +1,16 @@
 #include "CommandLineParameterReader.h"
+#include "CommandLineParameterReader.h"
 #include "CommandLineException.h"
 
 #include <algorithm>
 
 sspp::io::readers::commandline::CommandLineParameterReader::CommandLineParameterReader(std::vector<sspp::io::readers::commandline::Argument> arguments)
-  : arguments(arguments) {
+  : arguments_(arguments) {
 }
 
-bool sspp::io::readers::commandline::CommandLineParameterReader::hasArgument(std::string key) const {
-  for(auto i = 0; i < parameters.size(); i++) {
-    if(parameters.at(i).key == key) {
+bool sspp::io::readers::commandline::CommandLineParameterReader::HasArgument(std::string key) const {
+  for(auto i = 0; i < parameters_.size(); i++) {
+    if(parameters_.at(i).GetKey() == key) {
       return true;
     }
   }
@@ -17,31 +18,31 @@ bool sspp::io::readers::commandline::CommandLineParameterReader::hasArgument(std
   return false;
 }
 
-sspp::io::readers::commandline::Parameter sspp::io::readers::commandline::CommandLineParameterReader::get(std::string key) {
-  for(auto i = 0; i < parameters.size(); i++) {
-    if(parameters.at(i).key == key) {
-      return parameters.at(i);
+sspp::io::readers::commandline::Parameter sspp::io::readers::commandline::CommandLineParameterReader::GetParameter(std::string key) const {
+  for(auto i = 0; i < parameters_.size(); i++) {
+    if(parameters_.at(i).GetKey() == key) {
+      return parameters_.at(i);
     }
   }
 
   throw sspp::io::exceptions::CommandLineException();
 }
 
-void sspp::io::readers::commandline::CommandLineParameterReader::load(const int argc, const char ** argv) {
-  std::vector<int> usedIndexes;
-  for(auto argument : arguments) {
+void sspp::io::readers::commandline::CommandLineParameterReader::Load(const int argc, const char ** argv) {
+  std::vector<int> used_indexes;
+  for(auto argument : arguments_) {
     for(auto i = 0; i < argc; i++) {
-      std::string current(argv[i]);
+      std::string current_argument_value(argv[i]);
 
-      if(current == argument.Name) {
-        if(!hasValue(i, usedIndexes)) {
-          usedIndexes.push_back(i);
-          if(argument.Type == ArgumentType::Flag) {
-            this->parameters.push_back(Parameter(argument.Name));
-          } else if(argument.Type == ArgumentType::Single) {
-            extractSingle(argc, argv, i, usedIndexes, argument.Name);
+      if(current_argument_value == argument.name) {
+        if(!HasValue(i, used_indexes)) {
+          used_indexes.push_back(i);
+          if(argument.type == ArgumentType::Flag) {
+            this->parameters_.push_back(Parameter(argument.name));
+          } else if(argument.type == ArgumentType::Single) {
+            ExtractSingle(argc, argv, i, used_indexes, argument.name);
           } else {
-            extractMultiple(argc, argv, i, usedIndexes, argument.Name);
+            ExtractMultiple(argc, argv, i, used_indexes, argument.name);
           }
         } else {
           throw io::exceptions::CommandLineException();
@@ -51,10 +52,10 @@ void sspp::io::readers::commandline::CommandLineParameterReader::load(const int 
   }
 }
 
-void sspp::io::readers::commandline::CommandLineParameterReader::extractSingle(int argc, const char ** argv, int index, std::vector<int>& usedIndexes, std::string key) {
+void sspp::io::readers::commandline::CommandLineParameterReader::ExtractSingle(int argc, const char ** argv, int index, std::vector<int>& usedIndexes, std::string key) {
   if(index < argc) {
-    if(!hasValue(index + 1, usedIndexes)) {
-      parameters.push_back(Parameter(key, argv[index + 1]));
+    if(!HasValue(index + 1, usedIndexes)) {
+      parameters_.push_back(Parameter(key, argv[index + 1]));
       usedIndexes.push_back(index + 1);
       return;
     }
@@ -63,20 +64,20 @@ void sspp::io::readers::commandline::CommandLineParameterReader::extractSingle(i
   throw io::exceptions::CommandLineException();
 }
 
-void sspp::io::readers::commandline::CommandLineParameterReader::extractMultiple(int argc, const char ** argv, int index, std::vector<int>& usedIndexes, std::string key) {
+void sspp::io::readers::commandline::CommandLineParameterReader::ExtractMultiple(int argc, const char ** argv, int index, std::vector<int>& used_indexes, std::string key) {
   if(index < argc) {
-    if(!hasValue(index + 1, usedIndexes)) {
+    if(!HasValue(index + 1, used_indexes)) {
       std::vector<std::string> values;
       for(auto i = index + 1; i < argc; i++) {
-        if(!hasValue(i, usedIndexes)) {
-          usedIndexes.push_back(i);
+        if(!HasValue(i, used_indexes)) {
+          used_indexes.push_back(i);
           values.push_back(argv[i]);
         } else {
           break;
         }
       }
 
-      parameters.push_back(Parameter(key, values));
+      parameters_.push_back(Parameter(key, values));
       return;
     }
   }
@@ -84,7 +85,7 @@ void sspp::io::readers::commandline::CommandLineParameterReader::extractMultiple
   throw io::exceptions::CommandLineException();
 }
 
-bool sspp::io::readers::commandline::CommandLineParameterReader::hasValue(int index, std::vector<int>& values) {
+bool sspp::io::readers::commandline::CommandLineParameterReader::HasValue(int index, std::vector<int>& values) {
   for(auto v : values) {
     if(v == index)
       return true;

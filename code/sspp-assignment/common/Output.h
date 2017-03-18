@@ -3,21 +3,25 @@
 
 #include "Definitions.h"
 #include <ostream>
+#include <vector>
 
 namespace sspp {
   namespace representations {
     class Output {
     public:
-      FLOATING_TYPE *Values;
-      int N;
-    public:
-      Output();
-      Output(int size, FLOATING_TYPE *values);
+      Output() = default;
+      ~Output() = default;
+
+      Output(std::vector<FLOATING_TYPE> & values);
       Output(const Output & other);
-      Output & operator=(Output rhs);
-      ~Output();
+      Output & operator=(const Output & rhs); 
+      
+      std::vector<FLOATING_TYPE> GetValues() const;
 
       friend std::ostream& operator <<(std::ostream& os, const Output& o);
+    protected:
+      static void Rewrite(Output & lhs, const Output & rhs);
+      std::vector<FLOATING_TYPE> values_;
     };
   }
 }

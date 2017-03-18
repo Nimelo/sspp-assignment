@@ -13,48 +13,52 @@ namespace sspp {
       namespace commandline {
         class Parameter {
         public:
-          std::string key;
           Parameter(std::string key)
-            : key(key) {
+            : key_(key) {
 
           }
 
           Parameter(std::string key, std::string value)
-            : value(value), key(key) {
-            valuesList.push_back(value);
+            : value_(value), key_(key) {
+            values_list_.push_back(value);
           }
 
           Parameter(std::string key, std::vector<std::string> list)
-            : valuesList(list), key(key) {
+            : values_list_(list), key_(key) {
             if(!list.empty())
-              value = list.at(0);
+              value_ = list.at(0);
           }
 
           template<typename T>
           operator T() const {
-            std::stringstream ss(value);
-            T convertedValue;
-            if(ss >> convertedValue) return convertedValue;
+            std::stringstream ss(value_);
+            T converted_value;
+            if(ss >> converted_value) return converted_value;
             else throw io::exceptions::ConversionFailedException();
           }
 
           template<typename T>
           operator std::vector<T>() const {
-            std::vector<T> returnList;
+            std::vector<T> return_list;
 
-            for(auto str : valuesList) {
+            for(auto str : values_list_) {
               std::stringstream ss(str);
-              T convertedValue;
-              if(ss >> convertedValue)
-                returnList.push_back(convertedValue);
+              T converted_value;
+              if(ss >> converted_value)
+                return_list.push_back(converted_value);
               else throw io::exceptions::ConversionFailedException();
             }
 
-            return returnList;
+            return return_list;
+          }
+
+          std::string GetKey() const {
+            return this->key_;
           }
         protected:
-          std::string value;
-          std::vector<std::string> valuesList;
+          std::string key_;
+          std::string value_;
+          std::vector<std::string> values_list_;
         };
       }
     }

@@ -9,7 +9,7 @@ namespace sspp {
     namespace readers {
       class MatrixMarketReader {
       public:
-        representations::IntermediarySparseMatrix fromFile(std::string file_name);
+        representations::IntermediarySparseMatrix FromFile(std::string file_name);
       };
     }
   }
