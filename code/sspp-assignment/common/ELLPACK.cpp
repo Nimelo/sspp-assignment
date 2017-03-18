@@ -44,11 +44,11 @@ INDEXING_TYPE sspp::representations::ELLPACK::GetMaxRowNonZeros() const {
   return max_row_non_zeros_;
 }
 
-std::vector<INDEXING_TYPE> sspp::representations::ELLPACK::GetJA() const {
+std::vector<INDEXING_TYPE> & sspp::representations::ELLPACK::GetJA() {
   return ja_;
 }
 
-std::vector<FLOATING_TYPE> sspp::representations::ELLPACK::GetAS() const {
+std::vector<FLOATING_TYPE> & sspp::representations::ELLPACK::GetAS() {
   return as_;
 }
 

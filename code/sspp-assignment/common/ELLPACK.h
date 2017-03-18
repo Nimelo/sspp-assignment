@@ -23,8 +23,8 @@ namespace sspp {
       INDEXING_TYPE GetColumns() const;
       INDEXING_TYPE GetNonZeros() const;
       INDEXING_TYPE GetMaxRowNonZeros() const;
-      std::vector<INDEXING_TYPE> GetJA() const;
-      std::vector<FLOATING_TYPE> GetAS() const;
+      std::vector<INDEXING_TYPE> & GetJA();
+      std::vector<FLOATING_TYPE> & GetAS();
 
       friend std::ostream & operator<<(std::ostream & os, const ELLPACK & ellpack);
       friend std::istream & operator >> (std::istream & is, ELLPACK & ellpack);

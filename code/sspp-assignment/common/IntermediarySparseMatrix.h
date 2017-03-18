@@ -21,9 +21,9 @@ namespace sspp {
       INDEXING_TYPE GetColumns() const;
       INDEXING_TYPE GetNonZeros() const;
 
-      std::vector<INDEXING_TYPE> GetRowIndexes() const;
-      std::vector<INDEXING_TYPE> GetColumnIndexes() const;
-      std::vector<FLOATING_TYPE> GetValues() const;
+      std::vector<INDEXING_TYPE> & GetRowIndexes();
+      std::vector<INDEXING_TYPE> & GetColumnIndexes();
+      std::vector<FLOATING_TYPE> & GetValues();
 
     protected:
       static void Rewrite(IntermediarySparseMatrix & lhs, const IntermediarySparseMatrix & rhs);

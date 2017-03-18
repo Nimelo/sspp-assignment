@@ -21,9 +21,9 @@ namespace sspp {
       INDEXING_TYPE GetNonZeros() const;
       INDEXING_TYPE GetRows() const;
       INDEXING_TYPE GetColumns() const;
-      std::vector<long> GetIRP() const;
-      std::vector<long> GetJA() const;
-      std::vector<FLOATING_TYPE> GetAS() const;
+      std::vector<INDEXING_TYPE> & GetIRP();
+      std::vector<INDEXING_TYPE> & GetJA();
+      std::vector<FLOATING_TYPE> & GetAS();
 
       friend std::ostream & operator<<(std::ostream & os, const CSR & csr);
       friend std::istream & operator >> (std::istream & is, CSR & csr);

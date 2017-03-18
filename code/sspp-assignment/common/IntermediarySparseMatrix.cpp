@@ -29,15 +29,15 @@ INDEXING_TYPE sspp::representations::IntermediarySparseMatrix::GetNonZeros() con
   return non_zeros_;
 }
 
-std::vector<INDEXING_TYPE> sspp::representations::IntermediarySparseMatrix::GetRowIndexes() const {
+std::vector<INDEXING_TYPE> & sspp::representations::IntermediarySparseMatrix::GetRowIndexes() {
   return row_indexes_;
 }
 
-std::vector<INDEXING_TYPE> sspp::representations::IntermediarySparseMatrix::GetColumnIndexes() const {
+std::vector<INDEXING_TYPE> & sspp::representations::IntermediarySparseMatrix::GetColumnIndexes() {
   return column_indexes_;
 }
 
-std::vector<FLOATING_TYPE> sspp::representations::IntermediarySparseMatrix::GetValues() const {
+std::vector<FLOATING_TYPE> & sspp::representations::IntermediarySparseMatrix::GetValues() {
   return values_;
 }
 

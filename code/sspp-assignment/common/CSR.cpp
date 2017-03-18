@@ -35,15 +35,15 @@ long sspp::representations::CSR::GetColumns() const {
   return columns_;
 }
 
-std::vector<INDEXING_TYPE> sspp::representations::CSR::GetIRP() const {
+std::vector<INDEXING_TYPE> & sspp::representations::CSR::GetIRP() {
   return irp_;
 }
 
-std::vector<INDEXING_TYPE> sspp::representations::CSR::GetJA() const {
+std::vector<INDEXING_TYPE> & sspp::representations::CSR::GetJA() {
   return ja_;
 }
 
-std::vector<FLOATING_TYPE> sspp::representations::CSR::GetAS() const {
+std::vector<FLOATING_TYPE> & sspp::representations::CSR::GetAS() {
   return as_;
 }
 

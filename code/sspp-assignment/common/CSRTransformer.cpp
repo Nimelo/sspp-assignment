@@ -4,7 +4,7 @@
 
 sspp::representations::CSR sspp::tools::transformers::CSRTransformer::Transform(representations::IntermediarySparseMatrix & ism) {
   tools::sorters::InPlaceStableSorter sorter;
-  sorter.Sort(&ism.GetRowIndexes()[0], &ism.GetColumnIndexes()[0], &ism.GetValues()[0], ism.GetNonZeros());
+  sorter.Sort(ism.GetRowIndexes(), ism.GetColumnIndexes(), ism.GetValues(), ism.GetNonZeros());
 
   std::vector<FLOATING_TYPE> as(ism.GetNonZeros());
   INDEXING_TYPE index = 0;

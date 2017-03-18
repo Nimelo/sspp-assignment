@@ -2,12 +2,12 @@
 #include "InPlaceStableSorter.h"
 #include <algorithm>
 
-void sspp::tools::transformers::ELLPACKTransformer::PreprocessISM(const representations::IntermediarySparseMatrix & ism) {
+void sspp::tools::transformers::ELLPACKTransformer::PreprocessISM(representations::IntermediarySparseMatrix & ism) {
   tools::sorters::InPlaceStableSorter sorter;
-  sorter.Sort(&ism.GetRowIndexes()[0], &ism.GetColumnIndexes()[0], &ism.GetValues()[0], ism.GetNonZeros());
+  sorter.Sort(ism.GetRowIndexes(), ism.GetColumnIndexes(), ism.GetValues(), ism.GetNonZeros());
 }
 
-std::vector<INDEXING_TYPE> sspp::tools::transformers::ELLPACKTransformer::FindAuxilliaryArray(const representations::IntermediarySparseMatrix & ism) {
+std::vector<INDEXING_TYPE> sspp::tools::transformers::ELLPACKTransformer::FindAuxilliaryArray(representations::IntermediarySparseMatrix & ism) {
   std::vector<INDEXING_TYPE> aux_array(ism.GetRows());
 
   auto tmp = 0;
@@ -25,7 +25,7 @@ std::vector<INDEXING_TYPE> sspp::tools::transformers::ELLPACKTransformer::FindAu
   return aux_array;
 }
 
-sspp::representations::ELLPACK sspp::tools::transformers::ELLPACKTransformer::TransformInternal(const representations::IntermediarySparseMatrix& ism, INDEXING_TYPE rows, INDEXING_TYPE max_row_non_zeros, std::vector<INDEXING_TYPE>& ja, std::vector<FLOATING_TYPE>& as, std::vector<INDEXING_TYPE>& auxilliary_array) {
+sspp::representations::ELLPACK sspp::tools::transformers::ELLPACKTransformer::TransformInternal(representations::IntermediarySparseMatrix& ism, INDEXING_TYPE rows, INDEXING_TYPE max_row_non_zeros, std::vector<INDEXING_TYPE>& ja, std::vector<FLOATING_TYPE>& as, std::vector<INDEXING_TYPE>& auxilliary_array) {
   auto nz_index = 0;
   for(auto row = 0; row < rows; row++) {
     for(auto column = 0; column < auxilliary_array[row]; column++) {
@@ -50,7 +50,7 @@ sspp::representations::ELLPACK sspp::tools::transformers::ELLPACKTransformer::Tr
   return representations::ELLPACK(rows, ism.GetColumns(), ism.GetNonZeros(), max_row_non_zeros, ja, as);
 }
 
-sspp::representations::ELLPACK sspp::tools::transformers::ELLPACKTransformer::Transform(const representations::IntermediarySparseMatrix & ism) {
+sspp::representations::ELLPACK sspp::tools::transformers::ELLPACKTransformer::Transform(representations::IntermediarySparseMatrix & ism) {
   PreprocessISM(ism);
   std::vector<INDEXING_TYPE> aux = FindAuxilliaryArray(ism);
   auto MAXNZ = *std::max_element(aux.begin(), aux.end() - 1);
