@@ -52,15 +52,15 @@ std::ostream & sspp::representations::operator<<(std::ostream & os, const sspp::
   os << csr.columns_ << LINE_SEPARATOR;
   os << csr.non_zeros_ << LINE_SEPARATOR;
 
-  for(auto i = 0; i < csr.irp_.size() - 1; i++)
+  for(unsigned int i = 0; i < csr.irp_.size() - 1; i++)
     os << csr.irp_[i] << SPACE;
   os << csr.irp_[csr.irp_.size() - 1] << LINE_SEPARATOR;
 
-  for(auto i = 0; i < csr.ja_.size() - 1; i++)
+  for(unsigned int i = 0; i < csr.ja_.size() - 1; i++)
     os << csr.ja_[i] << SPACE;
   os << csr.ja_[csr.ja_.size() - 1] << LINE_SEPARATOR;
 
-  for(auto i = 0; i < csr.as_.size() - 1; i++)
+  for(unsigned int i = 0; i < csr.as_.size() - 1; i++)
     os << csr.as_[i] << SPACE;
   os << csr.as_[csr.as_.size() - 1] << LINE_SEPARATOR;
 

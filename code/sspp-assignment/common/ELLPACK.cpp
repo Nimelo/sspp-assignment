@@ -58,12 +58,12 @@ std::ostream & sspp::representations::operator<<(std::ostream & os, const ELLPAC
   os << ellpack.non_zeros_ << LINE_SEPARATOR;
   os << ellpack.max_row_non_zeros_ << LINE_SEPARATOR;
 
-  for(auto i = 0; i < ellpack.ja_.size() - 1; i++) {
+  for(unsigned int i = 0; i < ellpack.ja_.size() - 1; i++) {
     os << ellpack.ja_[i] << SPACE;
   }
   os << ellpack.ja_[ellpack.ja_.size() - 1] << LINE_SEPARATOR;
 
-  for(auto i = 0; i < ellpack.as_.size() - 1; i++) {
+  for(unsigned int i = 0; i < ellpack.as_.size() - 1; i++) {
     os << ellpack.as_[i] << SPACE;
   }
   os << ellpack.as_[ellpack.as_.size() - 1] << LINE_SEPARATOR;

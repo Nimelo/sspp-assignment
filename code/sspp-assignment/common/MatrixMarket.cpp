@@ -30,6 +30,7 @@ sspp::io::MatrixMarketErrorCodes sspp::io::MatrixMarket::ReadIndices(std::istrea
       return ReadIndices(is, non_zeros, row_indices, column_indices, values);
     }
   }
+  return MatrixMarketErrorCodes::MM_PREMATURE_EOF;
 }
 
 sspp::io::MatrixMarketErrorCodes sspp::io::MatrixMarket::ReadIndices(std::istream &is,

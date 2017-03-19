@@ -9,7 +9,7 @@ sspp::io::readers::commandline::CommandLineParameterReader::CommandLineParameter
 }
 
 bool sspp::io::readers::commandline::CommandLineParameterReader::HasArgument(std::string key) const {
-  for(auto i = 0; i < parameters_.size(); i++) {
+  for(unsigned int i = 0; i < parameters_.size(); i++) {
     if(parameters_.at(i).GetKey() == key) {
       return true;
     }
@@ -19,7 +19,7 @@ bool sspp::io::readers::commandline::CommandLineParameterReader::HasArgument(std
 }
 
 sspp::io::readers::commandline::Parameter sspp::io::readers::commandline::CommandLineParameterReader::GetParameter(std::string key) const {
-  for(auto i = 0; i < parameters_.size(); i++) {
+  for(unsigned int i = 0; i < parameters_.size(); i++) {
     if(parameters_.at(i).GetKey() == key) {
       return parameters_.at(i);
     }
