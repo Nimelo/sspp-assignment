@@ -37,8 +37,8 @@ sspp::representations::Output sspp::tools::solvers::ELLPACKCudaSolver::Solve(ssp
   cudaStatus = cudaMemcpy(device_b, &b[0], sizeof(FLOATING_TYPE) * b.size(), cudaMemcpyHostToDevice);
   cudaStatus = cudaMemcpy(device_as, &ellpack.GetAS()[0], sizeof(FLOATING_TYPE) * ellpack.GetAS().size(), cudaMemcpyHostToDevice);
   cudaStatus = cudaMemcpy(device_ja, &ellpack.GetJA()[0], sizeof(INDEXING_TYPE) * ellpack.GetJA().size(), cudaMemcpyHostToDevice);
-
-  ellpackKernel << <ellpack.GetRows(), 1 >> > (ellpack.GetRows(), ellpack.GetMaxRowNonZeros(), device_ja, device_as, device_b, device_x);
+  unsigned int x_dimension = ellpack.GetRows() > 1024 ? 1024 : ellpack.GetRows();
+  ellpackKernel << <x_dimension, 1 >> > (ellpack.GetRows(), ellpack.GetMaxRowNonZeros(), device_ja, device_as, device_b, device_x);
 
   cudaStatus = cudaMemcpy(&x[0], device_x, sizeof(FLOATING_TYPE) * x.size(), cudaMemcpyDeviceToHost);
 

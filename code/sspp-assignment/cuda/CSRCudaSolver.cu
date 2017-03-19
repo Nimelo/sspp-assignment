@@ -35,8 +35,8 @@ sspp::representations::Output sspp::tools::solvers::CSRCudaSolver::Solve(sspp::r
   cudaStatus = cudaMemcpy(device_as, &csr.GetAS()[0], sizeof(FLOATING_TYPE) * csr.GetAS().size(), cudaMemcpyHostToDevice);
   cudaStatus = cudaMemcpy(device_b, &b[0], sizeof(FLOATING_TYPE) * b.size(), cudaMemcpyHostToDevice);
   cudaStatus = cudaMemcpy(device_x, &x[0], sizeof(FLOATING_TYPE) * x.size(), cudaMemcpyHostToDevice);
-
-  csrKernel << <csr.GetRows(), 1 >> > (csr.GetRows(), device_irp, device_ja, device_as, device_b, device_x);
+  unsigned int x_dimension = csr.GetRows() > 1024 ? 1024 : csr.GetRows();
+  csrKernel << <x_dimension, 1 >> > (csr.GetRows(), device_irp, device_ja, device_as, device_b, device_x);
 
   cudaStatus = cudaMemcpy(&x[0], device_x, sizeof(FLOATING_TYPE) * x.size(), cudaMemcpyDeviceToHost);
 
