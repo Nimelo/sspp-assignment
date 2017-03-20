@@ -17,8 +17,8 @@ namespace sspp {
         int iterationsParallel;
         int iterationsSerial;
 
-        representations::ELLPACK loadELLPACK();
-        std::vector<FLOATING_TYPE> createVectorB(int n);
+        representations::ELLPACK * loadELLPACK();
+        std::vector<FLOATING_TYPE> * createVectorB(int n);
         void saveResult(representations::result::Result & result);
       public:
         ELLPACKInvoker(std::string inputFile, std::string outputFile, int iterationsParallel, int iterationsSerial);

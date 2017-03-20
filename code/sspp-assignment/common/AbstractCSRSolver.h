@@ -13,7 +13,7 @@ namespace sspp {
       public:
         AbstractCSRSolver() = default;
         virtual ~AbstractCSRSolver() = default;
-        virtual representations::Output Solve(representations::CSR &csr, std::vector<FLOATING_TYPE> &b) = 0;
+        virtual representations::Output * Solve(representations::CSR &csr, std::vector<FLOATING_TYPE> &b) = 0;
       };
 
     }

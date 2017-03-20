@@ -14,12 +14,14 @@ namespace sspp {
     namespace result {
       class Result {
       public:
-        single::SingleResult GetSerial() const;
-        single::SingleResult GetParallel() const;
+        Result();
+        ~Result();
+        single::SingleResult *GetSerial() const;
+        single::SingleResult *GetParallel() const;
         friend std::ostream& operator <<(std::ostream& os, const Result & result);
       private:
-        single::SingleResult serial_result_;
-        single::SingleResult parallel_result_;
+        single::SingleResult *serial_result_;
+        single::SingleResult *parallel_result_;
       };
     }
   }

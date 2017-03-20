@@ -8,21 +8,20 @@
 
 #include <fstream>
 
-sspp::representations::ELLPACK sspp::tools::invokers::ELLPACKInvoker::loadELLPACK() {
+sspp::representations::ELLPACK *sspp::tools::invokers::ELLPACKInvoker::loadELLPACK() {
   std::fstream is;
   is.open(inputFile, std::fstream::in);
-  representations::ELLPACK ellpack;
-  is >> ellpack;
+  auto ellpack = new representations::ELLPACK;;
+  is >> *ellpack;
   is.close();
 
   return ellpack;
 }
 
-std::vector<FLOATING_TYPE> sspp::tools::invokers::ELLPACKInvoker::createVectorB(int n) {
-  std::vector<FLOATING_TYPE> b(n);
+std::vector<FLOATING_TYPE> *sspp::tools::invokers::ELLPACKInvoker::createVectorB(int n) {
+  auto b = new std::vector<FLOATING_TYPE>(n);
   for(int i = 0; i < n; i++)
-    b[i] = 1;
-
+    b->at(1) = 1;
   return b;
 }
 
@@ -39,34 +38,48 @@ sspp::tools::invokers::ELLPACKInvoker::ELLPACKInvoker(std::string inputFile, std
 }
 
 void sspp::tools::invokers::ELLPACKInvoker::invoke(solvers::AbstractELLPACKSolver & parallelSolver) {
-  representations::ELLPACK ellpack = loadELLPACK();
-  std::vector<FLOATING_TYPE> b = createVectorB(ellpack.GetColumns());
+  auto ellpack = loadELLPACK();
+  auto b = createVectorB(ellpack->GetColumns());
 
   representations::result::Result result;
   tools::solvers::ELLPACKSolver solver;
 
-  representations::Output output;
+  representations::Output *output;
   auto timer = tools::measurements::ExecutionTimer();
 
   std::function<void()> solveCSRSerialRoutine = [&output, &solver, &ellpack, &b]() {
-    output = solver.Solve(ellpack, b);
+    output = solver.Solve(*ellpack, *b);
   };
 
   std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &ellpack, &b]() {
-    output = parallelSolver.Solve(ellpack, b);
+    output = parallelSolver.Solve(*ellpack, *b);
   };
 
-  for(int i = 0; i < iterationsSerial; i++) {
+  for(int i = 0; i < iterationsSerial - 1; i++) {
     auto executionTime = timer.measure(solveCSRSerialRoutine);
-    result.GetSerial().GetExecutionTimes().push_back(executionTime.count());
+    result.GetSerial()->GetExecutionTimes().push_back(executionTime.count());
+    delete output;
+  }
+  {
+    auto executionTime = timer.measure(solveCSRSerialRoutine);
+    result.GetSerial()->GetExecutionTimes().push_back(executionTime.count());
+    result.GetSerial()->SetOutput(output);
+    delete output;
   }
 
   for(int i = 0; i < iterationsParallel; i++) {
     auto executionTime = timer.measure(solveCSRparallelRoutine);
-    result.GetParallel().GetExecutionTimes().push_back(executionTime.count());
+    result.GetParallel()->GetExecutionTimes().push_back(executionTime.count());
+    delete output;
+  }
+  {
+    auto executionTime = timer.measure(solveCSRparallelRoutine);
+    result.GetParallel()->GetExecutionTimes().push_back(executionTime.count());
+    result.GetParallel()->SetOutput(output);
+    delete output;
   }
 
-  result.GetParallel().GetOutput() = output;
-
   saveResult(result);
+  delete b;
+  delete ellpack;
 }

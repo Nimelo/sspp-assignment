@@ -11,7 +11,7 @@ namespace sspp {
     namespace solvers {
       class CSRSolver : public AbstractCSRSolver {
       public:
-        representations::Output Solve(representations::CSR &csr, std::vector<FLOATING_TYPE> &b) override;
+        representations::Output * Solve(representations::CSR &csr, std::vector<FLOATING_TYPE> &b) override;
       };
     }
   }

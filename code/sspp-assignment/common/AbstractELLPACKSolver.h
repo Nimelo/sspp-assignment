@@ -11,7 +11,7 @@ namespace sspp {
       public:
         AbstractELLPACKSolver() = default;
         virtual ~AbstractELLPACKSolver() = default;
-        virtual representations::Output Solve(representations::ELLPACK &ellpack, std::vector<FLOATING_TYPE> &b) = 0;
+        virtual representations::Output * Solve(representations::ELLPACK &ellpack, std::vector<FLOATING_TYPE> &b) = 0;
       };
     }
   }

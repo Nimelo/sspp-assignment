@@ -10,32 +10,27 @@ namespace sspp {
   namespace representations {
     class CSR {
     public:
-      CSR() = default;
-      ~CSR() = default;
-
+      CSR();
       CSR(const INDEXING_TYPE non_zeros, const INDEXING_TYPE rows, const INDEXING_TYPE columns,
-          const std::vector<INDEXING_TYPE> & irp, const std::vector<INDEXING_TYPE> & ja, const std::vector<FLOATING_TYPE> & as);
-      CSR(const CSR & other);
-      CSR & operator=(const CSR & rhs);
+          std::vector<INDEXING_TYPE> * irp, std::vector<INDEXING_TYPE> * ja, std::vector<FLOATING_TYPE> * as);
+      ~CSR();
 
       INDEXING_TYPE GetNonZeros() const;
       INDEXING_TYPE GetRows() const;
       INDEXING_TYPE GetColumns() const;
-      std::vector<INDEXING_TYPE> & GetIRP();
-      std::vector<INDEXING_TYPE> & GetJA();
-      std::vector<FLOATING_TYPE> & GetAS();
+      std::vector<INDEXING_TYPE> * GetIRP();
+      std::vector<INDEXING_TYPE> * GetJA();
+      std::vector<FLOATING_TYPE> * GetAS();
 
       friend std::ostream & operator<<(std::ostream & os, const CSR & csr);
       friend std::istream & operator >> (std::istream & is, CSR & csr);
     protected:
-      void rewrite(CSR & lhs, const CSR & rhs);
-
       INDEXING_TYPE non_zeros_;
       INDEXING_TYPE rows_;
       INDEXING_TYPE columns_;
-      std::vector<INDEXING_TYPE> irp_;
-      std::vector<INDEXING_TYPE> ja_;
-      std::vector<FLOATING_TYPE> as_;
+      std::vector<INDEXING_TYPE> *irp_;
+      std::vector<INDEXING_TYPE> *ja_;
+      std::vector<FLOATING_TYPE> *as_;
     };
   }
 }

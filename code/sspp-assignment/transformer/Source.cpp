@@ -38,19 +38,23 @@ int main(int argc, const char** argv) {
 
       if(reader.HasArgument(FLAG_CSR)) {
         sspp::tools::transformers::CSRTransformer csrTransformer;
-        auto csr = csrTransformer.Transform(ism);
+        auto csr = csrTransformer.Transform(*ism);
         fs.open(outputFile + CSR_EXTENSION, std::fstream::out | std::fstream::trunc);
         fs << csr;
         fs.close();
+        delete csr;
       }
 
       if(reader.HasArgument(FLAG_ELLPACK)) {
         sspp::tools::transformers::ELLPACKTransformer ellpackTransformer;
-        auto ellpack = ellpackTransformer.Transform(ism);
+        auto ellpack = ellpackTransformer.Transform(*ism);
         fs.open(outputFile + ELLPACK_EXTENSION, std::fstream::out | std::fstream::trunc);
         fs << ellpack;
         fs.close();
+        delete ellpack;
       }
+
+      delete ism;
     } else {
       std::cout << "Incorrect command line paramteres!\n";
     }

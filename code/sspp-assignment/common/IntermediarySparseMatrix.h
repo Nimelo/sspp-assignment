@@ -8,31 +8,26 @@ namespace sspp {
   namespace representations {
     class IntermediarySparseMatrix {
     public:
-      IntermediarySparseMatrix() = default;
-      ~IntermediarySparseMatrix() = default;
-
       IntermediarySparseMatrix(const INDEXING_TYPE rows, const INDEXING_TYPE columns, const INDEXING_TYPE non_zeros,
-                               const std::vector<INDEXING_TYPE> & row_indexes, const std::vector<INDEXING_TYPE> & column_indexes,
-                               const std::vector<FLOATING_TYPE> & values);
-      IntermediarySparseMatrix(const IntermediarySparseMatrix &other);
-      IntermediarySparseMatrix & operator=(const IntermediarySparseMatrix & rhs);
+                               std::vector<INDEXING_TYPE> * row_indexes, std::vector<INDEXING_TYPE> * column_indexes,
+                               std::vector<FLOATING_TYPE> * values);
+      ~IntermediarySparseMatrix();
 
       INDEXING_TYPE GetRows() const;
       INDEXING_TYPE GetColumns() const;
       INDEXING_TYPE GetNonZeros() const;
 
-      std::vector<INDEXING_TYPE> & GetRowIndexes();
-      std::vector<INDEXING_TYPE> & GetColumnIndexes();
-      std::vector<FLOATING_TYPE> & GetValues();
+      std::vector<INDEXING_TYPE> * GetRowIndexes();
+      std::vector<INDEXING_TYPE> * GetColumnIndexes();
+      std::vector<FLOATING_TYPE> * GetValues();
 
     protected:
-      static void Rewrite(IntermediarySparseMatrix & lhs, const IntermediarySparseMatrix & rhs);
       INDEXING_TYPE non_zeros_;
       INDEXING_TYPE rows_;
       INDEXING_TYPE columns_;
-      std::vector<INDEXING_TYPE> row_indexes_;
-      std::vector<INDEXING_TYPE> column_indexes_;
-      std::vector<FLOATING_TYPE> values_;
+      std::vector<INDEXING_TYPE> *row_indexes_ = nullptr;
+      std::vector<INDEXING_TYPE> *column_indexes_ = nullptr;
+      std::vector<FLOATING_TYPE> *values_ = nullptr;
     };
   }
 }

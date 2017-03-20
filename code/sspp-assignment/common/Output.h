@@ -9,19 +9,13 @@ namespace sspp {
   namespace representations {
     class Output {
     public:
-      Output() = default;
-      ~Output() = default;
-
-      Output(std::vector<FLOATING_TYPE> & values);
-      Output(const Output & other);
-      Output & operator=(const Output & rhs); 
-      
-      std::vector<FLOATING_TYPE> GetValues() const;
-
+      Output();
+      ~Output();
+      Output(std::vector<FLOATING_TYPE> * values);    
+      std::vector<FLOATING_TYPE> *GetValues() const;
       friend std::ostream& operator <<(std::ostream& os, const Output& o);
     protected:
-      static void Rewrite(Output & lhs, const Output & rhs);
-      std::vector<FLOATING_TYPE> values_;
+      std::vector<FLOATING_TYPE> *values_;
     };
   }
 }

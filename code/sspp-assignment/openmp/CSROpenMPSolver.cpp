@@ -1,12 +1,12 @@
 #include "CSROpenMPSolver.h"
 #include <omp.h>
 
-sspp::representations::Output sspp::tools::solvers::CSROpenMPSolver::Solve(representations::CSR & csr, std::vector<FLOATING_TYPE> & b) {
-  std::vector<FLOATING_TYPE> x(csr.GetRows());
+sspp::representations::Output *sspp::tools::solvers::CSROpenMPSolver::Solve(representations::CSR & csr, std::vector<FLOATING_TYPE> & b) {
+  auto x = new std::vector<FLOATING_TYPE>(csr.GetRows());
 
 #pragma omp for
   for(auto i = 0; i < csr.GetRows(); i++)
-    x[i] = 0.0;
+    x->at(i) = 0.0;
 
 #pragma omp parallel shared(csr, b, x)
   {
@@ -17,15 +17,15 @@ sspp::representations::Output sspp::tools::solvers::CSROpenMPSolver::Solve(repre
 
     //#pragma ivdep
     for(auto i = lowerBoundary; i < upperBoundary; i++) {
-      for(auto j = csr.GetIRP()[i]; j < csr.GetIRP()[i + 1]; j++) {
-        x[i] += csr.GetAS()[j] * b[csr.GetJA()[j]];
+      for(auto j = csr.GetIRP()->at(i); j < csr.GetIRP()->at(i + 1); j++) {
+        x->at(i) += csr.GetAS()->at(j) * b[csr.GetJA()->at(j)];
       }
     }
   }
   //TODO: examine omp barriers
 #pragma omp barrier
 
-  return representations::Output(x);
+  return new representations::Output(x);
 }
 
 sspp::tools::solvers::CSROpenMPSolver::CSROpenMPSolver(int threads)

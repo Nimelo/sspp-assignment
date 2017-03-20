@@ -7,20 +7,20 @@
 
 #include <fstream>
 
-sspp::representations::CSR sspp::tools::invokers::CSRInvoker::loadCSR() {
+sspp::representations::CSR *sspp::tools::invokers::CSRInvoker::loadCSR() {
   std::fstream is;
   is.open(inputFile, std::fstream::in);
-  sspp::representations::CSR csr;
-  is >> csr;
+  auto csr = new sspp::representations::CSR();
+  is >> *csr;
   is.close();
 
   return csr;
 }
 
-std::vector<FLOATING_TYPE> sspp::tools::invokers::CSRInvoker::createVectorB(int n) {
-  std::vector<FLOATING_TYPE> b(n);
+std::vector<FLOATING_TYPE> *sspp::tools::invokers::CSRInvoker::createVectorB(int n) {
+  auto b = new std::vector<FLOATING_TYPE>(n);
   for(int i = 0; i < n; i++)
-    b[i] = 1;
+    b->at(i) = 1;
 
   return b;
 }
@@ -38,34 +38,47 @@ sspp::tools::invokers::CSRInvoker::CSRInvoker(std::string inputFile, std::string
 }
 
 void sspp::tools::invokers::CSRInvoker::invoke(sspp::tools::solvers::AbstractCSRSolver & parallelSolver) {
-  representations::CSR csr = loadCSR();
-  std::vector<FLOATING_TYPE> b = createVectorB(csr.GetColumns());
+  auto csr = loadCSR();
+  auto b = createVectorB(csr->GetColumns());
 
   representations::result::Result result;
+
   tools::solvers::CSRSolver serialSolver;
 
-  representations::Output output;
+  representations::Output* output;
   auto timer = tools::measurements::ExecutionTimer();
 
   std::function<void()> solveCSRSerialRoutine = [&output, &serialSolver, &csr, &b]() {
-    output = serialSolver.Solve(csr, b);
+    output = serialSolver.Solve(*csr, *b);
   };
 
   std::function<void()> solveCSRparallelRoutine = [&output, &parallelSolver, &csr, &b]() {
-    output = parallelSolver.Solve(csr, b);
+    output = parallelSolver.Solve(*csr, *b);
   };
 
-  for(int i = 0; i < iterationsSerial; i++) {
+  for(int i = 0; i < iterationsSerial - 1; i++) {
     auto executionTime = timer.measure(solveCSRSerialRoutine);
-    result.GetSerial().GetExecutionTimes().push_back(executionTime.count());
+    result.GetSerial()->GetExecutionTimes().push_back(executionTime.count());
+    delete output;
   }
-  result.GetSerial().GetOutput() = output;
-
-  for(int i = 0; i < iterationsParallel; i++) {
+  {
+    auto executionTime = timer.measure(solveCSRSerialRoutine);
+    result.GetSerial()->GetExecutionTimes().push_back(executionTime.count());
+    result.GetSerial()->SetOutput(output);
+    delete output;
+  }
+  for(int i = 0; i < iterationsParallel - 1; i++) {
     auto executionTime = timer.measure(solveCSRparallelRoutine);
-    result.GetParallel().GetExecutionTimes().push_back(executionTime.count());
+    result.GetParallel()->GetExecutionTimes().push_back(executionTime.count());
   }
-  result.GetParallel().GetOutput() = output;
+  {
+    auto executionTime = timer.measure(solveCSRparallelRoutine);
+    result.GetParallel()->GetExecutionTimes().push_back(executionTime.count());
+    result.GetParallel()->SetOutput(output);
+    delete output;
+  }
 
   saveResult(result);
+  delete b;
+  delete csr;
 }

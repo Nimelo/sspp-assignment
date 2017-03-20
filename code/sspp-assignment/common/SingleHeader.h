@@ -14,11 +14,14 @@ namespace sspp {
       namespace single {
         class SingleResult {
         public:
-          Output GetOutput() const;
+          SingleResult();
+          ~SingleResult();
+          Output *GetOutput() const;
+          void SetOutput(Output *output);
           std::vector<double> GetExecutionTimes() const;
           friend std::ostream& operator <<(std::ostream& os, const SingleResult& result);
         private:
-          Output output_;
+          Output *output_;
           std::vector<double> execution_times_;
         };
       }
