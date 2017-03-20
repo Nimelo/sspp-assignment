@@ -9,7 +9,7 @@ std::ostream & sspp::representations::result::single::operator<<(std::ostream & 
   for(unsigned int i = 0; i < result.execution_times_.size(); i++)
     os << result.execution_times_[i] << SPACE;
   os << LINE_SEPARATOR;
-  os << result.output_;
+  os << *result.output_;
   return os;
 }
 
@@ -31,6 +31,6 @@ void sspp::representations::result::single::SingleResult::SetOutput(Output* outp
   this->output_ = new Output(x);
 }
 
-std::vector<double> sspp::representations::result::single::SingleResult::GetExecutionTimes() const {
+std::vector<double> &sspp::representations::result::single::SingleResult::GetExecutionTimes() {
   return this->execution_times_;
 }

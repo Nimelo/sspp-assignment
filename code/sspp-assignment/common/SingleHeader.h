@@ -18,7 +18,7 @@ namespace sspp {
           ~SingleResult();
           Output *GetOutput() const;
           void SetOutput(Output *output);
-          std::vector<double> GetExecutionTimes() const;
+          std::vector<double> & GetExecutionTimes();
           friend std::ostream& operator <<(std::ostream& os, const SingleResult& result);
         private:
           Output *output_;
