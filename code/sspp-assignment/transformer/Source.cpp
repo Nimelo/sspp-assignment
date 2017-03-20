@@ -52,10 +52,10 @@ int main(int argc, const char** argv) {
         fs.close();
       }
     } else {
-      std::cout << "Incorrect command line paramteres!";
+      std::cout << "Incorrect command line paramteres!\n";
     }
   } catch(...) {
-    std::cout << "Unexpected error occured!";
+    std::cout << "Unexpected error occured!\n";
   }
 
   return 0;
