@@ -6,25 +6,21 @@
 #include "Parameter.h"
 
 namespace sspp {
-  namespace io {
-    namespace readers {
-      namespace commandline {
-        class CommandLineParameterReader {
-        public:
-          CommandLineParameterReader(std::vector<Argument> arguments);
-          bool HasArgument(std::string key) const;
-          Parameter GetParameter(std::string key) const;
-          void Load(const int argc, const char ** argv);
-        protected:
-          void ExtractSingle(int argc, const char **argv, int index, std::vector<int> & used_indexes, std::string key);
-          void ExtractMultiple(int argc, const char **argv, int index, std::vector<int> & used_indexes, std::string key);
-          bool HasValue(int index, std::vector<int> & values);
+  namespace common {
+    class CommandLineParameterReader {
+    public:
+      CommandLineParameterReader(std::vector<Argument> & arguments);
+      bool HasArgument(std::string key) const;
+      Parameter GetParameter(std::string key) const;
+      void Load(const int argc, const char ** argv);
+    protected:
+      void ExtractSingle(int argc, const char **argv, int index, std::vector<int> & used_indexes, std::string key);
+      void ExtractMultiple(int argc, const char **argv, int index, std::vector<int> & used_indexes, std::string key);
+      bool HasValue(int index, std::vector<int> & values);
 
-          std::vector<Argument> arguments_;
-          std::vector<Parameter> parameters_;
-        };
-      }
-    }
+      std::vector<Argument> arguments_;
+      std::vector<Parameter> parameters_;
+    };
   }
 }
 

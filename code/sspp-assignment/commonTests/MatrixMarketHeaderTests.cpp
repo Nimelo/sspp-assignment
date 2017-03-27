@@ -1,7 +1,7 @@
 #include "MatrixMarketHeaderTest.h"
 #include "../common/MatrixMarketHeader.h"
 #include <sstream>
-using namespace sspp::io;
+using namespace sspp::common;
 
 TEST_F(MatrixMarketHeaderTest, shoudLoadCorrectly) {
   std::stringstream ss;
@@ -12,9 +12,9 @@ TEST_F(MatrixMarketHeaderTest, shoudLoadCorrectly) {
     << MatrixMarketHeader::MM_GENERAL_STR;
 
   MatrixMarketHeader mmh;
-  auto result = mmh.Load(ss);
+  ss >> mmh;
 
-  ASSERT_EQ(MatrixMarketErrorCodes::SUCCESS, result);
+  ASSERT_TRUE(mmh.IsValid());
   ASSERT_TRUE(mmh.IsMatrix());
   ASSERT_TRUE(mmh.IsDense());
   ASSERT_TRUE(mmh.IsReal());

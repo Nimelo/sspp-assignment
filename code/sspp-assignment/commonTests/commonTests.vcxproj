@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\include;$(SolutionDir)common;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googlemock\include;C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\include;$(SolutionDir)common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -95,7 +95,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\msvc\gtest\Debug\gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\msvc\gtest\Debug\gtestd.lib;C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googlemock\msvc\2015\Debug\gmock.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -152,7 +152,7 @@
     <ClCompile Include="CSRTransformerTests.cpp" />
     <ClCompile Include="ELLPACKTransformerTests.cpp" />
     <ClCompile Include="InPlaceSorterTests.cpp" />
-    <ClCompile Include="MatrixMarketTests.cpp" />
+    <ClCompile Include="MatrixMarketStreamTests.cpp" />
     <ClCompile Include="MatrixMarketHeaderTests.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
@@ -172,7 +172,7 @@
     <ClInclude Include="ELLPACKTransformerTest.h" />
     <ClInclude Include="InPlaceSorterTest.h" />
     <ClInclude Include="ITest.h" />
-    <ClInclude Include="MatrixMarketTest.h" />
+    <ClInclude Include="MatrixMarketStreamTest.h" />
     <ClInclude Include="MatrixMarketHeaderTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

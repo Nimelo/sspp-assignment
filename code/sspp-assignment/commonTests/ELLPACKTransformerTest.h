@@ -1,16 +1,6 @@
 #pragma once
 
-#include "ITest.h"
-#include "ELLPACKTransformer.h"
+#include "MatrixMarketStreamTest.h"
 
-class ELLPACKTransformerTest : public ITest {
-protected:
-  sspp::tools::transformers::ELLPACKTransformer *ellpackTransformer;
-  virtual void SetUp() {
-    ellpackTransformer = new sspp::tools::transformers::ELLPACKTransformer();
-  }
-
-  virtual void TearDown() {
-    delete ellpackTransformer;
-  }
+class ELLPACKTransformerTest : public MatrixMarketStreamTest {
 };

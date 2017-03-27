@@ -2,11 +2,9 @@
 #define SSPP_COMMON_COMMANDLINEEXECEPTION_H_
 
 namespace sspp {
-  namespace io {
-    namespace exceptions {
-      class CommandLineException {
-      };
-    }
+  namespace common {
+    class CommandLineException {
+    };
   }
 }
 

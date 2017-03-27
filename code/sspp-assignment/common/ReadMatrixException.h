@@ -2,11 +2,10 @@
 #define SSPP_COMMON_READMATRIXECEPTION_H_
 
 namespace sspp {
-  namespace io {
-    namespace exceptions {
-      class ReadMatrixException {
-      };
-    }
+  namespace common {
+    class ReadMatrixException {
+    };
   }
 }
+
 #endif

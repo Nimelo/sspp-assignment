@@ -6,11 +6,11 @@
 #include <map>
 
 namespace sspp {
-  namespace io {
+  namespace common {
     class MatrixMarketHeader {
     public:
       MatrixMarketHeader(MatrixMarketCode code, MatrixMarketFormat format,
-                   MatrixMarketDataType data_type, MatrixMarketStorageScheme storage_scheme);
+                         MatrixMarketDataType data_type, MatrixMarketStorageScheme storage_scheme);
       MatrixMarketHeader() = default;
 
       bool IsMatrix() const;
@@ -27,10 +27,10 @@ namespace sspp {
       bool IsValid() const;
 
       std::string ToString() const;
-      MatrixMarketErrorCodes Load(std::istream & is);
-      std::map<std::string, MatrixMarketFormat> GetFormatsMap() const;
-      std::map<std::string, MatrixMarketDataType> GetDataTypesMap() const;
-      std::map<std::string, MatrixMarketStorageScheme> GetStorageSchemesMap() const;
+      static std::map<std::string, MatrixMarketFormat> GetFormatsMap();
+      static std::map<std::string, MatrixMarketDataType> GetDataTypesMap();
+      static std::map<std::string, MatrixMarketStorageScheme> GetStorageSchemesMap();
+      friend std::istream& operator>>(std::istream& is, MatrixMarketHeader& mmh);
 
     private:
       MatrixMarketCode code_;

@@ -66,7 +66,7 @@
     <ClCompile Include="MatrixMarketHeaderTests.cpp">
       <Filter>Header Files\testing\io\mm</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixMarketTests.cpp">
+    <ClCompile Include="MatrixMarketStreamTests.cpp">
       <Filter>Header Files\testing\io\mm</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,7 +95,7 @@
     <ClInclude Include="MatrixMarketHeaderTest.h">
       <Filter>Header Files\testing\io\mm</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixMarketTest.h">
+    <ClInclude Include="MatrixMarketStreamTest.h">
       <Filter>Header Files\testing\io\mm</Filter>
     </ClInclude>
   </ItemGroup>

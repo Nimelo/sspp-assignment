@@ -2,11 +2,9 @@
 #define SSPP_COMMON_CONVERSIONFAILEDEXCEPTION_H_
 
 namespace sspp {
-  namespace io {
-    namespace exceptions {
-      class ConversionFailedException {
-      };
-    }
+  namespace common {
+    class ConversionFailedException {
+    };
   }
 }
 

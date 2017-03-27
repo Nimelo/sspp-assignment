@@ -1,27 +1,28 @@
 #ifndef SSPP_COMMON_OUTPUT_H_
 #define SSPP_COMMON_OUTPUT_H_
 
-#include "Definitions.h"
 #include <ostream>
 #include <vector>
 
 namespace sspp {
-  namespace representations {
+  namespace common {
+    template<typename VALUE_TYPE>
     class Output {
     public:
-      Output() = default;
-      ~Output() = default;
+      Output(std::vector<VALUE_TYPE> & values) :
+        values_(values) {
+      };
 
-      Output(std::vector<FLOATING_TYPE> & values);
-      Output(const Output & other);
-      Output & operator=(const Output & rhs); 
-      
-      std::vector<FLOATING_TYPE> GetValues() const;
+      std::vector<VALUE_TYPE> const & GetValues() const {
+        return values_;
+      }
 
-      friend std::ostream& operator <<(std::ostream& os, const Output& o);
+      friend std::ostream& operator <<(std::ostream& os, const Output& o) {
+        for(typename std::vector<VALUE_TYPE>::iterator it = o.values_.begin(); it != o.values_.end(); ++it)
+          os << *it << '\t';
+      }
     protected:
-      static void Rewrite(Output & lhs, const Output & rhs);
-      std::vector<FLOATING_TYPE> values_;
+      std::vector<VALUE_TYPE> values_;
     };
   }
 }

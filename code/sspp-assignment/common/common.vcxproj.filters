@@ -31,12 +31,6 @@
     <Filter Include="Source Files\tools\measurements">
       <UniqueIdentifier>{8ea43dd6-f6c9-49a7-91ad-c8b663993597}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\tools\transformers">
-      <UniqueIdentifier>{19040d5d-32bb-4b43-87d0-19ef8f0307ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\transformers">
-      <UniqueIdentifier>{4ced8ce7-d10f-4bcd-8353-68f04fbccd54}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\representations">
       <UniqueIdentifier>{82ca7211-52ff-4f12-8bdd-df670c588bd6}</UniqueIdentifier>
     </Filter>
@@ -46,20 +40,11 @@
     <Filter Include="Header Files\tools\solvers">
       <UniqueIdentifier>{d2039ad6-f8e6-4f8a-ac42-9f1df99bb900}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\tools\solvers">
-      <UniqueIdentifier>{4e94caa8-bde8-496d-9b37-acdc39452b2c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\io\readers">
       <UniqueIdentifier>{810f6ea3-32f5-43e3-a204-673845a1fddc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\io\exceptions">
       <UniqueIdentifier>{87592ceb-e9e5-406c-8eef-c8b216fedbe7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tools\sorters">
-      <UniqueIdentifier>{75fe89a8-9862-4ab8-b27c-cd35edeae13f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\sorters">
-      <UniqueIdentifier>{345945ed-cade-4e8b-8fe5-4355844db046}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\representations\result">
       <UniqueIdentifier>{29b72ea2-71e3-4e78-8242-221e64df4012}</UniqueIdentifier>
@@ -70,37 +55,28 @@
     <Filter Include="Source Files\io\readers\commandline">
       <UniqueIdentifier>{6eda3942-66af-493c-ab12-2e05d62f8050}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\io\readers">
-      <UniqueIdentifier>{83391a47-a223-48bf-95c9-1374b8a71866}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io\readers\commandline">
-      <UniqueIdentifier>{3d6ff18f-8667-4a9d-a55e-b4e8c2057e02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\io\mmio">
       <UniqueIdentifier>{075a2adf-4805-49f6-b51a-e09687576e74}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\io\mmio">
       <UniqueIdentifier>{93b488c3-8b69-4ed1-b018-5ec2260eaa5e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\io\commandline">
+      <UniqueIdentifier>{3d6ff18f-8667-4a9d-a55e-b4e8c2057e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\resolvers">
+      <UniqueIdentifier>{9f8c10ff-3f08-4d23-9aad-a295589f47b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MatrixMarketReader.h">
-      <Filter>Header Files\io\readers</Filter>
-    </ClInclude>
     <ClInclude Include="ReadMatrixException.h">
       <Filter>Header Files\io\exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InPlaceStableSorter.h">
-      <Filter>Header Files\tools\sorters</Filter>
-    </ClInclude>
     <ClInclude Include="CommandLineParameterReader.h">
-      <Filter>Header Files\io\readers\commandline</Filter>
+      <Filter>Header Files\io\commandline</Filter>
     </ClInclude>
     <ClInclude Include="CommandLineException.h">
       <Filter>Header Files\io\exceptions</Filter>
@@ -112,21 +88,15 @@
       <Filter>Header Files\representations\results</Filter>
     </ClInclude>
     <ClInclude Include="Argument.h">
-      <Filter>Header Files\io\readers\commandline</Filter>
+      <Filter>Header Files\io\commandline</Filter>
     </ClInclude>
     <ClInclude Include="ArgumentType.h">
-      <Filter>Header Files\io\readers\commandline</Filter>
+      <Filter>Header Files\io\commandline</Filter>
     </ClInclude>
     <ClInclude Include="Parameter.h">
-      <Filter>Header Files\io\readers\commandline</Filter>
-    </ClInclude>
-    <ClInclude Include="CSR.h">
-      <Filter>Header Files\representations</Filter>
+      <Filter>Header Files\io\commandline</Filter>
     </ClInclude>
     <ClInclude Include="ELLPACK.h">
-      <Filter>Header Files\representations</Filter>
-    </ClInclude>
-    <ClInclude Include="IntermediarySparseMatrix.h">
       <Filter>Header Files\representations</Filter>
     </ClInclude>
     <ClInclude Include="Output.h">
@@ -144,55 +114,46 @@
     <ClInclude Include="AbstractCSRSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
-    <ClInclude Include="CSRSolver.h">
-      <Filter>Header Files\tools\solvers</Filter>
-    </ClInclude>
     <ClInclude Include="ELLPACKSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
     <ClInclude Include="AbstractELLPACKSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
-    <ClInclude Include="CSRTransformer.h">
-      <Filter>Header Files\tools\transformers</Filter>
+    <ClInclude Include="MatrixMarketEnums.h">
+      <Filter>Header Files\io\mmio</Filter>
     </ClInclude>
-    <ClInclude Include="ELLPACKTransformer.h">
-      <Filter>Header Files\tools\transformers</Filter>
+    <ClInclude Include="MatrixMarketStream.h">
+      <Filter>Header Files\io\mmio</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarketTuple.h">
+      <Filter>Header Files\io\mmio</Filter>
     </ClInclude>
     <ClInclude Include="MatrixMarketHeader.h">
       <Filter>Header Files\io\mmio</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixMarketEnums.h">
-      <Filter>Header Files\io\mmio</Filter>
+    <ClInclude Include="CRS.h">
+      <Filter>Header Files\representations</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixMarket.h">
-      <Filter>Header Files\io\mmio</Filter>
+    <ClInclude Include="CRSSolver.h">
+      <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarketTupleReaderInterface.h">
+      <Filter>Header Files\io\resolvers</Filter>
+    </ClInclude>
+    <ClInclude Include="UnsignedFloatReader.h">
+      <Filter>Header Files\io\resolvers</Filter>
+    </ClInclude>
+    <ClInclude Include="StableSorter.h">
+      <Filter>Header Files\tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MatrixMarketReader.cpp">
-      <Filter>Source Files\io\readers</Filter>
-    </ClCompile>
-    <ClCompile Include="InPlaceStableSorter.cpp">
-      <Filter>Source Files\tools\sorters</Filter>
-    </ClCompile>
     <ClCompile Include="CommandLineParameterReader.cpp">
       <Filter>Source Files\io\readers\commandline</Filter>
     </ClCompile>
     <ClCompile Include="Result.cpp">
       <Filter>Source Files\representations\result</Filter>
-    </ClCompile>
-    <ClCompile Include="CSR.cpp">
-      <Filter>Source Files\representations</Filter>
-    </ClCompile>
-    <ClCompile Include="ELLPACK.cpp">
-      <Filter>Source Files\representations</Filter>
-    </ClCompile>
-    <ClCompile Include="IntermediarySparseMatrix.cpp">
-      <Filter>Source Files\representations</Filter>
-    </ClCompile>
-    <ClCompile Include="Output.cpp">
-      <Filter>Source Files\representations</Filter>
     </ClCompile>
     <ClCompile Include="SingleHeader.cpp">
       <Filter>Source Files\representations\result</Filter>
@@ -203,22 +164,7 @@
     <ClCompile Include="ExecutionTimer.cpp">
       <Filter>Source Files\tools\measurements</Filter>
     </ClCompile>
-    <ClCompile Include="CSRSolver.cpp">
-      <Filter>Source Files\tools\solvers</Filter>
-    </ClCompile>
-    <ClCompile Include="ELLPACKSolver.cpp">
-      <Filter>Source Files\tools\solvers</Filter>
-    </ClCompile>
-    <ClCompile Include="CSRTransformer.cpp">
-      <Filter>Source Files\tools\transformers</Filter>
-    </ClCompile>
-    <ClCompile Include="ELLPACKTransformer.cpp">
-      <Filter>Source Files\tools\transformers</Filter>
-    </ClCompile>
     <ClCompile Include="MatrixMarketHeader.cpp">
-      <Filter>Source Files\io\mmio</Filter>
-    </ClCompile>
-    <ClCompile Include="MatrixMarket.cpp">
       <Filter>Source Files\io\mmio</Filter>
     </ClCompile>
   </ItemGroup>
