@@ -18,7 +18,7 @@ TEST_F(CSRSolverTest, shouldSolveCorrectly_Salvatore) {
   std::vector<float> correctX = { 23, 45, 33, 87 };
   CRSSolver<float> solver;
 
-  const Output<float> output = solver.Solve(csr, B);
+  const Output<float> &output = solver.Solve(csr, B);
 
   ASSERT_EQ(M, output.GetValues().size());
   ASSERT_THAT(correctX, ::testing::ContainerEq(output.GetValues()));

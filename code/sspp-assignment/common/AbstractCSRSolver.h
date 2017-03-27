@@ -11,7 +11,7 @@ namespace sspp {
     class AbstractCSRSolver {
     public:
       virtual ~AbstractCSRSolver() {};
-      virtual Output<VALUE_TYPE> const & Solve(CRS<VALUE_TYPE> & crs, std::vector<VALUE_TYPE> & vector) = 0;
+      virtual Output<VALUE_TYPE> Solve(CRS<VALUE_TYPE> & crs, std::vector<VALUE_TYPE> & vector) = 0;
     };
   }
 }

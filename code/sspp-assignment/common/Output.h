@@ -9,9 +9,18 @@ namespace sspp {
     template<typename VALUE_TYPE>
     class Output {
     public:
-      Output(std::vector<VALUE_TYPE> & values) :
-        values_(values) {
+      Output(std::vector<VALUE_TYPE> & values) {
+        values_.assign(values.begin(), values.end());
       };
+
+      Output(const Output<VALUE_TYPE> & other) {
+        Swap(*this, other);
+      }
+
+      Output<VALUE_TYPE> & operator=(const Output<VALUE_TYPE> other) {
+        Swap(*this, other);
+        return *this;
+      }
 
       std::vector<VALUE_TYPE> const & GetValues() const {
         return values_;
@@ -22,6 +31,13 @@ namespace sspp {
           os << *it << '\t';
       }
     protected:
+      void Swap(Output & lhs, const Output & rhs) {
+        lhs.values_.resize(rhs.values_.size());
+        if(!rhs.values_.empty())
+        copy(rhs.values_.begin(), rhs.values_.end(), lhs.values_.begin());
+        //lhs.values_.assign(rhs.va, lhs.values_.end());
+      }
+
       std::vector<VALUE_TYPE> values_;
     };
   }

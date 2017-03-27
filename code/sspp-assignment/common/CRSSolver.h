@@ -10,7 +10,7 @@ namespace sspp {
     template<typename VALUE_TYPE>
     class CRSSolver : public AbstractCSRSolver<VALUE_TYPE> {
     public:
-      virtual Output<VALUE_TYPE> const & Solve(CRS<VALUE_TYPE> & crs, std::vector<VALUE_TYPE> & vector) {
+      virtual Output<VALUE_TYPE> Solve(CRS<VALUE_TYPE> & crs, std::vector<VALUE_TYPE> & vector) {
         std::vector<VALUE_TYPE> x(crs.GetRows());
 
         for(unsigned i = 0; i < crs.GetRows(); ++i) {
