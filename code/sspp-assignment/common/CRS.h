@@ -72,15 +72,15 @@ namespace sspp {
         os << crs.non_zeros_ << std::endl;
 
         for(unsigned i = 0; i < crs.row_start_indexes_.size() - 1; i++)
-          os << crs.row_start_indexes_[i] << '\t';
+          os << crs.row_start_indexes_[i] << ' ';
         os << crs.row_start_indexes_[crs.row_start_indexes_.size() - 1] << std::endl;
 
         for(unsigned i = 0; i < crs.non_zeros_ - 1; i++)
-          os << crs.column_indices_[i] << '\t';
+          os << crs.column_indices_[i] << ' ';
         os << crs.column_indices_[crs.non_zeros_ - 1] << std::endl;
 
         for(unsigned i = 0; i < crs.non_zeros_ - 1; i++)
-          os << crs.values_[i] << '\t';
+          os << crs.values_[i] << ' ';
         os << crs.values_[crs.non_zeros_ - 1] << std::endl;
 
         return os;

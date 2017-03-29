@@ -70,12 +70,12 @@ namespace sspp {
         os << ellpack.max_row_non_zeros_ << std::endl;
 
         for(unsigned int i = 0; i < ellpack.column_indices_.size() - 1; i++) {
-          os << ellpack.column_indices_[i] << '\t';
+          os << ellpack.column_indices_[i] << ' ';
         }
         os << ellpack.column_indices_[ellpack.column_indices_.size() - 1] << std::endl;;
 
         for(unsigned int i = 0; i < ellpack.values_.size() - 1; i++) {
-          os << ellpack.values_[i] << '\t';
+          os << ellpack.values_[i] << ' ';
         }
         os << ellpack.values_[ellpack.values_.size() - 1] << std::endl;
 
@@ -99,6 +99,7 @@ namespace sspp {
       }
     protected:
       void Load(MatrixMarketStream<VALUE_TYPE> & mms) {
+        mms.GoToEntries();
         const MatrixMarketHeader header = mms.GetMatrixMarketHeader();
         rows_ = mms.GetRows();
         columns_ = mms.GetColumns();
