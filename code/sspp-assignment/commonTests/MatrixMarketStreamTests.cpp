@@ -35,6 +35,6 @@ TEST_F(MatrixMarketStreamTest, CRG) {
   ASSERT_EQ(c_non_zeros, values.size());
 
   ASSERT_THAT(c_values, testing::ContainerEq(values));
-  ASSERT_THAT(c_row_indicies, testing::ContainerEq(row_indicies));
-  ASSERT_THAT(c_column_indicies, testing::ContainerEq(column_indicies));
+  ASSERT_THAT(row_indicies, ::testing::ElementsAre(4, 3));
+  ASSERT_THAT(column_indicies, ::testing::ElementsAre(2, 1));
 }

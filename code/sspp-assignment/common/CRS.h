@@ -151,14 +151,13 @@ namespace sspp {
         column_indices_.resize(mms.GetNonZeros());
         values_.resize(mms.GetNonZeros());
 
-        for(int i = 0; i < mms.GetNonZeros(); ++i) {
+        for(unsigned i = 0; i < mms.GetNonZeros(); ++i) {
           if(mms.hasNextTuple()) {
             MatrixMarketTuple<VALUE_TYPE> tuple = mms.GetNextTuple();
             row_indices[i] = tuple.GetRowIndice();
             column_indices_[i] = tuple.GetColumnIndice();
             values_[i] = tuple.GetValue();
           }
-          //TODO: Handle incorrect file.
         }
         SetCSRBasedOnIndices(row_indices);
       }
@@ -166,15 +165,26 @@ namespace sspp {
       void SetCSRBasedOnIndices(std::vector<unsigned> & row_indices) {
         StableSorter::InsertionSort<VALUE_TYPE>(row_indices, column_indices_, values_, non_zeros_);
         row_start_indexes_.resize(rows_ + 1);
-        unsigned index = 0;
-        row_start_indexes_[0] = 0;
-        for(unsigned i = 1; i < non_zeros_; ++i) {
-          if(row_indices.at(i) != row_indices.at(i - 1)) {
-            //TODO: FIX
-            row_start_indexes_[++index] = i;
+        unsigned row_start_indexes_index = 0, non_zeros_index = 1;
+        row_start_indexes_[row_start_indexes_index++] = 0;
+
+        while(row_start_indexes_index < rows_ + 1
+              && non_zeros_index < non_zeros_) {
+          unsigned row_indices_diff = row_indices[non_zeros_index] - row_indices[non_zeros_index - 1];
+          if(row_indices_diff != 0) {
+            row_start_indexes_[row_start_indexes_index++] = non_zeros_index;
+            if(row_indices_diff > 1) {
+              for(unsigned i = 0; i < row_indices_diff - 1; ++i) {
+                row_start_indexes_[row_start_indexes_index++] = non_zeros_index;
+              }
+            }
           }
+          ++non_zeros_index;
         }
-        row_start_indexes_[++index] = non_zeros_;
+        for(unsigned i = row_start_indexes_index; i < rows_; ++i) {
+          row_start_indexes_[row_start_indexes_index++] = non_zeros_index;
+        }
+        row_start_indexes_[row_start_indexes_index++] = non_zeros_index;
       };
 
       unsigned non_zeros_;

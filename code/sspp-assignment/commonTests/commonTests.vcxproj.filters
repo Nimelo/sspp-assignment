@@ -40,6 +40,9 @@
     <Filter Include="Header Files\testing\io\mm">
       <UniqueIdentifier>{973faeb8-9827-4e86-96e4-50a87a80cfe6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\testing\tools\transformers\CRS">
+      <UniqueIdentifier>{52ed07ae-fe6e-4980-a8e5-97816f89742b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -57,9 +60,6 @@
     <ClCompile Include="EllpackSolverTests.cpp">
       <Filter>Header Files\testing\tools\solvers</Filter>
     </ClCompile>
-    <ClCompile Include="CSRTransformerTests.cpp">
-      <Filter>Header Files\testing\tools\transformers</Filter>
-    </ClCompile>
     <ClCompile Include="ELLPACKTransformerTests.cpp">
       <Filter>Header Files\testing\tools\transformers</Filter>
     </ClCompile>
@@ -68,6 +68,12 @@
     </ClCompile>
     <ClCompile Include="MatrixMarketStreamTests.cpp">
       <Filter>Header Files\testing\io\mm</Filter>
+    </ClCompile>
+    <ClCompile Include="CSRTransformerTests.cpp">
+      <Filter>Header Files\testing\tools\transformers\CRS</Filter>
+    </ClCompile>
+    <ClCompile Include="AdvancedCRSTests.cpp">
+      <Filter>Header Files\testing\tools\transformers\CRS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +92,6 @@
     <ClInclude Include="EllpackSolverTest.h">
       <Filter>Header Files\testing\tools\solvers</Filter>
     </ClInclude>
-    <ClInclude Include="CSRTransformerTest.h">
-      <Filter>Header Files\testing\tools\transformers</Filter>
-    </ClInclude>
     <ClInclude Include="ELLPACKTransformerTest.h">
       <Filter>Header Files\testing\tools\transformers</Filter>
     </ClInclude>
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="MatrixMarketStreamTest.h">
       <Filter>Header Files\testing\io\mm</Filter>
+    </ClInclude>
+    <ClInclude Include="CSRTransformerTest.h">
+      <Filter>Header Files\testing\tools\transformers\CRS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

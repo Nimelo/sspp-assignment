@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdvancedCRSTests.cpp" />
     <ClCompile Include="CommandLineTests.cpp" />
     <ClCompile Include="CSRSolverTests.cpp" />
     <ClCompile Include="CSRTransformerTests.cpp" />

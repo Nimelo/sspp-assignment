@@ -149,7 +149,7 @@ TEST_F(CSRTransformerTest, iostreamTest) {
   std::vector<unsigned> IRP = { 0, 2, 4, 5, 7 }, JA = { 0, 1, 1, 2, 2, 2, 3 };
   std::vector<float> AS = { 11, 12, 22, 23, 33, 43, 44 };
   CRS<float> expectedCSR(NZ, M, N, IRP, JA, AS);
-  
+
   std::stringstream stringStream;
   stringStream << expectedCSR;
   CRS<float> actualCSR;
