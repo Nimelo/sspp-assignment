@@ -47,7 +47,6 @@ namespace sspp {
         return non_zeros_;
       }
 
-    protected:
       void GoToEntries() {
         stream_.clear();
         stream_.seekg(0, stream_.beg);

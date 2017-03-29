@@ -10,7 +10,7 @@ namespace sspp {
     class AbstractELLPACKSolver {
     public:
       virtual ~AbstractELLPACKSolver() {};
-      virtual Output<VALUE_TYPE> const & Solve(ELLPACK<VALUE_TYPE> & ellpack, std::vector<VALUE_TYPE> & vector) = 0;
+      virtual Output<VALUE_TYPE> Solve(ELLPACK<VALUE_TYPE> & ellpack, std::vector<VALUE_TYPE> & vector) = 0;
     };
   }
 }

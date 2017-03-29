@@ -10,7 +10,7 @@ namespace sspp {
     template<typename VALUE_TYPE>
     class ELLPACKSolver : public AbstractELLPACKSolver<VALUE_TYPE> {
     public:
-      Output<VALUE_TYPE> const & Solve(ELLPACK<VALUE_TYPE> & ellpack, std::vector<VALUE_TYPE> & vector) {
+      Output<VALUE_TYPE> Solve(ELLPACK<VALUE_TYPE> & ellpack, std::vector<VALUE_TYPE> & vector) {
         std::vector<VALUE_TYPE> x(ellpack.GetRows());
 
         for(unsigned i = 0; i < ellpack.GetRows(); ++i) {

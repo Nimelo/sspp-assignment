@@ -5,6 +5,7 @@
 
 #include <istream>
 #include <ostream>
+#include <algorithm>
 #include <vector>
 
 namespace sspp {
@@ -35,7 +36,7 @@ namespace sspp {
       };
 
       unsigned CalculateIndex(unsigned row, unsigned column) const {
-        return row + max_row_non_zeros_ + column;
+        return row * max_row_non_zeros_ + column;
       };
 
       unsigned GetRows() const {
@@ -98,8 +99,79 @@ namespace sspp {
       }
     protected:
       void Load(MatrixMarketStream<VALUE_TYPE> & mms) {
-        //TODO: Load
+        const MatrixMarketHeader header = mms.GetMatrixMarketHeader();
+        rows_ = mms.GetRows();
+        columns_ = mms.GetColumns();
+        non_zeros_ = mms.GetNonZeros();
+
+        if(header.IsSymmetric()) {
+          LoadSymetric(mms);
+        } else {
+          LoadGeneral(mms);
+        }
       }
+
+      void LoadSymetric(MatrixMarketStream<VALUE_TYPE> & mms) {
+        unsigned expected_non_zeros = mms.GetNonZeros() << 1, actual_non_zeros = 0;
+        std::vector<unsigned> auxilliary_vector(expected_non_zeros);
+        while(mms.hasNextTuple()) {
+          MatrixMarketTuple<VALUE_TYPE> tuple = mms.GetNextTuple();
+          ++auxilliary_vector.at(tuple.GetRowIndice());
+          ++actual_non_zeros;
+          if(tuple.GetRowIndice() != tuple.GetColumnIndice()) {
+            ++auxilliary_vector.at(tuple.GetColumnIndice());
+            ++actual_non_zeros;
+          }
+        }
+        non_zeros_ = actual_non_zeros;
+        LoadSymetricUsingAuxilliaryVector(mms, auxilliary_vector);
+      };
+
+      void LoadSymetricUsingAuxilliaryVector(MatrixMarketStream<VALUE_TYPE> & mms, std::vector<unsigned> & auxilliary_vector) {
+        mms.GoToEntries();
+        max_row_non_zeros_ = *std::max_element(auxilliary_vector.begin(), auxilliary_vector.end());
+        column_indices_.resize(max_row_non_zeros_ * rows_);
+        values_.resize(max_row_non_zeros_ * rows_);
+
+        while(mms.hasNextTuple()) {
+          MatrixMarketTuple<VALUE_TYPE> tuple = mms.GetNextTuple();
+          unsigned index = CalculateIndex(tuple.GetRowIndice(), auxilliary_vector.at(tuple.GetRowIndice()) - 1);
+          column_indices_[index] = tuple.GetColumnIndice();
+          values_[index] = tuple.GetValue();
+          --auxilliary_vector.at(tuple.GetRowIndice());
+
+          if(tuple.GetRowIndice() != tuple.GetColumnIndice()) {
+            index = CalculateIndex(tuple.GetColumnIndice(), auxilliary_vector.at(tuple.GetColumnIndice()) - 1);
+            column_indices_[index] = tuple.GetRowIndice();
+            values_[index] = tuple.GetValue();
+            --auxilliary_vector.at(tuple.GetColumnIndice());
+          }
+        }
+      };
+
+      void LoadGeneral(MatrixMarketStream<VALUE_TYPE> & mms) {
+        std::vector<unsigned> auxilliary_vector(mms.GetNonZeros());
+        while(mms.hasNextTuple()) {
+          MatrixMarketTuple<VALUE_TYPE> tuple = mms.GetNextTuple();
+          ++auxilliary_vector.at(tuple.GetRowIndice());
+        }
+        LoadGeneralUsingAuxilliaryVector(mms, auxilliary_vector);
+      };
+
+      void LoadGeneralUsingAuxilliaryVector(MatrixMarketStream<VALUE_TYPE> & mms, std::vector<unsigned> & auxilliary_vector) {
+        mms.GoToEntries();
+        max_row_non_zeros_ = *std::max_element(auxilliary_vector.begin(), auxilliary_vector.end());
+        column_indices_.resize(max_row_non_zeros_ * rows_);
+        values_.resize(max_row_non_zeros_ * rows_);
+
+        while(mms.hasNextTuple()) {
+          MatrixMarketTuple<VALUE_TYPE> tuple = mms.GetNextTuple();
+          unsigned index = CalculateIndex(tuple.GetRowIndice(), auxilliary_vector.at(tuple.GetRowIndice()) - 1);
+          column_indices_[index] = tuple.GetColumnIndice();
+          values_[index] = tuple.GetValue();
+          --auxilliary_vector.at(tuple.GetRowIndice());
+        }
+      };
 
       unsigned rows_;
       unsigned columns_;

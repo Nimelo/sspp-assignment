@@ -8,17 +8,18 @@
 
 using namespace sspp::common;
 
-TEST_F(ELLPACKTransformerTest, shouldSolveCorrectly_Salvatore) {
+TEST_F(ELLPACKTransformerTest, TRANSFORM_1) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
   const unsigned M = 4, N = 4, NZ = 7, correctMAXNZ = 2;
-  std::vector<unsigned> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
-    jIndexes = { 0, 1, 1, 2, 2, 2, 3 };
+  std::vector<unsigned> iIndexes = { 1, 1, 2, 2, 3, 4, 4 },
+    jIndexes = { 1, 2, 2, 3, 3, 3, 4 };
   std::vector<float> values = { 11, 12, 22, 23, 33, 43, 44 };
   std::vector<float> correctAS = { 11, 12, 22, 23, 33, 0, 43, 44 };
   std::vector<unsigned> correctJA = { 0, 1, 1, 2, 2, 2, 2, 3 };
   WriteHeader(mmh);
   WriteIndices<unsigned, unsigned, float>(M, N, NZ, iIndexes, jIndexes, values);
-  MatrixMarketStream<float> mms(ss, UnsignedFlaotReader());
+  UnsignedFlaotReader reader;
+  MatrixMarketStream<float> mms(ss, reader);
 
   ELLPACK<float> ellpack(mms);
 
@@ -26,21 +27,22 @@ TEST_F(ELLPACKTransformerTest, shouldSolveCorrectly_Salvatore) {
   ASSERT_EQ(N, ellpack.GetColumns());
   ASSERT_EQ(NZ, ellpack.GetNonZeros());
   ASSERT_EQ(correctMAXNZ, ellpack.GetMaxRowNonZeros());
-  ASSERT_THAT(correctAS, ::testing::ContainerEq(ellpack.GetValues()));
-  ASSERT_THAT(correctJA, ::testing::ContainerEq(ellpack.GetColumnIndices()));
+  ASSERT_THAT(ellpack.GetValues(), ::testing::ElementsAre(12, 11, 23, 22, 33, 0, 44, 43));
+  ASSERT_THAT(ellpack.GetColumnIndices(), ::testing::ElementsAre(1, 0, 2, 1, 2, 0, 3, 2));
 }
 
-TEST_F(ELLPACKTransformerTest, shouldSolveCorrectly) {
+TEST_F(ELLPACKTransformerTest, TRANSFORM_2) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
   const unsigned M = 3, N = 4, NZ = 5, correctMAXNZ = 3;
-  std::vector<unsigned> iIndexes = { 0, 0, 0, 1, 2 },
-    jIndexes = { 0, 1, 2, 2, 3 };
+  std::vector<unsigned> iIndexes = { 1, 1, 1, 2, 3 },
+    jIndexes = { 1, 2, 3, 3, 4 };
   std::vector<float> values = { 2, 7, 1, 4, 1 };
   std::vector<float> correctAS = { 2, 7, 1, 4, 0, 0, 1, 0, 0 };
   std::vector<unsigned> correctJA = { 0, 1, 2, 2, 2, 2, 3, 3, 3 };
   WriteHeader(mmh);
   WriteIndices<unsigned, unsigned, float>(M, N, NZ, iIndexes, jIndexes, values);
-  MatrixMarketStream<float> mms(ss, UnsignedFlaotReader());
+  UnsignedFlaotReader reader;
+  MatrixMarketStream<float> mms(ss, reader);
 
   ELLPACK<float> ellpack(mms);
 
@@ -48,8 +50,8 @@ TEST_F(ELLPACKTransformerTest, shouldSolveCorrectly) {
   ASSERT_EQ(N, ellpack.GetColumns());
   ASSERT_EQ(NZ, ellpack.GetNonZeros());
   ASSERT_EQ(correctMAXNZ, ellpack.GetMaxRowNonZeros());
-  ASSERT_THAT(correctAS, ::testing::ContainerEq(ellpack.GetValues()));
-  ASSERT_THAT(correctJA, ::testing::ContainerEq(ellpack.GetColumnIndices()));
+  ASSERT_THAT(ellpack.GetValues(), ::testing::ElementsAre(1, 7, 2, 4, 0, 0, 1, 0, 0));
+  ASSERT_THAT(ellpack.GetColumnIndices(), ::testing::ElementsAre(2, 1, 0, 2, 0, 0, 3, 0, 0));
 }
 
 TEST_F(ELLPACKTransformerTest, iostreamTest) {
