@@ -38,6 +38,15 @@ int main(int argc, const char** argv) {
       UnsignedFlaotReader tuple_reader;
       MatrixMarketStream<float> mms(in_fs, tuple_reader);
 
+      MatrixMarketHeader header = mms.GetMatrixMarketHeader();
+
+      if(header.IsDense()
+         || header.IsComplex() || header.IsHermitian() || header.IsSkew())
+      {
+        std::cout << "Invalid mtx format" << std::endl;
+        return 0;
+      }
+
       if(reader.HasArgument(FLAG_CRS)) {
         CRS<float> crs(mms);
         fs.open(outputFile + ".crs", std::fstream::out | std::fstream::trunc);

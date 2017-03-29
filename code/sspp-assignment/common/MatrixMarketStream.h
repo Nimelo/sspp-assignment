@@ -48,6 +48,7 @@ namespace sspp {
       }
 
       void GoToEntries() {
+        const char COMMENT_PREFIX_STR[] = "%";
         stream_.clear();
         stream_.seekg(0, stream_.beg);
 
@@ -71,8 +72,6 @@ namespace sspp {
       MatrixMarketTupleReaderInterface<VALUE_TYPE> &tuple_reader_;
       std::istream &stream_;
       MatrixMarketHeader header_;
-      static constexpr const char COMMENT_PREFIX_STR[] = "%";
-      static constexpr const int RAND_LIMIT = 100;
     };
   }
 }
