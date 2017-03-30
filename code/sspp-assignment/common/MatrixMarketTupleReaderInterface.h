@@ -11,7 +11,7 @@ namespace sspp {
     public:
       virtual ~MatrixMarketTupleReaderInterface() {};
       virtual MatrixMarketTuple<VALUE_TYPE> Get(std::string line, bool is_pattern) = 0;
-    protected:
+    public:
       virtual VALUE_TYPE GetPatternValue() const = 0;
     };
   }

@@ -16,19 +16,31 @@ namespace sspp {
       MatrixMarketStream(std::istream & stream,
                          MatrixMarketTupleReaderInterface<VALUE_TYPE> &tuple_reader) :
         tuple_reader_(tuple_reader),
+        current_index(0),
         stream_(stream) {
         stream_ >> header_;
         GoToEntries();
       };
 
       MatrixMarketTuple<VALUE_TYPE> GetNextTuple() {
-        return tuple_reader_.Get(current_line_, header_.IsPattern());
+        current_index++;
+        unsigned i, j;
+        VALUE_TYPE val;
+        if(header_.IsPattern()) {
+          stream_ >> i >> j;
+          val = tuple_reader_.GetPatternValue();
+        } else {
+          stream_ >> i >> j >> val;
+        }
+        return MatrixMarketTuple<VALUE_TYPE>(i, j, val);
+        //return tuple_reader_.Get(current_line_, header_.IsPattern());
       }
 
       bool hasNextTuple() {
-        current_line_.clear();
-        std::getline(stream_, current_line_);
-        return !current_line_.empty();
+        //   current_line_.clear();
+          // std::getline(stream_, current_line_);
+           //return !current_line_.empty();
+        return current_index != non_zeros_;
       }
 
       MatrixMarketHeader const & GetMatrixMarketHeader() const {
@@ -67,6 +79,7 @@ namespace sspp {
       unsigned rows_;
       unsigned columns_;
       unsigned non_zeros_;
+      unsigned current_index;
 
       std::string current_line_;
       MatrixMarketTupleReaderInterface<VALUE_TYPE> &tuple_reader_;

@@ -23,7 +23,7 @@ namespace sspp {
 
         return MatrixMarketTuple<float>(row_indice - 1, column_indice - 1, value);
       };
-    protected:
+    public:
       float GetPatternValue() const {
         return static_cast<float>(rand() % 100);
       }
