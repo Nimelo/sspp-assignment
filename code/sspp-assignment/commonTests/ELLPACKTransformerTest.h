@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MatrixMarketStreamTest.h"
+#include <gtest/gtest.h>
 
-class ELLPACKTransformerTest : public MatrixMarketStreamTest {
+class ELLPACKTransformerTest : public ::testing::Test {
 };

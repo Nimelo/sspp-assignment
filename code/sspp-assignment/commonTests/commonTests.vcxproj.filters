@@ -66,14 +66,14 @@
     <ClCompile Include="MatrixMarketHeaderTests.cpp">
       <Filter>Header Files\testing\io\mm</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixMarketStreamTests.cpp">
-      <Filter>Header Files\testing\io\mm</Filter>
-    </ClCompile>
     <ClCompile Include="CSRTransformerTests.cpp">
       <Filter>Header Files\testing\tools\transformers\CRS</Filter>
     </ClCompile>
     <ClCompile Include="AdvancedCRSTests.cpp">
       <Filter>Header Files\testing\tools\transformers\CRS</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixMarketReaderTests.cpp">
+      <Filter>Header Files\testing\io\mm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,11 +98,11 @@
     <ClInclude Include="MatrixMarketHeaderTest.h">
       <Filter>Header Files\testing\io\mm</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixMarketStreamTest.h">
-      <Filter>Header Files\testing\io\mm</Filter>
-    </ClInclude>
     <ClInclude Include="CSRTransformerTest.h">
       <Filter>Header Files\testing\tools\transformers\CRS</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarketReaderTest.h">
+      <Filter>Header Files\testing\io\mm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

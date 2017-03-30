@@ -1,6 +1,7 @@
 #pragma once
 
-#include "MatrixMarketStreamTest.h"
+#include <gtest/gtest.h>
 
-class CSRTransformerTest : public MatrixMarketStreamTest {
+class CSRTransformerTest : public ::testing::Test {
+
 };

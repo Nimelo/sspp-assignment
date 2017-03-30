@@ -13,7 +13,7 @@ namespace sspp {
       };
 
       MatrixMarketTuple(const MatrixMarketTuple<VALUE_TYPE> & other) {
-          Swap(this, other);
+        Swap(*this, other);
       }
 
       template<typename T>
@@ -34,7 +34,7 @@ namespace sspp {
         return value_;
       };
     private:
-      static void Swap(MatrixMarketTuple<VALUE_TYPE> & lhs, MatrixMarketTuple<VALUE_TYPE> & rhs) {
+      static void Swap(MatrixMarketTuple<VALUE_TYPE> & lhs, const MatrixMarketTuple<VALUE_TYPE> & rhs) {
         lhs.row_indice_ = rhs.row_indice_;
         lhs.column_indice_ = rhs.column_indice_;
         lhs.value_ = rhs.value_;

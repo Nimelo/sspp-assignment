@@ -4,9 +4,9 @@
 
 #include <vector>
 #include <sstream>
-#include "MatrixMarketStream.h"
+#include "MatrixMarketHeader.h"
 
-class MatrixMarketStreamTest : public ITest {
+class MatrixMarketReaderTest : public ITest {
 protected:
   std::stringstream ss;
   virtual void SetUp() {

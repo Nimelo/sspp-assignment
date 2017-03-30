@@ -67,6 +67,9 @@
     <Filter Include="Header Files\io\resolvers">
       <UniqueIdentifier>{9f8c10ff-3f08-4d23-9aad-a295589f47b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\tools\transformers">
+      <UniqueIdentifier>{1fa8f408-3c4a-48d0-af12-41014bfecfd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -123,12 +126,6 @@
     <ClInclude Include="MatrixMarketEnums.h">
       <Filter>Header Files\io\mmio</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixMarketStream.h">
-      <Filter>Header Files\io\mmio</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixMarketTuple.h">
-      <Filter>Header Files\io\mmio</Filter>
-    </ClInclude>
     <ClInclude Include="MatrixMarketHeader.h">
       <Filter>Header Files\io\mmio</Filter>
     </ClInclude>
@@ -138,14 +135,32 @@
     <ClInclude Include="CRSSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixMarketTupleReaderInterface.h">
-      <Filter>Header Files\io\resolvers</Filter>
-    </ClInclude>
-    <ClInclude Include="UnsignedFloatReader.h">
-      <Filter>Header Files\io\resolvers</Filter>
-    </ClInclude>
     <ClInclude Include="StableSorter.h">
       <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarket.h">
+      <Filter>Header Files\representations</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMarketTuple.h">
+      <Filter>Header Files\representations</Filter>
+    </ClInclude>
+    <ClInclude Include="SparseMatrix.h">
+      <Filter>Header Files\representations</Filter>
+    </ClInclude>
+    <ClInclude Include="CRSTransformer.h">
+      <Filter>Header Files\tools\transformers</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKTransformer.h">
+      <Filter>Header Files\tools\transformers</Filter>
+    </ClInclude>
+    <ClInclude Include="MarketMatrixReader.h">
+      <Filter>Header Files\io\mmio</Filter>
+    </ClInclude>
+    <ClInclude Include="PatternValueResolverInterface.h">
+      <Filter>Header Files\io\resolvers</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatPatternResolver.h">
+      <Filter>Header Files\io\resolvers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

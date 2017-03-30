@@ -3,8 +3,9 @@
 #include <gtest\gtest.h>
 #include <sstream>
 #include <vector>
-#include "UnsignedFloatReader.h"
 #include "CRS.h"
+#include "MatrixMarket.h"
+#include "CRSTransformer.h"
 
 using namespace sspp::common;
 
@@ -12,15 +13,12 @@ using namespace sspp::common;
 TEST_F(CSRTransformerTest, ALL_ROWS) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
   const unsigned M = 3, N = 3, NZ = 5;
-  std::vector<unsigned> iIndexes = { 1, 1, 2, 2, 3 },
-    jIndexes = { 1, 2, 2, 3, 3 };
+  std::vector<unsigned> iIndexes = { 0, 0, 1, 1, 2 },
+    jIndexes = { 0, 1, 1, 2, 2 };
   std::vector<float> values = { 17, 4, 5, 2, 11 };
-  WriteHeader(mmh);
-  WriteIndices<unsigned, unsigned, float>(M, N, NZ, iIndexes, jIndexes, values);
-  UnsignedFlaotReader reader;
-  MatrixMarketStream<float> mms(ss, reader);
+  MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
 
-  CRS<float> crs(mms);
+  CRS<float> crs = CRSTransformer::transform(mm);
 
   ASSERT_EQ(M, crs.GetRows());
   ASSERT_EQ(N, crs.GetColumns());
@@ -36,15 +34,12 @@ TEST_F(CSRTransformerTest, ALL_ROWS) {
 TEST_F(CSRTransformerTest, NO_MIDDLE_ROW) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
   const unsigned M = 3, N = 3, NZ = 3;
-  std::vector<unsigned> iIndexes = { 1, 1, 3 },
-    jIndexes = { 1, 2, 3 };
+  std::vector<unsigned> iIndexes = { 0, 0, 2 },
+    jIndexes = { 0, 1, 2 };
   std::vector<float> values = { 17, 4, 11 };
-  WriteHeader(mmh);
-  WriteIndices<unsigned, unsigned, float>(M, N, NZ, iIndexes, jIndexes, values);
-  UnsignedFlaotReader reader;
-  MatrixMarketStream<float> mms(ss, reader);
+  MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
 
-  CRS<float> crs(mms);
+  CRS<float> crs = CRSTransformer::transform(mm);
 
   ASSERT_EQ(M, crs.GetRows());
   ASSERT_EQ(N, crs.GetColumns());
@@ -60,15 +55,12 @@ TEST_F(CSRTransformerTest, NO_MIDDLE_ROW) {
 TEST_F(CSRTransformerTest, NO_MIDDLE_ROW_2) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
   const unsigned M = 3, N = 3, NZ = 2;
-  std::vector<unsigned> iIndexes = { 1, 3 },
-    jIndexes = { 2, 3 };
+  std::vector<unsigned> iIndexes = { 0, 2 },
+    jIndexes = { 1, 2 };
   std::vector<float> values = { 4, 11 };
-  WriteHeader(mmh);
-  WriteIndices<unsigned, unsigned, float>(M, N, NZ, iIndexes, jIndexes, values);
-  UnsignedFlaotReader reader;
-  MatrixMarketStream<float> mms(ss, reader);
+  MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
 
-  CRS<float> crs(mms);
+  CRS<float> crs = CRSTransformer::transform(mm);
 
   ASSERT_EQ(M, crs.GetRows());
   ASSERT_EQ(N, crs.GetColumns());
@@ -84,15 +76,12 @@ TEST_F(CSRTransformerTest, NO_MIDDLE_ROW_2) {
 TEST_F(CSRTransformerTest, ONE_VALUE_ONLY) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
   const unsigned M = 3, N = 3, NZ = 1;
-  std::vector<unsigned> iIndexes = { 3 },
-    jIndexes = { 3 };
+  std::vector<unsigned> iIndexes = { 2 },
+    jIndexes = { 2 };
   std::vector<float> values = { 11 };
-  WriteHeader(mmh);
-  WriteIndices<unsigned, unsigned, float>(M, N, NZ, iIndexes, jIndexes, values);
-  UnsignedFlaotReader reader;
-  MatrixMarketStream<float> mms(ss, reader);
+  MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
 
-  CRS<float> crs(mms);
+  CRS<float> crs = CRSTransformer::transform(mm);
 
   ASSERT_EQ(M, crs.GetRows());
   ASSERT_EQ(N, crs.GetColumns());
@@ -108,15 +97,12 @@ TEST_F(CSRTransformerTest, ONE_VALUE_ONLY) {
 TEST_F(CSRTransformerTest, FIRST_AND_LAST_ROW) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
   const unsigned M = 4, N = 4, NZ = 2;
-  std::vector<unsigned> iIndexes = { 1, 4 },
-    jIndexes = { 1, 4 };
+  std::vector<unsigned> iIndexes = { 0, 3 },
+    jIndexes = { 0, 3 };
   std::vector<float> values = { 4, 11};
-  WriteHeader(mmh);
-  WriteIndices<unsigned, unsigned, float>(M, N, NZ, iIndexes, jIndexes, values);
-  UnsignedFlaotReader reader;
-  MatrixMarketStream<float> mms(ss, reader);
+  MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
 
-  CRS<float> crs(mms);
+  CRS<float> crs = CRSTransformer::transform(mm);
 
   ASSERT_EQ(M, crs.GetRows());
   ASSERT_EQ(N, crs.GetColumns());
@@ -132,15 +118,12 @@ TEST_F(CSRTransformerTest, FIRST_AND_LAST_ROW) {
 TEST_F(CSRTransformerTest, FIRST_AND_LAST_ROW_2) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
   const unsigned M = 4, N = 4, NZ = 4;
-  std::vector<unsigned> iIndexes = { 1, 1, 1, 4 },
-    jIndexes = { 1, 2, 3, 4 };
+  std::vector<unsigned> iIndexes = { 0, 0, 0, 3 },
+    jIndexes = { 0, 1, 2, 3 };
   std::vector<float> values = { 4, 5, 6, 11 };
-  WriteHeader(mmh);
-  WriteIndices<unsigned, unsigned, float>(M, N, NZ, iIndexes, jIndexes, values);
-  UnsignedFlaotReader reader;
-  MatrixMarketStream<float> mms(ss, reader);
+  MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
 
-  CRS<float> crs(mms);
+  CRS<float> crs = CRSTransformer::transform(mm);
 
   ASSERT_EQ(M, crs.GetRows());
   ASSERT_EQ(N, crs.GetColumns());

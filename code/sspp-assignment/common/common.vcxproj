@@ -140,22 +140,26 @@
     <ClInclude Include="ConversionFailedException.h" />
     <ClInclude Include="CRS.h" />
     <ClInclude Include="CRSSolver.h" />
+    <ClInclude Include="CRSTransformer.h" />
     <ClInclude Include="ELLPACK.h" />
     <ClInclude Include="ELLPACKSolver.h" />
+    <ClInclude Include="ELLPACKTransformer.h" />
     <ClInclude Include="ExecutionTimer.h" />
     <ClInclude Include="FLOPSCalculator.h" />
+    <ClInclude Include="MarketMatrixReader.h" />
+    <ClInclude Include="MatrixMarket.h" />
+    <ClInclude Include="SparseMatrix.h" />
     <ClInclude Include="StableSorter.h" />
     <ClInclude Include="MatrixMarketEnums.h" />
     <ClInclude Include="MatrixMarketHeader.h" />
-    <ClInclude Include="MatrixMarketStream.h" />
     <ClInclude Include="MatrixMarketTuple.h" />
-    <ClInclude Include="MatrixMarketTupleReaderInterface.h" />
+    <ClInclude Include="PatternValueResolverInterface.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="ReadMatrixException.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SingleHeader.h" />
-    <ClInclude Include="UnsignedFloatReader.h" />
+    <ClInclude Include="FloatPatternResolver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLineParameterReader.cpp" />

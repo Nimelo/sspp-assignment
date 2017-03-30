@@ -153,7 +153,7 @@
     <ClCompile Include="CSRTransformerTests.cpp" />
     <ClCompile Include="ELLPACKTransformerTests.cpp" />
     <ClCompile Include="InPlaceSorterTests.cpp" />
-    <ClCompile Include="MatrixMarketStreamTests.cpp" />
+    <ClCompile Include="MatrixMarketReaderTests.cpp" />
     <ClCompile Include="MatrixMarketHeaderTests.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
@@ -173,7 +173,7 @@
     <ClInclude Include="ELLPACKTransformerTest.h" />
     <ClInclude Include="InPlaceSorterTest.h" />
     <ClInclude Include="ITest.h" />
-    <ClInclude Include="MatrixMarketStreamTest.h" />
+    <ClInclude Include="MatrixMarketReaderTest.h" />
     <ClInclude Include="MatrixMarketHeaderTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

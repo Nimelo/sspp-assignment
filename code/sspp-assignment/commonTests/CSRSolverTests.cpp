@@ -13,7 +13,7 @@ TEST_F(CSRSolverTest, shouldSolveCorrectly_Salvatore) {
   std::vector<unsigned> IRP = { 0, 2, 4, 5, 7 },
     JA = { 0, 1, 1, 2, 2, 2, 3 };
   std::vector<float> AS = { 11, 12, 22, 23, 33, 43, 44 };
-  CRS<float> csr(NZ, M, N, IRP, JA, AS);
+  CRS<float> csr(M, N, NZ, IRP, JA, AS);
   std::vector<float> B = { 1, 1, 1, 1 };
   std::vector<float> correctX = { 23, 45, 33, 87 };
   CRSSolver<float> solver;
@@ -29,7 +29,7 @@ TEST_F(CSRSolverTest, shouldSolveCorrectly) {
   std::vector<unsigned> IRP = { 0, 1, 2, 4 },
     JA = { 0, 1, 2, 3 };
   std::vector<float> AS = { 15, 20, 1, 5 };
-  CRS<float> csr(NZ, M, N, IRP, JA, AS);
+  CRS<float> csr(M, N, NZ, IRP, JA, AS);
   std::vector<float> B = { 2, 1, 3, 4 };
   std::vector<float> correctX = { 30, 20, 23 };
 
