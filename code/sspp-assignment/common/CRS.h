@@ -97,9 +97,9 @@ namespace sspp {
         lhs.columns_ = rhs.columns_;
         lhs.non_zeros_ = rhs.non_zeros_;
 
-        lhs.values_(rhs.values_);
-        lhs.row_start_indexes_(rhs.row_start_indexes_);
-        lhs.column_indices_(rhs.column_indices_);
+        lhs.values_.assign(rhs.values_.begin(), rhs.values_.end());
+        lhs.row_start_indexes_.assign(rhs.row_start_indexes_.begin(), rhs.row_start_indexes_.end());
+        lhs.column_indices_.assign(rhs.column_indices_.begin(), rhs.column_indices_.end());
       }
 
       std::vector<unsigned> row_start_indexes_;

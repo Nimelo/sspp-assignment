@@ -3,15 +3,14 @@
 
 #include "../common/ELLPACK.h"
 #include "../common/Output.h"
-#include "../common/Definitions.h"
 #include "../common/AbstractELLPACKSolver.h"
 
 namespace sspp {
   namespace tools {
     namespace solvers {
-      class ELLPACKCudaSolver :public sspp::tools::solvers::AbstractELLPACKSolver {
+      class ELLPACKCudaSolver :public common::AbstractELLPACKSolver<float> {
       public:
-        sspp::representations::Output Solve(sspp::representations::ELLPACK &ellpack, std::vector<FLOATING_TYPE> & b) override;
+        common::Output<float> Solve(common::ELLPACK<float>& ellpack, std::vector<float>& vector);
       };
     }
   }

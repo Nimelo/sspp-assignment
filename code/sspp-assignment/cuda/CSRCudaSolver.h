@@ -1,18 +1,17 @@
 #ifndef SSPP_CUDA_CSRCUDASOLVER_H_
 #define SSPP_CUDA_CSRCUDASOLVER_H_
 
-#include "../common/CSR.h"
+#include "../common/CRS.h"
 #include "../common/Output.h"
-#include "../common/Definitions.h"
 #include "../common/Output.h"
-#include "../common/AbstractCSRSolver.h"
+#include "../common/AbstractCRSSolver.h"
 
 namespace sspp {
   namespace tools {
     namespace solvers {
-      class CSRCudaSolver : public AbstractCSRSolver {
+      class CSRCudaSolver : public common::AbstractCRSSolver<float> {
       public:
-        representations::Output Solve(representations::CSR &csr, std::vector<FLOATING_TYPE> & b) override;
+        common::Output<float> Solve(common::CRS<float>& crs, std::vector<float>& vector);
       };
     }
   }
