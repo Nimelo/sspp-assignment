@@ -24,10 +24,10 @@
     <CudaCompile Include="kernel.cu">
       <Filter>Source Files</Filter>
     </CudaCompile>
-    <CudaCompile Include="CSRCudaSolver.cu">
+    <CudaCompile Include="ELLPACKCudaSolver.cu">
       <Filter>Source Files\tools\solvers</Filter>
     </CudaCompile>
-    <CudaCompile Include="ELLPACKCudaSolver.cu">
+    <CudaCompile Include="CRSCudaSolver.cu">
       <Filter>Source Files\tools\solvers</Filter>
     </CudaCompile>
   </ItemGroup>
@@ -35,10 +35,10 @@
     <ClInclude Include="kernel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CSRCudaSolver.h">
+    <ClInclude Include="ELLPACKCudaSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
-    <ClInclude Include="ELLPACKCudaSolver.h">
+    <ClInclude Include="CRSCudaSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
   </ItemGroup>

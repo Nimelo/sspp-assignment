@@ -9,7 +9,7 @@
 namespace sspp {
   namespace tools {
     namespace solvers {
-      class CSRCudaSolver : public common::AbstractCRSSolver<float> {
+      class CRSCudaSolver : public common::AbstractCRSSolver<float> {
       public:
         common::Output<float> Solve(common::CRS<float>& crs, std::vector<float>& vector);
       };

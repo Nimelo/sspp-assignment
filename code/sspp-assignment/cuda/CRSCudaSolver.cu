@@ -1,4 +1,4 @@
-#include "CSRCudaSolver.h"
+#include "CRSCudaSolver.h"
 #include <host_defines.h>
 #include <device_launch_parameters.h>
 #include <cuda_runtime.h>
@@ -18,7 +18,7 @@ __global__ void crsKernel(unsigned rows, unsigned *irp, unsigned *ja, float *as,
   }
 }
 
-sspp::common::Output<float> sspp::tools::solvers::CSRCudaSolver::Solve(common::CRS<float>& crs, std::vector<float>& b) {
+sspp::common::Output<float> sspp::tools::solvers::CRSCudaSolver::Solve(common::CRS<float>& crs, std::vector<float>& b) {
   std::vector<float> x(crs.GetRows());
   cudaError_t cudaStatus;
   unsigned *device_irp, *device_ja;

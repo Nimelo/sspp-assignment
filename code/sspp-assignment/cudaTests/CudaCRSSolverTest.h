@@ -1,13 +1,13 @@
 #pragma once
 
 #include "ITest.h"
-#include "../cuda/CSRCudaSolver.h"
+#include "../cuda/CRSCudaSolver.h"
 
 class CudaCSRSolverTest : public ITest {
 protected:
-  sspp::tools::solvers::CSRCudaSolver *csrParallelSolver;
+  sspp::tools::solvers::CRSCudaSolver *csrParallelSolver;
   virtual void SetUp() {
-    csrParallelSolver = new sspp::tools::solvers::CSRCudaSolver();
+    csrParallelSolver = new sspp::tools::solvers::CRSCudaSolver();
   }
 
   virtual void TearDown() {

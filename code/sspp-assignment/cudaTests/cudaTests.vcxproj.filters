@@ -21,10 +21,10 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CudaCSRSolverTests.cpp">
+    <ClCompile Include="CudaELLPACKSolverTests.cpp">
       <Filter>Header Files\testing</Filter>
     </ClCompile>
-    <ClCompile Include="CudaELLPACKSolverTests.cpp">
+    <ClCompile Include="CudaCRSSolverTests.cpp">
       <Filter>Header Files\testing</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="ITest.h">
       <Filter>Header Files\testing</Filter>
     </ClInclude>
-    <ClInclude Include="CudaCSRSolverTest.h">
+    <ClInclude Include="CudaELLPACKSolverTest.h">
       <Filter>Header Files\testing</Filter>
     </ClInclude>
-    <ClInclude Include="CudaELLPACKSolverTest.h">
+    <ClInclude Include="CudaCRSSolverTest.h">
       <Filter>Header Files\testing</Filter>
     </ClInclude>
   </ItemGroup>

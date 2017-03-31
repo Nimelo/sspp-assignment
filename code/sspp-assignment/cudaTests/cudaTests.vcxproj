@@ -150,12 +150,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CudaCSRSolverTests.cpp" />
+    <ClCompile Include="CudaCRSSolverTests.cpp" />
     <ClCompile Include="CudaELLPACKSolverTests.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CudaCSRSolverTest.h" />
+    <ClInclude Include="CudaCRSSolverTest.h" />
     <ClInclude Include="CudaELLPACKSolverTest.h" />
     <ClInclude Include="ITest.h" />
   </ItemGroup>

@@ -171,12 +171,12 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CSRCudaSolver.h" />
+    <ClInclude Include="CRSCudaSolver.h" />
     <ClInclude Include="ELLPACKCudaSolver.h" />
     <ClInclude Include="kernel.h" />
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="CSRCudaSolver.cu">
+    <CudaCompile Include="CRSCudaSolver.cu">
       <FileType>CppCode</FileType>
     </CudaCompile>
     <CudaCompile Include="ELLPACKCudaSolver.cu">
