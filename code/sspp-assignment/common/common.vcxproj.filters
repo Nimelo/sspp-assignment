@@ -126,9 +126,6 @@
     <ClInclude Include="CRS.h">
       <Filter>Header Files\representations</Filter>
     </ClInclude>
-    <ClInclude Include="CRSSolver.h">
-      <Filter>Header Files\tools\solvers</Filter>
-    </ClInclude>
     <ClInclude Include="StableSorter.h">
       <Filter>Header Files\tools</Filter>
     </ClInclude>
@@ -159,8 +156,8 @@
     <ClInclude Include="AbstractCRSSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
-    <ClInclude Include="ELLPACKSolver.h">
-      <Filter>Header Files\tools\transformers</Filter>
+    <ClInclude Include="MetaPerformanceResult.h">
+      <Filter>Header Files\representations\results</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

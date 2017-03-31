@@ -13,6 +13,11 @@ namespace sspp {
         values_.assign(values.begin(), values.end());
       };
 
+      Output(std::vector<VALUE_TYPE> & values, unsigned ms) {
+        values_.assign(values.begin(), values.end());
+        milliseconds_ = ms;
+      };
+
       Output(const Output<VALUE_TYPE> & other) {
         Swap(*this, other);
       }
@@ -26,6 +31,14 @@ namespace sspp {
         return values_;
       }
 
+      unsigned GetMilliseconds() const {
+        return milliseconds_;
+      }
+
+      unsigned SetMilliseconds(unsigned ms) {
+        milliseconds_ = ms;
+      }
+
       friend std::ostream& operator <<(std::ostream& os, const Output& o) {
         for(typename std::vector<VALUE_TYPE>::iterator it = o.values_.begin(); it != o.values_.end(); ++it)
           os << *it << '\t';
@@ -34,11 +47,13 @@ namespace sspp {
       void Swap(Output & lhs, const Output & rhs) {
         lhs.values_.resize(rhs.values_.size());
         if(!rhs.values_.empty())
-        copy(rhs.values_.begin(), rhs.values_.end(), lhs.values_.begin());
-        //lhs.values_.assign(rhs.va, lhs.values_.end());
+          copy(rhs.values_.begin(), rhs.values_.end(), lhs.values_.begin());
+        
+        lhs.milliseconds_ = rhs.milliseconds_;
       }
 
       std::vector<VALUE_TYPE> values_;
+      unsigned milliseconds_;
     };
   }
 }
