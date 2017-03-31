@@ -2,6 +2,7 @@
 #define SSPP_COMMON_MATRIXMARKETREADER_H_
 #include "MatrixMarket.h"
 #include "PatternValueResolverInterface.h"
+#include "ReadMatrixException.h"
 
 namespace sspp {
   namespace common {
@@ -13,6 +14,10 @@ namespace sspp {
         stream >> header;
         stream.clear();
         stream.seekg(0, stream.beg);
+
+        if(header.IsDense() || header.IsSkew() || header.IsHermitian())
+          throw ReadMatrixException();
+
         while(stream.peek() == '%') stream.ignore(2048, '\n');
         unsigned rows, columns, non_zeros;
         stream >> rows >> columns >> non_zeros;

@@ -1,4 +1,4 @@
-#include "CudaCSRSolverTest.h"
+#include "CudaCRSSolverTest.h"
 #include <gtest\gtest.h>
 #include <gmock/gmock.h>
 

@@ -43,7 +43,7 @@ namespace sspp {
         return values_;
       }
 
-      static bool CompareMatrixMarketTuple(MatrixMarketTuple<VALUE_TYPE> & lhs, MatrixMarketTuple<VALUE_TYPE> & rhs) {
+      static bool CompareMatrixMarketTuple(const MatrixMarketTuple<VALUE_TYPE> & lhs, const MatrixMarketTuple<VALUE_TYPE> & rhs) {
         return ((lhs.GetRowIndice() < rhs.GetRowIndice()) ||
           (lhs.GetRowIndice() == rhs.GetRowIndice() && lhs.GetColumnIndice() < rhs.GetColumnIndice()));
       }
