@@ -1,0 +1,38 @@
+#!/bin/bash
+#PBS -N nml-sspp	
+#PBS -l select=1:ncpus=1:mpiprocs=1
+##
+## STEP 3:
+##
+## Select correct queue:
+##
+## half_hour	-  30 minutes
+## one_hour	-   1 hour
+## half_day	-  12 hours
+## one_day	-  24 hours
+## two_day	-  48 hours
+## five_day	- 120 hours
+## ten_day	- 240 hours (by special arrangement)
+##
+#PBS -q two_day
+#PBS -M s258770@cranfield.ac.uk
+##
+##
+##
+## DO NOT CHANGE the following lines
+##------------------------------------------------
+#PBS -W sandbox=PRIVATE
+#PBS -V
+#PBS -j oe
+#PBS -m abe 
+##
+## Change to working directory
+cd $PBS_O_WORKDIR
+##
+## Calculate number of CPUs
+cpus=`cat $PBS_NODEFILE | wc -l`
+##
+## Set up INTEL 2012 environment.
+source /apps/intel/xe2017/config_intel.sh
+
+sh /home/GRID/s258770/sspp/transformer-transform.sh

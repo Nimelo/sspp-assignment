@@ -6,4 +6,4 @@ echo "icpc -std=c++11 -O3 -o transformer code/transformer/*.cpp code/common/*cpp
 icpc -std=c++11 -O3 -o bin/transformer code/transformer/*.cpp code/common/*cpp code/common/*h
 END=$(date +%s.%N)
 DIFF=$(echo "$END - $START" | bc)
-echo "Compiled in:" $DIFF
+echo $DIFF
