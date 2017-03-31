@@ -131,7 +131,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AbstractCSRSolver.h" />
+    <ClInclude Include="AbstractCRSSolver.h" />
     <ClInclude Include="AbstractELLPACKSolver.h" />
     <ClInclude Include="Argument.h" />
     <ClInclude Include="ArgumentType.h" />

@@ -151,11 +151,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CSROpenMPSolver.cpp" />
-    <ClCompile Include="ELLPACKOpenMPSolver.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CSROpenMPSolver.h" />
+    <ClInclude Include="CRSOpenMPSolver.h" />
     <ClInclude Include="ELLPACKOpenMPSolver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

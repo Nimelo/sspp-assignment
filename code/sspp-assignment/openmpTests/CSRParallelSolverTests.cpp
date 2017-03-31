@@ -1,19 +1,19 @@
-#include "CSRParallelSolverTest.h"
+#include "CRSParallelSolverTest.h"
 #include <gtest\gtest.h>
-#include "../openmp/CSROpenMPSolver.h"
+#include <gmock/gmock.h>
 
-TEST_F(CSRParallelSolverTest, test) {
-  const INDEXING_TYPE M = 4, N = 4, NZ = 7, THREADS = 2;
-  std::vector<INDEXING_TYPE> IRP = { 0, 2, 4, 5, 7 },
+TEST_F(CRSParallelSolverTest, test) {
+  const unsigned M = 4, N = 4, NZ = 7, THREADS = 2;
+  std::vector<unsigned> IRP = { 0, 2, 4, 5, 7 },
     JA = { 0, 1, 1, 2, 2, 2, 3 };
-  std::vector<FLOATING_TYPE> AS = { 11, 12, 22, 23, 33, 43, 44 };
-  sspp::representations::CSR csr(NZ, M, N, IRP, JA, AS);
-  std::vector<FLOATING_TYPE> B = { 1, 1, 1, 1 };
-  std::vector<FLOATING_TYPE> correctX = { 23, 45, 33, 87 };
+  std::vector<float> AS = { 11, 12, 22, 23, 33, 43, 44 };
+  sspp::common::CRS<float> csr(M, N, NZ, IRP, JA, AS);
+  std::vector<float> B = { 1, 1, 1, 1 };
+  std::vector<unsigned> correctX = { 23, 45, 33, 87 };
 
-  csrParallelSolver->setThreads(THREADS);
+  csrParallelSolver->SetThreads(THREADS);
   auto output = csrParallelSolver->Solve(csr, B);
 
-  ASSERT_EQ(M, output.GetValues().size()) << "Size of output_ is incorrect";
-  assertArrays(&correctX[0], &output.GetValues()[0], M, "X -> Incorrect value at: ");
+  ASSERT_EQ(M, output.GetValues().size());
+  ASSERT_THAT(output.GetValues(), ::testing::ElementsAre(23, 45, 33, 87));
 }

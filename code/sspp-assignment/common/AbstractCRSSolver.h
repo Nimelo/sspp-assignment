@@ -8,9 +8,9 @@
 namespace sspp {
   namespace common {
     template<typename VALUE_TYPE>
-    class AbstractCSRSolver {
+    class AbstractCRSSolver {
     public:
-      virtual ~AbstractCSRSolver() {};
+      virtual ~AbstractCRSSolver() {};
       virtual Output<VALUE_TYPE> Solve(CRS<VALUE_TYPE> & crs, std::vector<VALUE_TYPE> & vector) = 0;
     };
   }

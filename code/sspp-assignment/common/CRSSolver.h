@@ -3,12 +3,12 @@
 
 #include "CRS.h"
 #include "Output.h"
-#include "AbstractCSRSolver.h"
+#include "AbstractCRSSolver.h"
 
 namespace sspp {
   namespace common {
     template<typename VALUE_TYPE>
-    class CRSSolver : public AbstractCSRSolver<VALUE_TYPE> {
+    class CRSSolver : public AbstractCRSSolver<VALUE_TYPE> {
     public:
       virtual Output<VALUE_TYPE> Solve(CRS<VALUE_TYPE> & crs, std::vector<VALUE_TYPE> & vector) {
         std::vector<VALUE_TYPE> x(crs.GetRows());

@@ -41,11 +41,11 @@
     <ClInclude Include="ITest.h">
       <Filter>Header Files\testing-interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="CSRParallelSolverTest.h">
-      <Filter>Header Files\testing\csr</Filter>
-    </ClInclude>
     <ClInclude Include="ELLPACKParallelSolverTest.h">
       <Filter>Header Files\testing\ellpack</Filter>
+    </ClInclude>
+    <ClInclude Include="CRSParallelSolverTest.h">
+      <Filter>Header Files\testing\csr</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

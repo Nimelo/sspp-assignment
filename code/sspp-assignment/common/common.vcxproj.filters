@@ -114,12 +114,6 @@
     <ClInclude Include="ExecutionTimer.h">
       <Filter>Header Files\tools\measurements</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractCSRSolver.h">
-      <Filter>Header Files\tools\solvers</Filter>
-    </ClInclude>
-    <ClInclude Include="ELLPACKSolver.h">
-      <Filter>Header Files\tools\solvers</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractELLPACKSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
@@ -161,6 +155,12 @@
     </ClInclude>
     <ClInclude Include="FloatPatternResolver.h">
       <Filter>Header Files\io\resolvers</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractCRSSolver.h">
+      <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKSolver.h">
+      <Filter>Header Files\tools\transformers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

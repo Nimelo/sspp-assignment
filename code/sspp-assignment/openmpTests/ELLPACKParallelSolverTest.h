@@ -5,9 +5,9 @@
 
 class ELLPACKParallelSolverTest : public ITest {
 protected:
-  sspp::tools::solvers::ELLPACKOpenMPSolver *ellpackParallelSolver;
+  sspp::openmp::ELLPACKOpenMPSolver<float> *ellpackParallelSolver;
   virtual void SetUp() {
-    ellpackParallelSolver = new sspp::tools::solvers::ELLPACKOpenMPSolver();
+    ellpackParallelSolver = new sspp::openmp::ELLPACKOpenMPSolver<float>();
   }
 
   virtual void TearDown() {

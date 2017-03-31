@@ -1,10 +1,9 @@
 #include "../common/CommandLineParameterReader.h"
 #include "CSRInvoker.h"
 #include "ELLPACKInvoker.h"
-#include "../common/Definitions.h"
-#include "../openmp/CSROpenMPSolver.h"
+#include "../openmp/CRSOpenMPSolver.h"
 #include "../openmp/ELLPACKOpenMPSolver.h"
-#include "../cuda/CSRCudaSolver.h"
+//#include "../cuda/CSRCudaSolver.cu"
 #include "../cuda/ELLPACKCudaSolver.h"
 
 #include <iostream>
@@ -23,7 +22,7 @@
 
 int main(int argc, const char** argv) {
   //TODO: Add handling unexpected error.
-  using namespace sspp::io::readers::commandline;
+  using namespace sspp::common;
   std::vector<Argument> arguments =
   {
     Argument(ARG_IN_FILE, ArgumentType::Single),
@@ -55,22 +54,25 @@ int main(int argc, const char** argv) {
     int iterationsParallel = reader.GetParameter(ARG_ITERATIONS_PARALLEL);
     int iterationsSerial = reader.GetParameter(ARG_ITERATIONS_SERIAL);
 
-    using namespace sspp::tools::solvers;
+    using namespace sspp::cuda;
+    using namespace sspp::openmp;
     //TODO: Add support for cuda code.
     if(reader.HasArgument(FLAG_CSR)) {
-      sspp::tools::invokers::CSRInvoker csrInvoker(inputFile, outputFile, iterationsParallel, iterationsSerial);
+      //sspp::tools::invokers::CSRInvoker csrInvoker(inputFile, outputFile, iterationsParallel, iterationsSerial);
       if(reader.HasArgument(FLAG_CUDA)) {
-        csrInvoker.invoke(CSRCudaSolver());
+        CRSCudaSolver<float> solver;
+//        solver.Solve()
+//        csrInvoker.invoke(CRSCudaSolver<float>());
       } else {
-        csrInvoker.invoke(CSROpenMPSolver(threads));
+//        csrInvoker.invoke(CSROpenMPSolver(threads));
       }
     } else {
-      sspp::tools::invokers::ELLPACKInvoker ellpackInvoker(inputFile, outputFile, iterationsParallel, iterationsSerial);
-      if(reader.HasArgument(FLAG_CUDA)) {
-        ellpackInvoker.invoke(ELLPACKCudaSolver());
-      } else {
-        ellpackInvoker.invoke(ELLPACKOpenMPSolver(threads));
-      }
+//      sspp::tools::invokers::ELLPACKInvoker ellpackInvoker(inputFile, outputFile, iterationsParallel, iterationsSerial);
+//      if(reader.HasArgument(FLAG_CUDA)) {
+//        ellpackInvoker.invoke(ELLPACKCudaSolver());
+//      } else {
+//        ellpackInvoker.invoke(ELLPACKOpenMPSolver(threads));
+//      }
     }
   } else {
     std::cout << "Incorrect command line paramteres!";

@@ -19,26 +19,12 @@
     <Filter Include="Header Files\tools\solvers">
       <UniqueIdentifier>{cce4c736-8fef-4955-b892-9a4caf8ee4ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\tools">
-      <UniqueIdentifier>{2e6848ee-8693-4115-8d14-871434b4a657}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools\solvers">
-      <UniqueIdentifier>{ab33431f-f71b-4160-bc84-1f8159428619}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CSROpenMPSolver.cpp">
-      <Filter>Source Files\tools\solvers</Filter>
-    </ClCompile>
-    <ClCompile Include="ELLPACKOpenMPSolver.cpp">
-      <Filter>Source Files\tools\solvers</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ELLPACKOpenMPSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
-    <ClInclude Include="CSROpenMPSolver.h">
+    <ClInclude Include="CRSOpenMPSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
   </ItemGroup>

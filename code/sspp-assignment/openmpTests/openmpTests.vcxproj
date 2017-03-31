@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\include;$(SolutionDir)common;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\include;$(SolutionDir)openmp;$(SolutionDir)common;C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googlemock\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -94,7 +94,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\msvc\gtest\Debug\gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\msvc\gtest\Debug\gtestd.lib;C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googlemock\msvc\2015\Debug\gmock.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -150,12 +150,7 @@
   <ItemGroup>
     <ClInclude Include="ELLPACKParallelSolverTest.h" />
     <ClInclude Include="ITest.h" />
-    <ClInclude Include="CSRParallelSolverTest.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\openmp\openmp.vcxproj">
-      <Project>{fefa117d-586c-4a83-9d3e-9b1432541a1f}</Project>
-    </ProjectReference>
+    <ClInclude Include="CRSParallelSolverTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
