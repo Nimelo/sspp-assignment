@@ -2,7 +2,7 @@
 #define SSPP_SERIAL_CRSRUNNER_H_
 #include "../common/MetaPerformanceResult.h"
 #include "../common/CRS.h"
-#include "CRSSolver.h"
+#include "../common/CRSSolver.h"
 
 namespace sspp {
   namespace serial {
@@ -16,7 +16,7 @@ namespace sspp {
           vector[i] = rand() % 100;
         }
 
-        CRSSolver<VALUE_TYPE> solver;
+        common::CRSSolver<VALUE_TYPE> solver;
         for(unsigned i = 0; i < iterations; i++) {
           common::Output<VALUE_TYPE> output = solver.Solve(crs, vector);
           times += output.GetMilliseconds();

@@ -18,7 +18,8 @@ namespace sspp {
       common::Output<VALUE_TYPE> Solve(common::CRS<VALUE_TYPE>& crs, std::vector<VALUE_TYPE>& vector) {
         std::vector<VALUE_TYPE> x(crs.GetRows());
 
-#pragma omp parallel shared(csr, b, x)
+        double t1 = omp_get_wtime();
+#pragma omp parallel shared(crs, vector, x)
         {
           int threads = omp_get_num_threads(),
             threadId = omp_get_thread_num();
@@ -32,8 +33,8 @@ namespace sspp {
             }
           }
         }
-
-        return common::Output<VALUE_TYPE>(x);
+        double t2 = omp_get_wtime();
+        return common::Output<VALUE_TYPE>(x, static_cast<unsigned>(t2 - t1));
       };
     };
   }

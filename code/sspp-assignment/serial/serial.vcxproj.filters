@@ -26,11 +26,5 @@
     <ClInclude Include="ELLPACKRunner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CRSSolver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ELLPACKSolver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

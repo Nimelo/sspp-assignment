@@ -19,6 +19,7 @@ namespace sspp {
       common::Output<VALUE_TYPE> Solve(common::ELLPACK<VALUE_TYPE> & ellpack, std::vector<VALUE_TYPE> & b) {
         std::vector<VALUE_TYPE> x(ellpack.GetRows());
 
+        double t1 = omp_get_wtime();
 #pragma omp parallel shared(ellpack, b, x)
         for(auto i = 0; i < ellpack.GetRows(); i++) {
           VALUE_TYPE tmp = 0;
@@ -29,7 +30,8 @@ namespace sspp {
 
           x[i] = tmp;
         }
-        return common::Output<VALUE_TYPE>(x);
+        double t2 = omp_get_wtime();
+        return common::Output<VALUE_TYPE>(x, static_cast<unsigned>(t2 - t1));
       };
     };
   }

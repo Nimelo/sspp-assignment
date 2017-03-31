@@ -139,8 +139,10 @@
     <ClInclude Include="CommandLineParameterReader.h" />
     <ClInclude Include="ConversionFailedException.h" />
     <ClInclude Include="CRS.h" />
+    <ClInclude Include="CRSSolver.h" />
     <ClInclude Include="CRSTransformer.h" />
     <ClInclude Include="ELLPACK.h" />
+    <ClInclude Include="ELLPACKSolver.h" />
     <ClInclude Include="ELLPACKTransformer.h" />
     <ClInclude Include="ExecutionTimer.h" />
     <ClInclude Include="FLOPSCalculator.h" />

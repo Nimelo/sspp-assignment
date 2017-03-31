@@ -1,23 +1,23 @@
-#ifndef SSPP_SERIAL_ELLPACKRUNNER_H_
-#define SSPP_SERIAL_ELLPACKRUNNER_H_
+#ifndef SSPP_OPENMP_CRSRUNNER_H_
+#define SSPP_OPENMP_CRSRUNNER_H_
 #include "../common/MetaPerformanceResult.h"
-#include "../common/ELLPACK.h"
-#include "../common/EllpackSolver.h"
-
+#include "../common/CRS.h"
+#include "CRSOpenMPSolver.h"
 
 namespace sspp {
-  namespace serial {
-    class ELLPACKRunner {
+  namespace openmp {
+    class CRSRunner {
     public:
       template<typename VALUE_TYPE>
-      static common::MetaPerofmanceResult run(common::ELLPACK<VALUE_TYPE> & crs, unsigned iterations) {
+      static common::MetaPerofmanceResult run(common::CRS<VALUE_TYPE> & crs, unsigned iterations, unsigned threads) {
         unsigned times = 0;
         std::vector<VALUE_TYPE> vector(crs.GetColumns());
         for(unsigned i = 0; i < crs.GetColumns(); ++i) {
           vector[i] = rand() % 100;
         }
-        
-        common::ELLPACKSolver<VALUE_TYPE> solver;
+
+        CRSOpenMPSolver<VALUE_TYPE> solver;
+        solver.SetThreads(threads);
         for(unsigned i = 0; i < iterations; i++) {
           common::Output<VALUE_TYPE> output = solver.Solve(crs, vector);
           times += output.GetMilliseconds();

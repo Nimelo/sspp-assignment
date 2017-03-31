@@ -152,9 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CRSRunner.h" />
-    <ClInclude Include="CRSSolver.h" />
     <ClInclude Include="ELLPACKRunner.h" />
-    <ClInclude Include="ELLPACKSolver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

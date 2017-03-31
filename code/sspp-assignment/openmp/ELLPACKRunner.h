@@ -2,22 +2,23 @@
 #define SSPP_SERIAL_ELLPACKRUNNER_H_
 #include "../common/MetaPerformanceResult.h"
 #include "../common/ELLPACK.h"
-#include "../common/EllpackSolver.h"
+#include "ELLPACKOpenMPSolver.h"
 
 
 namespace sspp {
-  namespace serial {
+  namespace openmp {
     class ELLPACKRunner {
     public:
       template<typename VALUE_TYPE>
-      static common::MetaPerofmanceResult run(common::ELLPACK<VALUE_TYPE> & crs, unsigned iterations) {
+      static common::MetaPerofmanceResult run(common::ELLPACK<VALUE_TYPE> & crs, unsigned iterations, unsigned threads) {
         unsigned times = 0;
         std::vector<VALUE_TYPE> vector(crs.GetColumns());
         for(unsigned i = 0; i < crs.GetColumns(); ++i) {
           vector[i] = rand() % 100;
         }
-        
-        common::ELLPACKSolver<VALUE_TYPE> solver;
+
+        ELLPACKOpenMPSolver<VALUE_TYPE> solver;
+        solver.SetThreads(threads);
         for(unsigned i = 0; i < iterations; i++) {
           common::Output<VALUE_TYPE> output = solver.Solve(crs, vector);
           times += output.GetMilliseconds();

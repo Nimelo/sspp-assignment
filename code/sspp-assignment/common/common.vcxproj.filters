@@ -159,6 +159,12 @@
     <ClInclude Include="MetaPerformanceResult.h">
       <Filter>Header Files\representations\results</Filter>
     </ClInclude>
+    <ClInclude Include="CRSSolver.h">
+      <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKSolver.h">
+      <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLineParameterReader.cpp">

@@ -27,5 +27,16 @@
     <ClInclude Include="CRSOpenMPSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
+    <ClInclude Include="CRSRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ELLPACKRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
