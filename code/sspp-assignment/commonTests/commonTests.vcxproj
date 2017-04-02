@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdvancedCRSTests.cpp" />
+    <ClCompile Include="ChronoStopwatchTests.cpp" />
     <ClCompile Include="CommandLineTests.cpp" />
     <ClCompile Include="CSRSolverTests.cpp" />
     <ClCompile Include="CSRTransformerTests.cpp" />
@@ -166,6 +167,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChronoStopWatchTest.h" />
     <ClInclude Include="CommandlineTest.h" />
     <ClInclude Include="CSRSolverTest.h" />
     <ClInclude Include="CSRTransformerTest.h" />

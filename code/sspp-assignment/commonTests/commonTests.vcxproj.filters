@@ -43,6 +43,9 @@
     <Filter Include="Header Files\testing\tools\transformers\CRS">
       <UniqueIdentifier>{52ed07ae-fe6e-4980-a8e5-97816f89742b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\testing\tools\measurements">
+      <UniqueIdentifier>{180de595-c8af-4d44-bdc7-a96c69c2f00b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -75,6 +78,9 @@
     <ClCompile Include="MatrixMarketReaderTests.cpp">
       <Filter>Header Files\testing\io\mm</Filter>
     </ClCompile>
+    <ClCompile Include="ChronoStopwatchTests.cpp">
+      <Filter>Header Files\testing\tools\measurements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -103,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="MatrixMarketReaderTest.h">
       <Filter>Header Files\testing\io\mm</Filter>
+    </ClInclude>
+    <ClInclude Include="ChronoStopWatchTest.h">
+      <Filter>Header Files\testing\tools\measurements</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

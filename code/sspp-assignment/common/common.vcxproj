@@ -137,6 +137,7 @@
     <ClInclude Include="AbstractStopwatch.h" />
     <ClInclude Include="Argument.h" />
     <ClInclude Include="ArgumentType.h" />
+    <ClInclude Include="ChronoStopwatch.h" />
     <ClInclude Include="CommandLineException.h" />
     <ClInclude Include="CommandLineParameterReader.h" />
     <ClInclude Include="ConversionFailedException.h" />

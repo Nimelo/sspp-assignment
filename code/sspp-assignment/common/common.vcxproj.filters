@@ -168,6 +168,9 @@
     <ClInclude Include="AbstractStopwatch.h">
       <Filter>Header Files\tools\measurements</Filter>
     </ClInclude>
+    <ClInclude Include="ChronoStopwatch.h">
+      <Filter>Header Files\tools\measurements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLineParameterReader.cpp">
