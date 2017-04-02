@@ -58,7 +58,7 @@ namespace sspp {
         checkCudaErrors(cudaMemcpy(*d_row_start_indexes, &crs.GetRowStartIndexes()[0], sizeof(unsigned) * crs.GetRowStartIndexes().size(), cudaMemcpyHostToDevice));
         checkCudaErrors(cudaMemcpy(*d_column_indices, &crs.GetColumnIndices()[0], sizeof(unsigned) * crs.GetColumnIndices().size(), cudaMemcpyHostToDevice));
         checkCudaErrors(cudaMemcpy(*d_values, &crs.GetValues()[0], sizeof(VALUE_TYPE) * crs.GetValues().size(), cudaMemcpyHostToDevice));
-        checkCudaErrors(cudaMemset(d_output, 0, sizeof(VALUE_TYPE) * crs.GetRows()));
+        checkCudaErrors(cudaMemset(*d_output, 0, sizeof(VALUE_TYPE) * crs.GetRows()));
         checkCudaErrors(cudaMemcpy(*d_vector, &vector[0], sizeof(VALUE_TYPE) * vector.size(), cudaMemcpyHostToDevice));
       }
 
