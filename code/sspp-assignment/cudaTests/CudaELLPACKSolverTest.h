@@ -5,9 +5,9 @@
 
 class CudaELLPACKSolverTest : public ITest {
 protected:
-  sspp::tools::solvers::ELLPACKCudaSolver *csrParallelSolver;
+  sspp::cuda::ELLPACKCudaSolver<float> *csrParallelSolver;
   virtual void SetUp() {
-    csrParallelSolver = new sspp::tools::solvers::ELLPACKCudaSolver();
+    csrParallelSolver = new sspp::cuda::ELLPACKCudaSolver<float>();
   }
 
   virtual void TearDown() {

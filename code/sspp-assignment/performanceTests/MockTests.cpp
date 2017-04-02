@@ -92,7 +92,7 @@ TEST_F(MockTest, CUDA) {
   sspp::common::CRS<float> csr(M, N, NZ, IRP, JA, AS);
   std::vector<float> B = { 1, 1, 1, 1 };
   std::vector<float> correctX = { 23, 45, 33, 87 };
-  sspp::tools::solvers::CRSCudaSolver csrParallelSolver;
+  sspp::cuda::CRSCudaSolver<float> csrParallelSolver;
 
   auto output = csrParallelSolver.Solve(csr, B);
 
