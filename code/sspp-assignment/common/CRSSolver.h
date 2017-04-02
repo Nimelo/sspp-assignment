@@ -14,7 +14,7 @@ namespace sspp {
       virtual common::Output<VALUE_TYPE> Solve(common::CRS<VALUE_TYPE> & crs, std::vector<VALUE_TYPE> & vector) {
         std::vector<VALUE_TYPE> x(crs.GetRows());
 
-        auto t1 = std::chrono::high_resolution_clock::now();
+        std::chrono::steady_clock::time_point t1 = std::chrono::high_resolution_clock::now();
         for(unsigned i = 0; i < crs.GetRows(); ++i) {
           VALUE_TYPE tmp = 0;
           for(unsigned j = crs.GetRowStartIndexes()[i]; j < crs.GetRowStartIndexes()[i + 1]; ++j) {
@@ -22,8 +22,8 @@ namespace sspp {
           }
           x[i] = tmp;
         }
-        auto t2 = std::chrono::high_resolution_clock::now();
-        return common::Output<VALUE_TYPE>(x, std::chrono::duration_cast<std::chrono::seconds>(t2 - t1).count());
+        std::chrono::steady_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+        return common::Output<VALUE_TYPE>(x, std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count() / 1000000.0);
       };
     };
   }

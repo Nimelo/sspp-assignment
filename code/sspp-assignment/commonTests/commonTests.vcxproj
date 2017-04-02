@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googlemock\include;C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\include;$(SolutionDir)common;$(IncludePath)</IncludePath>
+    <IncludePath>$(GMOCK_DIR)\include;$(GTEST_DIR)\include;$(SolutionDir)common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -79,6 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(GMOCK_DIR)\include;$(GTEST_DIR)\include;$(SolutionDir)common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -95,7 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googletest\msvc\gtest\Debug\gtestd.lib;C:\Users\mrnim\Desktop\Repos\git-forks\GTEST\googletest\googlemock\msvc\2015\Debug\gmock.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(GTEST_DIR)\msvc\gtest\Debug\gtestd.lib;$(GMOCK_DIR)\msvc\2015\Debug\gmock.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -121,12 +122,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(GTEST_DIR)\msvc\gtest\Release\gtest.lib;$(GMOCK_DIR)\msvc\2015\Release\gmock.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

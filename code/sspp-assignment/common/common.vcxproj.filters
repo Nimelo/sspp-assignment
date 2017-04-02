@@ -165,6 +165,9 @@
     <ClInclude Include="ELLPACKSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
+    <ClInclude Include="AbstractStopwatch.h">
+      <Filter>Header Files\tools\measurements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLineParameterReader.cpp">

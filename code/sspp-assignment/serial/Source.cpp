@@ -44,7 +44,11 @@ int main(int argc, const char** argv) {
         fs >> crs;
         fs.close();
         fs.open(outputFile + ".meta-crs", std::fstream::out | std::fstream::trunc);
-        fs << sspp::serial::CRSRunner::run<float>(crs, iterations);
+        Result<float> result = sspp::serial::CRSRunner::run<float>(crs, iterations);
+        fs << result.meta;
+        fs.close();
+        fs.open(outputFile + ".output-crs", std::fstream::out | std::fstream::trunc);
+        fs << result.output;
         fs.close();
       } else if(reader.HasArgument(FLAG_ELLPACK)) {
         ELLPACK<float> ellpack;

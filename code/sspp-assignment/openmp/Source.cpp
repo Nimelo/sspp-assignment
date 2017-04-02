@@ -8,6 +8,7 @@
 #include "../common/MetaPerformanceResult.h"
 #include "CRSRunner.h"
 #include "ELLPACKRunner.h"
+#include "../common/Result.h"
 
 #define ARG_IN_FILE "-i"
 #define ARG_OUT_FILE "-o"
@@ -48,8 +49,12 @@ int main(int argc, const char** argv) {
         fs >> crs;
         fs.close();
         fs.open(outputFile + ".meta-crs", std::fstream::out | std::fstream::trunc);
-        fs << sspp::openmp::CRSRunner::run<float>(crs, iterations, threads);
+        Result<float> result = sspp::openmp::CRSRunner::run<float>(crs, iterations, threads);
+        fs << result.meta;
         fs << "Threads: " << threads << std::endl;
+        fs.close();
+        fs.open(outputFile + ".output-crs", std::fstream::out | std::fstream::trunc);
+        fs << result.output;
         fs.close();
       } else if(reader.HasArgument(FLAG_ELLPACK)) {
         ELLPACK<float> ellpack;

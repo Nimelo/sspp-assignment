@@ -4,6 +4,7 @@
 #include "../common/Output.h"
 #include "../common/AbstractCRSSolver.h"
 #include <omp.h>
+#include <chrono>
 
 namespace sspp {
   namespace openmp {
@@ -19,6 +20,7 @@ namespace sspp {
         std::vector<VALUE_TYPE> x(crs.GetRows());
 
         double t1 = omp_get_wtime();
+        std::chrono::steady_clock::time_point t11 = std::chrono::high_resolution_clock::now();
 #pragma omp parallel shared(crs, vector, x)
         {
           int threads = omp_get_num_threads(),
@@ -34,7 +36,8 @@ namespace sspp {
           }
         }
         double t2 = omp_get_wtime();
-        return common::Output<VALUE_TYPE>(x, static_cast<unsigned>(t2 - t1));
+        std::chrono::steady_clock::time_point t22 = std::chrono::high_resolution_clock::now();
+        return common::Output<VALUE_TYPE>(x, std::chrono::duration_cast<std::chrono::microseconds>(t22 - t11).count() / 1000000.0 );//(t2 - t1));
       };
     };
   }
