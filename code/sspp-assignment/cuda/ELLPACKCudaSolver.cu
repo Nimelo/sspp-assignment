@@ -66,8 +66,8 @@ namespace sspp {
                           VALUE_TYPE* d_values,
                           VALUE_TYPE* d_vector,
                           VALUE_TYPE* d_output) {
-        if(d_vector)
-          checkCudaErrors(cudaFree(d_vector));
+        if(d_column_indices)
+          checkCudaErrors(cudaFree(d_column_indices));
         if(d_values) {
           checkCudaErrors(cudaFree(d_values));
         }

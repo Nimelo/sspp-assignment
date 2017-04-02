@@ -53,8 +53,9 @@ namespace sspp {
         stopwatch.Start();
         SolveELLPACK(thread_blocks, threads_per_block, ellpack.GetRows(), ellpack.GetMaxRowNonZeros(), d_column_indices, d_values, d_vector, d_output);
         stopwatch.Stop();
+        std::vector<VALUE_TYPE>result = GetResult(d_output, ellpack.GetRows());
         ReleaseELLPACK(d_column_indices, d_values, d_vector, d_output);
-        return common::Output<VALUE_TYPE>(GetResult(d_output, ellpack.GetRows()), stopwatch.GetElapsedSeconds());
+        return common::Output<VALUE_TYPE>(result, stopwatch.GetElapsedSeconds());
       }
     };
   }

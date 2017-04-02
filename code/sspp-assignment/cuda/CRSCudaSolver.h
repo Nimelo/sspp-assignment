@@ -57,8 +57,9 @@ namespace sspp {
         stopwatch.Start();
         SolveCRS(thread_blocks, threads_per_block, crs.GetRows(), d_row_start_indexes, d_column_indices, d_values, d_vector, d_output);
         stopwatch.Stop();
-
-        return common::Output<VALUE_TYPE>(GetResult(d_output, crs.GetRows()), stopwatch.GetElapsedSeconds());
+        std::vector<VALUE_TYPE> result = GetResult(d_output, crs.GetRows());
+        ReleaseCRS(d_row_start_indexes, d_column_indices, d_values, d_vector, d_output);
+        return common::Output<VALUE_TYPE>(result, stopwatch.GetElapsedSeconds());
       }
     };
 
