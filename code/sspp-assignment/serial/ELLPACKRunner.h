@@ -20,7 +20,7 @@ namespace sspp {
         common::ELLPACKSolver<VALUE_TYPE> solver;
         for(unsigned i = 0; i < iterations; i++) {
           common::Output<VALUE_TYPE> output = solver.Solve(crs, vector);
-          times += output.GetMilliseconds();
+          times += output.GetSeconds();
         }
 
         double avg_time = static_cast<double>(times) / iterations;

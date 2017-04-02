@@ -22,7 +22,7 @@ namespace sspp {
         common::Output<VALUE_TYPE> output;
         for(unsigned i = 0; i < iterations; i++) {
           output = solver.Solve(crs, vector);
-          times += output.GetMilliseconds();
+          times += output.GetSeconds();
         }
 
         double avg_time = static_cast<double>(times) / iterations;

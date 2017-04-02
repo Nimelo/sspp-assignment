@@ -12,12 +12,12 @@ namespace sspp {
       Output() {};
       Output(std::vector<VALUE_TYPE> & values) {
         values_.assign(values.begin(), values.end());
-        milliseconds_ = 0;
+        seconds_ = 0;
       };
 
       Output(std::vector<VALUE_TYPE> & values, double ms) {
         values_.assign(values.begin(), values.end());
-        milliseconds_ = ms;
+        seconds_ = ms;
       };
 
       Output(const Output<VALUE_TYPE> & other) {
@@ -33,12 +33,12 @@ namespace sspp {
         return values_;
       }
 
-      double GetMilliseconds() const {
-        return milliseconds_;
+      double GetSeconds() const {
+        return seconds_;
       }
 
-      unsigned SetMilliseconds(double ms) {
-        milliseconds_ = ms;
+      unsigned SetSeconds(double ms) {
+        seconds_ = ms;
       }
 
       friend std::ostream& operator <<(std::ostream& os, const Output<VALUE_TYPE>& o) {
@@ -52,11 +52,11 @@ namespace sspp {
         if(!rhs.values_.empty())
           copy(rhs.values_.begin(), rhs.values_.end(), lhs.values_.begin());
 
-        lhs.milliseconds_ = rhs.milliseconds_;
+        lhs.seconds_ = rhs.seconds_;
       }
 
       std::vector<VALUE_TYPE> values_;
-      double milliseconds_;
+      double seconds_;
     };
   }
 }
