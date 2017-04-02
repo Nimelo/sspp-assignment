@@ -6,7 +6,7 @@
 
 namespace sspp {
   namespace common {
-    class ChronoStopwatch : public AbstractStopWatch {
+    class ChronoStopwatch : public AbstractStopWatch<std::chrono::steady_clock::time_point> {
     public:
       void Start() override {
         begin_ = std::chrono::high_resolution_clock::now();
@@ -22,9 +22,6 @@ namespace sspp {
         auto elapsed_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(end_ - begin_).count();
         return elapsed_microseconds * 0.001 * 0.001;
       }
-    protected:
-      std::chrono::steady_clock::time_point begin_;
-      std::chrono::steady_clock::time_point end_;
     };
   }
 }

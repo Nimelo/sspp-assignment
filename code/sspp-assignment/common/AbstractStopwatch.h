@@ -3,13 +3,17 @@
 
 namespace sspp {
   namespace common {
+    template<typename T>
     class AbstractStopWatch {
     public:
-      ~AbstractStopWatch() = default;
+      virtual ~AbstractStopWatch() = default;
       virtual void Start() = 0;
       virtual void Stop() = 0;
       virtual void Reset() = 0;
       virtual double GetElapsedSeconds() const = 0;
+    protected:
+      T begin_;
+      T end_;
     };
   }
 }

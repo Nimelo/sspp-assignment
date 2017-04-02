@@ -156,6 +156,7 @@
     <ClInclude Include="CRSRunner.h" />
     <ClInclude Include="ELLPACKOpenMPSolver.h" />
     <ClInclude Include="ELLPACKRunner.h" />
+    <ClInclude Include="OpenMPStopwatch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />

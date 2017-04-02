@@ -19,6 +19,9 @@
     <Filter Include="Header Files\tools\solvers">
       <UniqueIdentifier>{cce4c736-8fef-4955-b892-9a4caf8ee4ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\tools\measurements">
+      <UniqueIdentifier>{a1764d70-2ebd-4940-8e92-d574a52d71ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ELLPACKOpenMPSolver.h">
@@ -32,6 +35,9 @@
     </ClInclude>
     <ClInclude Include="ELLPACKRunner.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenMPStopwatch.h">
+      <Filter>Header Files\tools\measurements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

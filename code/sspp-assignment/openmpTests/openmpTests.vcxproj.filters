@@ -25,6 +25,9 @@
     <Filter Include="Header Files\testing\ellpack">
       <UniqueIdentifier>{d102970a-9cb0-489a-b04b-4602d54b9e42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\testing\measurements">
+      <UniqueIdentifier>{930ae294-5ca5-403e-b768-3ed765f3dab4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -36,6 +39,9 @@
     <ClCompile Include="ELLPACKParallelSolverTests.cpp">
       <Filter>Header Files\testing\ellpack</Filter>
     </ClCompile>
+    <ClCompile Include="OpenMPStopwatchTests.cpp">
+      <Filter>Header Files\testing\measurements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -46,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="CRSParallelSolverTest.h">
       <Filter>Header Files\testing\csr</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenMPStopwatchTest.h">
+      <Filter>Header Files\testing\measurements</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
