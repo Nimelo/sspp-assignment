@@ -150,7 +150,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MockTests.cpp" />
     <ClCompile Include="Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MockTest.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\common\common.vcxproj">
+      <Project>{5cb5d1b8-f6f8-49f1-afc4-63cae2d0c137}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\cuda\cuda.vcxproj">
+      <Project>{78623c1f-bf4e-44a2-9c97-20d85ab8a8fb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\openmp\openmp.vcxproj">
+      <Project>{fefa117d-586c-4a83-9d3e-9b1432541a1f}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
