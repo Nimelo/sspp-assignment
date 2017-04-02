@@ -155,11 +155,13 @@
   <ItemGroup>
     <ClCompile Include="CudaCRSSolverTests.cpp" />
     <ClCompile Include="CudaELLPACKSolverTests.cpp" />
+    <ClCompile Include="CUDAStopwatchTests.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CudaCRSSolverTest.h" />
     <ClInclude Include="CudaELLPACKSolverTest.h" />
+    <ClInclude Include="CUDAStopwatchTest.h" />
     <ClInclude Include="ITest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

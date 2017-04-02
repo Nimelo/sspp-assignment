@@ -19,6 +19,9 @@
     <Filter Include="Source Files\tools\solvers">
       <UniqueIdentifier>{144d3635-c886-46f3-9c5d-99f4f338fe6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\tools\measurements">
+      <UniqueIdentifier>{46e964fa-cad3-4b30-9463-713e2e2c1976}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="kernel.cu">
@@ -40,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="CRSCudaSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="CUDAStopwatch.h">
+      <Filter>Header Files\tools\measurements</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

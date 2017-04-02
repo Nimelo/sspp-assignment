@@ -16,6 +16,9 @@
     <Filter Include="Header Files\testing">
       <UniqueIdentifier>{04841003-cae3-4f24-9772-752e75847e0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\testing\measurements">
+      <UniqueIdentifier>{2dda1c8f-0788-4f63-986e-f5ab3145313f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -27,6 +30,9 @@
     <ClCompile Include="CudaCRSSolverTests.cpp">
       <Filter>Header Files\testing</Filter>
     </ClCompile>
+    <ClCompile Include="CUDAStopwatchTests.cpp">
+      <Filter>Header Files\testing\measurements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITest.h">
@@ -37,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="CudaCRSSolverTest.h">
       <Filter>Header Files\testing</Filter>
+    </ClInclude>
+    <ClInclude Include="CUDAStopwatchTest.h">
+      <Filter>Header Files\testing\measurements</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

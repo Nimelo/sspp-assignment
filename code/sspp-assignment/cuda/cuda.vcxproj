@@ -172,6 +172,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CRSCudaSolver.h" />
+    <ClInclude Include="CUDAStopwatch.h" />
     <ClInclude Include="ELLPACKCudaSolver.h" />
     <ClInclude Include="kernel.h" />
   </ItemGroup>
