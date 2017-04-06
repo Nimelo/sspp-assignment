@@ -8,6 +8,9 @@
 
 class MatrixMarketReaderTest : public ITest {
 protected:
+  static void SetUpTestCase() {
+
+  }
   std::stringstream ss;
   virtual void SetUp() {
     ss.clear();

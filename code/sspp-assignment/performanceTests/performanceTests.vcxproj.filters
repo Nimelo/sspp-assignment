@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\speedup">
+      <UniqueIdentifier>{84a5bbd9-0ba6-40fc-b0f5-24933ebb3c1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\resources">
+      <UniqueIdentifier>{79e377cf-c46a-4d1e-952a-b0b4196d3a18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\test-interfaces">
+      <UniqueIdentifier>{902c8f89-28f7-4b75-8a07-ba73e4a9ff71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -21,10 +30,28 @@
     <ClCompile Include="MockTests.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="PerformanceSpeedupTests.cpp">
+      <Filter>Header Files\speedup</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockTest.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerformanceSpeedupTest.h">
+      <Filter>Header Files\speedup</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMacros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixTestInterface.h">
+      <Filter>Header Files\test-interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="TestingUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixContainer.h">
+      <Filter>Header Files\resources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

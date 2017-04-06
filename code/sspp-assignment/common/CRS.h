@@ -32,11 +32,11 @@ namespace sspp {
 
       CRS(const CRS<VALUE_TYPE> & other) :
         SparseMatrix(0, 0, 0) {
-        Swap(this, other);
+        Swap(other);
       };
 
       CRS<VALUE_TYPE> & operator=(const CRS<VALUE_TYPE> & rhs) {
-        Swap(this, rhs);
+        Swap(rhs);
         return *this;
       }
 
@@ -92,14 +92,14 @@ namespace sspp {
       }
     protected:
 
-      static void Swap(CRS<VALUE_TYPE> & lhs, CRS<VALUE_TYPE> & rhs) {
-        lhs.rows_ = rhs.rows_;
-        lhs.columns_ = rhs.columns_;
-        lhs.non_zeros_ = rhs.non_zeros_;
+      void Swap(const CRS<VALUE_TYPE> & rhs) {
+        this->rows_ = rhs.rows_;
+        this->columns_ = rhs.columns_;
+        this->non_zeros_ = rhs.non_zeros_;
 
-        lhs.values_.assign(rhs.values_.begin(), rhs.values_.end());
-        lhs.row_start_indexes_.assign(rhs.row_start_indexes_.begin(), rhs.row_start_indexes_.end());
-        lhs.column_indices_.assign(rhs.column_indices_.begin(), rhs.column_indices_.end());
+        this->values_.assign(rhs.values_.begin(), rhs.values_.end());
+        this->row_start_indexes_.assign(rhs.row_start_indexes_.begin(), rhs.row_start_indexes_.end());
+        this->column_indices_.assign(rhs.column_indices_.begin(), rhs.column_indices_.end());
       }
 
       std::vector<unsigned> row_start_indexes_;

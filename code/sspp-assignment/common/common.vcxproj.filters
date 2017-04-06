@@ -171,6 +171,9 @@
     <ClInclude Include="ChronoStopwatch.h">
       <Filter>Header Files\tools\measurements</Filter>
     </ClInclude>
+    <ClInclude Include="DoublePatternResolver.h">
+      <Filter>Header Files\io\resolvers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLineParameterReader.cpp">

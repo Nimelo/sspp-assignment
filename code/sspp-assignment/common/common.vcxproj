@@ -144,6 +144,7 @@
     <ClInclude Include="CRS.h" />
     <ClInclude Include="CRSSolver.h" />
     <ClInclude Include="CRSTransformer.h" />
+    <ClInclude Include="DoublePatternResolver.h" />
     <ClInclude Include="ELLPACK.h" />
     <ClInclude Include="ELLPACKSolver.h" />
     <ClInclude Include="ELLPACKTransformer.h" />

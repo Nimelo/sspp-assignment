@@ -14,10 +14,10 @@ TEST_F(CSRTransformerTest, shouldTransformCorrectly_Salvatore) {
   const unsigned M = 4, N = 4, NZ = 7;
   std::vector<unsigned> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
     jIndexes = { 0, 1, 1, 2, 2, 2, 3 };
-  std::vector<float> values = { 11, 12, 22, 23, 33, 43, 44 };
-  MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
+  std::vector<double> values = { 11, 12, 22, 23, 33, 43, 44 };
+  MatrixMarket<double> mm(M, N, NZ, iIndexes, jIndexes, values);
 
-  CRS<float> crs = CRSTransformer::transform(mm);
+  CRS<float> crs = CRSTransformer::transform<float, double>(mm);
 
   ASSERT_EQ(M, crs.GetRows());
   ASSERT_EQ(N, crs.GetColumns());

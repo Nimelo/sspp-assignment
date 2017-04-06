@@ -10,7 +10,12 @@ namespace sspp {
     public:
       template<typename VALUE_TYPE>
       static ELLPACK<VALUE_TYPE> transform(MatrixMarket<VALUE_TYPE> & matrix_market) {
-        std::vector<MatrixMarketTuple<VALUE_TYPE>> tuples = matrix_market.GetTuples();
+        return transform<VALUE_TYPE, VALUE_TYPE>(matrix_market);
+      }
+
+      template<typename VALUE_TYPE, typename INPUT_TYPE>
+      static ELLPACK<VALUE_TYPE> transform(MatrixMarket<INPUT_TYPE> & matrix_market) {
+        std::vector<MatrixMarketTuple<INPUT_TYPE>> tuples = matrix_market.GetTuples();
         std::vector<unsigned> auxiliary_vector(matrix_market.GetRows());
         for(unsigned i = 0; i < matrix_market.GetNonZeros(); i++) {
           ++auxiliary_vector[tuples[i].GetRowIndice()];
@@ -23,7 +28,7 @@ namespace sspp {
         for(unsigned i = 0; i < matrix_market.GetNonZeros(); ++i) {
           unsigned index = max_row_non_zeros * tuples[i].GetRowIndice() + auxiliary_vector[tuples[i].GetRowIndice()] - 1;
           column_indices[index] = tuples[i].GetColumnIndice();
-          values[index] = tuples[i].GetValue();
+          values[index] = static_cast<VALUE_TYPE>(tuples[i].GetValue());
           --auxiliary_vector[tuples[i].GetRowIndice()];
         }
 

@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(GMOCK_DIR)\include;$(GTEST_DIR)\include;$(SolutionDir)cuda;$(SolutionDir)openmp;$(SolutionDir)common;$(IncludePath)</IncludePath>
+    <IncludePath>$(GMOCK_DIR)\include;$(GTEST_DIR)\include;$(SolutionDir)cuda;$(SolutionDir)common;$(SolutionDir)openmp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -96,7 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;$(GTEST_DIR)\msvc\gtest\Debug\gtestd.lib;$(GMOCK_DIR)\msvc\2015\Debug\gmock.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;$(GTEST_DIR)\msvc\gtest\Debug\gtestd.lib;$(GMOCK_DIR)\msvc\2015\Debug\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,10 +151,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MockTests.cpp" />
+    <ClCompile Include="PerformanceSpeedupTests.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MatrixContainer.h" />
+    <ClInclude Include="MatrixTestInterface.h" />
     <ClInclude Include="MockTest.h" />
+    <ClInclude Include="PerformanceSpeedupTest.h" />
+    <ClInclude Include="TestingUtilities.h" />
+    <ClInclude Include="TestMacros.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\common.vcxproj">
