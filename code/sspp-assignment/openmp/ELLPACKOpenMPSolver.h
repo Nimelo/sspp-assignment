@@ -4,6 +4,7 @@
 #include "../common/ELLPACK.h"
 #include "../common/Output.h"
 #include "../common/AbstractELLPACKSolver.h"
+#include "OpenMPStopwatch.h"
 #include <omp.h>
 
 namespace sspp {
@@ -16,9 +17,9 @@ namespace sspp {
         omp_set_num_threads(threads);
       }
 
-      common::Output<VALUE_TYPE> Solve(common::ELLPACK<VALUE_TYPE> & ellpack, std::vector<VALUE_TYPE> & b) {
-        std::vector<VALUE_TYPE> x(ellpack.GetRows());
+      virtual common::Output<VALUE_TYPE> Solve(common::ELLPACK<VALUE_TYPE> & ellpack, std::vector<VALUE_TYPE> & b) {
         static OpenMPStopwatch stopwatch_;
+        std::vector<VALUE_TYPE> x(ellpack.GetRows());
 
         stopwatch_.Start();
 #pragma omp parallel shared(ellpack, b, x)

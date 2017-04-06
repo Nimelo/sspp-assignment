@@ -151,7 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MockTests.cpp" />
-    <ClCompile Include="PerformanceSpeedupTests.cpp" />
+    <ClCompile Include="Tests.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -160,10 +160,9 @@
     <ClInclude Include="MatrixTestInterface.h" />
     <ClInclude Include="MockTest.h" />
     <ClInclude Include="OpenMPPerformance.h" />
-    <ClInclude Include="PerformanceSpeedupTest.h" />
     <ClInclude Include="SerialParallelComparison.h" />
+    <ClInclude Include="TestsMacros.h" />
     <ClInclude Include="TestStream.h" />
-    <ClInclude Include="TestMacros.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\common.vcxproj">
