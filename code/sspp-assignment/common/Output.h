@@ -29,7 +29,7 @@ namespace sspp {
         return *this;
       }
 
-      std::vector<VALUE_TYPE> const & GetValues() const {
+      std::vector<VALUE_TYPE> GetValues() const {
         return values_;
       }
 

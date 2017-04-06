@@ -21,9 +21,9 @@ namespace sspp {
 
         double t1 = omp_get_wtime();
 #pragma omp parallel shared(ellpack, b, x)
-        for(auto i = 0; i < ellpack.GetRows(); i++) {
+        for(unsigned i = 0; i < ellpack.GetRows(); i++) {
           VALUE_TYPE tmp = 0;
-          for(auto j = 0; j < ellpack.GetMaxRowNonZeros(); j++) {
+          for(unsigned j = 0; j < ellpack.GetMaxRowNonZeros(); j++) {
             auto index = ellpack.CalculateIndex(i, j);
             tmp += ellpack.GetValues()[index] * b[ellpack.GetColumnIndices()[index]];
           }

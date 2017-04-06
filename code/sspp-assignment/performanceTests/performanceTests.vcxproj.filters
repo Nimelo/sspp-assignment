@@ -22,6 +22,9 @@
     <Filter Include="Header Files\test-interfaces">
       <UniqueIdentifier>{902c8f89-28f7-4b75-8a07-ba73e4a9ff71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\test-interfaces\results">
+      <UniqueIdentifier>{84dd326e-b163-4f67-be20-767fc0df4651}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="MatrixContainer.h">
       <Filter>Header Files\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleFloatComparisonResult.h">
+      <Filter>Header Files\test-interfaces\results</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

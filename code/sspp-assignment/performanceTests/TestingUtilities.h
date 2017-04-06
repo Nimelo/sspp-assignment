@@ -16,7 +16,7 @@ namespace testing {
   }
 }
 #define PRINTF(...)  do { testing::internal::ColoredPrintf(testing::internal::COLOR_GREEN, "[          ] "); testing::internal::ColoredPrintf(testing::internal::COLOR_YELLOW, __VA_ARGS__); } while(0)
-
+#define PRINTF_APPEND(...) do {testing::internal::ColoredPrintf(testing::internal::COLOR_YELLOW, __VA_ARGS__); } while(0)
 // C++ stream interface
 class TestCout : public std::stringstream {
 public:
@@ -25,4 +25,12 @@ public:
   }
 };
 
+class TestCoutAppend : public std::stringstream {
+public:
+  ~TestCoutAppend() {
+    PRINTF_APPEND("%s", str().c_str());
+  }
+};
+
 #define TEST_COUT  TestCout()
+#define TEST_COUT_APPEND TestCoutAppend()
