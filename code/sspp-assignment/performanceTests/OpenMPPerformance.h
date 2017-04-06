@@ -11,7 +11,7 @@ public:
     return threads_number_;
   }
 
-  unsigned GetSpeedup() const {
+  double GetSpeedup() const {
     return speedup_;
   }
 

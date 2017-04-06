@@ -162,7 +162,7 @@
     <ClInclude Include="OpenMPPerformance.h" />
     <ClInclude Include="PerformanceSpeedupTest.h" />
     <ClInclude Include="SerialParallelComparison.h" />
-    <ClInclude Include="TestingUtilities.h" />
+    <ClInclude Include="TestStream.h" />
     <ClInclude Include="TestMacros.h" />
   </ItemGroup>
   <ItemGroup>

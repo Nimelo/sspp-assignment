@@ -1,7 +1,7 @@
 #include "PerformanceSpeedupTest.h"
 #include <gtest/gtest.h>
 #include "TestMacros.h"
-#include "TestingUtilities.h"
+#include "TestStream.h"
 #include "CRSSolver.h"
 #include "CRSOpenMPSolver.h"
 #include "CRSCudaSolver.h"

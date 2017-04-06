@@ -7,7 +7,7 @@
 #include "ELLPACK.h"
 #include "CRS.h"
 #include "ChronoStopwatch.h"
-#include "TestingUtilities.h"
+#include "TestStream.h"
 #include "MatrixContainer.h"
 #include "DoubleFloatComparisonResult.h"
 #include "AbstractCRSSolver.h"
