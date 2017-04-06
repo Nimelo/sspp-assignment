@@ -13,10 +13,32 @@
 #include "AbstractCRSSolver.h"
 #include "AbstractELLPACKSolver.h"
 #include "SerialParallelComparison.h"
-#include "CRSSolver.h"
-#include "EllpackSolver.h"
-#include "ELLPACKCudaSolver.h"
 #include "CRSCudaSolver.h"
+#include "OpenMPPerformance.h"
+#include <omp.h>
+
+#define PRINT_DOUBLE_FLOAT_COMPARISON(RESULT)                                                 \
+TEST_COUT << "Float: " << RESULT.GetFloatTime() << "s\n";                                     \
+TEST_COUT << "Double: " << RESULT.GetDoubleTime() << "s\n";                                   \
+TEST_COUT << "FLOPS: " << RESULT.GetFlops() << "\n";                                          \
+TEST_COUT << "DP FLOPS: " << RESULT.GetDPFlops() << "\n";                                     \
+TEST_COUT << "Float/double ratio: " << RESULT.GetFloatTime() / RESULT.GetDoubleTime() << "\n";\
+TEST_COUT << "Solution norm: " << RESULT.GetResultNorm() << std::endl                         \
+
+#define PRINT_SERIAL_PARALLEL_COMPARISON(comparison)                   \
+TEST_COUT << "Serial: " << comparison.GetSerialTime() << '\n';         \
+TEST_COUT << "Parallel: " << comparison.GetParallelTime() << '\n';     \
+TEST_COUT << std::string(typeid(comparison.GetSerialOps()).name())     \
++ " FLOPS Serial: " << comparison.GetSerialOps() << '\n';              \
+TEST_COUT << std::string(typeid(comparison.GetSerialOps()).name())     \
++  " FLOPS Parallel: " << comparison.GetParallelOps() << '\n';         \
+TEST_COUT << "Speedup: " << comparison.GetSpeedup() << '\n';           \
+TEST_COUT << "Solution norm: " << comparison.GetSolutionNorm() << '\n' \
+
+#define PRINT_OPENMP_THREADS(result)                          \
+TEST_COUT << '\n';                                            \
+TEST_COUT << "Threads: " << result.GetThreadsNumber() << '\n';\
+TEST_COUT << "Speedup: " << result.GetSpeedup() << '\n';      \
 
 class MatrixTestInterface : public ::testing::Test {
 public:
@@ -39,6 +61,26 @@ public:
     MatrixContainer::GetInstance().Delete(static_key_);
   }
 protected:
+  template<bool print = true>
+  OpenMPPerformance CheckPerformance(std::function<SerialParallelComparison()> task) {
+    unsigned best_threads = 1;
+    double best_speedup = 1;
+    unsigned max_avalaible_threads = omp_get_max_threads();
+    TEST_COUT << "Max avalaible threads: " << max_avalaible_threads << '\n';
+    for(unsigned i = 2; i <= max_avalaible_threads; i++) {
+      TEST_COUT << "Iteration for: " << i << " threads." <<'\n';
+      omp_set_num_threads(i);
+      SerialParallelComparison comparison = task();
+      if(print) {
+        PRINT_SERIAL_PARALLEL_COMPARISON(comparison);
+      }
+      best_threads = comparison.GetSpeedup() > best_speedup ? i : best_threads;
+      best_speedup = comparison.GetSpeedup() > best_speedup ? comparison.GetSpeedup() : best_speedup;
+    }
+
+    return  OpenMPPerformance(best_threads, best_speedup);
+  }
+
   DoubleFloatComparison FloatDoubleCRSComparison(sspp::common::AbstractCRSSolver<float> & solver_float,
                                                  sspp::common::AbstractCRSSolver<double> & solver_double,
                                                  unsigned iterations) {
@@ -100,10 +142,9 @@ protected:
   }
 
   template<typename T>
-  SerialParallelComparison<T> SpeedupCRSCuda(unsigned iterations) {
-    sspp::common::CRSSolver<T> serial_solver;
-    sspp::cuda::CRSCudaSolver<T> parallel_solver;
-
+  SerialParallelComparison SpeedupCRS(sspp::common::AbstractCRSSolver<T> & serial_solver,
+                                      sspp::common::AbstractCRSSolver<T> & parallel_solver,
+                                      unsigned iterations) {
     auto crs = this->GetCRS<T>();
     auto vector = this->GetRandomVector<T>(crs.GetRows());
 
@@ -125,17 +166,16 @@ protected:
     double delta = GetNormOfVectors(serial_output.GetValues(), parallel_output.GetValues());
     unsigned non_zeros_factor = 2 * crs.GetNonZeros();
     double speedup = serial_time / parallel_time;
-    return SerialParallelComparison<T>(serial_time, non_zeros_factor / serial_time,
-                                       parallel_time, non_zeros_factor / parallel_time,
-                                       speedup,
-                                       delta);
+    return SerialParallelComparison(serial_time, non_zeros_factor / serial_time,
+                                    parallel_time, non_zeros_factor / parallel_time,
+                                    speedup,
+                                    delta);
   }
 
   template<typename T>
-  SerialParallelComparison<T> SpeedupELLPACKCuda(unsigned iterations) {
-    sspp::common::ELLPACKSolver<T> serial_solver;
-    sspp::cuda::ELLPACKCudaSolver<T> parallel_solver;
-
+  SerialParallelComparison SpeedupEllpack(sspp::common::AbstractELLPACKSolver<T> & serial_solver,
+                                          sspp::common::AbstractELLPACKSolver<T> & parallel_solver,
+                                          unsigned iterations) {
     auto ellpack = this->GetELLPACK<T>();
     auto vector = this->GetRandomVector<T>(ellpack.GetRows());
 
@@ -157,10 +197,10 @@ protected:
     double delta = GetNormOfVectors(serial_output.GetValues(), parallel_output.GetValues());
     unsigned non_zeros_factor = 2 * ellpack.GetNonZeros();
     double speedup = serial_time / parallel_time;
-    return SerialParallelComparison<T>(serial_time, non_zeros_factor / serial_time,
-                                       parallel_time, non_zeros_factor / parallel_time,
-                                       speedup,
-                                       delta);
+    return SerialParallelComparison(serial_time, non_zeros_factor / serial_time,
+                                    parallel_time, non_zeros_factor / parallel_time,
+                                    speedup,
+                                    delta);
   }
 
   template<typename T>
@@ -172,6 +212,7 @@ protected:
     }
     return vector;
   }
+
   template<typename T>
   sspp::common::CRS<T> GetCRS() {
     TEST_COUT << "Transforming to CRS<" + std::string(typeid(T).name()) + ">: " << GetKey();

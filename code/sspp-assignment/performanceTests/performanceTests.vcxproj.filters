@@ -62,5 +62,8 @@
     <ClInclude Include="SerialParallelComparison.h">
       <Filter>Header Files\test-interfaces\results</Filter>
     </ClInclude>
+    <ClInclude Include="OpenMPPerformance.h">
+      <Filter>Header Files\test-interfaces\results</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

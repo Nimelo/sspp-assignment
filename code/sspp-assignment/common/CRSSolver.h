@@ -5,6 +5,7 @@
 #include "../common/Output.h"
 #include "../common/AbstractCRSSolver.h"
 #include <chrono>
+#include "ChronoStopwatch.h"
 
 namespace sspp {
   namespace common {
@@ -13,8 +14,9 @@ namespace sspp {
     public:
       virtual common::Output<VALUE_TYPE> Solve(common::CRS<VALUE_TYPE> & crs, std::vector<VALUE_TYPE> & vector) {
         std::vector<VALUE_TYPE> x(crs.GetRows());
+        static ChronoStopwatch stopwatch_;
 
-        std::chrono::steady_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+        stopwatch_.Start();
         for(unsigned i = 0; i < crs.GetRows(); ++i) {
           VALUE_TYPE tmp = 0;
           for(unsigned j = crs.GetRowStartIndexes()[i]; j < crs.GetRowStartIndexes()[i + 1]; ++j) {
@@ -22,8 +24,9 @@ namespace sspp {
           }
           x[i] = tmp;
         }
-        std::chrono::steady_clock::time_point t2 = std::chrono::high_resolution_clock::now();
-        return common::Output<VALUE_TYPE>(x, std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count() / 1000000.0);
+        stopwatch_.Stop();
+
+        return common::Output<VALUE_TYPE>(x, stopwatch_.GetElapsedSeconds());
       };
     };
   }

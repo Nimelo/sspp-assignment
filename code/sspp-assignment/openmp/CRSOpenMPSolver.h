@@ -5,6 +5,7 @@
 #include "../common/AbstractCRSSolver.h"
 #include <omp.h>
 #include <chrono>
+#include "OpenMPStopwatch.h"
 
 namespace sspp {
   namespace openmp {
@@ -17,10 +18,10 @@ namespace sspp {
       }
 
       common::Output<VALUE_TYPE> Solve(common::CRS<VALUE_TYPE>& crs, std::vector<VALUE_TYPE>& vector) {
+        static OpenMPStopwatch stopwatch_;
         std::vector<VALUE_TYPE> x(crs.GetRows());
 
-        double t1 = omp_get_wtime();
-        std::chrono::steady_clock::time_point t11 = std::chrono::high_resolution_clock::now();
+        stopwatch_.Start();
 #pragma omp parallel shared(crs, vector, x)
         {
           int threads = omp_get_num_threads(),
@@ -35,9 +36,9 @@ namespace sspp {
             }
           }
         }
-        double t2 = omp_get_wtime();
-        std::chrono::steady_clock::time_point t22 = std::chrono::high_resolution_clock::now();
-        return common::Output<VALUE_TYPE>(x, std::chrono::duration_cast<std::chrono::microseconds>(t22 - t11).count() / 1000000.0 );//(t2 - t1));
+        
+        stopwatch_.Stop();
+        return common::Output<VALUE_TYPE>(x, stopwatch_.GetElapsedSeconds());
       };
     };
   }

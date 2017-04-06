@@ -11,25 +11,7 @@
 
 #define ITERATIONS 100
 
-#define PRINT_DOUBLE_FLOAT_COMPARISON(RESULT)                                                 \
-TEST_COUT << "Float: " << RESULT.GetFloatTime() << "s\n";                                     \
-TEST_COUT << "Double: " << RESULT.GetDoubleTime() << "s\n";                                   \
-TEST_COUT << "FLOPS: " << RESULT.GetFlops() << "\n";                                          \
-TEST_COUT << "DP FLOPS: " << RESULT.GetDPFlops() << "\n";                                     \
-TEST_COUT << "Float/double ratio: " << RESULT.GetFloatTime() / RESULT.GetDoubleTime() << "\n";\
-TEST_COUT << "Solution norm: " << RESULT.GetResultNorm() << std::endl                         \
-
-#define PRINT_SERIAL_PARALLEL_COMPARISON(comparison)                   \
-TEST_COUT << "Serial: " << comparison.GetSerialTime() << '\n';         \
-TEST_COUT << "Cuda: " << comparison.GetParallelTime() << '\n';         \
-TEST_COUT << std::string(typeid(comparison.GetSerialOps()).name())     \
-+ " FLOPS Serial: " << comparison.GetSerialOps() << '\n';              \
-TEST_COUT << std::string(typeid(comparison.GetSerialOps()).name())     \
-+  " FLOPS Cuda: " << comparison.GetParallelOps() << '\n';             \
-TEST_COUT << "Speedup: " << comparison.GetSpeedup() << '\n';           \
-TEST_COUT << "Solution norm: " << comparison.GetSolutionNorm() << '\n' \
-
-TEST_F(ABCDE, SERIAL_CRS_FLOAT_VS_DOUBLE) {
+TEST_F(FIXTURE_NAME, SERIAL_CRS_FLOAT_VS_DOUBLE) {
   sspp::common::CRSSolver<float> solver_float;
   sspp::common::CRSSolver<double> solver_double;
 
@@ -37,7 +19,7 @@ TEST_F(ABCDE, SERIAL_CRS_FLOAT_VS_DOUBLE) {
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);
 }
 
-TEST_F(ABCDE, OPENMP_CRS_FLOAT_VS_DOUBLE) {
+TEST_F(FIXTURE_NAME, OPENMP_CRS_FLOAT_VS_DOUBLE) {
   omp_set_num_threads(2);
   sspp::openmp::CRSOpenMPSolver<float> solver_float;
   sspp::openmp::CRSOpenMPSolver<double> solver_double;
@@ -46,7 +28,7 @@ TEST_F(ABCDE, OPENMP_CRS_FLOAT_VS_DOUBLE) {
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);
 }
 
-TEST_F(ABCDE, CUDA_CRS_FLOAT_VS_DOUBLE) {
+TEST_F(FIXTURE_NAME, CUDA_CRS_FLOAT_VS_DOUBLE) {
   sspp::cuda::CRSCudaSolver<float> solver_float;
   sspp::cuda::CRSCudaSolver<double> solver_double;
 
@@ -54,7 +36,7 @@ TEST_F(ABCDE, CUDA_CRS_FLOAT_VS_DOUBLE) {
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);
 }
 
-TEST_F(ABCDE, SERIAL_ELLPACK_FLOAT_VS_DOUBLE) {
+TEST_F(FIXTURE_NAME, SERIAL_ELLPACK_FLOAT_VS_DOUBLE) {
   sspp::common::ELLPACKSolver<float> solver_float;
   sspp::common::ELLPACKSolver<double> solver_double;
 
@@ -62,7 +44,7 @@ TEST_F(ABCDE, SERIAL_ELLPACK_FLOAT_VS_DOUBLE) {
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);
 }
 
-TEST_F(ABCDE, OPENMP_ELLPACK_FLOAT_VS_DOUBLE) {
+TEST_F(FIXTURE_NAME, OPENMP_ELLPACK_FLOAT_VS_DOUBLE) {
   omp_set_num_threads(2);
   sspp::openmp::ELLPACKOpenMPSolver<float> solver_float;
   sspp::openmp::ELLPACKOpenMPSolver<double> solver_double;
@@ -71,7 +53,7 @@ TEST_F(ABCDE, OPENMP_ELLPACK_FLOAT_VS_DOUBLE) {
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);
 }
 
-TEST_F(ABCDE, CUDA_ELLPACK_FLOAT_VS_DOUBLE) {
+TEST_F(FIXTURE_NAME, CUDA_ELLPACK_FLOAT_VS_DOUBLE) {
   sspp::cuda::ELLPACKCudaSolver<float> solver_float;
   sspp::cuda::ELLPACKCudaSolver<double> solver_double;
 
@@ -79,26 +61,78 @@ TEST_F(ABCDE, CUDA_ELLPACK_FLOAT_VS_DOUBLE) {
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);
 }
 
-TEST_F(ABCDE, CUDA_CRS_FLOAT_SPEEDUP) {
-  auto comparison = this->SpeedupCRSCuda<float>(ITERATIONS);
+TEST_F(FIXTURE_NAME, CUDA_CRS_FLOAT_SPEEDUP) {
+  sspp::common::CRSSolver<float> serial_solver;
+  sspp::cuda::CRSCudaSolver<float> cuda_solver;
+  auto comparison = this->SpeedupCRS<float>(serial_solver, cuda_solver, ITERATIONS);
 
   PRINT_SERIAL_PARALLEL_COMPARISON(comparison);
 }
 
-TEST_F(ABCDE, CUDA_CRS_DOUBLE_SPEEDUP) {
-  auto comparison = this->SpeedupCRSCuda<double>(ITERATIONS);
+TEST_F(FIXTURE_NAME, CUDA_CRS_DOUBLE_SPEEDUP) {
+  sspp::common::CRSSolver<double> serial_solver;
+  sspp::cuda::CRSCudaSolver<double> cuda_solver;
+  auto comparison = this->SpeedupCRS<double>(serial_solver, cuda_solver, ITERATIONS);
 
   PRINT_SERIAL_PARALLEL_COMPARISON(comparison);
 }
 
-TEST_F(ABCDE, CUDA_ELLPACK_FLOAT_SPEEDUP) {
-  auto comparison = this->SpeedupELLPACKCuda<float>(ITERATIONS);
+TEST_F(FIXTURE_NAME, CUDA_ELLPACK_FLOAT_SPEEDUP) {
+  sspp::common::ELLPACKSolver<float> serial_solver;
+  sspp::cuda::ELLPACKCudaSolver<float> cuda_solver;
+  auto comparison = this->SpeedupEllpack<float>(serial_solver, cuda_solver, ITERATIONS);
 
   PRINT_SERIAL_PARALLEL_COMPARISON(comparison);
 }
 
-TEST_F(ABCDE, CUDA_ELLPACK_DOUBLE_SPEEDUP) {
-  auto comparison = this->SpeedupELLPACKCuda<double>(ITERATIONS);
+TEST_F(FIXTURE_NAME, CUDA_ELLPACK_DOUBLE_SPEEDUP) {
+  sspp::common::ELLPACKSolver<double> serial_solver;
+  sspp::cuda::ELLPACKCudaSolver<double> cuda_solver;
+  auto comparison = this->SpeedupEllpack<double>(serial_solver, cuda_solver, ITERATIONS);
 
   PRINT_SERIAL_PARALLEL_COMPARISON(comparison);
+}
+
+TEST_F(FIXTURE_NAME, OPENMP_CRS_FLOAT_SPEEDUP) {
+  sspp::common::CRSSolver<float> serial_solver;
+  sspp::openmp::CRSOpenMPSolver<float> parallel_solver;
+
+  auto best = this->CheckPerformance([&serial_solver, &parallel_solver, this]()->SerialParallelComparison {
+    return this->SpeedupCRS(serial_solver, parallel_solver, ITERATIONS);
+  });
+
+  PRINT_OPENMP_THREADS(best);
+}
+
+TEST_F(FIXTURE_NAME, OPENMP_CRS_DOUBLE_SPEEDUP) {
+  sspp::common::CRSSolver<double> serial_solver;
+  sspp::openmp::CRSOpenMPSolver<double> parallel_solver;
+
+  auto best = this->CheckPerformance([&serial_solver, &parallel_solver, this]()->SerialParallelComparison {
+    return this->SpeedupCRS(serial_solver, parallel_solver, ITERATIONS);
+  });
+
+  PRINT_OPENMP_THREADS(best);
+}
+
+TEST_F(FIXTURE_NAME, OPENMP_ELLPACK_FLOAT_SPEEDUP) {
+  sspp::common::ELLPACKSolver<float> serial_solver;
+  sspp::openmp::ELLPACKOpenMPSolver<float> parallel_solver;
+
+  auto best = this->CheckPerformance([&serial_solver, &parallel_solver, this]()->SerialParallelComparison {
+    return this->SpeedupEllpack(serial_solver, parallel_solver, ITERATIONS);
+  });
+
+  PRINT_OPENMP_THREADS(best);
+}
+
+TEST_F(FIXTURE_NAME, OPENMP_ELLPACK_DOUBLE_SPEEDUP) {
+  sspp::common::ELLPACKSolver<double> serial_solver;
+  sspp::openmp::ELLPACKOpenMPSolver<double> parallel_solver;
+
+  auto best = this->CheckPerformance([&serial_solver, &parallel_solver, this]()->SerialParallelComparison {
+    return this->SpeedupEllpack(serial_solver, parallel_solver, ITERATIONS);
+  });
+
+  PRINT_OPENMP_THREADS(best);
 }

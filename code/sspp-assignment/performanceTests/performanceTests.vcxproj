@@ -159,6 +159,7 @@
     <ClInclude Include="MatrixContainer.h" />
     <ClInclude Include="MatrixTestInterface.h" />
     <ClInclude Include="MockTest.h" />
+    <ClInclude Include="OpenMPPerformance.h" />
     <ClInclude Include="PerformanceSpeedupTest.h" />
     <ClInclude Include="SerialParallelComparison.h" />
     <ClInclude Include="TestingUtilities.h" />

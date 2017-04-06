@@ -1,12 +1,11 @@
 #pragma once
 
-template<typename T>
 class SerialParallelComparison {
 public:
-  SerialParallelComparison(T serial_time,
-                           T serial_ops,
-                           T parallel_time,
-                           T parallel_ops,
+  SerialParallelComparison(double serial_time,
+                           double serial_ops,
+                           double parallel_time,
+                           double parallel_ops,
                            double speedup,
                            double solution_norm)
     : serial_time_(serial_time),
@@ -17,19 +16,19 @@ public:
     solution_norm_(solution_norm) {
   }
 
-  T GetSerialTime() const {
+  double GetSerialTime() const {
     return serial_time_;
   }
 
-  T GetParallelTime() const {
+  double GetParallelTime() const {
     return parallel_time_;
   }
 
-  T GetSerialOps() const {
+  double GetSerialOps() const {
     return serial_ops_;
   }
 
-  T GetParallelOps() const {
+  double GetParallelOps() const {
     return parallel_ops_;
   }
 
@@ -41,10 +40,10 @@ public:
     return solution_norm_;
   }
 protected:
-  T serial_time_;
-  T serial_ops_;
-  T parallel_time_;
-  T parallel_ops_;
+  double serial_time_;
+  double serial_ops_;
+  double parallel_time_;
+  double parallel_ops_;
   double speedup_;
   double solution_norm_;
 };
