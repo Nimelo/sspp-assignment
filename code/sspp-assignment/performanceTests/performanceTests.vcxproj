@@ -160,6 +160,7 @@
     <ClInclude Include="MatrixTestInterface.h" />
     <ClInclude Include="MockTest.h" />
     <ClInclude Include="PerformanceSpeedupTest.h" />
+    <ClInclude Include="SerialParallelComparison.h" />
     <ClInclude Include="TestingUtilities.h" />
     <ClInclude Include="TestMacros.h" />
   </ItemGroup>

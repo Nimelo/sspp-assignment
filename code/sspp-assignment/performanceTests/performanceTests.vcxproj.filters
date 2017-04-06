@@ -59,5 +59,8 @@
     <ClInclude Include="DoubleFloatComparisonResult.h">
       <Filter>Header Files\test-interfaces\results</Filter>
     </ClInclude>
+    <ClInclude Include="SerialParallelComparison.h">
+      <Filter>Header Files\test-interfaces\results</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

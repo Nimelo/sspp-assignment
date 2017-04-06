@@ -12,6 +12,11 @@
 #include "DoubleFloatComparisonResult.h"
 #include "AbstractCRSSolver.h"
 #include "AbstractELLPACKSolver.h"
+#include "SerialParallelComparison.h"
+#include "CRSSolver.h"
+#include "EllpackSolver.h"
+#include "ELLPACKCudaSolver.h"
+#include "CRSCudaSolver.h"
 
 class MatrixTestInterface : public ::testing::Test {
 public:
@@ -49,11 +54,13 @@ protected:
     float_time = PerformIterations(
       [&solver_float, &crs_float, &vector_float, &output_float]() {
       output_float = solver_float.Solve(crs_float, vector_float);
+      return output_float.GetSeconds();
     }, iterations);
 
     double_time = PerformIterations(
       [&solver_double, &crs_double, &vector_double, &output_double]() {
       output_double = solver_double.Solve(crs_double, vector_double);
+      return output_double.GetSeconds();
     }, iterations);
 
     double delta = GetNormOfVectors(output_float.GetValues(), output_double.GetValues());
@@ -77,11 +84,13 @@ protected:
     float_time = PerformIterations(
       [&solver_float, &ellpack_float, &vector_float, &output_float]() {
       output_float = solver_float.Solve(ellpack_float, vector_float);
+      return output_float.GetSeconds();
     }, iterations);
 
     double_time = PerformIterations(
       [&solver_double, &ellpack_double, &vector_double, &output_double]() {
       output_double = solver_double.Solve(ellpack_double, vector_double);
+      return output_double.GetSeconds();
     }, iterations);
 
     double delta = GetNormOfVectors(output_float.GetValues(), output_double.GetValues());
@@ -89,6 +98,71 @@ protected:
 
     return DoubleFloatComparison(float_time, double_time, non_zeros_factor / float_time, non_zeros_factor / double_time, delta);
   }
+
+  template<typename T>
+  SerialParallelComparison<T> SpeedupCRSCuda(unsigned iterations) {
+    sspp::common::CRSSolver<T> serial_solver;
+    sspp::cuda::CRSCudaSolver<T> parallel_solver;
+
+    auto crs = this->GetCRS<T>();
+    auto vector = this->GetRandomVector<T>(crs.GetRows());
+
+    double serial_time, parallel_time;
+    sspp::common::Output<T> serial_output, parallel_output;
+
+    serial_time = PerformIterations(
+      [&serial_solver, &crs, &vector, &serial_output]() {
+      serial_output = serial_solver.Solve(crs, vector);
+      return serial_output.GetSeconds();
+    }, iterations);
+
+    parallel_time = PerformIterations(
+      [&parallel_solver, &crs, &vector, &parallel_output]() {
+      parallel_output = parallel_solver.Solve(crs, vector);
+      return parallel_output.GetSeconds();
+    }, iterations);
+
+    double delta = GetNormOfVectors(serial_output.GetValues(), parallel_output.GetValues());
+    unsigned non_zeros_factor = 2 * crs.GetNonZeros();
+    double speedup = serial_time / parallel_time;
+    return SerialParallelComparison<T>(serial_time, non_zeros_factor / serial_time,
+                                       parallel_time, non_zeros_factor / parallel_time,
+                                       speedup,
+                                       delta);
+  }
+
+  template<typename T>
+  SerialParallelComparison<T> SpeedupELLPACKCuda(unsigned iterations) {
+    sspp::common::ELLPACKSolver<T> serial_solver;
+    sspp::cuda::ELLPACKCudaSolver<T> parallel_solver;
+
+    auto ellpack = this->GetELLPACK<T>();
+    auto vector = this->GetRandomVector<T>(ellpack.GetRows());
+
+    double serial_time, parallel_time;
+    sspp::common::Output<T> serial_output, parallel_output;
+
+    serial_time = PerformIterations(
+      [&serial_solver, &ellpack, &vector, &serial_output]() {
+      serial_output = serial_solver.Solve(ellpack, vector);
+      return serial_output.GetSeconds();
+    }, iterations);
+
+    parallel_time = PerformIterations(
+      [&parallel_solver, &ellpack, &vector, &parallel_output]() {
+      parallel_output = parallel_solver.Solve(ellpack, vector);
+      return parallel_output.GetSeconds();
+    }, iterations);
+
+    double delta = GetNormOfVectors(serial_output.GetValues(), parallel_output.GetValues());
+    unsigned non_zeros_factor = 2 * ellpack.GetNonZeros();
+    double speedup = serial_time / parallel_time;
+    return SerialParallelComparison<T>(serial_time, non_zeros_factor / serial_time,
+                                       parallel_time, non_zeros_factor / parallel_time,
+                                       speedup,
+                                       delta);
+  }
+
   template<typename T>
   std::vector<T> GetRandomVector(unsigned size, unsigned seed = 0) {
     std::vector<T> vector(size);
@@ -118,13 +192,10 @@ protected:
     return ellpack;
   }
 
-  double PerformIterations(std::function<void(void)> task, unsigned n) {
+  double PerformIterations(std::function<double(void)> task, unsigned n) {
     double result = 0.0;
     for(unsigned i = 0; i < n; ++i) {
-      stopwatch_.Start();
-      task();
-      stopwatch_.Stop();
-      result += stopwatch_.GetElapsedSeconds();
+      result += task();
     }
     return result;
   }
@@ -138,7 +209,7 @@ protected:
     return delta;
   }
 
-  double GetSpeedUpFor(std::function<void(void)> reference, std::function<void(void)> actual, unsigned n) {
+  double GetSpeedUpFor(std::function<double(void)> reference, std::function<double(void)> actual, unsigned n) {
     return GetSpeedUp(PerformIterations(reference, n), PerformIterations(actual, n));
   }
 

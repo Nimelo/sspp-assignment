@@ -19,14 +19,20 @@ TEST_COUT << "DP FLOPS: " << RESULT.GetDPFlops() << "\n";                       
 TEST_COUT << "Float/double ratio: " << RESULT.GetFloatTime() / RESULT.GetDoubleTime() << "\n";\
 TEST_COUT << "Solution norm: " << RESULT.GetResultNorm() << std::endl                         \
 
-TEST_F(PerformanceSpeedupTest, ALWAYS_TRUE) {
-  TEST_COUT << "Hello world!\n";
-}
+#define PRINT_SERIAL_PARALLEL_COMPARISON(comparison)                   \
+TEST_COUT << "Serial: " << comparison.GetSerialTime() << '\n';         \
+TEST_COUT << "Cuda: " << comparison.GetParallelTime() << '\n';         \
+TEST_COUT << std::string(typeid(comparison.GetSerialOps()).name())     \
++ " FLOPS Serial: " << comparison.GetSerialOps() << '\n';              \
+TEST_COUT << std::string(typeid(comparison.GetSerialOps()).name())     \
++  " FLOPS Cuda: " << comparison.GetParallelOps() << '\n';             \
+TEST_COUT << "Speedup: " << comparison.GetSpeedup() << '\n';           \
+TEST_COUT << "Solution norm: " << comparison.GetSolutionNorm() << '\n' \
 
 TEST_F(ABCDE, SERIAL_CRS_FLOAT_VS_DOUBLE) {
   sspp::common::CRSSolver<float> solver_float;
   sspp::common::CRSSolver<double> solver_double;
-  
+
   DoubleFloatComparison comparison = this->FloatDoubleCRSComparison(solver_float, solver_double, ITERATIONS);
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);
 }
@@ -71,4 +77,16 @@ TEST_F(ABCDE, CUDA_ELLPACK_FLOAT_VS_DOUBLE) {
 
   DoubleFloatComparison comparison = this->FloatDoubleELLPACKComparison(solver_float, solver_double, ITERATIONS);
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);
+}
+
+TEST_F(ABCDE, CUDA_CRS_FLOAT_SPEEDUP) {
+  auto comparison = this->SpeedupCRSCuda<float>(ITERATIONS);
+
+  PRINT_SERIAL_PARALLEL_COMPARISON(comparison);
+}
+
+TEST_F(ABCDE, CUDA_CRS_DOUBLE_SPEEDUP) {
+  auto comparison = this->SpeedupCRSCuda<double>(ITERATIONS);
+
+  PRINT_SERIAL_PARALLEL_COMPARISON(comparison);
 }
