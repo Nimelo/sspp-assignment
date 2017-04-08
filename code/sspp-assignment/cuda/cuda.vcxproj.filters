@@ -24,9 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="kernel.cu">
-      <Filter>Source Files</Filter>
-    </CudaCompile>
     <CudaCompile Include="ELLPACKCudaSolver.cu">
       <Filter>Source Files\tools\solvers</Filter>
     </CudaCompile>
@@ -35,9 +32,6 @@
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="kernel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ELLPACKCudaSolver.h">
       <Filter>Header Files\tools\solvers</Filter>
     </ClInclude>
