@@ -1,9 +1,11 @@
 #ifndef SSPP_OPENMP_CRSOPENMPSOLVER_H_
 #define SSPP_OPENMP_CRSOPENMPSOLVER_H_
 
+#include <omp.h>
+
 #include "../common/Output.h"
 #include "../common/AbstractCRSSolver.h"
-#include <omp.h>
+
 #include <chrono>
 #include "OpenMPStopwatch.h"
 
