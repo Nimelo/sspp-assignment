@@ -15,7 +15,7 @@ namespace sspp {
         stream.clear();
         stream.seekg(0, stream.beg);
 
-        if(header.IsDense() || header.IsSkew() || header.IsHermitian())
+        if(!header.IsValid() || header.IsDense() || header.IsSkew() || header.IsHermitian())
           throw ReadMatrixException();
 
         while(stream.peek() == '%') stream.ignore(2048, '\n');

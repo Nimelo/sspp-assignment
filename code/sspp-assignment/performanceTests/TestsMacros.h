@@ -27,7 +27,6 @@ protected:                                        \
     return KEY;                                   \
   };                                              \
 };                                                \
-std::string FIXTURE_NAME::static_key_ = KEY;      \
 
 #pragma warning(pop)
 

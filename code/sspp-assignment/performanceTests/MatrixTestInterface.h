@@ -13,7 +13,6 @@
 #include "AbstractCRSSolver.h"
 #include "AbstractELLPACKSolver.h"
 #include "SerialParallelComparison.h"
-#include "CRSCudaSolver.h"
 #include "OpenMPPerformance.h"
 #include <omp.h>
 
@@ -105,7 +104,9 @@ protected:
       return output_double.GetSeconds();
     }, iterations);
 
-    double delta = GetNormOfVectors(output_float.GetValues(), output_double.GetValues());
+    auto float_values = output_float.GetValues();
+    auto double_values = output_double.GetValues();
+    double delta = GetNormOfVectors(float_values, double_values);
     unsigned non_zeros_factor = 2 * crs_float.GetNonZeros();
 
     return DoubleFloatComparison(float_time, double_time, non_zeros_factor / float_time, non_zeros_factor / double_time, delta);
@@ -135,7 +136,9 @@ protected:
       return output_double.GetSeconds();
     }, iterations);
 
-    double delta = GetNormOfVectors(output_float.GetValues(), output_double.GetValues());
+    auto float_values = output_float.GetValues();
+    auto double_values = output_double.GetValues();
+    double delta = GetNormOfVectors(float_values, double_values);
     unsigned non_zeros_factor = 2 * ellpack_float.GetNonZeros();
 
     return DoubleFloatComparison(float_time, double_time, non_zeros_factor / float_time, non_zeros_factor / double_time, delta);
@@ -220,6 +223,7 @@ protected:
     auto crs = MatrixContainer::GetInstance().GetCRS<T>(GetKey());
     stopwatch_.Stop();
     TEST_COUT_APPEND << " [" << stopwatch_.GetElapsedSeconds() << "s]" << std::endl;
+    TEST_COUT << "Nonzeros: " << crs.GetNonZeros() << std::endl;
     return crs;
   }
 
@@ -230,6 +234,7 @@ protected:
     auto ellpack = MatrixContainer::GetInstance().GetELLPACK<T>(GetKey());
     stopwatch_.Stop();
     TEST_COUT_APPEND << " [" << stopwatch_.GetElapsedSeconds() << "s]" << std::endl;
+    TEST_COUT << "Nonzeros: " << ellpack.GetNonZeros() << std::endl;
     return ellpack;
   }
 
@@ -264,3 +269,5 @@ protected:
   sspp::common::ChronoStopwatch stopwatch_;
   static std::string static_key_;
 };
+
+std::string MatrixTestInterface::static_key_ = "";
