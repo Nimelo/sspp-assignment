@@ -79,18 +79,20 @@ TEST_F(FIXTURE_NAME, CUDA_ELLPACK_FLOAT_VS_DOUBLE) {                            
 
 #define CREATE_FLOAT_DOUBLE_OPENMP_TEST_F(FIXTURE_NAME)                                                          \
 TEST_F(FIXTURE_NAME, OPENMP_ELLPACK_FLOAT_VS_DOUBLE) {                                                           \
-  omp_set_num_threads(2);                                                                                        \
   sspp::openmp::ELLPACKOpenMPSolver<float> solver_float;                                                         \
   sspp::openmp::ELLPACKOpenMPSolver<double> solver_double;                                                       \
+  solver_float.SetThreads(2);                                                                                    \
+  solver_double.SetThreads(2);                                                                                   \
                                                                                                                  \
   DoubleFloatComparison comparison = this->FloatDoubleELLPACKComparison(solver_float, solver_double, ITERATIONS);\
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);                                                                     \
 }                                                                                                                \
                                                                                                                  \
 TEST_F(FIXTURE_NAME, OPENMP_CRS_FLOAT_VS_DOUBLE) {                                                               \
-  omp_set_num_threads(2);                                                                                        \
   sspp::openmp::CRSOpenMPSolver<float> solver_float;                                                             \
   sspp::openmp::CRSOpenMPSolver<double> solver_double;                                                           \
+  solver_float.SetThreads(2);                                                                                    \
+  solver_double.SetThreads(2);                                                                                   \
                                                                                                                  \
   DoubleFloatComparison comparison = this->FloatDoubleCRSComparison(solver_float, solver_double, ITERATIONS);    \
   PRINT_DOUBLE_FLOAT_COMPARISON(comparison);                                                                     \

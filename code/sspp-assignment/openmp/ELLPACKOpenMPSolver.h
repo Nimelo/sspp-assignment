@@ -11,10 +11,10 @@ namespace sspp {
   namespace openmp {
     template<typename VALUE_TYPE>
     class ELLPACKOpenMPSolver : public common::AbstractELLPACKSolver<VALUE_TYPE> {
-    public:
-      static void SetThreads(int threads) {
-        omp_set_dynamic(0);
-        omp_set_num_threads(threads);
+    unsigned threads_ = 1;
+      public:
+      void SetThreads(int threads) {
+        threads_ = threads;
       }
 
       virtual common::Output<VALUE_TYPE> Solve(common::ELLPACK<VALUE_TYPE> & ellpack, std::vector<VALUE_TYPE> & b) {
@@ -22,7 +22,7 @@ namespace sspp {
         std::vector<VALUE_TYPE> x(ellpack.GetRows());
 
         stopwatch_.Start();
-#pragma omp parallel shared(ellpack, b, x)
+#pragma omp parallel num_threads(threads_)
         {
           int threads = omp_get_num_threads(),
             threadId = omp_get_thread_num();

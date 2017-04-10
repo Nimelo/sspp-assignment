@@ -13,10 +13,10 @@ namespace sspp {
   namespace openmp {
     template<typename VALUE_TYPE>
     class CRSOpenMPSolver : public common::AbstractCRSSolver<VALUE_TYPE> {
+      unsigned threads_ = 1;
     public:
-      static void SetThreads(int threads) {
-        omp_set_dynamic(0);
-        omp_set_num_threads(threads);
+      void SetThreads(int threads) {
+        threads_ = threads;
       }
 
       common::Output<VALUE_TYPE> Solve(common::CRS<VALUE_TYPE>& crs, std::vector<VALUE_TYPE>& vector) {
@@ -24,7 +24,7 @@ namespace sspp {
         std::vector<VALUE_TYPE> x(crs.GetRows());
 
         stopwatch_.Start();
-#pragma omp parallel shared(crs, vector, x)
+#pragma omp parallel num_threads(threads_)
         {
           int threads = omp_get_num_threads(),
             threadId = omp_get_thread_num();
