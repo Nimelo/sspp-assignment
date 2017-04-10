@@ -5,7 +5,7 @@
 #define MATRIX_PATH "C:\\Users\\mrnim\\Desktop\\Repos\\sspp-assignment\\matrices\\"
 
 CREATE_FIXTURE_AND_TESTS(cage4, "cage4.mtx", CONCAT(MATRIX_PATH, "cage4.mtx"));
-CREATE_FIXTURE_AND_TESTS(mhda416, "mhda416a.mtx", CONCAT(MATRIX_PATH, "mhda416a.mtx"));
+CREATE_FIXTURE_AND_TESTS(mhda416, "mhd416a.mtx", CONCAT(MATRIX_PATH, "mhd416a.mtx"));
 CREATE_FIXTURE_AND_TESTS(mcfe, "mcfe.mtx", CONCAT(MATRIX_PATH, "mcfe.mtx"));
 CREATE_FIXTURE_AND_TESTS(olm1000, "olm1000.mtx", CONCAT(MATRIX_PATH, "olm1000.mtx"));
 CREATE_FIXTURE_AND_TESTS(adder_dcop_32, "add32.mtx", CONCAT(MATRIX_PATH, "add32.mtx"));
