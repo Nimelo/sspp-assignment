@@ -113,7 +113,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;$(GTEST_DIR)\msvc\gtest\Debug\gtestd.lib;$(GMOCK_DIR)\msvc\2015\Debug\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;$(GTEST_DIR)\msvc\x64\$(Configuration)\gtest.lib;$(GMOCK_DIR)\msvc\2015\x64\$(Configuration)\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
