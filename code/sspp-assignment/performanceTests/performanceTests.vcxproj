@@ -71,19 +71,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(GMOCK_DIR)\include;$(GTEST_DIR)\include;$(SolutionDir)cuda;$(SolutionDir)common;$(SolutionDir)openmp;$(IncludePath)</IncludePath>
+    <IncludePath>Z:\GTEST\googletest\googlemock\include;Z:\GTEST\googletest\googletest\include;$(SolutionDir)cuda;$(SolutionDir)common;$(SolutionDir)openmp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(GMOCK_DIR)\include;$(GTEST_DIR)\include;$(SolutionDir)cuda;$(SolutionDir)common;$(SolutionDir)openmp;$(IncludePath)</IncludePath>
+    <IncludePath>Z:\GTEST\googletest\googlemock\include;Z:\GTEST\googletest\googletest\include;$(SolutionDir)cuda;$(SolutionDir)common;$(SolutionDir)openmp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(GMOCK_DIR)\include;$(GTEST_DIR)\include;$(SolutionDir)cuda;$(SolutionDir)openmp;$(SolutionDir)common;$(IncludePath)</IncludePath>
+    <IncludePath>Z:\GTEST\googletest\googlemock\include;Z:\GTEST\googletest\googletest\include;$(SolutionDir)cuda;$(SolutionDir)openmp;$(SolutionDir)common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(GMOCK_DIR)\include;$(GTEST_DIR)\include;$(SolutionDir)cuda;$(SolutionDir)common;$(SolutionDir)openmp;$(IncludePath)</IncludePath>
+    <IncludePath>Z:\GTEST\googletest\googlemock\include;Z:\GTEST\googletest\googletest\include;$(SolutionDir)cuda;$(SolutionDir)common;$(SolutionDir)openmp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -99,7 +99,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;$(GTEST_DIR)\msvc\gtest\Debug\gtestd.lib;$(GMOCK_DIR)\msvc\2015\Debug\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;Z:\GTEST\googletest\googletest\msvc\gtest\Debug\gtestd.lib;Z:\GTEST\googletest\googlemock\msvc\2015\Debug\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -113,7 +113,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;$(GTEST_DIR)\msvc\x64\$(Configuration)\gtest.lib;$(GMOCK_DIR)\msvc\2015\x64\$(Configuration)\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;Z:\GTEST\googletest\googletest\msvc\x64\$(Configuration)\gtest.lib;Z:\GTEST\googletest\googlemock\msvc\2015\x64\$(Configuration)\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -134,7 +134,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;$(GTEST_DIR)\msvc\gtest\Debug\gtestd.lib;$(GMOCK_DIR)\msvc\2015\Debug\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;Z:\GTEST\googletest\googletest\msvc\gtest\Debug\gtestd.lib;Z:\GTEST\googletest\googlemock\msvc\2015\Debug\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,7 +155,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CUDA_PATH)\lib\x64\cudart.lib;$(GTEST_DIR)\msvc\x64\$(Configuration)\gtest.lib;$(GMOCK_DIR)\msvc\2015\x64\$(Configuration)\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CUDA_PATH)\lib\x64\cudart.lib;Z:\GTEST\googletest\googletest\msvc\x64\$(Configuration)\gtest.lib;Z:\GTEST\googletest\googlemock\msvc\2015\x64\$(Configuration)\gmock.lib;$(SolutionDir)$(Configuration)\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -179,9 +179,6 @@
     </ProjectReference>
     <ProjectReference Include="..\cuda\cuda.vcxproj">
       <Project>{78623c1f-bf4e-44a2-9c97-20d85ab8a8fb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\openmp\openmp.vcxproj">
-      <Project>{fefa117d-586c-4a83-9d3e-9b1432541a1f}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

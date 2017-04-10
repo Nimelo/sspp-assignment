@@ -57,8 +57,10 @@ namespace sspp {
 
         checkCudaErrors(cudaMemcpy(*d_vector, &vector[0], sizeof(VALUE_TYPE) * vector.size(), cudaMemcpyHostToDevice));
         checkCudaErrors(cudaMemset(*d_output, 0, sizeof(VALUE_TYPE) * ellpack.GetRows()));
-        checkCudaErrors(cudaMemcpy(*d_values, &ellpack.GetValues()[0], sizeof(VALUE_TYPE) * ellpack.GetValues().size(), cudaMemcpyHostToDevice));
-        checkCudaErrors(cudaMemcpy(*d_column_indices, &ellpack.GetColumnIndices()[0], sizeof(unsigned) * ellpack.GetColumnIndices().size(), cudaMemcpyHostToDevice));
+		auto values = ellpack.GetValues();
+        checkCudaErrors(cudaMemcpy(*d_values, &values[0], sizeof(VALUE_TYPE) * ellpack.GetValues().size(), cudaMemcpyHostToDevice));
+		auto column_indices = ellpack.GetColumnIndices();
+        checkCudaErrors(cudaMemcpy(*d_column_indices, &column_indices[0], sizeof(unsigned) * ellpack.GetColumnIndices().size(), cudaMemcpyHostToDevice));
       }
 
       template <typename VALUE_TYPE>

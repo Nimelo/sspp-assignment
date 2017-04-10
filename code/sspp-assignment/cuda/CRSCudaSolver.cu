@@ -54,10 +54,12 @@ namespace sspp {
         checkCudaErrors(cudaMalloc(d_values, sizeof(VALUE_TYPE) * crs.GetValues().size()));
         checkCudaErrors(cudaMalloc(d_output, sizeof(VALUE_TYPE) * crs.GetRows()));
         checkCudaErrors(cudaMalloc(d_vector, sizeof(VALUE_TYPE) * vector.size()));
-
-        checkCudaErrors(cudaMemcpy(*d_row_start_indexes, &crs.GetRowStartIndexes()[0], sizeof(unsigned) * crs.GetRowStartIndexes().size(), cudaMemcpyHostToDevice));
-        checkCudaErrors(cudaMemcpy(*d_column_indices, &crs.GetColumnIndices()[0], sizeof(unsigned) * crs.GetColumnIndices().size(), cudaMemcpyHostToDevice));
-        checkCudaErrors(cudaMemcpy(*d_values, &crs.GetValues()[0], sizeof(VALUE_TYPE) * crs.GetValues().size(), cudaMemcpyHostToDevice));
+		auto row_start_indexes = crs.GetRowStartIndexes();
+        checkCudaErrors(cudaMemcpy(*d_row_start_indexes, &row_start_indexes[0], sizeof(unsigned) * crs.GetRowStartIndexes().size(), cudaMemcpyHostToDevice));
+		auto column_indices = crs.GetColumnIndices();
+        checkCudaErrors(cudaMemcpy(*d_column_indices, &column_indices[0], sizeof(unsigned) * crs.GetColumnIndices().size(), cudaMemcpyHostToDevice));
+		auto values = crs.GetValues();
+        checkCudaErrors(cudaMemcpy(*d_values, &values[0], sizeof(VALUE_TYPE) * crs.GetValues().size(), cudaMemcpyHostToDevice));
         checkCudaErrors(cudaMemset(*d_output, 0, sizeof(VALUE_TYPE) * crs.GetRows()));
         checkCudaErrors(cudaMemcpy(*d_vector, &vector[0], sizeof(VALUE_TYPE) * vector.size(), cudaMemcpyHostToDevice));
       }

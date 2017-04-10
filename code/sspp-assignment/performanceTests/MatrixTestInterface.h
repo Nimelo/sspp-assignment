@@ -235,6 +235,7 @@ protected:
     stopwatch_.Stop();
     TEST_COUT_APPEND << " [" << stopwatch_.GetElapsedSeconds() << "s]" << std::endl;
     TEST_COUT << "Nonzeros: " << ellpack.GetNonZeros() << std::endl;
+	TEST_COUT << "Max row nonzeros: " << ellpack.GetMaxRowNonZeros() << std::endl;
     return ellpack;
   }
 

@@ -31,8 +31,9 @@ protected:                                        \
 #pragma warning(pop)
 
 #define CREATE_PERFORMANCE_TEST_F(FIXTURE_NAME)  \
+		CREATE_SPEEDUP_TEST_F(FIXTURE_NAME)      \
         CREATE_FLOAT_DOUBLE_TEST_F(FIXTURE_NAME) \
-        CREATE_SPEEDUP_TEST_F(FIXTURE_NAME)      \
+        
 
 #define CREATE_FLOAT_DOUBLE_TEST_F(FIXTURE_NAME)         \
         CREATE_FLOAT_DOUBLE_SERIAL_TEST_F(FIXTURE_NAME)  \
