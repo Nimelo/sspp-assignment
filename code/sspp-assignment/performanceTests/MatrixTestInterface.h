@@ -15,6 +15,8 @@
 #include "SerialParallelComparison.h"
 #include "OpenMPPerformance.h"
 #include <omp.h>
+#include "OpenMPCumulativeResult.h"
+#include "CudaCumulativeResult.h"
 
 #define PRINT_DOUBLE_FLOAT_COMPARISON(RESULT)                                                 \
 TEST_COUT << "Float: " << RESULT.GetFloatTime() << "s\n";                                     \
@@ -60,6 +62,44 @@ public:
     MatrixContainer::GetInstance().Delete(static_key_);
   }
 protected:
+  OpenMPCumulativeResult CumlativeOpenMPPerformance(std::function<SerialParallelComparison()> float_crs,
+                                                    std::function<SerialParallelComparison()> double_crs,
+                                                    std::function<SerialParallelComparison()> float_ellpack,
+                                                    std::function<SerialParallelComparison()> double_ellpack) {
+    OpenMPCumulativeResult result;
+    unsigned max_avalaible_threads = omp_get_max_threads();
+    TEST_COUT << "Max avalaible threads: " << max_avalaible_threads << '\n';
+    for(unsigned i = 2; i <= max_avalaible_threads; i++) {
+      TEST_COUT << "Iteration for: " << i << " threads." << '\n';
+      omp_set_num_threads(i);
+      result.InsertResult(i, float_crs(), double_crs(), float_ellpack(), double_ellpack());
+    }
+    std::ofstream os(GetKey() + "openmp.performance");
+    os << result;
+    os.close();
+    return result;
+  }
+
+  CudaCumulativeResult CumulativeCudaPerformance(std::function<SerialParallelComparison()> float_crs,
+                                                 std::function<SerialParallelComparison()> double_crs,
+                                                 std::function<SerialParallelComparison()> float_ellpack,
+                                                 std::function<SerialParallelComparison()> double_ellpack) {
+    TEST_COUT << "FLOAT CRS" << std::endl;
+    auto float_crs_result = float_crs();
+    TEST_COUT << "DOUBLE CRS" << std::endl;
+    auto double_crs_result = double_crs();
+    TEST_COUT << "FLOAT ELLPACK" << std::endl;
+    auto float_ellpack_result = float_ellpack();
+    TEST_COUT << "DOUBLE ELLPACK" << std::endl;
+    auto double_ellpack_result = double_ellpack();
+    auto result = CudaCumulativeResult(float_crs_result, double_crs_result, float_ellpack_result, double_ellpack_result);
+
+    std::ofstream os(GetKey() + "cuda.performance");
+    os << result;
+    os.close();
+    return result;
+  }
+
   template<bool print = true>
   OpenMPPerformance CheckPerformance(std::function<SerialParallelComparison()> task) {
     unsigned best_threads = 1;
@@ -67,7 +107,7 @@ protected:
     unsigned max_avalaible_threads = omp_get_max_threads();
     TEST_COUT << "Max avalaible threads: " << max_avalaible_threads << '\n';
     for(unsigned i = 2; i <= max_avalaible_threads; i++) {
-      TEST_COUT << "Iteration for: " << i << " threads." <<'\n';
+      TEST_COUT << "Iteration for: " << i << " threads." << '\n';
       omp_set_num_threads(i);
       SerialParallelComparison comparison = task();
       if(print) {

@@ -13,7 +13,9 @@
 
 #define CREATE_FIXTURE_AND_TESTS(FIXTURE_NAME, KEY, PATH) \
         CREATE_FIXTURE(FIXTURE_NAME, KEY, PATH)           \
-        CREATE_PERFORMANCE_TEST_F(FIXTURE_NAME)           \
+        CREATE_PERFORMANCE_CUMULATIVE_F(FIXTURE_NAME)     \
+        CREATE_FLOAT_DOUBLE_TEST_F(FIXTURE_NAME)          \
+//        CREATE_SPEEDUP_TEST_F(FIXTURE_NAME)               \
 
 #pragma warning (push)
 #pragma warning( disable : 4356)
@@ -29,6 +31,10 @@ protected:                                        \
 };                                                \
 
 #pragma warning(pop)
+
+#define CREATE_PERFORMANCE_CUMULATIVE_F(FIXTURE_NAME) \
+        CREATE_CUDA_CUMULATIVE_SPEEDUP(FIXTURE_NAME)  \
+        CREATE_OPENMP_CUMULATIVE_SPEEDUP(FIXTURE_NAME)\
 
 #define CREATE_PERFORMANCE_TEST_F(FIXTURE_NAME)  \
         CREATE_FLOAT_DOUBLE_TEST_F(FIXTURE_NAME) \
@@ -176,5 +182,53 @@ TEST_F(FIXTURE_NAME, OPENMP_ELLPACK_DOUBLE_SPEEDUP) {                           
                                                                                                            \
   PRINT_OPENMP_THREADS(best);                                                                              \
 }                                                                                                          \
+
+#define CREATE_OPENMP_CUMULATIVE_SPEEDUP(FIXTURE_NAME)                           \
+TEST_F(FIXTURE_NAME, OPENMP_CUMULATIVE_SPEEDUP) {                                \
+  sspp::common::ELLPACKSolver<float> serial_f_ellpack;                           \
+  sspp::common::ELLPACKSolver<double> serial_d_ellpack;                          \
+  sspp::openmp::ELLPACKOpenMPSolver<float> openmp_f_ellpack;                     \
+  sspp::openmp::ELLPACKOpenMPSolver<double> openmp_d_ellpack;                    \
+  sspp::common::CRSSolver<float> serial_f_crs;                                   \
+  sspp::common::CRSSolver<double> serial_d_crs;                                  \
+  sspp::openmp::CRSOpenMPSolver<float> openmp_f_crs;                             \
+  sspp::openmp::CRSOpenMPSolver<double> openmp_d_crs;                            \
+                                                                                 \
+  TEST_COUT << CumlativeOpenMPPerformance(                                       \
+    [&serial_f_crs, &openmp_f_crs, this]() -> SerialParallelComparison {         \
+    return SpeedupCRS(serial_f_crs, openmp_f_crs, ITERATIONS);                   \
+  }, [&serial_d_crs, &openmp_d_crs, this]() -> SerialParallelComparison {        \
+    return SpeedupCRS(serial_d_crs, openmp_d_crs, ITERATIONS);                   \
+  }, [&serial_f_ellpack, &openmp_f_ellpack, this]() -> SerialParallelComparison {\
+    return SpeedupEllpack(serial_f_ellpack, openmp_f_ellpack, ITERATIONS);       \
+  }, [&serial_d_ellpack, &openmp_d_ellpack, this]() -> SerialParallelComparison {\
+    return SpeedupEllpack(serial_d_ellpack, openmp_d_ellpack, ITERATIONS);       \
+  }                                                                              \
+  ) << std::endl;                                                                \
+}                                                                                \
+                                                                                 
+#define CREATE_CUDA_CUMULATIVE_SPEEDUP(FIXTURE_NAME)                             \
+TEST_F(FIXTURE_NAME, CUDA_CUMULATIVE_SPEEDUP) {                                  \
+  sspp::common::ELLPACKSolver<float> serial_f_ellpack;                           \
+  sspp::common::ELLPACKSolver<double> serial_d_ellpack;                          \
+  sspp::cuda::ELLPACKCudaSolver<float> openmp_f_ellpack;                         \
+  sspp::cuda::ELLPACKCudaSolver<double> openmp_d_ellpack;                        \
+  sspp::common::CRSSolver<float> serial_f_crs;                                   \
+  sspp::common::CRSSolver<double> serial_d_crs;                                  \
+  sspp::cuda::CRSCudaSolver<float> openmp_f_crs;                                 \
+  sspp::cuda::CRSCudaSolver<double> openmp_d_crs;                                \
+                                                                                 \
+  TEST_COUT << CumulativeCudaPerformance(                                        \
+    [&serial_f_crs, &openmp_f_crs, this]() -> SerialParallelComparison {         \
+    return SpeedupCRS(serial_f_crs, openmp_f_crs, ITERATIONS);                   \
+  }, [&serial_d_crs, &openmp_d_crs, this]() -> SerialParallelComparison {        \
+    return SpeedupCRS(serial_d_crs, openmp_d_crs, ITERATIONS);                   \
+  }, [&serial_f_ellpack, &openmp_f_ellpack, this]() -> SerialParallelComparison {\
+    return SpeedupEllpack(serial_f_ellpack, openmp_f_ellpack, ITERATIONS);       \
+  }, [&serial_d_ellpack, &openmp_d_ellpack, this]() -> SerialParallelComparison {\
+    return SpeedupEllpack(serial_d_ellpack, openmp_d_ellpack, ITERATIONS);       \
+  }                                                                              \
+  ) << std::endl;                                                                \
+}                                                                                \
 ;
 ;

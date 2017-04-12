@@ -68,5 +68,11 @@
     <ClInclude Include="TestStream.h">
       <Filter>Header Files\macros</Filter>
     </ClInclude>
+    <ClInclude Include="OpenMPCumulativeResult.h">
+      <Filter>Header Files\test-interfaces\results</Filter>
+    </ClInclude>
+    <ClInclude Include="CudaCumulativeResult.h">
+      <Filter>Header Files\test-interfaces\results</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
