@@ -107,11 +107,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CUDA_PATH)\lib\Win32\cudart.lib;$(GTEST_DIR)\msvc\x64\$(Configuration)\gtest.lib;$(GMOCK_DIR)\msvc\2015\x64\$(Configuration)\gmock.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CUDA_PATH)\lib\x64\cudart.lib;$(GTEST_DIR)\msvc\x64\$(Configuration)\gtestd.lib;$(GMOCK_DIR)\msvc\2015\x64\$(Configuration)\gmock.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

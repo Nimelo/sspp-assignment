@@ -23,9 +23,9 @@
 
 #include "helper_string.h"
 
-//#include <string>
-//#include <iostream>
-//#include <sstream>
+#include <string>
+#include <iostream>
+#include <sstream>
 
 // Note, it is required that your SDK sample to include the proper header files, please
 // refer the CUDA examples for examples of the needed CUDA headers, which may change depending
@@ -667,7 +667,7 @@ bool check(T result, char const *const func, const char *const file, int const l
   if(result) {
     fprintf(stderr, "CUDA error at %s:%d code=%d(%s) \"%s\" \n",
             file, line, static_cast<unsigned int>(result), _cudaGetErrorEnum(result), func);
-    /*
+    
     std::stringstream ss;
     std::string msg("CUDA error at ");
     msg += file;
@@ -682,9 +682,9 @@ bool check(T result, char const *const func, const char *const file, int const l
     msg += ") \"";
     msg += func;
     msg += "\"";
-    //throw msg;
-    std::cerr  << msg <<"\n";
-    */
+    throw msg;
+//    std::cerr  << msg <<"\n";
+    
     return true;
   } else {
     return false;
