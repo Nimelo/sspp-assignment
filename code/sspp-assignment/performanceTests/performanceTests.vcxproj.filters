@@ -74,5 +74,8 @@
     <ClInclude Include="CudaCumulativeResult.h">
       <Filter>Header Files\test-interfaces\results</Filter>
     </ClInclude>
+    <ClInclude Include="CumulativeResults.h">
+      <Filter>Header Files\resources</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

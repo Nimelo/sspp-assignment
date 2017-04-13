@@ -166,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CudaCumulativeResult.h" />
+    <ClInclude Include="CumulativeResults.h" />
     <ClInclude Include="DoubleFloatComparisonResult.h" />
     <ClInclude Include="MatrixContainer.h" />
     <ClInclude Include="MatrixTestInterface.h" />

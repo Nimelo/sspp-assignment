@@ -17,6 +17,7 @@
 #include <omp.h>
 #include "OpenMPCumulativeResult.h"
 #include "CudaCumulativeResult.h"
+#include "CumulativeResults.h"
 
 #define PRINT_DOUBLE_FLOAT_COMPARISON(RESULT)                                                 \
 TEST_COUT << "Float: " << RESULT.GetFloatTime() << "s\n";                                     \
@@ -69,11 +70,14 @@ protected:
     OpenMPCumulativeResult result;
     unsigned max_avalaible_threads = omp_get_max_threads();
     TEST_COUT << "Max avalaible threads: " << max_avalaible_threads << '\n';
-    for(unsigned i = 2; i <= max_avalaible_threads; i++) {
+    for(unsigned i = 1; i <= max_avalaible_threads; i++) {
       TEST_COUT << "Iteration for: " << i << " threads." << '\n';
       omp_set_num_threads(i);
       result.InsertResult(i, float_crs(), double_crs(), float_ellpack(), double_ellpack());
     }
+
+    CumulativeResults::GetInstance().AddOpenMp(GetKey(), result.crs_float_max, result.crs_double_max, result.ellpack_float_max, result.ellpack_double_max);
+
     std::ofstream os(GetKey() + "openmp.performance");
     os << result;
     os.close();
@@ -94,6 +98,12 @@ protected:
     auto double_ellpack_result = double_ellpack();
     auto result = CudaCumulativeResult(float_crs_result, double_crs_result, float_ellpack_result, double_ellpack_result);
 
+    CumulativeResults::GetInstance().AddCuda(GetKey(),
+                                                result.crs_float_.GetParallelOps(),
+                                                result.crs_double_.GetParallelOps(),
+                                                result.ellpack_float_.GetParallelOps(),
+                                                result.ellpack_double_.GetParallelOps());
+
     std::ofstream os(GetKey() + "cuda.performance");
     os << result;
     os.close();
@@ -106,7 +116,7 @@ protected:
     double best_speedup = 1;
     unsigned max_avalaible_threads = omp_get_max_threads();
     TEST_COUT << "Max avalaible threads: " << max_avalaible_threads << '\n';
-    for(unsigned i = 2; i <= max_avalaible_threads; i++) {
+    for(unsigned i = 1; i <= max_avalaible_threads; i++) {
       TEST_COUT << "Iteration for: " << i << " threads." << '\n';
       omp_set_num_threads(i);
       SerialParallelComparison comparison = task();
@@ -117,7 +127,7 @@ protected:
       best_speedup = comparison.GetSpeedup() > best_speedup ? comparison.GetSpeedup() : best_speedup;
     }
 
-    return  OpenMPPerformance(best_threads, best_speedup);
+    return OpenMPPerformance(best_threads, best_speedup);
   }
 
   DoubleFloatComparison FloatDoubleCRSComparison(sspp::common::AbstractCRSSolver<float> & solver_float,

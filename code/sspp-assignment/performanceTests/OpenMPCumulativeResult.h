@@ -7,6 +7,11 @@
 
 class OpenMPCumulativeResult {
 public:
+  double crs_float_max = 0;
+  double crs_double_max = 0;
+  double ellpack_float_max = 0;
+  double ellpack_double_max = 0;
+
   OpenMPCumulativeResult() {}
   OpenMPCumulativeResult(const OpenMPCumulativeResult & other) {
     thread_entries_ = other.thread_entries_;
@@ -14,6 +19,10 @@ public:
     thread_results_crs_float_ = other.thread_results_crs_float_;
     thread_results_ellpack_double_ = other.thread_results_ellpack_double_;
     thread_results_ellpack_float_ = other.thread_results_ellpack_float_;
+    crs_float_max = other.crs_float_max;
+    crs_double_max = other.crs_double_max;
+    ellpack_float_max = other.ellpack_float_max;
+    ellpack_double_max = other.ellpack_double_max;
   }
 
   void InsertResult(unsigned thread_number,
@@ -27,6 +36,10 @@ public:
     thread_results_crs_double_.insert({ thread_number, crs_double });
     thread_results_ellpack_float_.insert({ thread_number, ellpack_float });
     thread_results_ellpack_double_.insert({ thread_number, ellpack_double });
+    crs_float_max = crs_float_max > crs_float.GetParallelOps() ? crs_float_max : crs_float.GetParallelOps();
+    crs_double_max = crs_double_max > crs_double.GetParallelOps() ? crs_double_max : crs_double.GetParallelOps();
+    ellpack_float_max = ellpack_float_max > ellpack_float.GetParallelOps() ? ellpack_float_max : ellpack_float.GetParallelOps();
+    ellpack_double_max = ellpack_double_max > ellpack_double.GetParallelOps() ? ellpack_double_max : ellpack_double.GetParallelOps();
   }
   friend std::ostream & operator << (std::ostream & os, const OpenMPCumulativeResult & result) {
 

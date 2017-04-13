@@ -31,7 +31,7 @@ public:
 
     return os;
   }
-protected:
+public:
   SerialParallelComparison crs_float_;
   SerialParallelComparison ellpack_float_;
   SerialParallelComparison crs_double_;
