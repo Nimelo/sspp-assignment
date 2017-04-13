@@ -67,9 +67,9 @@ protected:
                                                     std::function<SerialParallelComparison()> float_ellpack,
                                                     std::function<SerialParallelComparison()> double_ellpack) {
     OpenMPCumulativeResult result;
-    unsigned max_avalaible_threads = omp_get_max_threads();
+    unsigned long long max_avalaible_threads = omp_get_max_threads();
     TEST_COUT << "Max avalaible threads: " << max_avalaible_threads << '\n';
-    for(unsigned i = 2; i <= max_avalaible_threads; i++) {
+    for(unsigned long long i = 2; i <= max_avalaible_threads; i++) {
       TEST_COUT << "Iteration for: " << i << " threads." << '\n';
       omp_set_num_threads(i);
       result.InsertResult(i, float_crs(), double_crs(), float_ellpack(), double_ellpack());
@@ -102,11 +102,11 @@ protected:
 
   template<bool print = true>
   OpenMPPerformance CheckPerformance(std::function<SerialParallelComparison()> task) {
-    unsigned best_threads = 1;
+    unsigned long long best_threads = 1;
     double best_speedup = 1;
-    unsigned max_avalaible_threads = omp_get_max_threads();
+    unsigned long long max_avalaible_threads = omp_get_max_threads();
     TEST_COUT << "Max avalaible threads: " << max_avalaible_threads << '\n';
-    for(unsigned i = 2; i <= max_avalaible_threads; i++) {
+    for(unsigned long long i = 2; i <= max_avalaible_threads; i++) {
       TEST_COUT << "Iteration for: " << i << " threads." << '\n';
       omp_set_num_threads(i);
       SerialParallelComparison comparison = task();
@@ -122,7 +122,7 @@ protected:
 
   DoubleFloatComparison FloatDoubleCRSComparison(sspp::common::AbstractCRSSolver<float> & solver_float,
                                                  sspp::common::AbstractCRSSolver<double> & solver_double,
-                                                 unsigned iterations) {
+                                                 unsigned long long iterations) {
     auto crs_float = this->GetCRS<float>();
     auto vector_float = this->GetRandomVector<float>(crs_float.GetRows());
     auto crs_double = this->GetCRS<double>();
@@ -147,14 +147,14 @@ protected:
     auto float_values = output_float.GetValues();
     auto double_values = output_double.GetValues();
     double delta = GetNormOfVectors(float_values, double_values);
-    unsigned non_zeros_factor = 2 * crs_float.GetNonZeros();
+    unsigned long long non_zeros_factor = 2 * crs_float.GetNonZeros();
 
     return DoubleFloatComparison(float_time, double_time, non_zeros_factor / float_time, non_zeros_factor / double_time, delta);
   }
 
   DoubleFloatComparison FloatDoubleELLPACKComparison(sspp::common::AbstractELLPACKSolver<float> & solver_float,
                                                      sspp::common::AbstractELLPACKSolver<double> & solver_double,
-                                                     unsigned iterations) {
+                                                     unsigned long long iterations) {
     auto ellpack_float = this->GetELLPACK<float>();
     auto vector_float = this->GetRandomVector<float>(ellpack_float.GetRows());
     auto ellpack_double = this->GetELLPACK<double>();
@@ -179,7 +179,7 @@ protected:
     auto float_values = output_float.GetValues();
     auto double_values = output_double.GetValues();
     double delta = GetNormOfVectors(float_values, double_values);
-    unsigned non_zeros_factor = 2 * ellpack_float.GetNonZeros();
+    unsigned long long non_zeros_factor = 2 * ellpack_float.GetNonZeros();
 
     return DoubleFloatComparison(float_time, double_time, non_zeros_factor / float_time, non_zeros_factor / double_time, delta);
   }
@@ -187,7 +187,7 @@ protected:
   template<typename T>
   SerialParallelComparison SpeedupCRS(sspp::common::AbstractCRSSolver<T> & serial_solver,
                                       sspp::common::AbstractCRSSolver<T> & parallel_solver,
-                                      unsigned iterations) {
+                                      unsigned long long iterations) {
     auto crs = this->GetCRS<T>();
     auto vector = this->GetRandomVector<T>(crs.GetRows());
 
@@ -207,7 +207,7 @@ protected:
     }, iterations);
 
     double delta = GetNormOfVectors(serial_output.GetValues(), parallel_output.GetValues());
-    unsigned non_zeros_factor = 2 * crs.GetNonZeros();
+    unsigned long long non_zeros_factor = 2 * crs.GetNonZeros();
     double speedup = serial_time / parallel_time;
     return SerialParallelComparison(serial_time, non_zeros_factor / serial_time,
                                     parallel_time, non_zeros_factor / parallel_time,
@@ -218,7 +218,7 @@ protected:
   template<typename T>
   SerialParallelComparison SpeedupEllpack(sspp::common::AbstractELLPACKSolver<T> & serial_solver,
                                           sspp::common::AbstractELLPACKSolver<T> & parallel_solver,
-                                          unsigned iterations) {
+                                          unsigned long long iterations) {
     auto ellpack = this->GetELLPACK<T>();
     auto vector = this->GetRandomVector<T>(ellpack.GetRows());
 
@@ -238,7 +238,7 @@ protected:
     }, iterations);
 
     double delta = GetNormOfVectors(serial_output.GetValues(), parallel_output.GetValues());
-    unsigned non_zeros_factor = 2 * ellpack.GetNonZeros();
+    unsigned long long non_zeros_factor = 2 * ellpack.GetNonZeros();
     double speedup = serial_time / parallel_time;
     return SerialParallelComparison(serial_time, non_zeros_factor / serial_time,
                                     parallel_time, non_zeros_factor / parallel_time,
@@ -247,10 +247,10 @@ protected:
   }
 
   template<typename T>
-  std::vector<T> GetRandomVector(unsigned size, unsigned seed = 0) {
+  std::vector<T> GetRandomVector(unsigned long long size, unsigned long long seed = 0) {
     std::vector<T> vector(size);
     srand(seed);
-    for(unsigned i = 0; i < size; i++) {
+    for(unsigned long long i = 0; i < size; i++) {
       vector[i] = static_cast<T>(rand() % 100);
     }
     return vector;
@@ -279,9 +279,9 @@ protected:
     return ellpack;
   }
 
-  double PerformIterations(std::function<double(void)> task, unsigned n) {
+  double PerformIterations(std::function<double(void)> task, unsigned long long n) {
     double result = 0.0;
-    for(unsigned i = 0; i < n; ++i) {
+    for(unsigned long long i = 0; i < n; ++i) {
       result += task();
     }
     return result;
@@ -290,13 +290,13 @@ protected:
   template<typename LESS_PRECISE, typename MORE_PRECISE>
   double GetNormOfVectors(std::vector<LESS_PRECISE> & lhs, std::vector<MORE_PRECISE> & rhs) {
     double delta = 0.0;
-    for(unsigned i = 0; i < lhs.size(); i++) {
+    for(unsigned long long i = 0; i < lhs.size(); i++) {
       delta += fabs(static_cast<MORE_PRECISE>(lhs[i]) - rhs[i]);
     }
     return delta;
   }
 
-  double GetSpeedUpFor(std::function<double(void)> reference, std::function<double(void)> actual, unsigned n) {
+  double GetSpeedUpFor(std::function<double(void)> reference, std::function<double(void)> actual, unsigned long long n) {
     return GetSpeedUp(PerformIterations(reference, n), PerformIterations(actual, n));
   }
 

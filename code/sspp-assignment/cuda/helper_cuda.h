@@ -666,7 +666,7 @@ template< typename T >
 bool check(T result, char const *const func, const char *const file, int const line) {
   if(result) {
     fprintf(stderr, "CUDA error at %s:%d code=%d(%s) \"%s\" \n",
-            file, line, static_cast<unsigned int>(result), _cudaGetErrorEnum(result), func);
+            file, line, static_cast<unsigned long long int>(result), _cudaGetErrorEnum(result), func);
     
     std::stringstream ss;
     std::string msg("CUDA error at ");
@@ -675,7 +675,7 @@ bool check(T result, char const *const func, const char *const file, int const l
     ss << line;
     msg += ss.str();
     msg += " code=";
-    ss << static_cast<unsigned int>(result);
+    ss << static_cast<unsigned long long int>(result);
     msg += ss.str();
     msg += " (";
     msg += _cudaGetErrorEnum(result);

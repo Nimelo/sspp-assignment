@@ -11,18 +11,18 @@ namespace sspp {
     template<typename VALUE_TYPE>
     class MatrixMarket : public SparseMatrix {
     public:
-      MatrixMarket(const unsigned rows,
-                   const unsigned columns,
-                   const unsigned non_zeros,
-                   const std::vector<unsigned> & row_indices,
-                   const std::vector<unsigned> & column_indices,
+      MatrixMarket(const unsigned long long rows,
+                   const unsigned long long columns,
+                   const unsigned long long non_zeros,
+                   const std::vector<unsigned long long> & row_indices,
+                   const std::vector<unsigned long long> & column_indices,
                    const std::vector<VALUE_TYPE> & values)
         : SparseMatrix(rows, columns, non_zeros),
         row_indices_(row_indices),
         column_indices_(column_indices),
         values_(values) {
         tuples_.resize(non_zeros_);
-        for(unsigned i = 0; i < tuples_.size(); i++) {
+        for(unsigned long long i = 0; i < tuples_.size(); i++) {
           tuples_[i] = MatrixMarketTuple<VALUE_TYPE>(row_indices_[i], column_indices_[i], values_[i]);
         }
       };
@@ -31,11 +31,11 @@ namespace sspp {
         return tuples_;
       }
 
-      std::vector<unsigned> const & GetRowIndices() const {
+      std::vector<unsigned long long> const & GetRowIndices() const {
         return row_indices_;
       }
 
-      std::vector<unsigned> const & GetColumnIndices() const {
+      std::vector<unsigned long long> const & GetColumnIndices() const {
         return column_indices_;
       }
 
@@ -49,8 +49,8 @@ namespace sspp {
       }
 
     private:
-      std::vector<unsigned> row_indices_;
-      std::vector<unsigned> column_indices_;
+      std::vector<unsigned long long> row_indices_;
+      std::vector<unsigned long long> column_indices_;
       std::vector<VALUE_TYPE> values_;
       std::vector<MatrixMarketTuple<VALUE_TYPE>> tuples_;
     };

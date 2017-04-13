@@ -8,7 +8,7 @@ namespace sspp {
     public:
       MatrixMarketTuple() :row_indice_(0), column_indice_(0) {};
 
-      MatrixMarketTuple(unsigned row_indice, unsigned column_indice, VALUE_TYPE value)
+      MatrixMarketTuple(unsigned long long row_indice, unsigned long long column_indice, VALUE_TYPE value)
         :row_indice_(row_indice), column_indice_(column_indice), value_(value) {
       };
 
@@ -22,11 +22,11 @@ namespace sspp {
         return *this;
       }
 
-      unsigned GetRowIndice() const {
+      unsigned long long GetRowIndice() const {
         return row_indice_;
       };
 
-      unsigned GetColumnIndice() const {
+      unsigned long long GetColumnIndice() const {
         return column_indice_;
       };
 
@@ -40,8 +40,8 @@ namespace sspp {
         lhs.value_ = rhs.value_;
       }
 
-      unsigned row_indice_;
-      unsigned column_indice_;
+      unsigned long long row_indice_;
+      unsigned long long column_indice_;
       VALUE_TYPE value_;
     };
   }

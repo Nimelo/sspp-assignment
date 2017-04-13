@@ -19,9 +19,9 @@ namespace sspp {
           throw ReadMatrixException();
 
         while(stream.peek() == '%') stream.ignore(2048, '\n');
-        unsigned rows, columns, non_zeros;
+        unsigned long long rows, columns, non_zeros;
         stream >> rows >> columns >> non_zeros;
-        std::vector<unsigned> row_indices, column_indices;
+        std::vector<unsigned long long> row_indices, column_indices;
         std::vector<VALUE_TYPE> values;
 
         if(header.IsSymmetric()) {
@@ -43,10 +43,10 @@ namespace sspp {
     };
 
     template<typename VALUE_TYPE>
-    static void ReadSymmetricPattern(std::istream & stream, PatternValueResolverInterface<VALUE_TYPE> & resolver, unsigned non_zeros, std::vector<unsigned> & row_indices, std::vector<unsigned> & column_indices, std::vector<VALUE_TYPE> & values) {
+    static void ReadSymmetricPattern(std::istream & stream, PatternValueResolverInterface<VALUE_TYPE> & resolver, unsigned long long non_zeros, std::vector<unsigned long long> & row_indices, std::vector<unsigned long long> & column_indices, std::vector<VALUE_TYPE> & values) {
       ReadGeneralPattern(stream, resolver, non_zeros, row_indices, column_indices, values);
-      unsigned symmetric_non_zeros = 0;
-      for(unsigned i = 0; i < non_zeros; i++) {
+      unsigned long long symmetric_non_zeros = 0;
+      for(unsigned long long i = 0; i < non_zeros; i++) {
         if(row_indices[i] != column_indices[i]) {
           ++symmetric_non_zeros;
         }
@@ -55,8 +55,8 @@ namespace sspp {
       column_indices.resize(non_zeros + symmetric_non_zeros);
       values.resize(non_zeros + symmetric_non_zeros);
 
-      unsigned index = 0;
-      for(unsigned i = 0; i < non_zeros; i++) {
+      unsigned long long index = 0;
+      for(unsigned long long i = 0; i < non_zeros; i++) {
         if(row_indices[i] != column_indices[i]) {
           row_indices[index + non_zeros] = column_indices[i];
           column_indices[index + non_zeros] = row_indices[i];
@@ -67,10 +67,10 @@ namespace sspp {
     }
 
     template<typename VALUE_TYPE>
-    static void ReadSymmetric(std::istream & stream, unsigned non_zeros, std::vector<unsigned> & row_indices, std::vector<unsigned> & column_indices, std::vector<VALUE_TYPE> & values) {
+    static void ReadSymmetric(std::istream & stream, unsigned long long non_zeros, std::vector<unsigned long long> & row_indices, std::vector<unsigned long long> & column_indices, std::vector<VALUE_TYPE> & values) {
       ReadGeneral(stream, non_zeros, row_indices, column_indices, values);
-      unsigned symmetric_non_zeros = 0;
-      for(unsigned i = 0; i < non_zeros; i++) {
+      unsigned long long symmetric_non_zeros = 0;
+      for(unsigned long long i = 0; i < non_zeros; i++) {
         if(row_indices[i] != column_indices[i]) {
           ++symmetric_non_zeros;
         }
@@ -79,8 +79,8 @@ namespace sspp {
       column_indices.resize(non_zeros + symmetric_non_zeros);
       values.resize(non_zeros + symmetric_non_zeros);
 
-      unsigned index = 0;
-      for(unsigned i = 0; i < non_zeros; i++) {
+      unsigned long long index = 0;
+      for(unsigned long long i = 0; i < non_zeros; i++) {
         if(row_indices[i] != column_indices[i]) {
           row_indices[index + non_zeros] = column_indices[i];
           column_indices[index + non_zeros] = row_indices[i];
@@ -91,26 +91,26 @@ namespace sspp {
     }
 
     template<typename VALUE_TYPE>
-    static void ReadGeneralPattern(std::istream & stream, PatternValueResolverInterface<VALUE_TYPE> & resolver, unsigned non_zeros, std::vector<unsigned> & row_indices, std::vector<unsigned> & column_indices, std::vector<VALUE_TYPE> & values) {
+    static void ReadGeneralPattern(std::istream & stream, PatternValueResolverInterface<VALUE_TYPE> & resolver, unsigned long long non_zeros, std::vector<unsigned long long> & row_indices, std::vector<unsigned long long> & column_indices, std::vector<VALUE_TYPE> & values) {
       row_indices.resize(non_zeros);
       column_indices.resize(non_zeros);
       values.resize(non_zeros);
-      for(unsigned i = 0; i < non_zeros; i++) {
+      for(unsigned long long i = 0; i < non_zeros; i++) {
         stream >> row_indices[i] >> column_indices[i];
         --row_indices[i];
         --column_indices[i];
       }
-      for(unsigned i = 0; i < non_zeros; i++) {
+      for(unsigned long long i = 0; i < non_zeros; i++) {
         values[i] = resolver.GetPatternValue();
       }
     }
 
     template<typename VALUE_TYPE>
-    static void ReadGeneral(std::istream & stream, unsigned non_zeros, std::vector<unsigned> & row_indices, std::vector<unsigned> & column_indices, std::vector<VALUE_TYPE> & values) {
+    static void ReadGeneral(std::istream & stream, unsigned long long non_zeros, std::vector<unsigned long long> & row_indices, std::vector<unsigned long long> & column_indices, std::vector<VALUE_TYPE> & values) {
       row_indices.resize(non_zeros);
       column_indices.resize(non_zeros);
       values.resize(non_zeros);
-      for(unsigned i = 0; i < non_zeros; i++) {
+      for(unsigned long long i = 0; i < non_zeros; i++) {
         stream >> row_indices[i] >> column_indices[i] >> values[i];
         --row_indices[i];
         --column_indices[i];

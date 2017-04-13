@@ -5,8 +5,8 @@
 namespace sspp {
   namespace common {
     struct MetaPerofmanceResult {
-      MetaPerofmanceResult(unsigned non_zeros,
-                           unsigned iterations,
+      MetaPerofmanceResult(unsigned long long non_zeros,
+                           unsigned long long iterations,
                            double averaget_time,
                            double flops) :
         NonZeros(non_zeros),
@@ -14,8 +14,8 @@ namespace sspp {
         Time(averaget_time),
         Flops(flops) {
       };
-      unsigned NonZeros;
-      unsigned Iterations;
+      unsigned long long NonZeros;
+      unsigned long long Iterations;
       double Time;
       double Flops;
 

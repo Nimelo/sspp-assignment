@@ -33,7 +33,7 @@ protected:
                     std::vector<INDICES_TYPE> & column_indicies,
                     std::vector<VALUE_TYPE> & values) {
     ss << rows << " " << columns << " " << non_zeros << std::endl;
-    for(unsigned i = 0; i < non_zeros; ++i) {
+    for(unsigned long long i = 0; i < non_zeros; ++i) {
       ss << row_indicies[i] << " "
         << column_indicies[i] << " "
         << values[i] << std::endl;
@@ -47,7 +47,7 @@ protected:
                            std::vector<INDICES_TYPE> & row_indicies,
                            std::vector<INDICES_TYPE> & column_indicies) {
     ss << rows << " " << columns << " " << non_zeros << std::endl;
-    for(unsigned i = 0; i < non_zeros; ++i) {
+    for(unsigned long long i = 0; i < non_zeros; ++i) {
       ss << row_indicies[i] << " "
         << column_indicies[i] << std::endl;
     }

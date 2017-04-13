@@ -11,7 +11,7 @@ namespace sspp {
   namespace openmp {
     template<typename VALUE_TYPE>
     class ELLPACKOpenMPSolver : public common::AbstractELLPACKSolver<VALUE_TYPE> {
-    unsigned threads_ = 1;
+    unsigned long long threads_ = 1;
       public:
       void SetThreads(int threads) {
         threads_ = threads;
@@ -29,9 +29,9 @@ namespace sspp {
           int lowerBoundary = ellpack.GetRows() * threadId / threads,
             upperBoundary = ellpack.GetRows() *(threadId + 1) / threads;
 
-          for(unsigned i = lowerBoundary; i < upperBoundary; i++) {
+          for(unsigned long long i = lowerBoundary; i < upperBoundary; i++) {
             VALUE_TYPE tmp = 0;
-            for(unsigned j = 0; j < ellpack.GetMaxRowNonZeros(); j++) {
+            for(unsigned long long j = 0; j < ellpack.GetMaxRowNonZeros(); j++) {
               auto index = ellpack.CalculateIndex(i, j);
               tmp += ellpack.GetValues()[index] * b[ellpack.GetColumnIndices()[index]];
             }

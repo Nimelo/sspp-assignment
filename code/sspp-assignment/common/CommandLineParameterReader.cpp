@@ -10,7 +10,7 @@ namespace sspp {
     }
 
     bool CommandLineParameterReader::HasArgument(std::string key) const {
-      for(unsigned int i = 0; i < parameters_.size(); i++) {
+      for(unsigned long long int i = 0; i < parameters_.size(); i++) {
         if(parameters_.at(i).GetKey() == key) {
           return true;
         }
@@ -20,7 +20,7 @@ namespace sspp {
     }
 
     Parameter CommandLineParameterReader::GetParameter(std::string key) const {
-      for(unsigned int i = 0; i < parameters_.size(); i++) {
+      for(unsigned long long int i = 0; i < parameters_.size(); i++) {
         if(parameters_.at(i).GetKey() == key) {
           return parameters_.at(i);
         }

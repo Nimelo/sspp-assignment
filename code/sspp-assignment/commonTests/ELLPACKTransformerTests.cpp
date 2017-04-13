@@ -12,12 +12,12 @@ using namespace sspp::common;
 
 TEST_F(ELLPACKTransformerTest, TRANSFORM_1) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
-  const unsigned M = 4, N = 4, NZ = 7, correctMAXNZ = 2;
-  std::vector<unsigned> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
+  const unsigned long long M = 4, N = 4, NZ = 7, correctMAXNZ = 2;
+  std::vector<unsigned long long> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
     jIndexes = { 0, 1, 1, 2, 2, 2, 3 };
   std::vector<float> values = { 11, 12, 22, 23, 33, 43, 44 };
   std::vector<float> correctAS = { 11, 12, 22, 23, 33, 0, 43, 44 };
-  std::vector<unsigned> correctJA = { 0, 1, 1, 2, 2, 2, 2, 3 };
+  std::vector<unsigned long long> correctJA = { 0, 1, 1, 2, 2, 2, 2, 3 };
   MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
 
   ELLPACK<float> ellpack = ELLPACKTransformer::transform(mm);
@@ -32,12 +32,12 @@ TEST_F(ELLPACKTransformerTest, TRANSFORM_1) {
 
 TEST_F(ELLPACKTransformerTest, TRANSFORM_2) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
-  const unsigned M = 3, N = 4, NZ = 5, correctMAXNZ = 3;
-  std::vector<unsigned> iIndexes = { 0, 0, 0, 1, 2 },
+  const unsigned long long M = 3, N = 4, NZ = 5, correctMAXNZ = 3;
+  std::vector<unsigned long long> iIndexes = { 0, 0, 0, 1, 2 },
     jIndexes = { 0, 1, 2, 2, 3 };
   std::vector<float> values = { 2, 7, 1, 4, 1 };
   std::vector<float> correctAS = { 2, 7, 1, 4, 0, 0, 1, 0, 0 };
-  std::vector<unsigned> correctJA = { 0, 1, 2, 2, 2, 2, 3, 3, 3 };
+  std::vector<unsigned long long> correctJA = { 0, 1, 2, 2, 2, 2, 3, 3, 3 };
   MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
 
   ELLPACK<float> ellpack = ELLPACKTransformer::transform(mm);
@@ -50,9 +50,9 @@ TEST_F(ELLPACKTransformerTest, TRANSFORM_2) {
 }
 
 TEST_F(ELLPACKTransformerTest, iostreamTest) {
-  const unsigned M = 4, N = 4, NZ = 7, MAXNZ = 2;
+  const unsigned long long M = 4, N = 4, NZ = 7, MAXNZ = 2;
   std::vector<float> AS = { 11, 12, 22, 23, 33, 0, 43, 44 };
-  std::vector<unsigned> JA = { 0, 1, 1, 2, 2, 2, 2, 3 };
+  std::vector<unsigned long long> JA = { 0, 1, 1, 2, 2, 2, 2, 3 };
   ELLPACK<float> ellpack(M, N, NZ, MAXNZ, JA, AS);
 
   std::stringstream stringStream;

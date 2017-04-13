@@ -17,9 +17,9 @@ namespace sspp {
         static ChronoStopwatch stopwatch_;
        
         stopwatch_.Start();
-        for(unsigned i = 0; i < ellpack.GetRows(); ++i) {
+        for(unsigned long long i = 0; i < ellpack.GetRows(); ++i) {
           VALUE_TYPE tmp = 0;
-          for(unsigned j = 0; j < ellpack.GetMaxRowNonZeros(); ++j) {
+          for(unsigned long long j = 0; j < ellpack.GetMaxRowNonZeros(); ++j) {
             auto index = ellpack.CalculateIndex(i, j);
             tmp += ellpack.GetValues()[index] * vector[ellpack.GetColumnIndices()[index]];
           }

@@ -15,11 +15,11 @@ namespace sspp {
     public:
       ELLPACK() : SparseMatrix(0, 0, 0), max_row_non_zeros_(0) {}
 
-      ELLPACK(const unsigned rows,
-              const unsigned columns,
-              const unsigned non_zeros,
-              const unsigned max_row_non_zeros,
-              const std::vector<unsigned> & column_indices,
+      ELLPACK(const unsigned long long rows,
+              const unsigned long long columns,
+              const unsigned long long non_zeros,
+              const unsigned long long max_row_non_zeros,
+              const std::vector<unsigned long long> & column_indices,
               const std::vector<VALUE_TYPE> & values) :
         SparseMatrix(rows, columns, non_zeros),
         max_row_non_zeros_(max_row_non_zeros),
@@ -27,15 +27,15 @@ namespace sspp {
         values_(values) {
       };
 
-      unsigned CalculateIndex(unsigned row, unsigned column) const {
+      unsigned long long CalculateIndex(unsigned long long row, unsigned long long column) const {
         return row * max_row_non_zeros_ + column;
       };
 
-      unsigned GetMaxRowNonZeros() const {
+      unsigned long long GetMaxRowNonZeros() const {
         return max_row_non_zeros_;
       };
 
-      std::vector<unsigned> const & GetColumnIndices() {
+      std::vector<unsigned long long> const & GetColumnIndices() {
         return column_indices_;
       };
 
@@ -49,12 +49,12 @@ namespace sspp {
         os << ellpack.non_zeros_ << std::endl;
         os << ellpack.max_row_non_zeros_ << std::endl;
 
-        for(unsigned int i = 0; i < ellpack.column_indices_.size() - 1; i++) {
+        for(unsigned long long int i = 0; i < ellpack.column_indices_.size() - 1; i++) {
           os << ellpack.column_indices_[i] << ' ';
         }
         os << ellpack.column_indices_[ellpack.column_indices_.size() - 1] << std::endl;;
 
-        for(unsigned int i = 0; i < ellpack.values_.size() - 1; i++) {
+        for(unsigned long long int i = 0; i < ellpack.values_.size() - 1; i++) {
           os << ellpack.values_[i] << ' ';
         }
         os << ellpack.values_[ellpack.values_.size() - 1] << std::endl;
@@ -70,7 +70,7 @@ namespace sspp {
 
         ellpack.column_indices_.resize(ellpack.rows_ * ellpack.max_row_non_zeros_);
         ellpack.values_.resize(ellpack.rows_ * ellpack.max_row_non_zeros_);
-        for(std::vector<unsigned>::iterator it = ellpack.column_indices_.begin(); it != ellpack.column_indices_.end(); ++it)
+        for(std::vector<unsigned long long>::iterator it = ellpack.column_indices_.begin(); it != ellpack.column_indices_.end(); ++it)
           is >> *it;
         for(typename std::vector<VALUE_TYPE>::iterator it = ellpack.values_.begin(); it != ellpack.values_.end(); ++it)
           is >> *it;
@@ -79,8 +79,8 @@ namespace sspp {
       }
 
     protected:
-      unsigned max_row_non_zeros_;
-      std::vector<unsigned> column_indices_;
+      unsigned long long max_row_non_zeros_;
+      std::vector<unsigned long long> column_indices_;
       std::vector<VALUE_TYPE> values_;
     };
   }

@@ -11,8 +11,8 @@ using namespace sspp::common;
 
 TEST_F(MatrixMarketReaderTest, REAL_SYMMETRIC) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, Symetric);
-  const unsigned M = 4, N = 4, NZ = 7, real_NZ = 10;
-  std::vector<unsigned> iIndexes = { 1, 1, 2, 2, 3, 4, 4 },
+  const unsigned long long M = 4, N = 4, NZ = 7, real_NZ = 10;
+  std::vector<unsigned long long> iIndexes = { 1, 1, 2, 2, 3, 4, 4 },
     jIndexes = { 1, 2, 2, 3, 3, 3, 4 };
   std::vector<float> values = { 11, 12, 22, 23, 33, 43, 44 };
   WriteHeader(mmh);
@@ -31,8 +31,8 @@ TEST_F(MatrixMarketReaderTest, REAL_SYMMETRIC) {
 
 TEST_F(MatrixMarketReaderTest, PATTERN_SYMMETRIC) {
   sspp::common::MatrixMarketHeader mmh(Matrix, Sparse, Pattern, Symetric);
-  const unsigned M = 4, N = 4, NZ = 7, real_NZ = 10;
-  std::vector<unsigned> iIndexes = { 1, 1, 2, 2, 3, 4, 4 },
+  const unsigned long long M = 4, N = 4, NZ = 7, real_NZ = 10;
+  std::vector<unsigned long long> iIndexes = { 1, 1, 2, 2, 3, 4, 4 },
     jIndexes = { 1, 2, 2, 3, 3, 3, 4 };
   WriteHeader(mmh);
   WriteIndicesPattern(M, N, NZ, iIndexes, jIndexes);

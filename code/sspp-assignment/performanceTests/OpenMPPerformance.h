@@ -2,12 +2,12 @@
 
 class OpenMPPerformance {
 public:
-  OpenMPPerformance(unsigned threads_number, double speedup)
+  OpenMPPerformance(unsigned long long threads_number, double speedup)
     : threads_number_(threads_number),
     speedup_(speedup) {
   }
 
-  unsigned GetThreadsNumber() const {
+  unsigned long long GetThreadsNumber() const {
     return threads_number_;
   }
 
@@ -16,6 +16,6 @@ public:
   }
 
 protected:
-  unsigned threads_number_;
+  unsigned long long threads_number_;
   double speedup_;
 };

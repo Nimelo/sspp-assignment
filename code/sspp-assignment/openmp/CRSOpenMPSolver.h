@@ -13,7 +13,7 @@ namespace sspp {
   namespace openmp {
     template<typename VALUE_TYPE>
     class CRSOpenMPSolver : public common::AbstractCRSSolver<VALUE_TYPE> {
-      unsigned threads_ = 1;
+      unsigned long long threads_ = 1;
     public:
       void SetThreads(int threads) {
         threads_ = threads;

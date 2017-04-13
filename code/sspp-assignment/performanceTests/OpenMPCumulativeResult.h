@@ -16,7 +16,7 @@ public:
     thread_results_ellpack_float_ = other.thread_results_ellpack_float_;
   }
 
-  void InsertResult(unsigned thread_number,
+  void InsertResult(unsigned long long thread_number,
                     SerialParallelComparison crs_float,
                     SerialParallelComparison crs_double,
                     SerialParallelComparison ellpack_float,
@@ -41,9 +41,9 @@ public:
     return os;
   }
 protected:
-  std::vector<unsigned> thread_entries_;
-  std::map<unsigned, SerialParallelComparison> thread_results_crs_float_;
-  std::map<unsigned, SerialParallelComparison> thread_results_ellpack_float_;
-  std::map<unsigned, SerialParallelComparison> thread_results_crs_double_;
-  std::map<unsigned, SerialParallelComparison> thread_results_ellpack_double_;
+  std::vector<unsigned long long> thread_entries_;
+  std::map<unsigned long long, SerialParallelComparison> thread_results_crs_float_;
+  std::map<unsigned long long, SerialParallelComparison> thread_results_ellpack_float_;
+  std::map<unsigned long long, SerialParallelComparison> thread_results_crs_double_;
+  std::map<unsigned long long, SerialParallelComparison> thread_results_ellpack_double_;
 };

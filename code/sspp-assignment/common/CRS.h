@@ -18,11 +18,11 @@ namespace sspp {
 
       };
 
-      CRS(const unsigned rows,
-          const unsigned columns,
-          const unsigned non_zeros,
-          const std::vector<unsigned> & irp,
-          const std::vector<unsigned> & ja,
+      CRS(const unsigned long long rows,
+          const unsigned long long columns,
+          const unsigned long long non_zeros,
+          const std::vector<unsigned long long> & irp,
+          const std::vector<unsigned long long> & ja,
           const std::vector<VALUE_TYPE> & as) :
         SparseMatrix(rows, columns, non_zeros),
         row_start_indexes_(irp),
@@ -40,11 +40,11 @@ namespace sspp {
         return *this;
       }
 
-      std::vector<unsigned> const & GetRowStartIndexes() {
+      std::vector<unsigned long long> const & GetRowStartIndexes() {
         return row_start_indexes_;
       }
 
-      std::vector<unsigned> const & GetColumnIndices() {
+      std::vector<unsigned long long> const & GetColumnIndices() {
         return column_indices_;
       }
 
@@ -57,15 +57,15 @@ namespace sspp {
         os << crs.columns_ << '\n';
         os << crs.non_zeros_ << '\n';
 
-        for(unsigned i = 0; i < crs.row_start_indexes_.size() - 1; i++)
+        for(unsigned long long i = 0; i < crs.row_start_indexes_.size() - 1; i++)
           os << crs.row_start_indexes_[i] << ' ';
         os << crs.row_start_indexes_[crs.row_start_indexes_.size() - 1] << std::endl;
 
-        for(unsigned i = 0; i < crs.non_zeros_ - 1; i++)
+        for(unsigned long long i = 0; i < crs.non_zeros_ - 1; i++)
           os << crs.column_indices_[i] << ' ';
         os << crs.column_indices_[crs.non_zeros_ - 1] << std::endl;
 
-        for(unsigned i = 0; i < crs.non_zeros_ - 1; i++)
+        for(unsigned long long i = 0; i < crs.non_zeros_ - 1; i++)
           os << crs.values_[i] << ' ';
         os << crs.values_[crs.non_zeros_ - 1] << std::endl;
 
@@ -81,11 +81,11 @@ namespace sspp {
         crs.column_indices_.resize(crs.non_zeros_);
         crs.values_.resize(crs.non_zeros_);
 
-        for(unsigned i = 0; i < crs.row_start_indexes_.size(); i++)
+        for(unsigned long long i = 0; i < crs.row_start_indexes_.size(); i++)
           is >> crs.row_start_indexes_[i];
-        for(unsigned i = 0; i < crs.column_indices_.size(); i++)
+        for(unsigned long long i = 0; i < crs.column_indices_.size(); i++)
           is >> crs.column_indices_[i];
-        for(unsigned i = 0; i < crs.values_.size(); i++)
+        for(unsigned long long i = 0; i < crs.values_.size(); i++)
           is >> crs.values_[i];
 
         return is;
@@ -102,8 +102,8 @@ namespace sspp {
         this->column_indices_.assign(rhs.column_indices_.begin(), rhs.column_indices_.end());
       }
 
-      std::vector<unsigned> row_start_indexes_;
-      std::vector<unsigned> column_indices_;
+      std::vector<unsigned long long> row_start_indexes_;
+      std::vector<unsigned long long> column_indices_;
       std::vector<VALUE_TYPE> values_;
     };
   }

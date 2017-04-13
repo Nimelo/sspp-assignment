@@ -8,12 +8,12 @@ namespace sspp {
     class StableSorter {
     public:
       template<typename VALUE_TYPE>
-      static void InsertionSort(std::vector<unsigned>& I,
-                                std::vector<unsigned>& J,
+      static void InsertionSort(std::vector<unsigned long long>& I,
+                                std::vector<unsigned long long>& J,
                                 std::vector<VALUE_TYPE>& values,
-                                unsigned N) {
-        unsigned start = 0, end = N;
-        for(unsigned i = start; i < end; i++) {
+                                unsigned long long N) {
+        unsigned long long start = 0, end = N;
+        for(unsigned long long i = start; i < end; i++) {
           auto k = i;
           while(k > start && I[k] < I[k - 1]) {
             Swap(I[k], I[k - 1]);

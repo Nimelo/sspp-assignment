@@ -9,8 +9,8 @@
 using namespace sspp::common;
 
 TEST_F(CSRSolverTest, shouldSolveCorrectly_Salvatore) {
-  const unsigned M = 4, N = 4, NZ = 7;
-  std::vector<unsigned> IRP = { 0, 2, 4, 5, 7 },
+  const unsigned long long M = 4, N = 4, NZ = 7;
+  std::vector<unsigned long long> IRP = { 0, 2, 4, 5, 7 },
     JA = { 0, 1, 1, 2, 2, 2, 3 };
   std::vector<float> AS = { 11, 12, 22, 23, 33, 43, 44 };
   CRS<float> csr(M, N, NZ, IRP, JA, AS);
@@ -25,8 +25,8 @@ TEST_F(CSRSolverTest, shouldSolveCorrectly_Salvatore) {
 }
 
 TEST_F(CSRSolverTest, shouldSolveCorrectly) {
-  const unsigned M = 3, N = 4, NZ = 4;
-  std::vector<unsigned> IRP = { 0, 1, 2, 4 },
+  const unsigned long long M = 3, N = 4, NZ = 4;
+  std::vector<unsigned long long> IRP = { 0, 1, 2, 4 },
     JA = { 0, 1, 2, 3 };
   std::vector<float> AS = { 15, 20, 1, 5 };
   CRS<float> csr(M, N, NZ, IRP, JA, AS);

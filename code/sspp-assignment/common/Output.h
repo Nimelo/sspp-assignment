@@ -37,12 +37,12 @@ namespace sspp {
         return seconds_;
       }
 
-      unsigned SetSeconds(double ms) {
+      unsigned long long SetSeconds(double ms) {
         seconds_ = ms;
       }
 
       friend std::ostream& operator <<(std::ostream& os, const Output<VALUE_TYPE>& o) {
-        for(unsigned i = 0; i < o.GetValues().size(); ++i)
+        for(unsigned long long i = 0; i < o.GetValues().size(); ++i)
           os << o.GetValues()[i] << ' ';
         return os;
       }

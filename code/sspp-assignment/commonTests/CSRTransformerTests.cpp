@@ -11,8 +11,8 @@ using namespace sspp::common;
 
 TEST_F(CSRTransformerTest, shouldTransformCorrectly_Salvatore) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
-  const unsigned M = 4, N = 4, NZ = 7;
-  std::vector<unsigned> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
+  const unsigned long long M = 4, N = 4, NZ = 7;
+  std::vector<unsigned long long> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
     jIndexes = { 0, 1, 1, 2, 2, 2, 3 };
   std::vector<double> values = { 11, 12, 22, 23, 33, 43, 44 };
   MatrixMarket<double> mm(M, N, NZ, iIndexes, jIndexes, values);
@@ -32,8 +32,8 @@ TEST_F(CSRTransformerTest, shouldTransformCorrectly_Salvatore) {
 
 TEST_F(CSRTransformerTest, shouldTransformCorrectly) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
-  const unsigned M = 3, N = 4, NZ = 5;
-  std::vector<unsigned> iIndexes = { 0, 1, 1, 2, 2 },
+  const unsigned long long M = 3, N = 4, NZ = 5;
+  std::vector<unsigned long long> iIndexes = { 0, 1, 1, 2, 2 },
     jIndexes = { 2, 2, 3, 0, 1 };
   std::vector<float> values = { 1, 2, 3, 4, 1 };
   MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
@@ -53,8 +53,8 @@ TEST_F(CSRTransformerTest, shouldTransformCorrectly) {
 
 TEST_F(CSRTransformerTest, REAL_GENERAL) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, General);
-  const unsigned M = 4, N = 4, NZ = 7;
-  std::vector<unsigned> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
+  const unsigned long long M = 4, N = 4, NZ = 7;
+  std::vector<unsigned long long> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
     jIndexes = { 0, 1, 1, 2, 2, 2, 3 };
   std::vector<float> values = { 11, 12, 22, 23, 33, 43, 44 };
   MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, values);
@@ -74,8 +74,8 @@ TEST_F(CSRTransformerTest, REAL_GENERAL) {
 
 TEST_F(CSRTransformerTest, PATTERN_GENEREAL) {
   MatrixMarketHeader mmh(Matrix, Sparse, Pattern, General);
-  const unsigned M = 4, N = 4, NZ = 7;
-  std::vector<unsigned> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
+  const unsigned long long M = 4, N = 4, NZ = 7;
+  std::vector<unsigned long long> iIndexes = { 0, 0, 1, 1, 2, 3, 3 },
     jIndexes = { 0, 1, 1, 2, 2, 2, 3 };
   MatrixMarket<float> mm(M, N, NZ, iIndexes, jIndexes, std::vector<float>(NZ));
 
@@ -93,8 +93,8 @@ TEST_F(CSRTransformerTest, PATTERN_GENEREAL) {
 
 TEST_F(CSRTransformerTest, REAL_SYMMETRIC) {
   MatrixMarketHeader mmh(Matrix, Sparse, Real, Symetric);
-  const unsigned M = 4, N = 4, NZ = 7, real_NZ = 10;
-  std::vector<unsigned> iIndexes = { 0, 0, 1, 1, 2, 3, 3, 1, 2, 2},
+  const unsigned long long M = 4, N = 4, NZ = 7, real_NZ = 10;
+  std::vector<unsigned long long> iIndexes = { 0, 0, 1, 1, 2, 3, 3, 1, 2, 2},
     jIndexes = { 0, 1, 1, 2, 2, 2, 3, 0, 1, 3};
   std::vector<float> values = { 11, 12, 22, 23, 33, 43, 44, 12, 23, 43};
   MatrixMarket<float> mm(M, N, real_NZ, iIndexes, jIndexes, values);
@@ -112,8 +112,8 @@ TEST_F(CSRTransformerTest, REAL_SYMMETRIC) {
 
 TEST_F(CSRTransformerTest, PATTERN_SYMMETRIC) {
   MatrixMarketHeader mmh(Matrix, Sparse, Pattern, Symetric);
-  const unsigned M = 4, N = 4, NZ = 7, real_NZ = 10;
-  std::vector<unsigned> iIndexes = { 0, 0, 1, 1, 2, 3, 3, 1, 2, 2 },
+  const unsigned long long M = 4, N = 4, NZ = 7, real_NZ = 10;
+  std::vector<unsigned long long> iIndexes = { 0, 0, 1, 1, 2, 3, 3, 1, 2, 2 },
     jIndexes = { 0, 1, 1, 2, 2, 2, 3, 0, 1, 3 };
   MatrixMarket<float> mm(M, N, real_NZ, iIndexes, jIndexes, std::vector<float>(real_NZ));
 
@@ -128,8 +128,8 @@ TEST_F(CSRTransformerTest, PATTERN_SYMMETRIC) {
 }
 
 TEST_F(CSRTransformerTest, iostreamTest) {
-  const unsigned M = 4, N = 4, NZ = 7;
-  std::vector<unsigned> IRP = { 0, 2, 4, 5, 7 }, JA = { 0, 1, 1, 2, 2, 2, 3 };
+  const unsigned long long M = 4, N = 4, NZ = 7;
+  std::vector<unsigned long long> IRP = { 0, 2, 4, 5, 7 }, JA = { 0, 1, 1, 2, 2, 2, 3 };
   std::vector<float> AS = { 11, 12, 22, 23, 33, 43, 44 };
   CRS<float> expectedCSR(M, N, NZ, IRP, JA, AS);
 
