@@ -94,32 +94,34 @@
 	
 
 }
+
+\newcommand{\cumulative}[2]
+{
+	\centering
+	\begin{tikzpicture}[scale=0.7]
+	\begin{axis}[
+	ybar,   % Stacked horizontal bars
+	legend style={at={(0.5,-0.4)},anchor=north},
+	%xmin=0,         % Start x axis at 0
+	xtick=data,     % Use as many tick labels as y coordinates
+	xticklabels from table={#1}{matrix},
+	ylabel={Operations per second},
+	enlarge x limits={abs=2.5cm},
+	xticklabel style={rotate=45},
+	]
+	\addplot [fill=yellow] table [y=crs_float_openmp, x expr=\coordindex] {#1};
+	\addlegendentry{crs\_float\_openmp}
+	\addplot [fill=green!70!blue]table [y=crs_float_openmp, x expr=\coordindex] {#1};
+	\addlegendentry{crs\_float\_openmp}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{#2}
+}
+
 \begin{document}
 	\plotit{z:/Binaries/add32.mtxopenmp.performance}{z:/Binaries/add32.mtxcuda.performance}{add32}
-	\plotit{z:/Binaries/af_1_k101.mtxopenmp.performance}{z:/Binaries/af_1_k101.mtxcuda.performance}{af\_1\_k101}
-\plotit{z:/Binaries/af23560.mtxopenmp.performance}{z:/Binaries/af23560.mtxcuda.performance}{af23560}
-\plotit{z:/Binaries/amazon0302.mtxopenmp.performance}{z:/Binaries/amazon0302.mtxcuda.performance}{amazon0302}
-\plotit{z:/Binaries/bcsstk17.mtxopenmp.performance}{z:/Binaries/bcsstk17.mtxcuda.performance}{bcsstk17}
-\plotit{z:/Binaries/cage4.mtxopenmp.performance}{z:/Binaries/cage4.mtxcuda.performance}{cage4}
-\plotit{z:/Binaries/cant.mtxopenmp.performance}{z:/Binaries/cant.mtxcuda.performance}{cant}
-\plotit{z:/Binaries/cavity10.mtxopenmp.performance}{z:/Binaries/cavity10.mtxcuda.performance}{cavity10}
-\plotit{z:/Binaries/cop20k_A.mtxopenmp.performance}{z:/Binaries/cop20k_A.mtxcuda.performance}{cop20k\_A}
-\plotit{z:/Binaries/FEM_3D_thermal1.mtxopenmp.performance}{z:/Binaries/FEM_3D_thermal1.mtxcuda.performance}{FEM\_3D\_thermal1}
-\plotit{z:/Binaries/lung2.mtxopenmp.performance}{z:/Binaries/lung2.mtxcuda.performance}{lung2}
-\plotit{z:/Binaries/mac_econ_fwd500.mtxopenmp.performance}{z:/Binaries/mac_econ_fwd500.mtxcuda.performance}{mac\_econ\_fwd500}
-\plotit{z:/Binaries/mcfe.mtxopenmp.performance}{z:/Binaries/mcfe.mtxcuda.performance}{mcfe}
-\plotit{z:/Binaries/mhd416a.mtxopenmp.performance}{z:/Binaries/mhd416a.mtxcuda.performance}{mhd416a}
-\plotit{z:/Binaries/mhd4800a.mtxopenmp.performance}{z:/Binaries/mhd4800a.mtxcuda.performance}{mhd4800a}
-\plotit{z:/Binaries/ML_Laplace.mtxopenmp.performance}{z:/Binaries/ML_Laplace.mtxcuda.performance}{ML\_Laplace}
-\plotit{z:/Binaries/nlpkkt80.mtxopenmp.performance}{z:/Binaries/nlpkkt80.mtxcuda.performance}{nlpkkt80}
-\plotit{z:/Binaries/olafu.mtxopenmp.performance}{z:/Binaries/olafu.mtxcuda.performance}{olafu}
-\plotit{z:/Binaries/olm1000.mtxopenmp.performance}{z:/Binaries/olm1000.mtxcuda.performance}{olm1000}
-\plotit{z:/Binaries/PR02R.mtxopenmp.performance}{z:/Binaries/PR02R.mtxcuda.performance}{PR02R}
-\plotit{z:/Binaries/raefsky2.mtxopenmp.performance}{z:/Binaries/raefsky2.mtxcuda.performance}{raefsky2}
-\plotit{z:/Binaries/rdist2.mtxopenmp.performance}{z:/Binaries/rdist2.mtxcuda.performance}{rdist2}
-\plotit{z:/Binaries/roadNet-PA.mtxopenmp.performance}{z:/Binaries/roadNet-PA.mtxcuda.performance}{roadNet-PA}
-\plotit{z:/Binaries/thermal1.mtxopenmp.performance}{z:/Binaries/thermal1.mtxcuda.performance}{thermal1}
-\plotit{z:/Binaries/thermal2.mtxopenmp.performance}{z:/Binaries/thermal2.mtxcuda.performance}{thermal2}
-\plotit{z:/Binaries/thermomech_TK.mtxopenmp.performance}{z:/Binaries/thermomech_TK.mtxcuda.performance}{thermomech\_TK}
-\plotit{z:/Binaries/west2021.mtxopenmp.performance}{z:/Binaries/west2021.mtxcuda.performance}{west2021}
+	\begin{figure}
+		\cumulative{C:/Users/mrnim/Desktop/Repos/sspp-assignment/code/sspp-assignment/performanceTests/cumulative.performance}{x}
+	\end{figure}
+
 \end{document}
