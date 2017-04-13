@@ -8,19 +8,19 @@ namespace sspp {
   namespace cuda {
     namespace crs {
       template<typename VALUE_TYPE>
-      __global__ void CrsKernel(unsigned rows, 
-                                unsigned *irp, 
-                                unsigned *ja,
+      __global__ void CrsKernel(unsigned long long rows, 
+                                unsigned long long *irp, 
+                                unsigned long long *ja,
                                 VALUE_TYPE *as,
                                 VALUE_TYPE *b,
                                 VALUE_TYPE *x) {
         int row = blockDim.x * blockIdx.x + threadIdx.x;
         if(row < rows) {
           VALUE_TYPE dot = 0;
-          unsigned rowStart = irp[row],
+          unsigned long long rowStart = irp[row],
             rowEnd = irp[row + 1];
 
-          for(unsigned i = rowStart; i < rowEnd; i++) {
+          for(unsigned long long i = rowStart; i < rowEnd; i++) {
             dot += as[i] * b[ja[i]];
           }
 
@@ -29,8 +29,8 @@ namespace sspp {
       }
 
       void SetUpWrapper(int& device_id,
-                        unsigned& thread_blocks,
-                        unsigned& threads_per_block) {
+                        unsigned long long& thread_blocks,
+                        unsigned long long& threads_per_block) {
         device_id = gpuGetMaxGflopsDeviceId();
         cudaSetDevice(device_id);
         cudaDeviceSetCacheConfig(cudaFuncCachePreferL1);
@@ -44,27 +44,27 @@ namespace sspp {
       template <typename VALUE_TYPE>
       void LoadCRS(common::CRS<VALUE_TYPE>& crs,
                    std::vector<VALUE_TYPE>& vector,
-                   unsigned** d_row_start_indexes,
-                   unsigned** d_column_indices,
+                   unsigned long long** d_row_start_indexes,
+                   unsigned long long** d_column_indices,
                    VALUE_TYPE** d_values,
                    VALUE_TYPE** d_vector,
                    VALUE_TYPE** d_output) {
-        checkCudaErrors(cudaMalloc(d_row_start_indexes, sizeof(unsigned) * crs.GetRowStartIndexes().size()));
-        checkCudaErrors(cudaMalloc(d_column_indices, sizeof(unsigned) * crs.GetColumnIndices().size()));
+        checkCudaErrors(cudaMalloc(d_row_start_indexes, sizeof(unsigned long long) * crs.GetRowStartIndexes().size()));
+        checkCudaErrors(cudaMalloc(d_column_indices, sizeof(unsigned long long) * crs.GetColumnIndices().size()));
         checkCudaErrors(cudaMalloc(d_values, sizeof(VALUE_TYPE) * crs.GetValues().size()));
         checkCudaErrors(cudaMalloc(d_output, sizeof(VALUE_TYPE) * crs.GetRows()));
         checkCudaErrors(cudaMalloc(d_vector, sizeof(VALUE_TYPE) * vector.size()));
 
-        checkCudaErrors(cudaMemcpy(*d_row_start_indexes, &crs.GetRowStartIndexes()[0], sizeof(unsigned) * crs.GetRowStartIndexes().size(), cudaMemcpyHostToDevice));
-        checkCudaErrors(cudaMemcpy(*d_column_indices, &crs.GetColumnIndices()[0], sizeof(unsigned) * crs.GetColumnIndices().size(), cudaMemcpyHostToDevice));
+        checkCudaErrors(cudaMemcpy(*d_row_start_indexes, &crs.GetRowStartIndexes()[0], sizeof(unsigned long long) * crs.GetRowStartIndexes().size(), cudaMemcpyHostToDevice));
+        checkCudaErrors(cudaMemcpy(*d_column_indices, &crs.GetColumnIndices()[0], sizeof(unsigned long long) * crs.GetColumnIndices().size(), cudaMemcpyHostToDevice));
         checkCudaErrors(cudaMemcpy(*d_values, &crs.GetValues()[0], sizeof(VALUE_TYPE) * crs.GetValues().size(), cudaMemcpyHostToDevice));
         checkCudaErrors(cudaMemset(*d_output, 0, sizeof(VALUE_TYPE) * crs.GetRows()));
         checkCudaErrors(cudaMemcpy(*d_vector, &vector[0], sizeof(VALUE_TYPE) * vector.size(), cudaMemcpyHostToDevice));
       }
 
       template <typename VALUE_TYPE>
-      void ReleaseCRS(unsigned* d_row_start_indexes, 
-                      unsigned* d_column_indices,
+      void ReleaseCRS(unsigned long long* d_row_start_indexes, 
+                      unsigned long long* d_column_indices,
                       VALUE_TYPE* d_values,
                       VALUE_TYPE* d_vector,
                       VALUE_TYPE* d_output) {
@@ -81,11 +81,11 @@ namespace sspp {
       }
 
       template <typename VALUE_TYPE>
-      void SolveCRS(unsigned thread_blocks,
-                    unsigned threads_per_block,
-                    unsigned rows,
-                    unsigned* d_row_start_indexes,
-                    unsigned* d_column_indices,
+      void SolveCRS(unsigned long long thread_blocks,
+                    unsigned long long threads_per_block,
+                    unsigned long long rows,
+                    unsigned long long* d_row_start_indexes,
+                    unsigned long long* d_column_indices,
                     VALUE_TYPE* d_values,
                     VALUE_TYPE* d_vector,
                     VALUE_TYPE* d_output) {
@@ -94,7 +94,7 @@ namespace sspp {
       }
 
       template <typename VALUE_TYPE>
-      std::vector<VALUE_TYPE> GetResult(VALUE_TYPE* d_output, unsigned size) {
+      std::vector<VALUE_TYPE> GetResult(VALUE_TYPE* d_output, unsigned long long size) {
         std::vector<VALUE_TYPE> result(size);
         checkCudaErrors(cudaMemcpy(&result[0], d_output, sizeof(VALUE_TYPE) * size, cudaMemcpyDeviceToHost));
         return result;
