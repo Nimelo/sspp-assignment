@@ -95,33 +95,55 @@
 
 }
 
-\newcommand{\cumulative}[2]
+\newcommand{\cumulative}[3]
 {
 	\centering
-	\begin{tikzpicture}[scale=0.7]
+	\begin{tikzpicture}[scale=1.0]
 	\begin{axis}[
 	ybar,   % Stacked horizontal bars
+	bar width = 0.3	em,
 	legend style={at={(0.5,-0.4)},anchor=north},
 	%xmin=0,         % Start x axis at 0
 	xtick=data,     % Use as many tick labels as y coordinates
 	xticklabels from table={#1}{matrix},
 	ylabel={Operations per second},
-	enlarge x limits={abs=2.5cm},
-	xticklabel style={rotate=45},
+	%enlarge x limits={abs=2.5cm},
+	xticklabel style={rotate=90, font=\tiny},
+	width = \textwidth
 	]
-	\addplot [fill=yellow] table [y=crs_float_openmp, x expr=\coordindex] {#1};
-	\addlegendentry{crs\_float\_openmp}
-	\addplot [fill=green!70!blue]table [y=crs_float_openmp, x expr=\coordindex] {#1};
-	\addlegendentry{crs\_float\_openmp}
+	\addplot [fill=#3] table [y=#2, x expr=\coordindex] {#1};
+	%\addlegendentry{#4}
 	\end{axis}
 	\end{tikzpicture}
-	\caption{#2}
 }
 
 \begin{document}
 	\plotit{z:/Binaries/add32.mtxopenmp.performance}{z:/Binaries/add32.mtxcuda.performance}{add32}
+		
 	\begin{figure}
-		\cumulative{C:/Users/mrnim/Desktop/Repos/sspp-assignment/code/sspp-assignment/performanceTests/cumulative.performance}{x}
+		\cumulative{C:/Users/mrnim/Desktop/Repos/sspp-assignment/Binaries/cumulative2.performance}{crs_float_openmp}{yellow}
+		\caption{CRS FLOPS OPENMP}
 	\end{figure}
 
+	\begin{figure}
+		\cumulative
+		{C:/Users/mrnim/Desktop/Repos/sspp-assignment/Binaries/cumulative2.performance}
+		{crs_float_cuda}{red}
+		\caption{CRS FLOPS CUDA}
+	\end{figure}
+
+	\begin{figure}
+		\cumulative
+		{C:/Users/mrnim/Desktop/Repos/sspp-assignment/Binaries/cumulative2.performance}
+		{ellpack_float_openmp}{blue}
+		\caption{ELLPACK FLOPS OPENMP}
+	\end{figure}
+	
+	\begin{figure}
+		\cumulative
+		{C:/Users/mrnim/Desktop/Repos/sspp-assignment/Binaries/cumulative2.performance}
+		{ellpack_float_cuda}{green}
+		\caption{ELLPACK FLOPS CUDA}
+	\end{figure}
+	
 \end{document}
