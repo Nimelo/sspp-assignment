@@ -8,7 +8,16 @@
 	product that is covered by this SRS, particularly if this SRS describes only 
 	part of the system or a single subsystem.$>$
 	\end{comment}
-	
+	The product described in this document is develop a sparse matrix--vector product kernel. Mentioned kernel should be capable of computing
+	\begin{equation}
+		y \leftarrow Ax
+	\end{equation}
+	where $A$ is a sparse matrix stored in:
+	\begin{enumerate}
+		\item \gls{CSR} (\gls{CRS})
+		\item \gls{ELL}
+	\end{enumerate}
+	storage formats. The kernel shall be parallelized to exploit available computing capabilities. The code shall be implemented in both \gls{openmp} and \gls{cuda} versions, and shall be tested for correctness against a serial implementation. Performance tests shall be carried out in order to get information about number of floating point operations per second.
 \section{Document Conventions}
 	\begin{comment}
 		$<$Describe any standards or typographical conventions that were followed when 
@@ -17,7 +26,7 @@
 		to be inherited by detailed requirements, or whether every requirement statement 
 		is to have its own priority.$>$
 	\end{comment}
-	
+	All the requirements specified in this document are divided into chapters and sections. Distinguishing: external interfaces, functional features, nonfunctional features and other features. All of them uses \emph{PLanguage} standard. Fragment of a specification can be found in Appendix \ref{apx:planguage-conventions}.
 	\begin{comment}		
 		\begin{table}[!htbp]
 			\centering
@@ -35,11 +44,8 @@
 			\end{tabular}
 		\end{table}
 	\end{comment}
-
 	\begin{table}[!htbp]
 		\centering
-		\caption{Feature to requirement priority table.}
-		\label{tab:feature-to-requirement-priority-table}
 		\begin{tabular}{cc|c|c|c|c|}
 			\cline{3-6}
 			&  & \multicolumn{4}{c|}{\textit{\textbf{Features}}} \\ \cline{3-6} 
@@ -49,8 +55,11 @@
 			\multicolumn{1}{|c|}{} & \textit{\textbf{High {[}4{]}}} & 4 & 24 & 40 & 80 \\ \cline{2-6} 
 			\multicolumn{1}{|c|}{} & \textit{\textbf{Very high {[}8{]}}} & 8 & 48 & 80 & 160 \\ \hline
 		\end{tabular}
+		\caption{Feature to requirement priority table.}
+		\label{tab:feature-to-requirement-priority-table}
 	\end{table}
-	\gls{RNG}
+	
+	Each of the features introduced in this document has own priority which can be on of the four following: \emph{Low}, \emph{Medium}, \emph{High} and \emph{Very High}. Features contains requirements (functions) which among others within same feature also have a priority level. In order to compare particular requirements among others there should be made a simply calculation presented in Table \ref{tab:feature-to-requirement-priority-table}. Those values are calculated by multiplication values of intersecting columns. 
 \section{Intended Audience and Reading Suggestions}
 	\begin{comment}
 		$<$Describe the different types of reader that the document is intended for, 
@@ -60,7 +69,9 @@
 		overview sections and proceeding through the sections that are most pertinent to 
 		each reader type.$>$
 	\end{comment}
+	Software requirements specification document is intended for both development team and stakeholders. Development team contains every person that is responsible for production of the software.
 	
+	The document is divided into chapters, which is highly recommended to read the whole document from the beginning to the end at least once at the beginning of the introducing to the project. In chapter \ref{chp:overall-description} overall description of a software. It determines type, components and features. This chapter doesn't contain any highly software requirements. Next three chapters (\ref{chp:external-interface-requirements}, \ref{chp:system-features}, \ref{chp:other-nonfunctional-requirements}) contains list of requirements. That requirements are a contract with a customer, which means that all of them should be meet. Chapter \ref{chp:external-interface-requirements} contains informations about the external interfaces, such as user-interfaces, hardware, software and communication. The testing team doesn't have to read all parts of this chapter, because the main goal is to get correct output from the simulation, although aspect of user-friendly software, especially user-interface should be consistent. Managers of the project should be conversant with list of requirements, which implicates into importance of entire document for them. 	
 \section{Project Scope}
 	\begin{comment}
 		$<$Provide a short description of the software being specified and its purpose, 
@@ -68,7 +79,7 @@
 		corporate goals or business strategies. If a separate vision and scope document 
 		is available, refer to it rather than duplicating its contents here.$>$
 	\end{comment}
-
+	The task is to development of a sparse matrix--vector product kernel for \gls{CRS} and \gls{ELL} storage formats. The task requires to check the consistency and performance of proposed implementation for both \gls{openmp} and \gls{cuda}. Performance tests shall be obtained from matrices available via University of Florida Sparse Matrix Collection at their research website. This the auxiliary task requires to also write transformers between \gls{MM} and mentioned before \gls{CRS} and \gls{ELL} formats.
 \section{References}
 	\begin{comment}
 		$<$List any other documents or Web addresses to which this SRS refers. These may 
@@ -77,4 +88,8 @@
 		enough information so that the reader could access a copy of each reference, 
 		including title, author, version number, date, and source or location.$>$
 	\end{comment}
-	
+	\begin{enumerate}
+		\item \emph{IEEE/ANSI Std. 830-1998 - IEEE Recommended Practice for Software Requirements Specifications}. IEEE Computer Society, 1998.
+		\item \emph{Chandra Rohit, Parallel programming in OpenMP}. San Francisco, CA : Morgan Kaufmann Publishers, c2001
+		\item \emph{Sanders J., Kandrot E. CUDA by example : an introduction to general-purpose GPU programming} Upper Saddle River, NJ : Addison-Wesley, 2011.
+	\end{enumerate}
