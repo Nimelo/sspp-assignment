@@ -11,6 +11,23 @@
 		functional requirements or features.$>$
 	\end{comment}
 	
+	All the performance test that measure time requires to give an execution time as a factor of seconds with highest possible accuracy. In terms of computational routines the output should be expressed in \gls{FLOPS}.
+	
+	\begin{functional}{Average execution time}{Medium}{None}
+		\label{s:performance-requirements:average-exectution-time}
+		\term{DESC}{The average execution time of routines should be express as a factor of second.}
+		\term{RAT}{In order to have common factor to compare routines between each other.}
+	\end{functional}
+
+	\begin{functional}{Matrix--vector dot product performance result}{Medium}{None}
+		\label{s:performance-requirements:performance-result}
+		\term{DESC}{In order to calculate the performance of routine. The number of \gls{FLOPS} can be acquired by using following equation:
+			\begin{equation}
+				\gls{FLOPS} = \frac{2\cdot NZ}{T}
+			\end{equation}
+		where $NZ$ is the number of nonzero entries in the matrix and $T$ is the (average) time per kernel invocation.}
+		\term{RAT}{In order to compare performance routines using the same metric.}
+	\end{functional}
 \section{Safety Requirements}
 	\begin{comment}
 		$<$Specify those requirements that are concerned with possible loss, damage, or 
@@ -20,7 +37,7 @@
 		product’s design or use. Define any safety certifications that must be 
 		satisfied.$>$
 	\end{comment}
-
+	There is no safety requirements for simulation tool.
 \section{Security Requirements}
 	\begin{comment}
 		$<$Specify any requirements regarding security or privacy issues surrounding use 
@@ -29,7 +46,7 @@
 		regulations containing security issues that affect the product. Define any 
 		security or privacy certifications that must be satisfied.$>$
 	\end{comment}
-
+	There is no security requirements for simulation tool.
 \section{Software Quality Attributes}
 	\begin{comment}
 		$<$Specify any additional quality characteristics for the product that will be 
@@ -40,7 +57,14 @@
 		possible. At the least, clarify the relative preferences for various attributes, 
 		such as ease of use over ease of learning.$>$
 	\end{comment}
-
+	\basicreq{SQA}{Code Quality}{Medium}
+	{
+		Quality of a code should be high. Readability of a code should be easy and for this reason the maintenance should be hassle-free. It is recommended to follow the \emph{Google C++ Code Conventions.}
+	}
+	\basicreq{SQA}{Tests}{Very High}
+	{
+		All the routines should have their own test cases and test. It is very likely to use and follow strategies introduced in \emph{GoogleTest and GoogleMock} testing frameworks.
+	}
 \section{Business Rules}
 	\begin{comment}
 		$<$List any operating principles about the product, such as which individuals or 
@@ -48,3 +72,4 @@
 		functional requirements in themselves, but they may imply certain functional 
 		requirements to enforce the rules.$>$
 	\end{comment}
+	No business rules were specified.
