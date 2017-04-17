@@ -1,0 +1,55 @@
+\section{\gls{openmp} Feature} \label{s:system-features:openmp-feature}
+	\begin{comment}
+		$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+		words.$>$
+	\end{comment}
+	
+\subsection*{Description and Priority}
+	\begin{comment}
+		$<$Provide a short description of the feature and indicate whether it is of 
+		High, Medium, or Low priority. You could also include specific priority 
+		component ratings, such as benefit, penalty, cost, and risk (each rated on a 
+		relative scale from a low of 1 to a high of 9).$>$
+	\end{comment}
+	\textsc{Priority:} High \\
+	Library should provide basic computation of matrix--vector product using \glsdesc{CRS} and \glsdesc{ELL} storage formats. Computations should be parallelized using \gls {openmp} library routines with the possibility to set the number of threads that will be participating in calculations.
+\subsection*{Stimulus/Response Sequences}
+	\begin{comment}
+		$<$List the sequences of user actions and system responses that stimulate the 
+		behavior defined for this feature. These will correspond to the dialog elements 
+		associated with use cases.$>$
+	\end{comment}
+	
+	\stimresp
+	{User wants to compute matrix--vector dot product using \gls{CRS} or \gls{ELL} formats giving fixed number of threads.}
+	{Library computes matrix--vector dot product using \gls{CRS} or \gls{ELL} formats with usage of given number of threads.}
+\subsection*{Functional Requirements}
+	\begin{comment}
+		$<$Itemize the detailed functional requirements associated with this feature.  
+		These are the software capabilities that must be present in order for the user 
+		to carry out the services provided by the feature, or to execute the use case.  
+		Include how the product should respond to anticipated error conditions or 
+		invalid inputs. Requirements should be concise, complete, unambiguous, 
+		verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+		information is not yet available.$>$
+		
+		$<$Each requirement should be uniquely identified with a sequence number or a 
+		meaningful tag of some kind.$>$
+		
+		REQ-1:	REQ-2:
+	\end{comment}
+	
+	\begin{functional}{Computing matrix--vector dot product using \gls{CRS}}{Medium}{					\ref{fn:common-feature:transform-mm2crs}}
+		\label{fn:openmp-feature:compute-crs}
+		\term{DESC}{Library should be able to compute matrix--vector dot product using \gls{CRS} sparse matrix format. Calculations should be parallelized using fixed number of threads. As the output of the computation it is assumed to get the result vector and execution time in as a factor of seconds.} 
+		\term{RAT}{In order to get functionality to calculate matrix--vector dot product using \glsdesc{CRS} format.}
+	\end{functional}
+	
+	\clearpage 
+	
+	\begin{functional}{Computing matrix--vector dot product using \gls{ELL}}{Medium}{					\ref{fn:common-feature:transform-mm2ell}}
+		\label{fn:openmp-feature:compute-ell}
+		\term{DESC}{Library should be able to compute matrix--vector dot product using \gls{ELL} sparse matrix format. Calculations should be parallelized using fixed number of threads. As the output of the computation it is assumed to get the result vector and execution time in as a factor of seconds.} 
+		\term{RAT}{In order to get functionality to calculate matrix--vector dot product using \glsdesc{ELL} format.}
+	\end{functional}
+	

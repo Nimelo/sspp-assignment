@@ -1,0 +1,92 @@
+\section{Common Feature} \label{s:system-features:common-feature}
+	\begin{comment}
+		$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+		words.$>$
+	\end{comment}
+	
+\subsection*{Description and Priority}
+	\begin{comment}
+		$<$Provide a short description of the feature and indicate whether it is of 
+		High, Medium, or Low priority. You could also include specific priority 
+		component ratings, such as benefit, penalty, cost, and risk (each rated on a 
+		relative scale from a low of 1 to a high of 9).$>$
+	\end{comment}
+	\textsc{Priority:} Very High \\
+	Library should provide basic operations on matrix storage formats which are the core for future implementations of computation routines.
+\subsection*{Stimulus/Response Sequences}
+	\begin{comment}
+		$<$List the sequences of user actions and system responses that stimulate the 
+		behavior defined for this feature. These will correspond to the dialog elements 
+		associated with use cases.$>$
+	\end{comment}
+	
+	\stimresp
+	{User loads the \gls{MM} storage format from file.}
+	{Library performs actions for loading \gls{MM} storage format from given file.}
+	
+	\medskip
+	
+	\stimresp
+	{User transforms the \gls{MM} format to \gls{CRS} or \gls{ELL} formats}
+	{Library transforms \gls{MM} format to \gls{CRS} or \gls{ELL} formats}
+	
+	\medskip
+	
+	\stimresp
+	{User wants to compute matrix--vector dot product using \gls{CRS} or \gls{ELL} formats}
+	{Library computes matrix--vector dot product using \gls{CRS} or \gls{ELL} formats}
+	
+	\clearpage
+\subsection*{Functional Requirements}
+	\begin{comment}
+		$<$Itemize the detailed functional requirements associated with this feature.  
+		These are the software capabilities that must be present in order for the user 
+		to carry out the services provided by the feature, or to execute the use case.  
+		Include how the product should respond to anticipated error conditions or 
+		invalid inputs. Requirements should be concise, complete, unambiguous, 
+		verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+		information is not yet available.$>$
+		
+		$<$Each requirement should be uniquely identified with a sequence number or a 
+		meaningful tag of some kind.$>$
+		
+		REQ-1:	REQ-2:
+	\end{comment}
+
+	\begin{functional}{Reading \gls{MM} format from file}{Very High}{None}
+		\label{fn:common-feature:reading-mm-from-file}
+		\term{DESC}{Library should be able to read \gls{MM} format from the file. There are vary different matrix sub-formats supported by \gls{MM} format. Only following ones are necessary to be supported:
+		\begin{itemize}
+			\item \emph{Sparse} (Coordinates);
+			\item \emph{Real}, \emph{Pattern} and \emph{Integer} data type ;
+			\item \emph{General} and \emph{Symmetric} storage scheme
+		\end{itemize}}
+		\term{RAT}{In order to work with sparse matrices.}
+	\end{functional}
+
+	\begin{functional}{Transforming \gls{MM} format to \gls{CRS}}{High}{\ref{fn:common-feature:reading-mm-from-file}}
+		\label{fn:common-feature:transform-mm2crs}
+		\term{DESC}{Library should be able to transform \gls{MM} format to \gls{CRS}}
+		\term{RAT}{In order to work with sparse matrices in \glsdesc{CRS} format.}
+	\end{functional}
+
+	\begin{functional}{Transforming \gls{MM} format to \gls{ELL}}{High}{\ref{fn:common-feature:reading-mm-from-file}}
+		\label{fn:common-feature:transform-mm2ell}
+		\term{DESC}{Library should be able to transform \gls{MM} format to \gls{ELL}}
+		\term{RAT}{In order to work with sparse matrices in \glsdesc{ELL} format.}
+	\end{functional}
+
+	\begin{functional}{Computing matrix--vector dot product using \gls{CRS}}{High}{					\ref{fn:common-feature:transform-mm2crs}}
+		\label{fn:common-feature:compute-crs}
+		\term{DESC}{Library should be able to compute matrix--vector dot product using \gls{CRS} sparse matrix format. As the output of the computation it is assumed to get the result vector and execution time in as a factor of seconds.} 
+		\term{RAT}{In order to get functionality to calculate matrix--vector dot product using \glsdesc{CRS} format.}
+	\end{functional}
+	
+	\clearpage 
+	
+	\begin{functional}{Computing matrix--vector dot product using \gls{ELL}}{High}{					\ref{fn:common-feature:transform-mm2ell}}
+		\label{fn:common-feature:compute-ell}
+		\term{DESC}{Library should be able to compute matrix--vector dot product using \gls{ELL} sparse matrix format. As the output of the computation it is assumed to get the result vector and execution time in as a factor of seconds.} 
+		\term{RAT}{In order to get functionality to calculate matrix--vector dot product using \glsdesc{ELL} format.}
+	\end{functional}
+	

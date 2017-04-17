@@ -7,4 +7,8 @@
 		most logical sense for your product.$>$
 	\end{comment}
 	
-	\input{features/template-feature}
+	This chapter is divided into three main sections, which are responsible to contain list of requirements and explain processes within among those requirements. First section \ref{s:system-features:common-feature} describes all the requirements that can be separated and put in common part of the computational library, such as reading, transforming and making basic operations on matrix storage formats. The second section \ref{s:system-features:openmp-feature} provides routines to compute matrix--vector product using features of \gls{openmp}. According to \ref{s:system-features:cuda-feature} feature, similarly to previously described section, provides routines to compute same thing but with support of \gls{cuda}. 
+	
+	\input{features/common}
+	\input{features/openmp}
+	\input{features/cuda}

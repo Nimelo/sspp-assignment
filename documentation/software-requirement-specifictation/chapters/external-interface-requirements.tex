@@ -12,7 +12,7 @@
 		the user interface design should be documented in a separate user interface 
 		specification.$>$
 	\end{comment}
-
+	Runtime type of computational library is static code library which means that it doesn't have any graphical user interface.
 \section{Hardware Interfaces}
 	\begin{comment}
 		$<$Describe the logical and physical characteristics of each interface between 
@@ -21,7 +21,7 @@
 		between the software and the hardware, and communication protocols to be 
 		used.$>$
 	\end{comment}
-	
+	Application depends on NVIDIA graphic card, which use used to redirect computations to external device that is graphics card. Please see requirement \ref{req:operating-enviornment:hardware-specification}.
 \section{Software Interfaces}
 	\begin{comment}
 		$<$Describe the connections between this product and other specific software 
@@ -35,7 +35,7 @@
 		global data area in a multitasking operating system), specify this as an 
 		implementation constraint.$>$
 	\end{comment}
-
+	Application rely on \gls{cuda} Toolkit which is a set of routines that communicates with external NVIDIA graphics card.
 \section{Communications Interfaces}
 	\begin{comment}
 		$<$Describe the requirements associated with any communications functions 
@@ -45,3 +45,5 @@
 		as FTP or HTTP. Specify any communication security or encryption issues, data 
 		transfer rates, and synchronization mechanisms.$>$
 	\end{comment}
+	
+	Described application does not use any of the communication functions, protocols or other mechanism. Application as mentioned before is self-contained library, which for given input produces output without consuming or communicating to other interfaces.
