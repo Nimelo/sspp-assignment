@@ -1,9 +1,9 @@
 \chapter{Test Suits} \label{chp:test-suits}
-	\taskdescription{TS--ST}{ShiftTime test class}
+	\taskdescription{TS--MMH}{\emph{MatrixMarketHeader} test class}
 	{
 		\taskdescfield{Description}
 		{
-			\emph{ShiftTime} class is responsible for storing information about day of a week, hours and minutes. On of the most important functionality is to return tick value (amount of seconds) from the beginning of the week up to the stored date.
+			\emph{MatrixMarketHeader} class is responsible for reading header (front preamble) from the \gls{MM} format.
 		}
 		\taskdescfield{Method}
 		{
@@ -11,11 +11,11 @@
 		}
 		\taskdescfield{Inputs}
 		{
-			Arbitrary chosen \emph{ShiftTime} date.   
+			Arbitrary chosen file with different type of format, data-type and storage scheme or similar data stream.
 		}
 		\taskdescfield{Outputs}
 		{
-			Fields of \emph{ShiftTime} class or related calculated value.
+			Object containing fields that correspondents to the fields in given file. 
 		}
 		\taskdescfield{Schedule}
 		{
@@ -23,30 +23,68 @@
 		}
 		\taskdescfield{Resources}
 		{
-			No additional resources needed.
+			Set of testing matrices or data-streams of \gls{MM}.
 		}
 		\taskdescfield{Risk(s) and assumptions}
 		{
+			Incorrect reading the values from the preamble of file will affect the way in which the data are loaded inside object. Unexpected results may occur when tests will not pass. 
+		}
+	}
+	\taskdescription{TS--MMR}{\emph{MatrixMarketReader} test class}
+	{
+		\taskdescfield{Description}
+		{
+			\emph{MatrixMarketReader} class is responsible for loading data from the file for various types of \gls{MM} formats:
+			\begin{itemize}
+				\item format;
+				\item data-type;
+				\item storage scheme
+			\end{itemize}
+		}
+		\taskdescfield{Method}
+		{
+			Perform set of tests related to this class. 
+		}
+		\taskdescfield{Inputs}
+		{
+			Arbitrary chosen file with different type of format, data-type and storage scheme or similar data stream. 
+		}
+		\taskdescfield{Outputs}
+		{
+			Loaded entries (row and column indices and value) using correct loading strategies. 
+		}
+		\taskdescfield{Schedule}
+		{
+			This task should be performed quickly after implementation of this class.
+		}
+		\taskdescfield{Resources}
+		{
+			Set of testing matrices or data-streams of \gls{MM}.
+		}
+		\taskdescfield{Risk(s) and assumptions}
+		{
+			If routine of loading \gls{MM} were chosen incorrectly than user will get the incorrect data.
 			Unexpected results may occur when tests will not pass. 
 		}
 	}
-	\taskdescription{TS--ST}{ShiftTime test class}
+	\clearpage
+	\taskdescription{TS--CSW}{\emph{ChronoStopWatch} test class}
 	{
 		\taskdescfield{Description}
 		{
-			\emph{ShiftTime} class is responsible for storing information about day of a week, hours and minutes. On of the most important functionality is to return tick value (amount of seconds) from the beginning of the week up to the stored date.
+			\emph{ChronoStopWatch} class is responsible for measure the time as a factor of second.
 		}
 		\taskdescfield{Method}
 		{
-			Perform set of tests related to this class. 
+			Setup the stopwatch. Mark times between invocation of task that will consume fixed amount of time and calculate difference.
 		}
 		\taskdescfield{Inputs}
 		{
-			Arbitrary chosen \emph{ShiftTime} date.   
+			No inputs needed.
 		}
 		\taskdescfield{Outputs}
 		{
-			Fields of \emph{ShiftTime} class or related calculated value.
+			Factor of a second that specifies the period between start and end of the task.
 		}
 		\taskdescfield{Schedule}
 		{
@@ -58,6 +96,259 @@
 		}
 		\taskdescfield{Risk(s) and assumptions}
 		{
-			Unexpected results may occur when tests will not pass. 
+			Incorrect measuring of the time can have impact on number of \gls{FLOPS}.
+		}
+	}
+	\taskdescription{TS--CRSTR}{\emph{CRSTransformer} test class}
+	{
+		\taskdescfield{Description}
+		{
+			\emph{CRSTransformer} class is responsible for transforming \gls{MM} format into \gls{CRS} format.
+		}
+		\taskdescfield{Method}
+		{
+			Check the output of the transformation based on the prepared earlier data.
+		}
+		\taskdescfield{Inputs}
+		{
+			Example of the \gls{MM} format input in form of data-stream of file.
+		}
+		\taskdescfield{Outputs}
+		{
+			\gls{CRS} format which was transformed from \gls{MM} format. Same data different format.
+		}
+		\taskdescfield{Schedule}
+		{
+			This task should be performed quickly after implementation of this class.
+		}
+		\taskdescfield{Resources}
+		{
+			Set of testing matrices or data-streams of \gls{MM}.
+		}
+		\taskdescfield{Risk(s) and assumptions}
+		{
+			Incorrectly transformed \gls{MM} format destroys the link between format. It ruins the general principle between formats, which says: Different formats should store the same matrix clearly and unambiguously.
+		}
+	}
+	\taskdescription{TS--ELLTR}{\emph{ELLPACKTransformer} test class}
+	{
+		\taskdescfield{Description}
+		{
+			\emph{ELLPACKTransformer} class is responsible for transforming \gls{MM} format into \gls{ELL} format.
+		}
+		\taskdescfield{Method}
+		{
+			Check the output of the transformation based on the prepared earlier data.
+		}
+		\taskdescfield{Inputs}
+		{
+			Example of the \gls{MM} format input in form of data-stream of file.
+		}
+		\taskdescfield{Outputs}
+		{
+			\gls{ELL} format which was transformed from \gls{MM} format. Same data different format.
+		}
+		\taskdescfield{Schedule}
+		{
+			This task should be performed quickly after implementation of this class.
+		}
+		\taskdescfield{Resources}
+		{
+			Set of testing matrices or data-streams of \gls{MM}.
+		}
+		\taskdescfield{Risk(s) and assumptions}
+		{
+			Incorrectly transformed \gls{MM} format destroys the link between format. It ruins the general principle between formats, which says: Different formats should store the same matrix clearly and unambiguously.
+		}
+	}
+	%SERIAL
+	\taskdescription{TS--CRSSV}{\emph{CRSSolver} test class}
+	{
+		\taskdescfield{Description}
+		{
+			\emph{CRSSolver} class is responsible for calculating matrix--vector dot product using \gls{CRS} format.
+		}
+		\taskdescfield{Method}
+		{
+			Check the solution based on the prepared earlier data.
+		}
+		\taskdescfield{Inputs}
+		{
+			Example of the \gls{CRS} format input in form of data-stream of file and vector with corresponding size.
+		}
+		\taskdescfield{Outputs}
+		{
+			Vector with fixed size which is the solution of matrix--vector dot product.
+		}
+		\taskdescfield{Schedule}
+		{
+			This task should be performed quickly after implementation of this class.
+		}
+		\taskdescfield{Resources}
+		{
+			Set of testing matrices or data-streams of \gls{CRS} and vector of values.
+		}
+		\taskdescfield{Risk(s) and assumptions}
+		{
+			Incorrect solution of matrix--vector dot product have high impact of overall approach, because there is only 1 solution to this problem. Any approximate solution will not be accepted by the client.
+		}
+	}
+	\taskdescription{TS--ELLSV}{\emph{ELLSolver} test class}
+	{
+		\taskdescfield{Description}
+		{
+			\emph{ELLSolver} class is responsible for calculating matrix--vector dot product using \gls{ELL} format.
+		}
+		\taskdescfield{Method}
+		{
+			Check the solution based on the prepared earlier data.
+		}
+		\taskdescfield{Inputs}
+		{
+			Example of the \gls{ELL} format input in form of data-stream of file and vector with corresponding size.
+		}
+		\taskdescfield{Outputs}
+		{
+			Vector with fixed size which is the solution of matrix--vector dot product.
+		}
+		\taskdescfield{Schedule}
+		{
+			This task should be performed quickly after implementation of this class.
+		}
+		\taskdescfield{Resources}
+		{
+			Set of testing matrices or data-streams of \gls{ELL} and vector of values.
+		}
+		\taskdescfield{Risk(s) and assumptions}
+		{
+			Incorrect solution of matrix--vector dot product have high impact of overall approach, because there is only 1 solution to this problem. Any approximate solution will not be accepted by the client.
+		}
+	}
+	\clearpage
+	%OPENMP
+	\taskdescription{TS--CRS--OPENMP--SV}{\emph{CRSOpenMPSolver} test class}
+	{
+		\taskdescfield{Description}
+		{
+			\emph{CRSOpenMPSolver} class is responsible for calculating matrix--vector dot product using \gls{CRS} format using various number of threads in \gls{openmp} api.
+		}
+		\taskdescfield{Method}
+		{
+			Check the solution based on the prepared earlier data.
+		}
+		\taskdescfield{Inputs}
+		{
+			Example of the \gls{CRS} format input in form of data-stream of file and vector with corresponding size.
+		}
+		\taskdescfield{Outputs}
+		{
+			Vector with fixed size which is the solution of matrix--vector dot product.
+		}
+		\taskdescfield{Schedule}
+		{
+			This task should be performed quickly after implementation of this class.
+		}
+		\taskdescfield{Resources}
+		{
+			Set of testing matrices or data-streams of \gls{CRS} and vector of values.
+		}
+		\taskdescfield{Risk(s) and assumptions}
+		{
+			Incorrect solution of matrix--vector dot product have high impact of overall approach, because there is only 1 solution to this problem. Any approximate solution will not be accepted by the client.
+		}
+	}
+	\taskdescription{TS--ELL--OPENMP--SV}{\emph{ELLOpenMPSolver} test class}
+	{
+		\taskdescfield{Description}
+		{
+			\emph{ELLOpenMPSolver} class is responsible for calculating matrix--vector dot product using \gls{ELL} format using various number of threads in \gls{openmp} api.
+		}
+		\taskdescfield{Method}
+		{
+			Check the solution based on the prepared earlier data.
+		}
+		\taskdescfield{Inputs}
+		{
+			Example of the \gls{ELL} format input in form of data-stream of file and vector with corresponding size.
+		}
+		\taskdescfield{Outputs}
+		{
+			Vector with fixed size which is the solution of matrix--vector dot product.
+		}
+		\taskdescfield{Schedule}
+		{
+			This task should be performed quickly after implementation of this class.
+		}
+		\taskdescfield{Resources}
+		{
+			Set of testing matrices or data-streams of \gls{ELL} and vector of values.
+		}
+		\taskdescfield{Risk(s) and assumptions}
+		{
+			Incorrect solution of matrix--vector dot product have high impact of overall approach, because there is only 1 solution to this problem. Any approximate solution will not be accepted by the client.
+		}
+	}
+	\clearpage
+	%CUDA
+	\taskdescription{TS--CRS--CUDA--SV}{\emph{CRSCUDASolver} test class}
+	{
+		\taskdescfield{Description}
+		{
+			\emph{CRSCUDASolver} class is responsible for calculating matrix--vector dot product using \gls{CRS} format using NVIDIA graphics card with \gls{cuda} Toolkit library.
+		}
+		\taskdescfield{Method}
+		{
+			Check the solution based on the prepared earlier data.
+		}
+		\taskdescfield{Inputs}
+		{
+			Example of the \gls{CRS} format input in form of data-stream of file and vector with corresponding size.
+		}
+		\taskdescfield{Outputs}
+		{
+			Vector with fixed size which is the solution of matrix--vector dot product.
+		}
+		\taskdescfield{Schedule}
+		{
+			This task should be performed quickly after implementation of this class.
+		}
+		\taskdescfield{Resources}
+		{
+			Set of testing matrices or data-streams of \gls{CRS} and vector of values.
+		}
+		\taskdescfield{Risk(s) and assumptions}
+		{
+			Incorrect solution of matrix--vector dot product have high impact of overall approach, because there is only 1 solution to this problem. Any approximate solution will not be accepted by the client.
+		}
+	}
+	\taskdescription{TS--ELL--CUDA--SV}{\emph{ELLOpenMPSolver} test class}
+	{
+		\taskdescfield{Description}
+		{
+			\emph{ELLOpenMPSolver} class is responsible for calculating matrix--vector dot product using \gls{ELL} format using NVIDIA graphics card with \gls{cuda} Toolkit library.
+		}
+		\taskdescfield{Method}
+		{
+			Check the solution based on the prepared earlier data.
+		}
+		\taskdescfield{Inputs}
+		{
+			Example of the \gls{ELL} format input in form of data-stream of file and vector with corresponding size.
+		}
+		\taskdescfield{Outputs}
+		{
+			Vector with fixed size which is the solution of matrix--vector dot product.
+		}
+		\taskdescfield{Schedule}
+		{
+			This task should be performed quickly after implementation of this class.
+		}
+		\taskdescfield{Resources}
+		{
+			Set of testing matrices or data-streams of \gls{ELL} and vector of values.
+		}
+		\taskdescfield{Risk(s) and assumptions}
+		{
+			Incorrect solution of matrix--vector dot product have high impact of overall approach, because there is only 1 solution to this problem. Any approximate solution will not be accepted by the client.
 		}
 	}
