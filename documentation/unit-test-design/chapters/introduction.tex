@@ -17,8 +17,8 @@
 	\end{comment}
 	\textsc{Document version:} 1.0 \\
 	\textsc{Date of issue:} \today \\
-	\textsc{Issuing organization:} \textit{Company} \\
-	\textsc{Authors:} \textit{Name Surname} \\
+	\textsc{Issuing organization:} Cranfield University \\
+	\textsc{Authors:} Mateusz Gasior \\
 	\textsc{Status:} Final
 \section{Scope} \label{s:introduction:scope}
 	\begin{comment}
@@ -36,13 +36,13 @@
 		Reference any Anomaly Reports relating to the test items.
 		Identify any items that are to be specifically excluded from testing.
 	\end{comment}
-
+	Unit test level considered in this document relates to low level code tests. Those tests checks internal requirements as well as user requirements which cannot or should not be tested from the outside with regular data flow. This kind of approach requires to add new unit-tests with each new part of code. This process is iterative and should cover as many lines of code as possible. In best case all of the branches should be covered with tests as well as boundary and edge-values should be tested. Unit-tests doesn't require any additional setup, although requirement associated with runtime environment should be fulfilled -- check \gls{SRS} document section 2.4. 
 \section{References} \label{s:introduction:references}
 	\begin{comment}
 		List all of the applicable reference documents. The references are separated into “external” references
 		that are imposed external to the project and “internal” references that are imposed from within to the
 		project. This may also be at the end of the document.
 	\end{comment}
-	%\begin{enumerate}
-	%	\item \emph{Software Requirements Specification, Supercomputer Simulation Tool}. Cranfield University, 2016. 
-	%\end{enumerate}
+	\begin{enumerate}
+		\item \emph{Mateusz Gasior, \gls{SRS} - Computational Library}. Cranfield University, 2017. 
+	\end{enumerate}

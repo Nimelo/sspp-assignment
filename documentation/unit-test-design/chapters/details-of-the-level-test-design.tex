@@ -4,7 +4,12 @@
 		refinements to the test approach as required for the level. It also identifies the sets of test cases (highest
 		level test cases) or scenarios along with the pass/fail criteria. It may also include the test deliverables.
 	\end{comment}
-	
+	Tests of unit level have different levels among themselves, distinguishing:
+	\begin{itemize}
+		\item tests within a single class -- unit;
+		\item tests between classes -- integration.
+	\end{itemize} 
+	Mentioned items can be grouped by in a hierarchical way containing different classes and integrations between them. Also sets of units tests within a single class can be made as well as within regression test sets among multiple classes.
 \section{Features to be tested} \label{s:details-of-the-level-test-design:features-to-be-tested}
 	\begin{comment}
 		Identify the test items and describe the features and combinations of features that are the object of this
@@ -17,7 +22,9 @@
 		requirement and/or design description may be included. This may be documented in a Test
 		Traceability Matrix (LTP Section 2.2).
 	\end{comment}
+	Every single class should be covered by unit-tests itself. In addition to that every requirements also should have their own test method. In this case some of those tests requires to prepare input or mock classes used within the test, although the output of the tests should remain the same.
 
+	Features to be tested are mainly described in \gls{SRS} document in sections: 4.1 (Common Feature), 4.2 (OpenMP Feature) and 4.3 (CUDA Feature). Especially for computational features a lot of mocking and preparing fake input will be necessary.
 \section{Approach refinements} \label{s:details-of-the-level-test-design:approach-refinements}
 	\begin{comment}
 		Specify refinements to the approach described in the corresponding Level Test Plan (if there is one;
@@ -30,14 +37,23 @@
 		be as reusable as possible for regression testing, revalidation testing for changes, and training new
 		employees who must either use or support the system over time.
 	\end{comment}
-
+	Approach of testing system test level is specified in details in \gls{MTP} document. Test scenarios and suites for unit-tests requires iterative approach. With the increase of code the increase of test suits should be made, except cases where there is no need to tests structures, although the overall code coverage criteria should tend to $100\%$.
 \section{Test identification} \label{s:details-of-the-level-test-design:test-identification}
 	\begin{comment}
 		List the identifier and a brief description of each test case (or set of related test cases) in scenarios for
 		this design. A particular test case, scenario, or procedure may be identified in more than one LTD. List
 		the identifier and a brief description of each procedure associated with this LTD.
 	\end{comment}
-
+	Each test suite should have a unique name with a brief description of the tested domain. Similarly to mentioned test suites each test scenario also should have the same fields, but more detailed description should be introduced. Example of test identification should look in a following manner: \\
+	\begin{center}
+		\boxed
+		{
+			\begin{tabular}{ll}
+				\textsc{Identification:} & Configuration Main Test Suite \\
+				\textsc{Description:} & Contains all the tests related to the configuration.
+			\end{tabular}
+		}
+	\end{center}
 \section{Feature pass/fail criteria} \label{s:details-of-the-level-test-design:feature-pass-fail-criteria}
 	\begin{comment}
 		Specify the criteria to be used to determine whether the feature or feature combination has passed or
@@ -45,7 +61,7 @@
 		section is not needed if it is covered by an MTP and there have been no subsequent changes to the
 		criteria.
 	\end{comment}
-	
+	In case of unit-test there are only two options. Either test scenario failed or passed the tests. In case of suits of tests the percentage participation of passed tests to overall performed tests should be considered. At least one failed test case disqualify feature from well-implemented set of features.
 \section{Test deliverables} \label{s:details-of-the-level-test-design:test-deliverables}
 	\begin{comment}
 		Identify all information that is to be delivered by the test activity (documents, data, etc.). The following
@@ -66,4 +82,4 @@
 		Management Plan. This delivery process description is not required if it is covered by the MTP and
 		there are no changes
 	\end{comment}
-	
+	Each iteration of tests should produce list of performed tests with identification associated with test scenarios stored in unit \gls{TLC} document. Additionally there should be also stored information about result and other comments as described in \gls{MTP} document. Also all necessary steps and used data should be attached to test report.
