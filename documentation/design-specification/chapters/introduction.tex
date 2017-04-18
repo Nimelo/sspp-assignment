@@ -7,7 +7,16 @@
 	product that is covered by this SRS, particularly if this SRS describes only 
 	part of the system or a single subsystem.$>$
 	\end{comment}
-	
+	The product described in this document is develop a sparse matrix--vector product kernel. Mentioned kernel should be capable of computing
+	\begin{equation}
+	y \leftarrow Ax
+	\end{equation}
+	where $A$ is a sparse matrix stored in:
+	\begin{enumerate}
+		\item \gls{CSR} (\gls{CRS})
+		\item \gls{ELL}
+	\end{enumerate}
+	storage formats. The kernel shall be parallelized to exploit available computing capabilities. The code shall be implemented in both \gls{openmp} and \gls{cuda} versions, and shall be tested for correctness against a serial implementation. Performance tests shall be carried out in order to get information about number of floating point operations per second. Library should provide set of auxiliary functions to preproces \gls{MM} format data and represent it in the desired format.
 \section{Scope} \label{s:introduction:scope}
 	\begin{comment}
 		This standard describes software designs and establishes the information content and organization of a
@@ -25,17 +34,21 @@
 		preparation of SDDs captured as paper documents, automated databases, software development tools, or
 		other media.
 	\end{comment}
-
+	The task is to development of a sparse matrix--vector product kernel for \gls{CRS} and \gls{ELL} storage formats. The task requires to check the consistency and performance of proposed implementation for both \gls{openmp} and \gls{cuda}. Performance tests shall be obtained from matrices available via University of Florida Sparse Matrix Collection at their research website. This the auxiliary task requires to also write transformers between \gls{MM} and mentioned before \gls{CRS} and \gls{ELL} formats.
+	
+	The most important part is to give an easy to read output from the testing routines about performance of the algorithms for specific chosen set of data.
 \section{Context} \label{s:introduction:context}
 	\begin{comment}
 		Context of the document.
 	\end{comment}
+	This document presents set of design approaches that were taken during designing and implementation processes of \emph{Computational Library} requirements.
 	
+	Each of main classes contains viewpoint with according view that explains an idea that has come to light.
 \section{Summary} \label{s:introduction:summary}
 	\begin{comment}
 		Brief summary of the document.
 	\end{comment}
-	
+	The purpose of this document is to understand the causes of taken approaches on the design level. This document should also help programmers to implement object in desire way. It contains informations about objects, elements, algorithms and concerns that were born at the start of the project.
 \section{References} \label{s:introduction:references}
 	\begin{comment}
 		$<$List any other documents or Web addresses to which this SRS refers. These may 
@@ -45,3 +58,10 @@
 		including title, author, version number, date, and source or location.$>$
 	\end{comment}
 	
+	\begin{enumerate}
+		\item \emph{IEEE/ANSI Std. 830-1998 - IEEE Recommended Practice for Software Requirements Specifications}. IEEE Computer Society, 1998.
+		\item \emph{IEEE/ANSI Std. 1016-2009 - IEEE Standard for Information Technology-System Design-Software Design Descriptions}. IEEE Computer Society, 2009.
+		\item \emph{Chandra Rohit, Parallel programming in OpenMP}. San Francisco, CA : Morgan Kaufmann Publishers, c2001
+		\item \emph{Sanders J., Kandrot E. CUDA by example : an introduction to general-purpose GPU programming} Upper Saddle River, NJ : Addison-Wesley, 2011.
+		\item \emph{Mateusz Gasior, SRS - Computation Library} Cranfield University, 2017.
+	\end{enumerate}
