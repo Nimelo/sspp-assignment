@@ -6,8 +6,8 @@
 	\end{comment}
 	\textsc{Document version: } 1.0 \\
 	\textsc{Date of issue:} \today \\
-	\textsc{Issuing organization:} \textit{Company} \\
-	\textsc{Authors: } \textit{Name Surname} \\
+	\textsc{Issuing organization:} \textit{Cranfield University} \\
+	\textsc{Authors: } \textit{Mateusz GASIOR} \\
 	\textsc{Status: } Final \\
 
 \section{Scope} \label{s:introduction:scope}
@@ -38,7 +38,16 @@
 		The documentation (LTP, LTD, LTC, LTPr, LTR, and LITSR) required is dependent on the selection
 		of the test approach(es).$>$
 	\end{comment}
-
+	The product described in this document is develop a sparse matrix--vector product kernel. Mentioned kernel should be capable of computing
+	\begin{equation}
+	y \leftarrow Ax
+	\end{equation}
+	where $A$ is a sparse matrix stored in:
+	\begin{enumerate}
+		\item \gls{CSR} (\gls{CRS})
+		\item \gls{ELL}
+	\end{enumerate}
+	storage formats. The kernel shall be parallelized to exploit available computing capabilities. The code shall be implemented in both \gls{openmp} and \gls{cuda} versions, and shall be tested for correctness against a serial implementation. Performance tests shall be carried out in order to get information about number of floating point operations per second. Library should provide set of auxiliary functions to preproces \gls{MM} format data and represent it in the desired format.
 \section{References} \label{s:introduction:references}
 	\begin{comment}
 		$<$List all of the applicable reference documents. The references are separated into “external” references
@@ -62,7 +71,13 @@
 		or document that delineates the expected test documentation details).$>$
 	\end{comment}
 
-
+	\begin{enumerate}
+		\item \emph{IEEE/ANSI Std. 830-1998 - IEEE Recommended Practice for Software Requirements Specifications}. IEEE Computer Society, 1998.
+		\item \emph{IEEE/ANSI Std. 1016-2009 - IEEE Standard for Information Technology-System Design-Software Design Descriptions}. IEEE Computer Society, 2009.
+		\item \emph{Chandra Rohit, Parallel programming in OpenMP}. San Francisco, CA : Morgan Kaufmann Publishers, c2001
+		\item \emph{Sanders J., Kandrot E. CUDA by example : an introduction to general-purpose GPU programming} Upper Saddle River, NJ : Addison-Wesley, 2011.
+	\end{enumerate}
+	
 \subsection*{Internal references} \label{s:introduction:internal-references}
 	\begin{comment}
 		$<$ List references to documents such as other plans or task descriptions that supplement this plan, e.g.:
@@ -75,20 +90,24 @@
 		$>$
 	\end{comment}
 
-	%\begin{enumerate}
-	%	\item \emph{Software Requirements Specification, Supercomputer Simulation Tool}. Cranfield University, 2016. 
-	%\end{enumerate}
+	\begin{enumerate}
+		\item \emph{Mateusz Gasior, SRS - Computation Library} Cranfield University, 2017.
+	\end{enumerate}
+	
 \section{System overview and key features} \label{s:introduction:system-overview-and-key-features}
 	\begin{comment}
 		$<$Describe the mission or business purpose of the system or software product under test (or reference where the information can be found, e.g., in a system definition document, such as a Concept of
 		Operations). Describe the key features of the system or software under test [or reference where the information can be found, e.g., in a requirements document or COTS documentation]. $>$
 	\end{comment}
-
+	The key features of the \emph{Computational Library} were described in Section \ref{s:introduction:scope}. For the system we can distinguish one very important feature -- performance of the algorithm for given matrix in \gls{FLOPS} metric. 
 \section{Test overview} \label{s:introduction:test-overview}
 	\begin{comment}
 		$<$Describe the test organization, test schedule, integrity level scheme, test resources, responsibilities, tools, techniques, and methods necessary to perform the testing. $>$
 	\end{comment}
-
+	
+	Tests are divided between two boundaries: unit tests from the point of correctness of the approach and performance tests from the point of algorithm speed. Due to small amount of routines that should be implemented overall amount of tests seems to be small and not complicated, although all processes, algorithms, routines and methods should be tested and maintained.
+	
+	Unit-tests should be added up to date with the increase of the line codes. The code coverage should be nearly close to $100\%$. Developers are obliged to add them. Testers should check the logic behind them and te overall status from the unit-tests.
 \subsection{Organization} \label{s:introduction:organization}
 	\begin{comment}
 		$<$Describe the relationship of the test processes to other processes such as development, project
@@ -96,29 +115,47 @@
 		within the testing organization(s), the authority for resolving issues raised by the testing tasks, and the authority for approving test products and processes. This may include (but should not be limited to) a visual representation, e.g., an organization chart. $>$
 	\end{comment}
 
+	The library can be divided into three sub-libraries where two of them depends on the single common one, which affects the style and approach according to the test-plan. In terms of such dependency between library dependencies it is highly recommended to cover all the tests from the common sub-module, because it would be the most used part of the library. Once the part of the common module is implemented testing team can starts check for all the scenarios with those requirements. For example testing team can take advantage of test cases that were not considered by programmer while writing unit tests. According to two other sub-modules respectively \gls{openmp} and \gls{cuda} they can be tested separately just after finishing of their implementation.
+	
+	After implementation of the whole library a quality assurance team should prepare scenarios for end-user, which will be used in order to prove that the library fulfills given requirements and the performance of the calculations reached desired value. Mentioned team should also be in charge of managing the test configuration. Once the configuration (set of matrices) is created the other teams can be able to reproduce output as well as compare results with the checked by hand solutions. This approach will help programmers improve the performance of boundary cases. 
 \subsection{Master test schedule} \label{s:introduction:master-test-schedule}
 	\begin{comment}
 		$<$Describe the test activities within the project life cycle and milestones. Summarize the overall schedule of the testing tasks, identifying where task results feed back to the development, organizational, and supporting processes (e.g., quality assurance and configuration management). Describe the task iteration policy for the re-execution of test tasks and any dependencies. $>$
 	\end{comment}
-
+	The project is driven by agile methodology. Taking into account the complexity of the software and used methodology of creating software testing and developing can almost start at the same time with a slightly advantage of the second one. In order to point the milestones in the life-cycle distinguishing can be made as follows:
+	\begin{enumerate}
+		\item \textsc{Common} - implementation of common classes;
+		\item \textsc{\gls{openmp}} - implementation of routines in \gls{openmp};
+		\item \textsc{\gls{cuda}} - implementation of routines in \gls{cuda};
+		\item \textsc{Performance testing} - implementation of routines in order to get performance metrics.
+	\end{enumerate}
+	Each of mentioned before milestones should be tested at the end of its implementation. Furthermore after each milestone there should be performed regression tests for previous milestones as well. 
 \subsection{Integrity level scheme} \label{s:introduction:integrity-level-scheme}
 	\begin{comment}
 		$<$Describe the identified integrity level scheme for the software-based system or software product, and the mapping of the selected scheme to the integrity level scheme used in this standard. If the selected integrity level scheme is the example presented in this standard, it may be referenced and does not need to be repeated in the MTP. The MTP documents the assignment of integrity levels to individual components (e.g., requirements, functions, software modules, subsystems, non-functional characteristics, or other partitions), where there are differing integrity levels assigned within the system. At the beginning of each process, the assignment of integrity levels is reassessed with respect to changes that may need to be made in the integrity levels as a result of architecture selection, design choices, code construction, or other development activities. $>$
 	\end{comment}
-
+	Any failures in a function or system feature causes negligible consequences with reasonable, probable, occasional or infrequent likelihood of occurrence of an operating state that contributes to the error. Simulation tool does not have any impact on loss of system security, safety, extensive financial or social losses. Although bad calculated values could be a cause of loss of income due to applying incorrect accounting practices. According to \emph{IEE Std 829-2008} this application has integrity level $1$, which is the lowest one.
+	
+	Although in some cases usage of the calculation routines can have impact of those modules that can have a big, even critical, consequences.
 \subsection{Resources summary} \label{s:introduction:resources-summary}
 	\begin{comment}
 		$<$Summarize the test resources, including staffing, facilities, tools, and special procedural requirements (e.g., security, access rights, and documentation control). $>$
 	\end{comment}
-
+	During the testing there will be only some type of resources used. It is possible to separate them into two categories:
+	\begin{itemize}
+		\item small validation data (data that can be optained by hand-created cases);
+		\item big data used in performance cases (\gls{MM} format provided by University of Florida Sparse Matrix Collection)
+	\end{itemize}
 \subsection{Responsibilities} \label{s:introduction:resposibilities}
 	\begin{comment}
 		$<$Provide an overview of the organizational content topic(s) and responsibilities for testing tasks. Identify organizational components and their primary (they are the task leader) and secondary (they are not the leader, but providing support) test-related responsibilities. $>$
 	\end{comment}
-
+	Due to rules of assignment there is only one person responsible for everything -- author of this document. Writer is responsible for creating all the necessary documentation used in developing process as well as testing routines.
 \subsection{Tools, techniques, methods, and metrics} \label{s:introduction:tools-techniques-methods-and-metrics}
 	\begin{comment}
 		$<$Describe documents, hardware and software, test tools, techniques, methods, and test environment to be used in the test process. Describe the techniques that will be used to identify and capture reusable testware. Include information regarding acquisition, training, support, and qualification for each tool, technology, and method.\\
 		Document the metrics to be used by the test effort, and describe how these metrics support the test objectives. Metrics appropriate to the Level Test Plans (e.g., component, component integration, system, and acceptance) may be included in those documents (see Annex E). $>$
 	\end{comment}
+	All the documents should be written in \LaTeX using \emph{IEEE Std 829-2008} standard. There is no hardware of software constraints. There is no need to have external test environment for this project. Testers should be able to run this software on any machine supporting \emph{C++} with installed \emph{GoogleTest} and \emph{GoogleMock} testing frameworks.
 	
+	Tests in terms of code-tested fashion can have only two values: failed or passed. Performance tests should contain information about tested sparse matrix and as the output it is assumed that \gls{FLOPS} will be calculated.
