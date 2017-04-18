@@ -1,0 +1,66 @@
+\newcommand{\taskdescfield}[2]
+{
+	\begin{eqmpage}
+		\begin{sminipage}[t]{0.35\textwidth}
+			\emph{#1:}
+		\end{sminipage}
+		\begin{sminipage}{0.65\textwidth}
+			#2
+		\end{sminipage}
+	\end{eqmpage}
+}
+
+\newcounter{TaskDescriptionCounter}[section]
+\renewcommand{\theTaskDescriptionCounter}{\number\numexpr\value{TaskDescriptionCounter}+1\relax}
+
+
+% Formats basic requirement id
+%
+% $param1 - identificator label
+\newcommand{\reqid}[1]
+{
+	\textbf{#1--\theTaskDescriptionCounter:}
+	\stepcounter{TaskDescriptionCounter}
+}
+
+\newcommand{\taskdescription}[3]
+{
+	\begin{center}
+		\begin{minipage}[t]{0.35\linewidth}
+			\flushleft 
+			\reqid{#1}
+		\end{minipage}
+		\begin{minipage}[t]{0.64\linewidth}
+			\flushleft
+			 #2
+		\end{minipage}\\[2pt]
+		\hrule
+	\end{center}
+		#3
+}
+
+\newcounter{TestCaseCounter}[section]
+\renewcommand{\theTestCaseCounter}{\number\numexpr\value{TestCaseCounter}\relax}
+
+\newenvironment{testcase}[4]
+{
+	\refstepcounter{TestCaseCounter}
+	\begin{center}
+		\begin{minipage}[t]{0.65\linewidth}
+			\flushleft 
+			\textbf{TEST--CASE--\theTestCaseCounter:} #1
+		\end{minipage}
+		\begin{minipage}[t]{0.25\linewidth}
+			\flushright 
+			\textsc{Priority:} #2
+		\end{minipage}\\[2pt]
+		\hrule
+	\end{center}
+	DEP: #3	
+	\term{REQS}{#4 \\} 
+}
+
+
+
+
+

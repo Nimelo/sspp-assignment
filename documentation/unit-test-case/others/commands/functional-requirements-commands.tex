@@ -1,0 +1,27 @@
+% Counter for functional requirements
+\newcounter{FunctionalCounter}[section]
+\renewcommand{\theFunctionalCounter}{FN--\arabic{section}.\arabic{FunctionalCounter}\relax}
+
+% Formats functional requirement
+%
+% $param1 - title
+% $param2 - priority
+% $param3 - dependencies
+% $param4 - description
+\newenvironment{functional}[3]
+{
+	\refstepcounter{FunctionalCounter}
+	\begin{center}
+		\begin{minipage}[t]{0.65\linewidth}
+			\flushleft 
+			\textbf{\theFunctionalCounter:} #1
+		\end{minipage}
+		\begin{minipage}[t]{0.25\linewidth}
+			\flushright 
+			\textsc{Priority:} #2
+		\end{minipage}\\[2pt]
+		\hrule
+	\end{center}
+	DEP: #3\\
+}
+
