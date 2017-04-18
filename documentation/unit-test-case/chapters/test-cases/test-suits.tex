@@ -226,7 +226,7 @@
 	}
 	\clearpage
 	%OPENMP
-	\taskdescription{TS--CRS--OPENMP--SV}{\emph{CRSOpenMPSolver} test class}
+	\taskdescription{TS--CRS--OMP--SV}{\emph{CRSOpenMPSolver} test class}
 	{
 		\taskdescfield{Description}
 		{
@@ -257,11 +257,11 @@
 			Incorrect solution of matrix--vector dot product have high impact of overall approach, because there is only 1 solution to this problem. Any approximate solution will not be accepted by the client.
 		}
 	}
-	\taskdescription{TS--ELL--OPENMP--SV}{\emph{ELLOpenMPSolver} test class}
+	\taskdescription{TS--ELL--OMP--SV}{\emph{EllpackOpenMPSolver} test class}
 	{
 		\taskdescfield{Description}
 		{
-			\emph{ELLOpenMPSolver} class is responsible for calculating matrix--vector dot product using \gls{ELL} format using various number of threads in \gls{openmp} api.
+			\emph{EllpackOpenMPSolver} class is responsible for calculating matrix--vector dot product using \gls{ELL} format using various number of threads in \gls{openmp} api.
 		}
 		\taskdescfield{Method}
 		{
@@ -321,11 +321,11 @@
 			Incorrect solution of matrix--vector dot product have high impact of overall approach, because there is only 1 solution to this problem. Any approximate solution will not be accepted by the client.
 		}
 	}
-	\taskdescription{TS--ELL--CUDA--SV}{\emph{ELLOpenMPSolver} test class}
+	\taskdescription{TS--ELL--CUDA--SV}{\emph{EllpackCUDASolver} test class}
 	{
 		\taskdescfield{Description}
 		{
-			\emph{ELLOpenMPSolver} class is responsible for calculating matrix--vector dot product using \gls{ELL} format using NVIDIA graphics card with \gls{cuda} Toolkit library.
+			\emph{EllpackCUDASolver} class is responsible for calculating matrix--vector dot product using \gls{ELL} format using NVIDIA graphics card with \gls{cuda} Toolkit library.
 		}
 		\taskdescfield{Method}
 		{
