@@ -7,7 +7,18 @@
 	\begin{comment}
 		$<$ Identify test activities and tasks to be performed for each of the test processes described in Clause 5 of this standard (or the alternative test processes defined by the user of this standard), and document those test activities and tasks. Provide an overview of the test activities and tasks for all development life cycle processes. Identify the number and sequence of levels of test. There may be a different number of levels than the example used in this standard (component, component integration, system, and acceptance). Integration is often accomplished through a series of test levels, for both component integration and systems integration. Examples of possible additional test levels include security, usability, performance, stress, recovery, and regression. Small systems may have fewer levels of test, e.g., combining system and acceptance. If the test processes are already defined by an organization’s standards, a reference to those standards could be substituted for the contents of this subclause.$>$
 	\end{comment}
-	
+	Master test plan distinguish two test levels:
+	\begin{itemize}
+		\item
+		{
+			\emph{component (unit-test) level} -- contains all the test-code;	
+		}
+		\item
+		{
+			\emph{performance level} -- contains all test performance test for given matrix.
+		}
+	\end{itemize}
+	For each of those levels two additional documents were made -- design document of level and case document, which specifies actual methods used in case of checking particular requirements.
 	\subsection{Process: Management} \label{s:details-of-the-master-test-plan:process-management}
 		\begin{comment}
 			$<$ Describe how all requirements of the standard are satisfied (e.g., by cross referencing to this standard) if the life cycle used in the MTP differs from the life cycle model in this standard. Testing requires advance planning that spans several development activities. Include sections 2.1.1 through 2.1.6 (or sections for each life cycle, if different from the example used in this standard) for test activities and tasks as shown in the MTP Outline (Clause 8). 
@@ -70,89 +81,155 @@
 			\end{table}
 			$>$
 		\end{comment}
-
+		Test level documents should use following template for task description and test case. Following template presents example of task description. It contains example fields and description of them.	
+		\taskdescription
+		{
+			PREFIX
+		}
+		{
+			Template of task description
+		}
+		{
+			\taskdescfield{Method}
+			{
+				Describe the methods and procedures for each test task, including tools. Define
+				the criteria for evaluating the test task results.
+			}
+			\taskdescfield{Inputs}
+			{
+				Identify the required inputs for the test task. Specify the source of each input. For
+				any test activity and task, any of the inputs or outputs of the preceding activities and tasks
+				may be used.
+			}
+			\taskdescfield{Outputs}
+			{
+				Identify the required outputs from the test task. The outputs of the management of
+				test and of the test tasks will become inputs to subsequent processes and activities, as
+				appropriate.
+			}
+			\taskdescfield{Schedule}
+			{
+				Describe the schedule for the test tasks. Establish specific milestones for
+				initiating and completing each task, for the receipt of each input, and for the delivery of
+				each output.
+			}
+			\taskdescfield{Resources}
+			{
+				Identify the resources for the performance of the test tasks. Specify resources by
+				category (e.g., staffing, tools, equipment, facilities, travel budget, and training).
+			}
+			\taskdescfield{Risk(s) and assumptions}
+			{
+				Identify the risk(s) (e.g., schedule, resources, technical approach, or
+				for going into production) and assumptions associated with the test tasks. Provide
+				recommendations to eliminate, reduce, or mitigate risk(s).
+			}
+			\taskdescfield{Roles and responsibilities}
+			{
+				Identify for each test task the organizational elements that have
+				the primary and secondary responsibilities for the execution of the task, and the nature of the roles they will play.
+			}
+		}
+		
+		For test cases fields can differ among other cases, because each of the tests can be performed and designed in other way. Test case example is presented as follows:
+		\begin{testcase}{Example title}{Low}{None}{REQ-1, REQ-2}
+			\term{INPUT}{Input of test case.}
+			\term{STEPS}{Steps to perform.}
+			\term{OUTPUT}{Output of test case.}
+		\end{testcase}
+	
 	\subsubsection{Activity: Management of test effort} \label{s:details-of-the-master-test-plan:activity-management-of-test-effort}
 		%$<$ $>$
-
+		%$<$ $>$
+	Main activity for managing the documentation for software related project is to keep the cohesion and standard of them. All the documents should be have version and each of the changes should have an author. This approach let project members to work faster and more efficient. Communication between members will be also increased as well as their overall knowledge about project.
 	\subsection{Process: Acquisition} \label{s:details-of-the-master-test-plan:process-acquisiton}
 	%$<$ $>$
-	
+		Developed project is a brand new project, so there won't be any software acquired. It implies that no code, no test and no external documentation will be provided by any other company, although some information about the specific standard of storage format is required, but it's very well known knowledge in scientific environment.
 		\subsubsection{Activity: Acquisition support test} \label{s:details-of-the-master-test-plan:activitiy-acquisition-support-test} 
 		%$<$ $>$
-		
+		The supporting test will be acquired during development and testing of the software.
 	\subsection{Process: Supply} \label{s:details-of-the-master-test-plan:process-supply}
 	%$<$ $>$
-		
+		Due to lack of acquired software for this project. The will be no supply. It implies that during development process application would not be vitiated by an error from external sources.
 		\subsubsection{Activity: Planning test} \label{s:details-of-the-master-test-plan:activity-planning-tests}
 		%$<$ $>$
-		
+		No test will be planned during process of supply.
 	\subsection{Process: Development} \label{s:details-of-the-master-test-plan:process-development}
 	%$<$ $>$
-		
+		Main effort will be put during development process. All crucial decision will be made about the internal structure of application, which will have an impact for the changes in future.
 		\subsubsection{Activity: Concept} \label{s:details-of-the-master-test-plan:activity-concept}
 		%$<$ $>$
-		
+		During this phase of development all the necessary components and entires inside glossaries should be extracted from the description document. Extracted data will be helpful for members of the team to better understand requirements and communicate with the same level of abstraction during conversations about the particular problem related to the project.
 		\subsubsection{Activity: Requirements} \label{s:details-of-the-master-test-plan:activity-requirements}
 		%$<$ $>$
-		
+		Requirement analysis is one of the most important part of the development. It is an agreement between customer and developing company about all the software. Any content inside this document should be treated as it is without adding additional features or patches. During this phase all produced documents should be deeply analyzed in terms of excluding requirements. This process should be called testing of the coherence of requirements document.
 		\subsubsection{Activity: Design} \label{s:details-of-the-master-test-plan:activity-design}
 		%$<$ $>$
-		
+		Design of the system should be made based on concept and requirements document in order to satisfied the quality of the developing software. During this phase a new document should be prepared called \emph{Software Design Description}.
 		\subsubsection{Activity: Implementation} \label{s:details-of-the-master-test-plan:activity-implementation}
 		%$<$ $>$
-		
+		Implementation should be a simultaneously task next to the testing during the developing process. Each new functionality or feature should be well documented and tested. Quality of the code also should be checked iteratively in order to produce the best code in terms of maintenance and extensibility. 
 		\subsubsection{Activity: Installation/checkout} \label{s:details-of-the-master-test-plan:activity-installation-checkout}
 		%$<$ $>$
-		
+		There is a need for NVIDIA graphics card and installed \gls{cuda} Runtime library.
 	\subsection{Process: Operation} \label{s:details-of-the-master-test-plan:process-operation}
 	%$<$ $>$
-		
+		Operation process is not complicated in terms of this project, although all the bugs and errors occurred during that time should be send to the support team. 
 		\subsubsection{Activity: Operational test} \label{s:details-of-the-master-test-plan:activity-operational-test}
 		%$<$ $>$
-		
+		During usage of the application all the test should be covered by regression testing, which means any change in application should invoke process of retesting all the features in the system.
 	\subsection{Process: Maintenance} \label{s:details-of-the-master-test-plan:process-maintenance}
 	%$<$ $>$
-		
+		During the maintenance only new bugs and errors should be considered. There is no need to take care of additional configuration of environment or other components while they are already provided.
 		\subsubsection{Activity: Maintenance test} \label{s:details-of-the-master-test-plan:activity-maintenance-test}
 		%$<$ $>$
-		  
+		Maintenance tests are very similar to the test in section \ref{s:details-of-the-master-test-plan:activity-maintenance-test}. Both of them based on the regression of testing. It ensures that new changes doesn't propagated further into system changing old requirements. 
 \section{Test documentation requirements} \label{s:details-of-the-master-test-plan:test-documentation-requirements}
 	\begin{comment}
 		$<$Define the purpose, format, and content of all other testing documents that are to be used (in addition to those that are defined in MTP Section 2.4). A description of these documents may be found in Clause 9 through Clause 16. If the test effort uses test documentation or test levels different from those in this standard (i.e., component, component integration, system, and acceptance), this section needs to map the documentation and process requirements to the test documentation contents defined in this standard. $>$
 	\end{comment}
-	
+	\gls{MTP} distinguish four additional documents divided into two levels of tests. System features from the point of end-user and unit-tests from the point of view of developer and testing are test levels. All of those documents should be split into additional two documents. First of them should contain design of particular test level, the second one should contain use-cases in accordance with \gls{MTP} and its design document.
 \section{Test administration requirements} \label{s:details-of-the-master-test-plan:test-administration-requirements}
 	\begin{comment}
 		$<$ Describe the anomaly resolution and reporting processes, task iteration policy, deviation policy, control procedures and standards, practices, and conventions. These activities are needed to administer the tests during execution. $>$
 	\end{comment}
-	
+	There will be no administration requirements in this project, because it's self contained command line application that runs only for the specific request.
 \subsection{Anomaly resolution and reporting} \label{s:details-of-the-master-test-plan:anomaly-resolution-and-reporting}
 	\begin{comment}
 		$<$ Describe the method of reporting and resolving anomalies, including the standards for reporting an anomaly, the Anomaly Report distribution list, and the authority and time line for resolving anomalies. This section of the plan defines the anomaly criticality levels. Classification for software anomalies may be found in IEEE Std 1044TM-1993. $>$
 	\end{comment}
-	
+	All the anomalies in the computational library should be posted to the support them with small description and steps of reproduction. \gls{MTP} does not provide any critical level anomalies, which could occur in this application.
 \subsection{Task iteration policy} \label{s:details-of-the-master-test-plan:task-iteration-policy}
 	\begin{comment}
 		$<$ Describe the criteria used to determine the extent to which a testing task is repeated when its input is changed or task procedure is changed (e.g., reexecuting tests after anomalies have been fixed). These criteria may include assessments of change, integrity level, and effects on budget, schedule, and quality. $>$
 	\end{comment}
-	
+	After change of any requirements regression tests should be performed for the feature that relates to it. Additionally any failed tests should be repeated after fixation of the bug. 
 \subsection{Deviation policy} \label{s:details-of-the-master-test-plan:deviation-policy}
 	\begin{comment}
 		$<$ Describe the procedures and criteria used to deviate from the MTP and level test documentation after they are developed. The information required for deviations includes task identification, rationale, and effect on system/software quality. Identify the authorities responsible for approving deviations. $>$
 	\end{comment}
-	
+	All the deviation of the software should be approved by the main leader of this project (author of the document) and customer in terms of unexpected action.
 \subsection{Control procedures} \label{s:details-of-the-master-test-plan:control-procedures}
 	\begin{comment}
 		$<$ Identify control procedures applied to the test activities. These procedures describe how the softwarebased system and software products and test results will be configured, protected, and stored.\\
 		These procedures may describe quality assurance, configuration management, data management, or other activities if they are not addressed by other efforts. Describe how the test activities comply with existing security provisions and how the test results are to be protected from unauthorized alterations. $>$
 	\end{comment}
-
+	In terms of unit-tests part of the code which is not tested or tests for this part of code fails will not be allowed to be stored in control version system. This approach should avoid propagation of error to other components of system as well as using untested code. If the tests are manual then reports of testing should be made for each version of application. With each version of the system all the manual tests should be repeated.
 \subsection{Standards, practices, and conventions} \label{s:details-of-the-master-test-plan:standards-practices-and-conventions}
 	\begin{comment}
 		$<$ Identify the standards, practices, and conventions that govern the performance of testing tasks including, but not limited to, internal organizational standards, practices, and policies. $>$
 	\end{comment}
-	
+	Manual test reports should contain following fields for a single test:
+	\begin{itemize}
+		\item version of current product;
+		\item identification of test scenario;
+		\item identification of test;
+		\item description;
+		\item result;
+		\item additional comments.
+	\end{itemize}
 \section{Test reporting requirements} \label{s:details-of-the-master-test-plan:test-reporting-requirements}
 	\begin{comment}
 		$<$ Specify the purpose, content, format, recipients, and timing of all test reports. Test reporting consists of Test Logs (Clause 13), Anomaly Reports (Clause 14), Level Interim Test Status Report(s) (Clause 15), Level Test Report(s) (Clause 16), and the Master Test Report (Clause 17). Test reporting may also include optional reports defined by the user of this standard. The format and grouping of the optional reports are user defined and will vary according to subject matter. $>$
 	\end{comment}
+	Each of test reports should contain fields as mentioned in section \ref{s:details-of-the-master-test-plan:standards-practices-and-conventions}. 
