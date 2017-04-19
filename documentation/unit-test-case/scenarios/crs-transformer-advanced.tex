@@ -1,0 +1,150 @@
+\begin{testcase}{\emph{CRSTransformer} transform ALL ROWS}{High}{None}
+		{
+			\textbf{FN-4.1.2}
+		}
+		\term{Objective}{Transforming \gls{MM} format to \gls{CRS}}
+		\term{Inputs}
+		{
+			Structure that uses a correct \gls{MM} header values followed by entries of the the sparse matrix. Example input is presented in Listing \ref{lst:crstransformer-all-rows}. 	
+		}
+		\begin{lstlisting}[label={lst:crstransformer-all-rows},
+			    basicstyle=\small,caption={\gls{MM} format data example}, frame=single]
+%%MatrixMarket matrix coordinate real general
+3 3 5
+1 1 17
+1 2 4
+2 2 5
+2 3 2
+3 3 11
+		\end{lstlisting}
+		\begin{lstlisting}[label={lst:crstransformer-all-rows-sol},
+		basicstyle=\small,caption={\gls{CRS} format internal data example}, frame=single]
+VALUES = {17, 4, 5, 2, 11}
+COLUMN_INDICES = {0, 1, 1, 2, 2}
+ROW_START_INDEXES = {0, 2, 4, 5}
+		\end{lstlisting}
+		\term{Steps}
+		{
+			\begin{enumerate}
+				\item Prepare testing data-stream with example file.
+				\item Load header and values using developed class.
+				\item Invoke transforming routine 
+				\item
+				{
+					Check internal data of \gls{CRS} structure comparing to values from Listing \ref{lst:crstransformer-all-rows-sol} 
+				}
+			\end{enumerate}
+		}
+		\term{Output}{Class should correctly transform objects between formats.}
+	\end{testcase}
+
+\begin{testcase}{\emph{CRSTransformer} transform NO MIDDLE ROW}{High}{None}
+	{
+		\textbf{FN-4.1.2}
+	}
+	\term{Objective}{Transforming \gls{MM} format to \gls{CRS}}
+	\term{Inputs}
+	{
+		Structure that uses a correct \gls{MM} header values followed by entries of the the sparse matrix. Example input is presented in Listing \ref{lst:crstransformer-nmr}. 	
+	}
+	\begin{lstlisting}[label={lst:crstransformer-nmr},
+	basicstyle=\small,caption={\gls{MM} format data example}, frame=single]
+%%MatrixMarket matrix coordinate real general
+4 4 3
+1 1 17
+1 2 4
+2 3 5
+	\end{lstlisting}
+	\begin{lstlisting}[label={lst:crstransformer-nmr-sol},
+	basicstyle=\small,caption={\gls{CRS} format internal data example}, frame=single]
+VALUES = {17, 4, 11}
+COLUMN_INDICES = {0, 1, 2}
+ROW_START_INDEXES = {0, 2, 2, 3}
+	\end{lstlisting}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item Prepare testing data-stream with example file.
+			\item Load header and values using developed class.
+			\item Invoke transforming routine 
+			\item
+			{
+				Check internal data of \gls{CRS} structure comparing to values from Listing \ref{lst:crstransformer-nmr-sol} 
+			}
+		\end{enumerate}
+	}
+	\term{Output}{Class should correctly transform objects between formats.}
+\end{testcase}
+
+\begin{testcase}{\emph{CRSTransformer} transform ONE VALUE ONLY}{High}{None}
+	{
+		\textbf{FN-4.1.2}
+	}
+	\term{Objective}{Transforming \gls{MM} format to \gls{CRS}}
+	\term{Inputs}
+	{
+		Structure that uses a correct \gls{MM} header values followed by entries of the the sparse matrix. Example input is presented in Listing \ref{lst:crstransformer-ovo}. 	
+	}
+	\begin{lstlisting}[label={lst:crstransformer-ovo},
+	basicstyle=\small,caption={\gls{MM} format data example}, frame=single]
+	%%MatrixMarket matrix coordinate real general
+3 3 1
+3 3 11
+	\end{lstlisting}
+	\begin{lstlisting}[label={lst:crstransformer-ovo-sol},
+	basicstyle=\small,caption={\gls{CRS} format internal data example}, frame=single]
+VALUES = {11}
+COLUMN_INDICES = {2}
+ROW_START_INDEXES = {0, 1, 1, 1}
+	\end{lstlisting}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item Prepare testing data-stream with example file.
+			\item Load header and values using developed class.
+			\item Invoke transforming routine 
+			\item
+			{
+				Check internal data of \gls{CRS} structure comparing to values from Listing \ref{lst:crstransformer-ovo-sol} 
+			}
+		\end{enumerate}
+	}
+	\term{Output}{Class should correctly transform objects between formats.}
+\end{testcase}
+
+\begin{testcase}{\emph{CRSTransformer} transform FIRST AND LAST ROW}{High}{None}
+	{
+		\textbf{FN-4.1.2}
+	}
+	\term{Objective}{Transforming \gls{MM} format to \gls{CRS}}
+	\term{Inputs}
+	{
+		Structure that uses a correct \gls{MM} header values followed by entries of the the sparse matrix. Example input is presented in Listing \ref{lst:crstransformer-flr}. 	
+	}
+	\begin{lstlisting}[label={lst:crstransformer-flr},
+	basicstyle=\small,caption={\gls{MM} format data example}, frame=single]
+%%MatrixMarket matrix coordinate real general
+4 4 2
+1 1 4
+4 4 11
+	\end{lstlisting}
+	\begin{lstlisting}[label={lst:crstransformer-flr-sol},
+	basicstyle=\small,caption={\gls{CRS} format internal data example}, frame=single]
+VALUES = {4, 11}
+COLUMN_INDICES = {0, 3}
+ROW_START_INDEXES = {0, 1, 1, 1, 2}
+	\end{lstlisting}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item Prepare testing data-stream with example file.
+			\item Load header and values using developed class.
+			\item Invoke transforming routine 
+			\item
+			{
+				Check internal data of \gls{CRS} structure comparing to values from Listing \ref{lst:crstransformer-flr-sol} 
+			}
+		\end{enumerate}
+	}
+	\term{Output}{Class should correctly transform objects between formats.}
+\end{testcase}

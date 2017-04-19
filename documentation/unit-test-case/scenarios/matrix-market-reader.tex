@@ -1,0 +1,89 @@
+\begin{testcase}{\emph{MatrixMarketReader} read general symmetric}{High}{None}
+		{
+			\textbf{FN-4.1.1}
+		}
+		\term{Objective}{Reading preamble and values from \gls{MM} format of symmetric storage type.}
+		\term{Inputs}
+		{
+			Structure that uses a correct \gls{MM} header values followed by entries of the the sparse matrix. Example input is presented in Listing \ref{lst:mm-reader:general-symmetric}. 	
+		}
+		\begin{lstlisting}[label={lst:mm-reader:general-symmetric},
+			    basicstyle=\small,caption={\gls{MM} format data example}, frame=single]
+%%MatrixMarket matrix coordinate real symmetric
+4 4 7
+1 1 11
+1 2 12
+2 2 22
+2 3 23
+3 3 33
+4 3 43
+4 4 44
+		\end{lstlisting}
+		\term{Steps}
+		{
+			\begin{enumerate}
+				\item Prepare testing data-stream with example file.
+				\item Load header and values using developed class.
+				\item
+				{
+					Check the values in header. In terms of given example header should be:
+					\begin{itemize}
+						\item valid;
+						\item of matrix type and sparse;
+						\item real and symmetric.
+					\end{itemize}
+				}
+				\item
+				{
+					Check entry values if the tuples are properly extended to symmetric data storage.
+					Number of rows and columns should be equal to $4$. Number of non-zeros and items in entry list should be equal to $10$.
+				}
+			\end{enumerate}
+		}
+		\term{Output}{Class should recognize header properly and read \gls{MM} format correctly according to real symmetric data storage.}
+	\end{testcase}
+
+	\begin{testcase}{\emph{MatrixMarketReader} read pattern symmetric}{High}{None}
+		{
+			\textbf{FN-4.1.1}
+		}
+		\term{Objective}{Reading preamble and values from \gls{MM} format of symmetric storage type.}
+		\term{Inputs}
+		{
+			Structure that uses a correct \gls{MM} header values followed by entries of the the sparse matrix. Example input is presented in Listing \ref{lst:mm-reader:general-symmetric}. 	
+		}
+		\begin{lstlisting}[label={lst:mm-reader:general-symmetric},
+		basicstyle=\small,caption={\gls{MM} format data example}, frame=single]
+%%MatrixMarket matrix coordinate pattern symmetric
+4 4 7
+1 1 
+1 2 
+2 2
+2 3
+3 3
+4 3
+4 4
+		\end{lstlisting}
+		\term{Steps}
+		{
+			\begin{enumerate}
+				\item Prepare testing data-stream with example file.
+				\item Load header and values using developed class.
+				\item
+				{
+					Check the values in header. In terms of given example header should be:
+					\begin{itemize}
+						\item valid;
+						\item of matrix type and sparse;
+						\item real and symmetric.
+					\end{itemize}
+				}
+				\item
+				{
+					Check entry values if the tuples are properly extended to symmetric data storage using random number generator.
+					Number of rows and columns should be equal to $4$. Number of non-zeros and items in entry list should be equal to $10$.
+				}
+			\end{enumerate}
+		}
+		\term{Output}{Class should recognize header properly and read \gls{MM} format correctly according to pattern symmetric data storage.}
+	\end{testcase}

@@ -1,0 +1,32 @@
+\begin{testcase}{\emph{MatrixMarketHeader} read test}{High}{None}
+	{
+		\textbf{FN-4.1.1}
+	}
+	\term{Objective}{Reading preamble from \gls{MM} format.}
+	\term{Inputs}
+	{
+		Structure that uses a correct \gls{MM} header values. Example is presented as follows:
+	}
+	\begin{lstlisting}[caption={\gls{MM} Header Example},frame=single]
+%%MatrixMarket matrix array real general
+	\end{lstlisting}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item Prepare testing data-stream with example file.
+			\item Load header using developed class.
+			\item
+			{
+				Check the values in header. In terms of given example header should be:
+				\begin{itemize}
+					\item valid;
+					\item of matrix type;
+					\item dense;
+					\item real;
+					\item general.
+				\end{itemize}
+			}
+		\end{enumerate}
+	}
+	\term{Output}{Class should recognize header properly.}
+\end{testcase}

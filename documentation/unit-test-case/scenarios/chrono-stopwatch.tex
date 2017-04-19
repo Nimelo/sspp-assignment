@@ -1,0 +1,40 @@
+\begin{testcase}{\emph{ChronoStopwatch} one second test}{Medium}{None}
+	{
+		\textbf{FN-5.1.1}
+	}
+	\term{Objective}{Reading preamble from \gls{MM} format.}
+	\term{Inputs}
+	{
+		No inputs defined.
+	}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item Mark begin time using stopwatch.
+			\item Invoke any routine that approximately last for $1$ second.
+			\item Mark end time using stopwatch.
+			\item Compare elapsed time.
+		\end{enumerate}
+	}
+	\term{Output}{Factor of second around 1 second.}
+\end{testcase}
+\begin{testcase}{\emph{ChronoStopwatch} half second test}{Medium}{None}
+	{
+		\textbf{FN-5.1.1}
+	}
+	\term{Objective}{Reading preamble from \gls{MM} format.}
+	\term{Inputs}
+	{
+		No inputs defined.
+	}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item Mark begin time using stopwatch.
+			\item Invoke any routine that approximately last for half second.
+			\item Mark end time using stopwatch.
+			\item Compare elapsed time.
+		\end{enumerate}
+	}
+	\term{Output}{Factor of second around half second.}
+\end{testcase}

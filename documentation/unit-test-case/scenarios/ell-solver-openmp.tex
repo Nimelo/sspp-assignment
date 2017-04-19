@@ -1,0 +1,31 @@
+\begin{testcase}{\emph{EllpackOpenMPSolver} solve I}{Very High}{None}
+		{
+			\textbf{FN-4.2.7}
+		}
+		\term{Objective}{Get solution for matrix--vector dot product using \gls{ELL} storage}
+		\term{Inputs}
+		{
+			\gls{ELL} structure with vector (Listing \ref{lst:ell-openmpsolve-1}).	
+		}
+		\begin{lstlisting}[label={lst:ell-openmpsolve-1},caption={\gls{ELL} format and vector data example}, frame=single]
+JA = { 0, 1 ,1, 2, 2, 2 , 2, 3 }
+AS = { 11, 12 , 22, 23, 33, 0, 43, 44 }
+B = { 1, 1, 1, 1 }
+		\end{lstlisting}
+		\begin{lstlisting}[label={lst:ell-openmpsolve-1-sol},caption={\gls{ELL} format and vector data example}, frame=single]
+correctX = { 23, 45, 33, 87 }
+		\end{lstlisting}
+		
+		\term{Steps}
+		{	
+			\begin{enumerate}
+				\item Prepare \gls{ELL} object and vector with prepared data.
+				\item Invoke calculation routine using at least 2 threads.
+				\item
+				{
+					Check the obtained solution against hand-obtained solution - Listing \ref{lst:ell-openmpsolve-1-sol}.
+				}
+			\end{enumerate}
+		}
+		\term{Output}{Correct solution as vector of matrix-vector dot product computations.}
+	\end{testcase}

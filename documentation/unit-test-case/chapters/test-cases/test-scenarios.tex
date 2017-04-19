@@ -1,16 +1,18 @@
 \chapter{Test Scenarios} \label{chp:test-scenarios}
-	\begin{testcase}{\emph{ShiftTime} week tick test}{High}{None}
-		{
-			\textbf{FN-2.6}, \textbf{FN-3.3}
-		}
-		\term{Objective}{Transform \emph{ShiftTime} date to ticks.}
-		\term{Inputs}{Arbitrary \emph{ShiftTime}}
-		\term{Steps}
-		{
-			\begin{enumerate}
-				\item Set up \emph{ShiftTime}
-				\item Check if week tick method returned expected value calculated using $DayOfWeek * seconds\_in\_day + Hours * seconds\_in\_hour + Minutes * seconds\_in\_minute$.
-			\end{enumerate}
-		}
-		\term{Output}{Class should return correct value of ticks.}
-	\end{testcase}
+	\input{scenarios/matrix-market-header}
+	\input{scenarios/matrix-market-reader}
+	\input{scenarios/chrono-stopwatch}
+	\input{scenarios/crs-solver}	
+	\input{scenarios/ell-solver}
+	\input{scenarios/ell-transformer}
+	\input{scenarios/crs-transformer}
+	\input{scenarios/crs-transformer-advanced}
+	
+	%OPENMP
+	\input{scenarios/openmp-stopwatch}
+	\input{scenarios/crs-solver-openmp}	
+	\input{scenarios/ell-solver-openmp}
+	%CUDA
+	\input{scenarios/cuda-stopwatch}
+	\input{scenarios/crs-solver-cuda}	
+	\input{scenarios/ell-solver-cuda}
