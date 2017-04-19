@@ -17,8 +17,8 @@
 	\end{comment}
 	\textsc{Document version:} 1.0 \\
 	\textsc{Date of issue:} \today \\
-	\textsc{Issuing organization:} \textit{Company} \\
-	\textsc{Authors:} \textit{Name Surname} \\
+	\textsc{Issuing organization:} \textit{Cranfield University} \\
+	\textsc{Authors:} \textit{Mateusz GASIOR} \\
 	\textsc{Status:} Final
 \section{Scope} \label{s:introduction:scope}
 	\begin{comment}
@@ -36,13 +36,20 @@
 		Reference any Anomaly Reports relating to the test items.
 		Identify any items that are to be specifically excluded from testing.
 	\end{comment}
-
+	Performance tests considered in this document relate to performance and comparison of different implementation of matrix--vector dot product using interfaces such as: \gls{openmp} and \gls{cuda} for \gls{CRS} and \gls{ELL} matrix storage formats. 
+	
+	Results are derived from the multiple test cases which are the same for the all tested sparse matrices. Performance test checks the overall implementation across different input cases. For each supported matrix storage formats we can obtain different result. It can be assumed that one of the most influential factor is number of non-zeros entries, although properties and constraints of the storage formats also have a really big impact.
+	
+	In case of test suits and test cases structures it is assumed that for each sparse matrix a new test suit is created which contains a sub-set of all test cases, which checks the performance of routines.
+	
+	Summarizing performance test don't check if the requirements in \gls{SRS} are fulfilled from the correctness and cohesion point of view. Those tests checks how good the implemented solution is good in practice among different type of data.
+	
 \section{References} \label{s:introduction:references}
 	\begin{comment}
 		List all of the applicable reference documents. The references are separated into “external” references
 		that are imposed external to the project and “internal” references that are imposed from within to the
 		project. This may also be at the end of the document.
 	\end{comment}
-	%\begin{enumerate}
-	%	\item \emph{Software Requirements Specification, Supercomputer Simulation Tool}. Cranfield University, 2016. 
-	%\end{enumerate}
+	\begin{enumerate}
+		\item \emph{Mateusz Gasior, \gls{SRS}, Supercomputer Simulation Tool}. Cranfield University, 2016. 
+	\end{enumerate}
