@@ -15,7 +15,13 @@
 	
 	\begin{functional}{Average execution time}{Medium}{None}
 		\label{s:performance-requirements:average-exectution-time}
-		\term{DESC}{The average execution time of routines should be express as a factor of second.}
+		\term{DESC}{The average execution time of routines should be express as a factor of second. Please not that there is a difference in time measurements between different technologies, hence at least three different measurement tools should be implemented:
+		\begin{itemize}
+			\item for serial code and common purposes;
+			\item for \gls{openmp} implementation;
+			\item for \gls{cuda} usage.
+		\end{itemize}
+		}
 		\term{RAT}{In order to have common factor to compare routines between each other.}
 	\end{functional}
 
