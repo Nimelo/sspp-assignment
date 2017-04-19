@@ -4,7 +4,15 @@
 		refinements to the test approach as required for the level. It also identifies the sets of test cases (highest
 		level test cases) or scenarios along with the pass/fail criteria. It may also include the test deliverables.
 	\end{comment}
-	
+	Tests of performance level described in this document have different types, distinguishing:
+	\begin{itemize}
+		\item data type deviation comparison;
+		\item data type speed-up comparison;
+		\item \gls{cuda} speed-up comparison;
+		\item \gls{openmp} threads factor comparison;
+		\item cumulative comparison.
+	\end{itemize}
+	All of presented before types of performance test can be also performed for both \gls{CRS} and \gls{ELL} matrix storage formats.
 \section{Features to be tested} \label{s:details-of-the-level-test-design:features-to-be-tested}
 	\begin{comment}
 		Identify the test items and describe the features and combinations of features that are the object of this
@@ -17,7 +25,33 @@
 		requirement and/or design description may be included. This may be documented in a Test
 		Traceability Matrix (LTP Section 2.2).
 	\end{comment}
-
+	Performance tests described in this document focus on the computational routines, hence according to the \gls{SRS} document it is possible to distinguish requirements from following sections:
+	\begin{itemize}
+		\item
+		{
+			\textbf{4.1 Common Feature}
+			\begin{itemize}
+				\item \textbf{FN--4.1.4} \emph{Computing matrix--vector dot product using \gls{CRS}}
+				\item \textbf{FN--4.1.5} \emph{Computing matrix--vector dot product using \gls{ELL}}
+			\end{itemize}
+		}
+		\item
+		{
+			\textbf{4.2 \gls{openmp} Feature}
+			\begin{itemize}
+				\item \textbf{FN--4.2.6} \emph{Computing matrix--vector dot product using \gls{CRS} and \gls{openmp}}
+				\item \textbf{FN--4.2.7} \emph{Computing matrix--vector dot product using \gls{ELL} and \gls{openmp}}
+			\end{itemize}
+		}
+		\item
+		{
+			\textbf{4.3 \gls{cuda} Feature}
+			\begin{itemize}
+				\item \textbf{FN--4.3.8} \emph{Computing matrix--vector dot product using \gls{CRS} and \gls{cuda}
+				\item \textbf{FN--4.3.9} \emph{Computing matrix--vector dot product using \gls{ELL} and \gls{cuda}}}
+			\end{itemize}
+		}
+	\end{itemize}
 \section{Approach refinements} \label{s:details-of-the-level-test-design:approach-refinements}
 	\begin{comment}
 		Specify refinements to the approach described in the corresponding Level Test Plan (if there is one;
@@ -30,14 +64,23 @@
 		be as reusable as possible for regression testing, revalidation testing for changes, and training new
 		employees who must either use or support the system over time.
 	\end{comment}
-
+	Approach of testing performance of implemented routines is described in details in Chapter \ref{s:details-of-the-level-test-design:features-to-be-tested}, \gls{MTP} and \gls{SRS} within requirements described in Chapter 5 (\emph{Other Nonfunctional Requirements}). Test scenarios and test suites does not require iterative approach, but it is very important to test various test data from different sources. It is also not necessary to run all test cases if there is no need to do it, because it consumes a lot of time.
 \section{Test identification} \label{s:details-of-the-level-test-design:test-identification}
 	\begin{comment}
 		List the identifier and a brief description of each test case (or set of related test cases) in scenarios for
 		this design. A particular test case, scenario, or procedure may be identified in more than one LTD. List
 		the identifier and a brief description of each procedure associated with this LTD.
 	\end{comment}
-
+	Each test suite should have a unique name with a brief description of the tested domain. Similarly to mentioned test suites each test scenario also should have the same fields, but more detailed description should be introduced. Example of test identification should look in a following manner: \\
+	\begin{center}
+		\boxed
+		{
+			\begin{tabular}{ll}
+				\textsc{Identification:} & Configuration Main Test Suite \\
+				\textsc{Description:} & Contains all the tests related to the configuration.
+			\end{tabular}
+		}
+	\end{center}
 \section{Feature pass/fail criteria} \label{s:details-of-the-level-test-design:feature-pass-fail-criteria}
 	\begin{comment}
 		Specify the criteria to be used to determine whether the feature or feature combination has passed or
@@ -45,7 +88,9 @@
 		section is not needed if it is covered by an MTP and there have been no subsequent changes to the
 		criteria.
 	\end{comment}
+	In case of performance-tests there is very complex way to describe fail or pass criteria. In a general way we can say that if results of the tests is below acceptable threshold the test is marked as a fail. 
 	
+	In terms of the assignment the performance test described has more academic approach and all the data is used as a reference for other future implementations. Summarizing only unexpected errors can mark a performance test as a fail. For example it concerns memory allocation or not supported driver/hardware issues.
 \section{Test deliverables} \label{s:details-of-the-level-test-design:test-deliverables}
 	\begin{comment}
 		Identify all information that is to be delivered by the test activity (documents, data, etc.). The following
@@ -66,4 +111,10 @@
 		Management Plan. This delivery process description is not required if it is covered by the MTP and
 		there are no changes
 	\end{comment}
-	
+	Each of test cases in performance test set should produce a set of performance metrics such as:
+	\begin{itemize}
+		\item average time of kernel execution;
+		\item number of \gls{FLOPS};
+		\item in some cases deviation from the analytic solution;
+		\item comparison of deviation between different data types precision.
+	\end{itemize}
