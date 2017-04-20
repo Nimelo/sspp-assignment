@@ -1,16 +1,33 @@
 \chapter{Test Scenarios} \label{chp:test-scenarios}
-	\begin{testcase}{\emph{ShiftTime} week tick test}{High}{None}
-		{
-			\textbf{FN-2.6}, \textbf{FN-3.3}
-		}
-		\term{Objective}{Transform \emph{ShiftTime} date to ticks.}
-		\term{Inputs}{Arbitrary \emph{ShiftTime}}
-		\term{Steps}
-		{
-			\begin{enumerate}
-				\item Set up \emph{ShiftTime}
-				\item Check if week tick method returned expected value calculated using $DayOfWeek * seconds\_in\_day + Hours * seconds\_in\_hour + Minutes * seconds\_in\_minute$.
-			\end{enumerate}
-		}
-		\term{Output}{Class should return correct value of ticks.}
-	\end{testcase}
+	\perftestcase{cage4.mtx}{../../Binaries/cage4.mtxopenmp.performance}{../../Binaries/cage4.mtxcuda.performance}
+	\perftestcase{olm1000.mtx}{../../Binaries/olm1000.mtxopenmp.performance}{../../Binaries/olm1000.mtxcuda.performance}
+	\perftestcase{west2021.mtx}{../../Binaries/west2021.mtxopenmp.performance}{../../Binaries/west2021.mtxcuda.performance}
+	\perftestcase{add32.mtx}{../../Binaries/add32.mtxopenmp.performance}{../../Binaries/add32.mtxcuda.performance}
+	\perftestcase{mcfe.mtx}{../../Binaries/mcfe.mtxopenmp.performance}{../../Binaries/mcfe.mtxcuda.performance}
+	\perftestcase{rdist2.mtx}{../../Binaries/rdist2.mtxopenmp.performance}{../../Binaries/rdist2.mtxcuda.performance}
+	\perftestcase{cavity10.mtx}{../../Binaries/cavity10.mtxopenmp.performance}{../../Binaries/cavity10.mtxcuda.performance}
+	\perftestcase{mhd4800a.mtx}{../../Binaries/mhd4800a.mtxopenmp.performance}{../../Binaries/mhd4800a.mtxcuda.performance}
+	\perftestcase{raefsky2.mtx}{../../Binaries/raefsky2.mtxopenmp.performance}{../../Binaries/raefsky2.mtxcuda.performance}
+	\perftestcase{FEM\_3D\_thermal1.mtx}{../../Binaries/FEM_3D_thermal1.mtxopenmp.performance}{../../Binaries/FEM_3D_thermal1.mtxcuda.performance}
+	\perftestcase{bcsstk17.mtx}{../../Binaries/bcsstk17.mtxopenmp.performance}{../../Binaries/bcsstk17.mtxcuda.performance}
+	\perftestcase{af23560.mtx}{../../Binaries/af23560.mtxopenmp.performance}{../../Binaries/af23560.mtxcuda.performance}
+	\perftestcase{lung2.mtx}{../../Binaries/lung2.mtxopenmp.performance}{../../Binaries/lung2.mtxcuda.performance}
+	\perftestcase{thermal1.mtx}{../../Binaries/thermal1.mtxopenmp.performance}{../../Binaries/thermal1.mtxcuda.performance}
+	%\perftestcase{dc1.mtx}{../../Binaries/dc1.mtxopenmp.performance}{../../Binaries/dc1.mtxcuda.performance}
+	\perftestcase{thermomech\_TK.mtx}{../../Binaries/thermomech_TK.mtxopenmp.performance}{../../Binaries/thermomech_TK.mtxcuda.performance}
+	\perftestcase{olafu.mtx}{../../Binaries/olafu.mtxopenmp.performance}{../../Binaries/olafu.mtxcuda.performance}
+	\perftestcase{amazon0302.mtx}{../../Binaries/amazon0302.mtxopenmp.performance}{../../Binaries/amazon0302.mtxcuda.performance}
+	\perftestcase{mac\_econ\_fwd500.mtx}{../../Binaries/mac_econ_fwd500.mtxopenmp.performance}{../../Binaries/mac_econ_fwd500.mtxcuda.performance}
+	\perftestcase{cop20k\_A.mtx}{../../Binaries/cop20k_A.mtxopenmp.performance}{../../Binaries/cop20k_A.mtxcuda.performance}
+	\perftestcase{roadNet-PA.mtx}{../../Binaries/roadNet-PA.mtxopenmp.performance}{../../Binaries/roadNet-PA.mtxcuda.performance}
+	%\perftestcase{webbase-1M.mtx}{../../Binaries/webbase-1M.mtxopenmp.performance}{../../Binaries/webbase-1M.mtxcuda.performance}
+	
+	\perftestcase{cant.mtx}{../../Binaries/cant.mtxopenmp.performance}{../../Binaries/cant.mtxcuda.performance}
+	\perftestcase{PR02R.mtx}{../../Binaries/PR02R.mtxopenmp.performance}{../../Binaries/PR02R.mtxcuda.performance}
+	\perftestcase{thermal2.mtx}{../../Binaries/thermal2.mtxopenmp.performance}{../../Binaries/thermal2.mtxcuda.performance}
+	\perftestcase{af\_1\_k101.mtx}{../../Binaries/af_1_k101.mtxopenmp.performance}{../../Binaries/af_1_k101.mtxcuda.performance}
+	\perftestcase{ML\_Laplace.mtx}{../../Binaries/ML_Laplace.mtxopenmp.performance}{../../Binaries/ML_Laplace.mtxcuda.performance}
+	\perftestcase{nlpkkt80.mtx}{../../Binaries/nlpkkt80.mtxopenmp.performance}{../../Binaries/nlpkkt80.mtxcuda.performance}
+	%\perftestcase{Cube\_Coup\_dt0.mtx}{../../Binaries/Cube_Coup_dt0.mtxopenmp.performance}{../../Binaries/Cube_Coup_dt0.mtxcuda.performance}
+
+	
