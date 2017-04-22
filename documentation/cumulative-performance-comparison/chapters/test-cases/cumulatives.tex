@@ -1,94 +1,165 @@
 \chapter{Cumulative test cases}
-	\begin{figure}
+	Sparse matrices don't store unnecessary, redundant data. It is very natural to store only informations that are important, but in terms of some sparse matrix storages as \gls{ELL} some of redundant data is stored. The best example of compress data sparse data storage is \gls{MM} format, unfortunately it's not the best for doing massive parallel computations.
+	
+	The performance of the solution will vary on the input matrix. Precisely performance depends on amount of non-zero entries and arrangement of those entries in the matrix itself. Table \ref{tab:matrix-info} presents meta data (set of metrics) according to mentioned before dependency. Figures \ref{fig:performance-float} and \ref{fig:performance-double} presents obtained results for testing matrices in \gls{CRS} and \gls{ELL} storage formats respectively using single and double precision instruction. Results for \gls{openmp} are presented in Figures \ref{fig:performance-openmp-float} and \ref{fig:performance-openmp-double}. Similarly results for \gls{cuda} are presented in Figures \ref{fig:performance-cuda-float} and \ref{fig:performance-cuda-double}.
+	
+	
+	\begin{table}[!htp]
 		\centering
-		\begin{tikzpicture}[scale=1.0]
-			\begin{axis}[
-				ybar,   % Stacked horizontal bars
-				bar width = 0.3	em,
-				legend style={at={(0.5,-0.4)},anchor=north},
-				%xmin=0,         % Start x axis at 0
-				xtick=data,     % Use as many tick labels as y coordinates
-				xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
-				ylabel={Operations per second},
-				%enlarge x limits={abs=2.5cm},
-				xticklabel style={rotate=90, font=\tiny},
-				width = \textwidth
-			]
-			\addplot [fill=pink] table [y=crs_float_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-			%\addplot [fill=yellow] table [y=crs_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-			\addplot [fill=purple] table [y=ellpack_float_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-			%\addlegendentry{4}
+		\caption{Description of testing \glsdesc{MM} informations.}
+		\label{tab:matrix-info}
+		\begin{adjustbox}{max width=\textwidth}
+			\begin{tabular}{cr|r|r|r|r|r|}
+				\cline{3-7}
+				&  & \multicolumn{5}{c|}{\textbf{Non-zeros}} \\ \hline
+				\multicolumn{1}{|c|}{\textbf{ID}} & \multicolumn{1}{c|}{\textbf{Dimension}} & \multicolumn{1}{c|}{\textbf{NZ}} & \multicolumn{1}{c|}{\textbf{Max Row}} & \multicolumn{1}{c|}{\textbf{Min Row}} & \multicolumn{1}{c|}{\textbf{Average}} & \multicolumn{1}{c|}{\textbf{St. Dev.}} \\ \hline \hline
+				\multicolumn{1}{|c|}{cage4.mtx} & 9 x 9 & 49 & 6 & 5 & 5.44444 & 0.246914 \\ \hline
+				\multicolumn{1}{|c|}{olm1000.mtx} & 1000 x 1000 & 3996 & 6 & 2 & 3.996 & 3.99198 \\ \hline
+				\multicolumn{1}{|c|}{west2021.mtx} & 2021 x 2021 & 7353 & 12 & 1 & 3.6383 & 5.70935 \\ \hline
+				\multicolumn{1}{|c|}{mhd416a.mtx} & 416 x 416 & 8562 & 33 & 1 & 20.5817 & 39.9693 \\ \hline
+				\multicolumn{1}{|c|}{add32.mtx} & 4960 x 4960 & 23884 & 32 & 2 & 4.81532 & 13.5675 \\ \hline
+				\multicolumn{1}{|c|}{mcfe.mtx} & 765 x 765 & 24382 & 81 & 17 & 31.8719 & 285.991 \\ \hline
+				\multicolumn{1}{|c|}{rdist2.mtx} & 3198 x 3198 & 56934 & 61 & 1 & 17.8 & 189.232 \\ \hline
+				\multicolumn{1}{|c|}{cavity10.mtx} & 2597 x 2597 & 76367 & 62 & 8 & 29.4059 & 223.418 \\ \hline
+				\multicolumn{1}{|c|}{mhd4800a.mtx} & 4800 x 4800 & 102252 & 33 & 1 & 21.3025 & 33.6343 \\ \hline
+				\multicolumn{1}{|c|}{raefsky2.mtx} & 3242 x 3242 & 294276 & 108 & 24 & 90.7699 & 449.125 \\ \hline
+				\multicolumn{1}{|c|}{bcsstk17.mtx} & 10974 x 10974 & 428650 & 150 & 1 & 39.0605 & 237.578 \\ \hline
+				\multicolumn{1}{|c|}{FEM\_3D\_thermal1.mtx} & 17880 x 17880 & 430740 & 27 & 12 & 24.0906 & 18.5656 \\ \hline
+				\multicolumn{1}{|c|}{af23560.mtx} & 23560 x 23560 & 484256 & 21 & 11 & 20.5542 & 1.61481 \\ \hline
+				\multicolumn{1}{|c|}{lung2.mtx} & 109460 x 109460 & 492564 & 8 & 2 & 4.49995 & 3.76009 \\ \hline
+				\multicolumn{1}{|c|}{thermal1.mtx} & 82654 x 82654 & 574458 & 11 & 1 & 6.95015 & 0.76873 \\ \hline
+				\multicolumn{1}{|c|}{thermomech\_TK.mtx} & 102158 x 102158 & 711558 & 10 & 4 & 6.96527 & 0.511568 \\ \hline
+				\multicolumn{1}{|c|}{dc1.mtx} & 116835 x 116835 & 766396 & 114190 & 1 & 6.55964 & 130681 \\ \hline
+				\multicolumn{1}{|c|}{olafu.mtx} & 16146 x 16146 & 1015156 & 89 & 24 & 62.8735 & 153.993 \\ \hline
+				\multicolumn{1}{|c|}{amazon0302.mtx} & 262111 x 262111 & 1234877 & 5 & 0 & 4.171127 & 0.905425 \\ \hline
+				\multicolumn{1}{|c|}{mac\_econ\_fwd500.mtx} & 206500 x 206500 & 1273389 & 44 & 1 & 6.16653 & 19.6769 \\ \hline
+				\multicolumn{1}{|c|}{cop20k\_A.mtx} & 121192 x 121192 & 2624331 & 81 & 0 & 21.6543 & 190.238 \\ \hline
+				\multicolumn{1}{|c|}{roadNet-PA.mtx} & 1090920 x 1090920 & 3083796 & 9 & 0 & 2.82678 & 1.05223 \\ \hline
+				\multicolumn{1}{|c|}{webbase-1M.mtx} & 1000005 x 1000005 & 3105536 & 4700 & 1 & 3.10552 & 642.38 \\ \hline
+				\multicolumn{1}{|c|}{cant.mtx} & 62451 x 62451 & 4007383 & 78 & 1 & 64.1684 & 197.578 \\ \hline
+				\multicolumn{1}{|c|}{PR02R.mtx} & 161070 x 161070 & 8185136 & 92 & 1 & 50.8173 & 388.022 \\ \hline
+				\multicolumn{1}{|c|}{thermal2.mtx} & 1228045 x 1228045 & 8580313 & 11 & 1 & 6.98697 & 0.658376 \\ \hline
+				\multicolumn{1}{|c|}{af\_1\_k101.mtx} & 503625 x 503625 & 17550675 & 35 & 15 & 34.8457 & 1.57899 \\ \hline
+				\multicolumn{1}{|c|}{ML\_Laplace.mtx} & 377002 x 377002 & 27689972 & 74 & 26 & 73.4478 & 12.4243 \\ \hline
+				\multicolumn{1}{|c|}{nlpkkt80.mtx} & 1062400 x 1062400 & 28704672 & 28 & 5 & 27.0187 & 13.9511 \\ \hline
+				\multicolumn{1}{|c|}{Cube\_Coup\_dt0.mtx} & 2164760 x 2164760 & 1.27E+08 & 68 & 24 & 58.7622 & 19.9954 \\ \hline
+			\end{tabular}
+		\end{adjustbox}
+	\end{table}
+\begin{figure}
+	\thisfloatpagestyle{empty}
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\resizebox{\textwidth}{0.4\pageheight}{
+			\begin{tikzpicture}[scale=1]
+				\begin{axis}[
+					ybar,   % Stacked horizontal bars
+					bar width = 0.3	em,
+					legend pos = north east,
+					%xmin=0,         % Start x axis at 0
+					xtick=data,     % Use as many tick labels as y coordinates
+					xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
+					ylabel={\gls{FLOPS}},
+					%enlarge x limits={abs=2.5cm},
+					xticklabel style={rotate=90, font=\tiny},
+					width = \textwidth
+				]
+				\addplot [fill=yellow] table [y=crs_float_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+				\addlegendentry{\gls{CRS}}
+				\addplot [fill=blue] table [y=ellpack_float_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+				\addlegendentry{\gls{ELL}}
+				\end{axis}
+			\end{tikzpicture}
+			}
+		\caption{Solution using \gls{openmp}.}
+		\label{fig:performance-openmp-float}
+	\end{subfigure}
+
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\resizebox{\textwidth}{0.4\pageheight}{
+			\begin{tikzpicture}[scale=1]
+				\begin{axis}[
+					ybar,   % Stacked horizontal bars
+					bar width = 0.3	em,
+					legend pos = north east,
+					%xmin=0,         % Start x axis at 0
+					xtick=data,     % Use as many tick labels as y coordinates
+					xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
+					ylabel={\gls{FLOPS}},
+					%enlarge x limits={abs=2.5cm},
+					xticklabel style={rotate=90, font=\tiny},
+					width = \textwidth
+				]
+				\addplot [fill=yellow] table [y=crs_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+				\addlegendentry{\gls{CRS}}
+				\addplot [fill=blue] table [y=ellpack_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+				\addlegendentry{\gls{ELL}}
 			\end{axis}
-		\end{tikzpicture}
-		\caption{OPENMP}
-	\end{figure}
+			\end{tikzpicture}
+		}
+		\caption{Solution using \gls{cuda}.}
+		\label{fig:performance-cuda-float}
+	\end{subfigure}
+	\caption{Performance of solution using single precision instructions.}
+	\label{fig:performance-float}
+\end{figure}	
 
 	\begin{figure}
-		\centering
-		\begin{tikzpicture}[scale=1.0]
-			\begin{axis}[
+		\thisfloatpagestyle{empty}
+		\begin{subfigure}{1\textwidth}
+			\centering
+			\resizebox{\textwidth}{0.4\pageheight}{
+				\begin{tikzpicture}[scale=1]
+				\begin{axis}[
 				ybar,   % Stacked horizontal bars
 				bar width = 0.3	em,
-				legend style={at={(0.5,-0.4)},anchor=north},
+				legend pos = north east,
 				%xmin=0,         % Start x axis at 0
 				xtick=data,     % Use as many tick labels as y coordinates
 				xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
-				ylabel={Operations per second},
+				ylabel={Double precision \gls{FLOPS}},
 				%enlarge x limits={abs=2.5cm},
 				xticklabel style={rotate=90, font=\tiny},
 				width = \textwidth
-			]
-			\addplot [fill=pink] table [y=crs_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-			%\addplot [fill=yellow] table [y=crs_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-			\addplot [fill=purple] table [y=ellpack_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-			%\addlegendentry{4}
-		\end{axis}
-		\end{tikzpicture}
-		\caption{CUDA}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\begin{tikzpicture}[scale=1.0]
-		\begin{axis}[
-		ybar,   % Stacked horizontal bars
-		bar width = 0.3	em,
-		legend style={at={(0.5,-0.4)},anchor=north},
-		%xmin=0,         % Start x axis at 0
-		xtick=data,     % Use as many tick labels as y coordinates
-		xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
-		ylabel={Operations per second},
-		%enlarge x limits={abs=2.5cm},
-		xticklabel style={rotate=90, font=\tiny},
-		width = \textwidth
-		]
-		\addplot [fill=pink] table [y=crs_double_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-		\addplot [fill=purple] table [y=ellpack_double_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-		%\addlegendentry{4}
-		\end{axis}
-		\end{tikzpicture}
-		\caption{OPENMP}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\begin{tikzpicture}[scale=1.0]
-		\begin{axis}[
-		ybar,   % Stacked horizontal bars
-		bar width = 0.3	em,
-		legend style={at={(0.5,-0.4)},anchor=north},
-		%xmin=0,         % Start x axis at 0
-		xtick=data,     % Use as many tick labels as y coordinates
-		xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
-		ylabel={Operations per second},
-		%enlarge x limits={abs=2.5cm},
-		xticklabel style={rotate=90, font=\tiny},
-		width = \textwidth
-		]
-		\addplot [fill=pink] table [y=crs_double_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-		\addplot [fill=purple] table [y=ellpack_double_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
-		%\addlegendentry{4}
-		\end{axis}
-		\end{tikzpicture}
-		\caption{CUDA}
-	\end{figure}
+				]
+				\addplot [fill=purple] table [y=crs_double_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+				\addlegendentry{\gls{CRS}}
+				\addplot [fill=green] table [y=ellpack_double_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+				\addlegendentry{\gls{ELL}}
+				\end{axis}
+				\end{tikzpicture}
+			}
+			\caption{Solution using \gls{openmp}.}
+			\label{fig:performance-openmp-double}
+		\end{subfigure}
+		
+		\begin{subfigure}{1\textwidth}
+			\centering
+			\resizebox{\textwidth}{0.4\pageheight}{
+				\begin{tikzpicture}[scale=1]
+				\begin{axis}[
+				ybar,   % Stacked horizontal bars
+				bar width = 0.3	em,
+				legend pos = north east,
+				%xmin=0,         % Start x axis at 0
+				xtick=data,     % Use as many tick labels as y coordinates
+				xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
+				ylabel={\gls{FLOPS}},
+				%enlarge x limits={abs=2.5cm},
+				xticklabel style={rotate=90, font=\tiny},
+				width = \textwidth
+				]
+				\addplot [fill=purple] table [y=crs_double_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+				\addlegendentry{\gls{CRS}}
+				\addplot [fill=green] table [y=ellpack_double_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+				\addlegendentry{\gls{ELL}}
+				\end{axis}
+				\end{tikzpicture}
+			}
+			\caption{Solution using \gls{cuda}.}
+			\label{fig:performance-cuda-double}
+		\end{subfigure}
+		\caption{Performance of solution using double precision instructions.}
+		\label{fig:performance-double}
+	\end{figure}	
