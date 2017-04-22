@@ -15,7 +15,7 @@
         CREATE_FIXTURE(FIXTURE_NAME, KEY, PATH)           \
         CREATE_PERFORMANCE_CUMULATIVE_F(FIXTURE_NAME)     \
         CREATE_FLOAT_DOUBLE_TEST_F(FIXTURE_NAME)          \
-//        CREATE_SPEEDUP_TEST_F(FIXTURE_NAME)               \
+        CREATE_SPEEDUP_TEST_F(FIXTURE_NAME)               \
 
 #pragma warning (push)
 #pragma warning( disable : 4356)
@@ -206,7 +206,7 @@ TEST_F(FIXTURE_NAME, OPENMP_CUMULATIVE_SPEEDUP) {                               
   }                                                                              \
   ) << std::endl;                                                                \
 }                                                                                \
-                                                                                 
+
 #define CREATE_CUDA_CUMULATIVE_SPEEDUP(FIXTURE_NAME)                             \
 TEST_F(FIXTURE_NAME, CUDA_CUMULATIVE_SPEEDUP) {                                  \
   sspp::common::ELLPACKSolver<float> serial_f_ellpack;                           \
@@ -230,5 +230,8 @@ TEST_F(FIXTURE_NAME, CUDA_CUMULATIVE_SPEEDUP) {                                 
   }                                                                              \
   ) << std::endl;                                                                \
 }                                                                                \
+
+#define CREATE_FAKE_TEST_CASE(FIXTURE_NAME) \
+TEST_F(FIXTURE_NAME, EMPTY_CASE) { }        \
 ;
 ;
