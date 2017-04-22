@@ -113,7 +113,7 @@
 	\end{figure*}
 }
 
-\newcommand{\cumulative}[3]
+\newcommand{\cumulative}[4]
 {
 	\centering
 	\begin{tikzpicture}[scale=1.0]
@@ -129,6 +129,7 @@
 	xticklabel style={rotate=90, font=\tiny},
 	width = \textwidth
 	]
+		\addplot [fill=pink] table [y=#4, x expr=\coordindex] {#1};
 	\addplot [fill=#3] table [y=#2, x expr=\coordindex] {#1};
 	%\addlegendentry{#4}
 	\end{axis}

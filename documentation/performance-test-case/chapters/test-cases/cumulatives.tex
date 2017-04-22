@@ -1,0 +1,94 @@
+\chapter{Cumulative test cases}
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.0]
+			\begin{axis}[
+				ybar,   % Stacked horizontal bars
+				bar width = 0.3	em,
+				legend style={at={(0.5,-0.4)},anchor=north},
+				%xmin=0,         % Start x axis at 0
+				xtick=data,     % Use as many tick labels as y coordinates
+				xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
+				ylabel={Operations per second},
+				%enlarge x limits={abs=2.5cm},
+				xticklabel style={rotate=90, font=\tiny},
+				width = \textwidth
+			]
+			\addplot [fill=pink] table [y=crs_float_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+			%\addplot [fill=yellow] table [y=crs_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+			\addplot [fill=purple] table [y=ellpack_float_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+			%\addlegendentry{4}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{OPENMP}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.0]
+			\begin{axis}[
+				ybar,   % Stacked horizontal bars
+				bar width = 0.3	em,
+				legend style={at={(0.5,-0.4)},anchor=north},
+				%xmin=0,         % Start x axis at 0
+				xtick=data,     % Use as many tick labels as y coordinates
+				xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
+				ylabel={Operations per second},
+				%enlarge x limits={abs=2.5cm},
+				xticklabel style={rotate=90, font=\tiny},
+				width = \textwidth
+			]
+			\addplot [fill=pink] table [y=crs_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+			%\addplot [fill=yellow] table [y=crs_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+			\addplot [fill=purple] table [y=ellpack_float_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+			%\addlegendentry{4}
+		\end{axis}
+		\end{tikzpicture}
+		\caption{CUDA}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.0]
+		\begin{axis}[
+		ybar,   % Stacked horizontal bars
+		bar width = 0.3	em,
+		legend style={at={(0.5,-0.4)},anchor=north},
+		%xmin=0,         % Start x axis at 0
+		xtick=data,     % Use as many tick labels as y coordinates
+		xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
+		ylabel={Operations per second},
+		%enlarge x limits={abs=2.5cm},
+		xticklabel style={rotate=90, font=\tiny},
+		width = \textwidth
+		]
+		\addplot [fill=pink] table [y=crs_double_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+		\addplot [fill=purple] table [y=ellpack_double_openmp, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+		%\addlegendentry{4}
+		\end{axis}
+		\end{tikzpicture}
+		\caption{OPENMP}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.0]
+		\begin{axis}[
+		ybar,   % Stacked horizontal bars
+		bar width = 0.3	em,
+		legend style={at={(0.5,-0.4)},anchor=north},
+		%xmin=0,         % Start x axis at 0
+		xtick=data,     % Use as many tick labels as y coordinates
+		xticklabels from table={../../Binaries/cumulative2.performance}{matrix},
+		ylabel={Operations per second},
+		%enlarge x limits={abs=2.5cm},
+		xticklabel style={rotate=90, font=\tiny},
+		width = \textwidth
+		]
+		\addplot [fill=pink] table [y=crs_double_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+		\addplot [fill=purple] table [y=ellpack_double_cuda, x expr=\coordindex] {../../Binaries/cumulative2.performance};
+		%\addlegendentry{4}
+		\end{axis}
+		\end{tikzpicture}
+		\caption{CUDA}
+	\end{figure}
