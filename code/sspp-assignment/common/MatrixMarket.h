@@ -5,6 +5,8 @@
 #include "MatrixMarketTuple.h"
 #include "MatrixMarketHeader.h"
 #include "SparseMatrix.h"
+#include "MatrixMarketInfo.h"
+#include <numeric>
 
 namespace sspp {
   namespace common {
@@ -48,6 +50,27 @@ namespace sspp {
           (lhs.GetRowIndice() == rhs.GetRowIndice() && lhs.GetColumnIndice() < rhs.GetColumnIndice()));
       }
 
+      MatrixMarketInfo GetInfo() {
+        std::vector<unsigned> auxiliary_array(rows_);
+
+        for(auto const & tuple : tuples_) {
+          ++auxiliary_array[tuple.GetRowIndice()];
+        }
+
+        double max = *std::max_element(auxiliary_array.begin(), auxiliary_array.end());
+        double min = *std::min_element(auxiliary_array.begin(), auxiliary_array.end());
+        double average = std::accumulate(auxiliary_array.begin(), auxiliary_array.end(), 0.0) / auxiliary_array.size();
+
+        double standard_deviation = 0.0;
+        for(auto const & val : auxiliary_array) {
+          standard_deviation += (val - average) * (val - average);
+        }
+
+        standard_deviation /= auxiliary_array.size();
+
+        return MatrixMarketInfo(rows_, columns_, non_zeros_, max, min, average, standard_deviation);
+
+      }
     private:
       std::vector<unsigned> row_indices_;
       std::vector<unsigned> column_indices_;

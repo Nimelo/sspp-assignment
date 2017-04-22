@@ -160,6 +160,7 @@
     <ClInclude Include="FLOPSCalculator.h" />
     <ClInclude Include="MarketMatrixReader.h" />
     <ClInclude Include="MatrixMarket.h" />
+    <ClInclude Include="MatrixMarketInfo.h" />
     <ClInclude Include="MetaPerformanceResult.h" />
     <ClInclude Include="SparseMatrix.h" />
     <ClInclude Include="StableSorter.h" />

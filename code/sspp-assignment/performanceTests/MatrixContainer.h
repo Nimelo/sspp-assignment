@@ -18,6 +18,9 @@ public:
       std::ifstream is(path);
       sspp::common::DoublePatternResolver resolver;
       sspp::common::MatrixMarket<double> matrix_market = sspp::common::MatrixMarketReader::Read(is, resolver);
+      std::ofstream os(key + ".info");
+      os << matrix_market.GetInfo();
+      os.close();
       matrix_map_.insert({ key, matrix_market });
       is.close();
     }
