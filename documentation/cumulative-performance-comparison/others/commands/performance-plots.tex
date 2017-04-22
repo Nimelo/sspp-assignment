@@ -1,0 +1,137 @@
+\newcommand{\openmpCRS}[1]
+{
+		\centering
+		\begin{tikzpicture}[scale=0.7]
+		\begin{axis}[
+		ybar,   % Stacked horizontal bars
+		legend style={at={(0.5,-0.2)},anchor=north},
+		%xmin=0,         % Start x axis at 0
+		xtick=data,     % Use as many tick labels as y coordinates
+		xticklabels from table={#1}{threads},
+		ylabel={Operations per second},
+		xlabel={Number of threads}
+		]
+		\addplot [fill=yellow] table [y=crs_float, x expr=\coordindex] {#1};
+		\addlegendentry{CRS FLOAT}
+		\addplot [fill=green!70!blue]table [y=crs_double, x expr=\coordindex] {#1};
+		\addlegendentry{CRS DOUBLE}
+		\end{axis}
+		\end{tikzpicture}
+		\caption{\gls{CRS} using \gls{openmp}}
+}
+
+\newcommand{\openmpELLPACK}[1]
+{
+		\centering
+		\begin{tikzpicture}[scale=0.7]
+		\begin{axis}[
+		ybar,   % Stacked horizontal bars
+		legend style={at={(0.5,-0.2)},anchor=north},
+		%xmin=0,         % Start x axis at 0
+		xtick=data,     % Use as many tick labels as y coordinates
+		xticklabels from table={#1}{threads},
+		ylabel={Operations per second},
+		xlabel={Number of threads}
+		]
+		\addplot [fill=red!80!yellow] table [y=ellpack_float, x expr=\coordindex] {#1};
+		\addlegendentry{ELLPACK FLOAT}
+		\addplot [fill=orange!80!yellow] table [y=ellpack_double, x expr=\coordindex] {#1};
+		\addlegendentry{ELLPACK DOUBLE}
+		\end{axis}
+		\end{tikzpicture}
+		\caption{\gls{ELL} using \gls{openmp}}
+}
+
+\newcommand{\cudaCRS}[1]
+{
+		\begin{center}
+			\begin{tikzpicture}[scale=0.7]
+			\begin{axis}[
+			ybar,   % Stacked horizontal bars
+			legend style={at={(0.5,-0.2)},anchor=north},
+			%xmin=0,         % Start x axis at 0
+			xtick={0},     % Use as many tick labels as y coordinates
+			xticklabels={CRS},
+			ylabel={Operations per second},
+			enlarge x limits={abs=2.5cm},
+			]
+			\addplot [fill=yellow] table [y=crs_float, x expr=0] {#1};
+			\addlegendentry{CRS FLOAT}
+			\addplot [fill=green!70!blue]table [y=crs_double, x expr=0] {#1};
+			\addlegendentry{CRS DOUBLE}
+			%\addplot [fill=red!80!yellow] table [y=ellpack_float, x expr=1] {#1};
+		%	\addlegendentry{ELLPACK FLOAT}
+			%\addplot [fill=purple!80!yellow] table [y=ellpack_double, x expr=1] {#1};
+			%\addlegendentry{ELLPACK DOUBLE}
+			\end{axis}
+			\end{tikzpicture}
+		\end{center}
+		\caption{\gls{CRS} using \gls{cuda}}
+}
+
+\newcommand{\cudaELLPACK}[1]
+{
+	\begin{center}
+		\begin{tikzpicture}[scale=0.7]
+		\begin{axis}[
+		ybar,   % Stacked horizontal bars
+		legend style={at={(0.5,-0.2)},anchor=north},
+		%xmin=0,         % Start x axis at 0
+		xtick={1},     % Use as many tick labels as y coordinates
+		xticklabels={ELLPACK},
+		ylabel={Operations per second},
+		enlarge x limits={abs=2.5cm},
+		]
+		\addplot [fill=red!80!yellow] table [y=ellpack_float, x expr=1] {#1};
+		\addlegendentry{ELLPACK FLOAT}
+		\addplot [fill=purple!80!yellow] table [y=ellpack_double, x expr=1] {#1};
+		\addlegendentry{ELLPACK DOUBLE}
+		\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	\caption{\gls{ELL} using \gls{cuda}}
+}
+
+\newcommand{\plotit}[3]
+{
+	\begin{figure*}[!htbp]
+		\centering
+		\begin{subfigure}[t]{0.5\textwidth}
+		\openmpCRS{#1}
+		\end{subfigure}%
+		\begin{subfigure}[t]{0.5\textwidth}
+		\openmpELLPACK{#1}
+		\end{subfigure}
+	
+		\begin{subfigure}[t]{0.5\textwidth}
+			\cudaCRS{#2}
+		\end{subfigure}%
+		\begin{subfigure}[t]{0.5\textwidth}
+			\cudaELLPACK{#2}
+		\end{subfigure}
+		\caption{#3}%
+	\end{figure*}
+}
+
+\newcommand{\cumulative}[4]
+{
+	\centering
+	\begin{tikzpicture}[scale=1.0]
+	\begin{axis}[
+	ybar,   % Stacked horizontal bars
+	bar width = 0.3	em,
+	legend style={at={(0.5,-0.4)},anchor=north},
+	%xmin=0,         % Start x axis at 0
+	xtick=data,     % Use as many tick labels as y coordinates
+	xticklabels from table={#1}{matrix},
+	ylabel={Operations per second},
+	%enlarge x limits={abs=2.5cm},
+	xticklabel style={rotate=90, font=\tiny},
+	width = \textwidth
+	]
+		\addplot [fill=pink] table [y=#4, x expr=\coordindex] {#1};
+	\addplot [fill=#3] table [y=#2, x expr=\coordindex] {#1};
+	%\addlegendentry{#4}
+	\end{axis}
+	\end{tikzpicture}
+}

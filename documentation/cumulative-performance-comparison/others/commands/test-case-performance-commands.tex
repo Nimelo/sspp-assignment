@@ -1,0 +1,10 @@
+\newcommand{\perftestcase}[3]
+{
+	\begin{testcase}{\textsc{#1 performance}}{High}{None}
+		{
+			\textbf{FN-5.1.1}, \textbf{FN-5.1.2}
+		}
+		\plotit{#2}{#3}{Performance obtained for \emph{#1}}
+	\end{testcase}
+	\clearpage
+}
