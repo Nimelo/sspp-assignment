@@ -108,6 +108,13 @@
 	Tests are divided between two boundaries: unit tests from the point of correctness of the approach and performance tests from the point of algorithm speed. Due to small amount of routines that should be implemented overall amount of tests seems to be small and not complicated, although all processes, algorithms, routines and methods should be tested and maintained.
 	
 	Unit-tests should be added up to date with the increase of the line codes. The code coverage should be nearly close to $100\%$. Developers are obliged to add them. Testers should check the logic behind them and te overall status from the unit-tests.
+	
+	Current \gls{MTP} distinguish three documents that describes and archives the testing scope:
+	\begin{enumerate}
+		\item \emph{Unit--tests} -- contains all the tests that checks for consistency and correctness according to \gls{SRS} requirements;
+		\item \emph{Performance-tests} -- contains tests for tunning particular matrices in order to get the best performance (shorter time of computations);
+		\item \emph{Cumulative comparison} of performance that is obtained from the \emph{Performance--tests} document that summarize the overall performance among test set. 
+	\end{enumerate}
 \subsection{Organization} \label{s:introduction:organization}
 	\begin{comment}
 		$<$Describe the relationship of the test processes to other processes such as development, project
