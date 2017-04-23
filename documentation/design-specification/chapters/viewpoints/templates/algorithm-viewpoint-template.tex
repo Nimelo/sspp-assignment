@@ -1,38 +1,207 @@
-\chapter{Algorithm Viewpoint Template} \label{chp:algorithm-viewpoint-template}
+\chapter{Algorithm Viewpoint}
+\label{ch:algorithm-viewpoint}
+\begin{comment}
+	The detailed design description of operations (such as methods and functions), the internal details and logic of each design entity.
+\end{comment}
+	
+	\section{Design concerns}
+	\label{sec:algorithm-viewpoint:design-concerns}
+	The Algorithm viewpoint provides details of algorithms in regard to time-space performance and processing logic prior to implementation, and to aid in producing unit test plans.
 	\begin{comment}
-		The detailed design description of operations (such as methods and functions), the internal details and logic
-		of each design entity.
+		The Algorithm viewpoint provides details needed by programmers, analysts of algorithms in regard to	time-space performance and processing logic prior to implementation, and to aid in producing unit test plans.
 	\end{comment}
 	
-	\section{Design concerns} \label{s:algorithm-viewpoint-template:design-concerns}
-		\begin{comment}
-			The Algorithm viewpoint provides details needed by programmers, analysts of algorithms in regard to
-			time-space performance and processing logic prior to implementation, and to aid in producing unit test
-			plans.
-		\end{comment}
+	\begin{concerns}{Transforming \gls{MM} to \gls{CRS}}{Structure}
+		Below pseudocode assumes, that \texttt{tuples} is an array of \gls{MM} entry, containing row and column coordinates, as well as value of the entry. 
+		\begin{lstlisting}[language=C++,caption={Pseudocode of transforming algorithm from \gls{MM} to \gls{CRS} format.}]
+crs function transform_to_CRS()
+	sort tuples by row and within each row by column;
+	values[non_zeros];
+	row_start_indexes[rows + 1];
+	columnd_indices[non_zeros];
+	set row_start_indexes_index to 0;
+	set non_zeros_index to 1;
+	set row_start_indexes[row_start_indexes_index++] to 0;
 	
-	\section{Design elements} \label{s:algorithm-viewpoint-template:design-elements}
-		\begin{comment}
-			These should include the attribute descriptions for identification, processing (5.12.1), and data for all
-			design entities.
-		\end{comment}
+	while (row_start_indexes_index < rows + 1 and non_zeros_index < non_zeros) do
+		begin
+			set column_indices[non_zeros_index - 1] to tuples[non_zeros_index - 1]->column_indice;
+			set values[non_zeros_index - 1] to tuples[non_zeros_index - 1]->value;
+			set row_indices_diff to tuples[non_zeros_index].row_indice - tuples[non_zeros_index - 1].row_indice;
+			if (row_indices_diff != 0) then
+				set row_start_indexes[row_start_indexes_index++] to non_zeros_index;
+				if (row_indices_diff > 1) then
+					for (i = 0; i < row_indices_diff - 1; ++i) do
+						set row_start_indexes[row_start_indexes_index++] to non_zeros_index;
+					end for
+				end if
+			end if
+			set non_zeros_index to non_zeros_index + 1;
+		end
+	for (i = row_start_indexes_index; i < rows; ++i) do 
+		set row_start_indexes[row_start_indexes_index++] to non_zeros_index;
+	end for
+	set row_start_indexes[row_start_indexes_index++] to non_zeros_index;
+	set column_indices[non_zeros_index - 1] to tuples[non_zeros_index - 1]->column_indice;
+	set values[non_zeros_index - 1] to tuples[non_zeros_index - 1]->value;
+	return crs(rows, columns, non_zeros, row_start_indexes, column_indices, values);
+end function
+		\end{lstlisting}
+	\end{concerns}
+
+	\begin{concerns}{Transforming \gls{MM} to \gls{ELL}}{}
+		Below pseudocode assumes, that \texttt{tuples} is an array of \gls{MM} entry, containing row and column coordinates, as well as value of the entry.
+		\begin{lstlisting}[language=C++, caption={Pseudocode of transforming algorithm from \gls{MM} to \gls{ELL} format.}]
+ellpack function transform_to_ELLPACK()
+	create aux with max_nonzeros per row in entries;
+	find row in aux_vector with maximum non_zeros and save to max_non_zeros;
+	values[max_non_zeros * rows];
+	column_indices[max_non_zeros * rows];
 	
-		\subsection{Processing attribute} \label{s:algorithm-viewpoint-template:processing-attribute}
-			\begin{comment}
-				A description of the rules used by the entity to achieve its function. The processing attribute describes the
-				algorithm used by the entity to perform a specific task and its contingencies. This description is a
-				refinement of the function attribute and is the most detailed level of refinement for the entity.
-				
-				This description should include timing, sequencing of events or processes, prerequisites for process
-				initiation, priority of events, processing level, actual process steps, path conditions, and loop back or loop
-				termination criteria. The handling of contingencies should describe the action to be taken in the case of
-				overflow conditions or in the case of a validation check failure.
-				
-				NOTE—This design attribute is retained for compatibility with IEEE Std 1016-1998.
-			\end{comment}
-			
-	\section{Example languages} \label{s:algorithm-viewpoint-template:example-languages}
-		\begin{comment}
-			Decision tables and flowcharts; program design languages, “pseudo-code,” and (actual) programming
-			languages may also be used.
-		\end{comment}
+	for (i = 0; i < non_zeros; i++) do
+		set index to max_row_non_zeros * tuples[i]->row_indice + aux_vector[tuples[i]->row_indice] - 1;
+		set column_indices[index] to tuples->column_indice;
+		set values[index] to tuples->value;
+		--aux_vector[tuples[i]->row_indice];
+	end for
+	
+	return ellpack(rows, columns, non_zeros, max_non_zeros, column_indices, values);
+end function
+		\end{lstlisting}
+	\end{concerns}
+
+	\begin{concerns}{Calculations of \gls{CRS}--vector dot product in serial}{}
+		\begin{lstlisting}[language=C++, caption={Pseudocode of \gls{CRS}--vector dot product in serial.}]
+void function sequential_CRS()
+	for (i = 0; i < rows; i++) {
+		set tmp to 0;
+		for (j = row_start_indexes[i]; j < row_start_indexes[i + 1]; j++) do
+			set tmp to tmp + values[j] * vector[column_indices[j]];
+		end for
+		set result[i] to tmp;
+	}
+end function
+		\end{lstlisting}
+	\end{concerns}
+	\clearpage
+	\begin{concerns}{Calculations of \gls{ELL}--vector dot product in serial}{}
+		\begin{lstlisting}[language=C++, caption={Pseudocode of \gls{ELL}--vector dot product in serial.}]
+void function sequential_ELLPACK() 
+	for (i = 0; i < rows; i++) do
+		set tmp to 0;
+		for (j = 0; j < max_non_zeros; j++) do
+			set tmp to tmp + values[i][j] * vector[column_indices[i][j]];
+		end for
+		set result[i] to tmp;
+	end for
+end function
+		\end{lstlisting}
+	\end{concerns}	
+
+	\begin{concerns}{Calculations of \gls{CRS}--vector dot product with \gls{openmp}}{}
+		
+		For effective usage of threads, each thread should be assigned with equal number of operations to perform. Following solution distributes equally chunks of rows between active threads. This solution is the most efficient, if each row in matrix contains same number of nonzeros. In worst case scenario, if nonzeros are not equally distributed in matrix, this algorithm can assign whole load to a single thread, causing other threads to wait. 
+		\begin{lstlisting}[language=C++, caption={Pseudocode of \gls{CRS}--vector dot product with \gls{openmp}.}]
+void function parallel()
+	set threadId to current_thread_id;
+	set threads to number_of_threads;
+	set lowerBoundary to rows * threadId / threads;
+	set upperBoundary to rows * (threadId + 1) / threads;
+	#execute in parallel
+	for (i = lowerBoundary; i < upperBoundary; i++) do
+		set sum to 0;
+		for (j = row_start_indexes[i]; j < row_start_indexes[i + 1]; j++) do
+			set sum to sum + values[j] * vector[column_indices[j]];
+		end for
+		set result[i] to sum;
+	end for
+end function
+		\end{lstlisting}
+	\end{concerns}
+	\clearpage
+	\begin{concerns}{Calculations of \gls{ELL}--vector dot product with \gls{openmp}}{}
+		
+		This algorithm for ELLPACK format distributes work between threads the same way as preceding pseudocode for CRS.
+		\begin{lstlisting}[language=C++, caption={Pseudocode of \gls{ELL}--vector dot product with \gls{openmp}.}]
+void function parallel() 
+	set threadId to current_thread_id;
+	set threads to number_of_threads;
+	set lowerBoundary to rows * threadId / threads;
+	set upperBoundary to rows * (threadId + 1) / threads;
+	#execute in parallel
+	for (i = low; i < up; i++) do
+		set sum to 0;
+		for (j = 0; j < max_non_zeros; j++) do
+			set sum to sum + values[i][j] * vector[column_indices[i][j]];
+		end for
+		set result[i] to sum;
+	end for
+end function
+		\end{lstlisting}
+	\end{concerns}	
+
+	\pagebreak
+
+	\begin{concerns}{Calculations of \gls{CRS}--vector dot product with \gls{cuda}}
+		
+		Host side driver routine dynamically determines number of blocks, based on number of rows in matrix. 
+		
+		\begin{lstlisting}[language=C++, caption={Pseudocode of host-side driver routine for \gls{ELL}--vector product.}]
+void function host_driver(cudaDeviceProp& gpu_prop, ...)
+set T to gpu_prop.maxThreadsPerBlock;
+auto blocks = ceil(rows / T);
+ellpack_kernel <<<blocks, T>>>(...);
+end function
+		\end{lstlisting}
+		
+		
+\begin{lstlisting}[language=C++, caption={Pseudocode of \gls{cuda} kernel for CRS--vector dot product.}]
+void function crs_kernel()
+	set row to blockDim.x * blockIdx.x + threadIdx.x;
+	if (row < rows)
+		set dot to 0;
+		set row_start to row_start_indexes[row];
+		set row_end to row_start_indexes[row + 1];
+		for (i = row_start; i < row_end; i++) do
+			set dot to dot + values[i] * vector[column_indices[i]];
+		end for
+		set result[row] to dot;
+	end if
+end function
+\end{lstlisting}
+	\end{concerns}
+	
+	\pagebreak
+	
+	\begin{concerns}{Calculations of \gls{ELL}--vector dot product with \gls{cuda}}{}
+
+		Host side driver routine dynamically determines number of blocks, based on number of rows in matrix. 
+		
+		\begin{lstlisting}[language=C++, caption={Pseudocode of host-side driver routine for \gls{ELL}--vector product.}]
+void function host_driver(cudaDeviceProp& gpu_prop, ...)
+	set T to gpu_prop.maxThreadsPerBlock;
+	auto blocks = ceil(rows / T);
+	ellpack_kernel <<<blocks, T>>>(...);
+end function
+		\end{lstlisting}
+		
+		This kernel assigns calculations of a single matrix row to a thread inside a block.
+		
+		\begin{lstlisting}[language=C++, caption={Pseudocode of \gls{cuda} kernel for \gls{ELL}--vector dot product.}]
+void function ellpack_kernel()
+	set row to blockDim.x * blockIdx.x + threadIdx.x;
+	if (row < rows) then
+		set dot to 0;
+		for (n = 0; n < max_row_non_zeros; n++) do
+			set index to row * max_row_non_zeros + n;
+			set column to column_indices[index];
+			set value to values[index];
+			if (value != 0) then
+				set dot to dot + value * vector[column];
+			end if
+		end for
+		set result[row] to dot;
+	end if
+end function
+		\end{lstlisting}
+	\end{concerns}	

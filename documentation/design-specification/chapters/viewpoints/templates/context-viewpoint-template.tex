@@ -14,7 +14,7 @@
 		overlay maps software entities onto externally available entities not subject of the current design effort.
 		Similarly, work allocation to teams and other management perspectives are overlays in the design.
 	\end{comment}
-	
+	This viewpoint identifies basic features of \emph{Computational Library}, main user and example of input data.
 	\section{Design concerns} \label{s:context-viewpoint-template:design-concerns}
 		\begin{comment}
 			The purpose of the Context viewpoint is to identify a design subject’s offered services, its actors (users and
@@ -31,12 +31,24 @@
 			analysis. Work to complete this view continues during design.
 		\end{comment}
 		
-		\begin{concerns}{Name}{Level}
-			content...
+		\begin{concerns}{Library use--cases}{API}
+			\begin{figure}[!htp]
+				\centering
+				\includegraphics[scale=0.6]{others/img/library-features}
+				\caption{Use--case diagram of computation library features.}
+			\end{figure}
 		\end{concerns}
-	
-		\begin{concerns}{Name}{Level}
-			content...
+		\clearpage
+		\begin{concerns}{Example \gls{MM} file}{Input}
+			\lstinputlisting[basicstyle=\tiny]{others/cage4.mtx}
+		\end{concerns}
+		\clearpage
+		\begin{concerns}{Basic usage of library features}{API}
+			\begin{figure}[!htp]
+				\centering
+				\includegraphics[scale=0.6]{others/img/usage-flow}
+				\caption{General usage--flow of application.}
+			\end{figure}
 		\end{concerns}
 	\section{Design elements} \label{s:context-viewpoint-template:design-elements}
 		\begin{comment}
@@ -51,10 +63,24 @@
 			with environment.
 		\end{comment}
 	
-		\begin{design-element}{Name}{Type}
-			content...
+		\begin{design-element}{User}{Actor}
+			User of the library can be a programmer, researcher or scientist.
 		\end{design-element}
-	\section{Example languages} \label{s:context-viewpoint-template:example-languages}
+	
+		\begin{design-element}{\gls{MM} file}{Constraints}
+			Following storage-data types are supported:
+			\begin{itemize}
+				\item general
+				\item symmetric
+			\end{itemize}
+			Following value data types are supported:
+			\begin{itemize}
+				\item real
+				\item pattern
+				\item integer
+			\end{itemize}
+		\end{design-element}
+	%\section{Example languages} \label{s:context-viewpoint-template:example-languages}
 		\begin{comment}
 			Any black-box type diagrams can be used to realize the Context viewpoint. Appropriate languages include
 			Structured Analysis [e.g., IDEF0 (IEEE Std 1320.1-1998 [B18]), Structured Analysis and Design 
