@@ -39,6 +39,23 @@
 	This document contains cumulative comparison between different implementations of matrix--vector dot product using following sparse matrix formats: \gls{CRS} and \gls{ELL} and technologies as: \gls{openmp} and \gls{cuda}.
 	
 	This document is derived from the \emph{Performance Test Case} document which chooses the best settings and tunning options computational results. Additionally part of the scope is also included in the performance \gls{TLD} document, mentioned in section \ref{s:introduction:references}. The values are presented in either \gls{FLOPS} or Double Precision \gls{FLOPS} depending on the precision of storage data type.
+	
+	\begin{center}
+		\fbox{\parbox{\textwidth}{
+			Those tests were performed on following components:
+			\begin{enumerate}[ref=\textbf{test env. \arabic*}]
+				\item 
+				{
+					\label{set:1}
+					%Test set one:
+					\begin{itemize}
+						\item \emph{Intel® Core™ i7-4770K Processor}
+						\item \emph{NVIDIA Quadro K2000}
+					\end{itemize}
+				}
+			\end{enumerate}		
+		}}
+	\end{center}
 \section{References} \label{s:introduction:references}
 	\begin{comment}
 		List all of the applicable reference documents. The references are separated into “external” references
