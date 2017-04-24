@@ -88,7 +88,8 @@ namespace sspp {
                         VALUE_TYPE* d_values,
                         VALUE_TYPE* d_vector,
                         VALUE_TYPE* d_output) {
-        EllpackKernel << <thread_blocks, threads_per_block >> > (rows, max_row_non_zeros, d_column_indices, d_values, d_vector, d_output);
+        auto blocks = std::ceil(static_cast<double>(rows) / threads_per_block);
+        EllpackKernel << <blocks, threads_per_block >> > (rows, max_row_non_zeros, d_column_indices, d_values, d_vector, d_output);
         cudaDeviceSynchronize();
       }
 

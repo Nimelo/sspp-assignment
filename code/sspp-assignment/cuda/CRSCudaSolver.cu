@@ -89,7 +89,8 @@ namespace sspp {
                     VALUE_TYPE* d_values,
                     VALUE_TYPE* d_vector,
                     VALUE_TYPE* d_output) {
-        CrsKernel<<<thread_blocks, threads_per_block>>>(rows, d_row_start_indexes, d_column_indices, d_values, d_vector, d_output);
+        auto blocks = std::ceil(static_cast<double>(rows) / threads_per_block);
+        CrsKernel<<<blocks, threads_per_block>>>(rows, d_row_start_indexes, d_column_indices, d_values, d_vector, d_output);
         cudaDeviceSynchronize();
       }
 
