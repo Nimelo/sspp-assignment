@@ -294,7 +294,7 @@ protected:
     for(unsigned i = 0; i < n; ++i) {
       result += task();
     }
-    return result;
+    return result / static_cast<double>(n);
   }
 
   template<typename LESS_PRECISE, typename MORE_PRECISE>
