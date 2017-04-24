@@ -1,0 +1,25 @@
+\documentclass[a4paper]{report}
+\input{settings/packages.tex}
+\input{settings/commands.tex}
+	
+\lstset{language=C++,
+	basicstyle=\ttfamily\footnotesize,
+	keywordstyle=\color{blue}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	commentstyle=\color{green}\ttfamily,
+	morecomment=[l][\color{magenta}]{\#},
+	frame=single,
+	xleftmargin=3.0pt,
+	xrightmargin=3.0pt,
+	numbers=left,
+}
+
+\begin{document}	
+	\input{others/title_page.tex}
+	\pagenumbering{gobble}
+	
+	%\input{contents.tex}
+		
+	\pagenumbering{arabic}
+	\input{main.tex}
+\end{document}  

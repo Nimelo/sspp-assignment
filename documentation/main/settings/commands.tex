@@ -1,0 +1,50 @@
+\newcommand{\addcustomplot}[4]{	
+	{
+		%\pgfplotstablegetcolsof{#}
+		\addplot[scatter, color=#2,
+		scatter/@pre marker code/.style={/tikz/mark size=2.0pt},
+		scatter/@post marker code/.style={},
+		line width = 1.5pt
+		]
+		table[x index=0,y index=#3, col sep=comma] {#1};
+		\addlegendentryexpanded{#4}
+	}
+}
+
+\newcommand{\addcustomybarplot}[4]
+{
+	\addplot[black,pattern color=#3,fill=#3,pattern=north east lines]  table[x index=0,y index=#2,col sep=comma]{#1};
+	\addlegendentryexpanded{#4};
+}
+
+
+\newcommand{\plotfile}[1]{
+	\pgfplotstableread{#1}{\table}
+	\pgfplotstablegetcolsof{#1}
+	\pgfmathtruncatemacro\numberofcols{\pgfplotsretval-1}
+	\pgfplotsinvokeforeach{1,...,\numberofcols}{
+		\pgfplotstablegetcolumnnamebyindex{##1}\of{\table}\to{\colname}
+		\addplot table [y index=##1] {#1}; 
+		\addlegendentryexpanded{\colname}
+	}
+}
+
+\newcommand{\stencilpt}[4][]{\node[circle,draw,inner sep=0.1em,minimum size=0.8cm,font=\tiny,#1] at (#2) (#3) {#4}}
+
+
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	frame=single,
+	breaklines=true,
+	postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}
+}
+
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+ text centered, rounded corners, minimum height=4em, node distance=3cm]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+minimum height=2em]
